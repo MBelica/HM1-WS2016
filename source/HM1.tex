@@ -1,0 +1,42 @@
+%%%%% Nicht lesbare Stellen im Skript
+%% Seite 9: nach "Große Übungen:..."
+%% Seite 12: unten Notiz am Ende unlesbar
+%%%%% ToDos
+% todo in Kapitel 1 & 2 Verweise und Arrows überarbeiten
+% Intervalle formatieren
+% Bilder texen
+
+\documentclass[titlepage, ngerman, 12pt]{scrartcl}
+
+
+\usepackage{Analysis}  
+
+\makeindex
+
+\title{Höhere Mathematik I}
+\author{G. Herzog, C. Schmoeger}
+\date{Wintersemester 2016/17}
+\publishers{Karlsruher Institut für Technologie}
+
+
+\begin{document}	
+
+
+% Titleblatt
+\maketitle
+ \newpage
+ 
+% Inhaltsverzeichnis
+\tableofcontents
+ \newpage
+
+% Einzelne Kapitel
+\input{chapter/1-reelleZahlen}
+\input{chapter/2-FolgenUndKonvergenz}
+
+% Inhaltsverzeichnis
+\appendix \cleardoublepage \phantomsection \renewcommand{\indexname}{Stichwortverzeichnis} \addcontentsline{toc}{section}{\indexname} \printindex
+
+\Leftrightarrow
+
+\end{document}

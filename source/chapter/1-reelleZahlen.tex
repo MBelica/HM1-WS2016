@@ -1,0 +1,395 @@
+\section{Reelle Zahlen}
+
+
+Grundmenge der Analysis is die Menge $\R$, die Menge der \textbf{reellen Zahlen}. Diese führen wir \textbf{axiomatisch} ein, d.h. wir nehmen $\R$ als gegeben an und \textbf{fordern} in den folgenden 15 \textbf{Axiomen} Eigenschaften von $\R$ aus denen sich alle weiteren Rechenregeln herleiten lassen.
+\newline
+
+\index{Axiome!Körper-}
+\textbf{Körperaxiome:} in $\R$ seien zwei Verknüpfungen $\glqq + \grqq$ und $\glqq \cdot \grqq$ gegeben, die jedem Paar $a, b \in \R$ genau ein $a + b \in \R$ und genau ein $a b \coloneqq a \cdot b \in \R$ zuordnen. Dabei soll gelten:
+
+
+\begin{description} \label{k.axiom}
+	\label{k.axiom-a1}
+	\item[\hspace{0.4cm}$(A1)$] $\forall a, b, c \in \R \: a + \left( b + c \right) = \left( a + b \right) + c$  (Assoziativgesetz)
+	\label{k.axiom-a5}
+	\item[\hspace{0.4cm}$(A5)$] $\forall a, b, c \in \R \: a \cdot \left( b \cdot c \right) = \left( a \cdot b \right) \cdot c$
+	\label{k.axiom-a2}
+	\item[\hspace{0.4cm}$(A2)$] $\exists 0 \in \R$ mit $\forall a \in \R \: a + 0 = a$ (Null)
+	\label{k.axiom-a6}
+	\item[\hspace{0.4cm}$(A6)$] $\exists 1 \in \R$ mit $\forall a \in \R \: a \cdot 1 = a$ \textbf{und} $1 \neq 0$ (Eins)
+	\label{k.axiom-a3}
+	\item[\hspace{0.4cm}$(A3)$] $\forall a \in \R ~ \exists -a \in \R \: a + (-a) = 0$
+	\label{k.axiom-a7}
+	\item[\hspace{0.4cm}$(A7)$] $\forall a \in \R \setminus \{ 0 \} ~ \exists a^{-1} \in \R \: a \cdot a^{-1} = 1$
+	\label{k.axiom-a4}
+	\item[\hspace{0.4cm}$(A4)$] $\forall a, b \in \R \: a + b = b + a$ (Kommutativgesetz)
+	\label{k.axiom-a8}
+	\item[\hspace{0.4cm}$(A8)$] $\forall a, b \in \R \: a \cdot b = b \cdot a$ (Kommutativgesetz)
+	\label{k.axiom-a9}
+	\item[\hspace{0.4cm}$(A9)$] $\forall a, b, c \in \R \: a \cdot (b + c) = a \cdot b + a \cdot c$ (Distributivgesetz)
+\end{description}
+
+
+\begin{schreibweisen}
+	für $a, b \in \R$: $a - b \coloneqq a + (-b)$ und für $b \neq 0$: $ \frac{a}{b} \coloneqq a \cdot b^{-1}$.
+\end{schreibweisen}
+
+
+\textbf{Alle} bekannten Regeln der Grundrechnungsarten lassen sich aus \hyperref[k.axiom]{$(A1) - (A9)$} herleiten. Diese Regeln seien von nun an bekannt.
+
+
+\begin{beispiele*}
+	\begin{enumerate}
+		\item Beh.: $\exists_{1} 0 \in  \R$ mit $\forall a \in \R \: \ a + 0 = a$
+		  \begin{beweis}
+			Sei $\tilde{0} \in \R$ mit $\forall a \in \R \: a + \tilde{0} = a$. Mit $a = 0$ folgt: $0 + \tilde{0} = 0$. Mit $a = \tilde{0}$ in \hyperref[k.axiom-a2]{$(A2)$} folgt: $\tilde{0} + 0 = \tilde{0}$. Dann $0 = 0 + \tilde{0} =_{\hyperref[k.axiom-a4]{(A4)}} \tilde{0} + 0 = \tilde{0}$
+		  \end{beweis}
+		 \item Beh.: $\forall a \in \R \: a \cdot 0 = 0$
+		   \begin{beweis}
+		     Sei $a \in \R$ und $b \coloneqq a \cdot 0$. Dann: $b =_{\hyperref[k.axiom-a2]{(A2)}} a (0 + 0) =_{\hyperref[k.axiom-a9]{(A9)}} a \cdot 0 + a \cdot 0 = b + b$. \\
+		     $0 =_{\hyperref[k.axiom-a2]{(A3)}} b + (-b) = (b + b) + (-b) =_{\hyperref[k.axiom-a1]{(A1)}} b + (b + (-b)) = b + 0 =_{\hyperref[k.axiom-a2]{(A2)}} b$
+		   \end{beweis}
+	\end{enumerate}
+\end{beispiele*}
+
+
+\textbf{Anordnungsaxiome:} \index{Axiome!Anordnungs-} in $\R$ ist eine Relation $\glqq \leq \grqq$ gegeben. \\
+Dabei sollen gelten:
+\begin{description}
+	\label{a.axiom-a10}
+	\item[\hspace{0.4cm}$(A10)$] für $a, b \in \R$ gilt $a \leq b$ oder $b \leq a$
+	\label{a.axiom-a11}
+	\item[\hspace{0.4cm}$(A11)$] aus $a \leq b$ und $b \leq a$ folgt $a = b$
+	\label{a.axiom-a12}
+	\item[\hspace{0.4cm}$(A12)$] aus $a \leq b$ und $b \leq c$ folgt $a \leq c$
+	\label{a.axiom-a13}
+	\item[\hspace{0.4cm}$(A13)$] aus $a \leq b$ folgt $\forall c \in \R \: a + c \leq b + c$
+	\label{a.axiom-a14}
+	\item[\hspace{0.4cm}$(A14)$] aus $a \leq b$ und $0 \leq c$ folgt $ac \leq b c$
+\end{description}
+
+
+\begin{schreibweisen}
+$b \geq a :\gdw a \leq b$; $a < b :\gdw a \leq b$ und $a \neq b$; $b > 0 :\gdw a < b$
+\end{schreibweisen}
+
+
+Aus \hyperref[k.axiom]{$(A1) - (A14)$} lassen sich alle Regeln für Ungleichungen herleiten. Diese Regeln seien von nun an bekannt.
+
+
+\begin{beispiele*}[ohne Beweis]
+	\begin{enumerate}
+		\item aus $a < b$ und $0 < c$ folgt $ac < bc$
+		\item aus $a \leq b$ und $c \leq 0$ folgt $ac \geq bc$
+		\item aus $a \leq b$ und $c \leq d$ folgt $a + c \geq b + d$
+	\end{enumerate}
+\end{beispiele*}
+
+
+\textbf{Intervalle:} \index{Intervalle} Seien  $a, b \in \R$ und $a < b$ \\
+$[a, b] \coloneqq \{ x \in \R : a \leq x \leq b \} \text{ (abgeschlossenes Intervall)}$ \\
+$(a, b) \coloneqq \{ x \in \R : a < x < b \} \text{ (offenes Intervall)}$ \\
+$(a, b] \coloneqq \{ x \in \R : a < x \leq b \} \text{ (halboffenes Intervall)}$ \\
+$[a, b) \coloneqq \{ x \in \R : a \leq x < b \} \text{ (halboffenes Intervall)}$ \\
+$[a, \infty) \coloneqq \{ x \in \R : x \geq a \}$, $(a , \infty) \coloneqq \{ x \in \R : x > a \}$ \\
+$(-\infty, a] \coloneqq \{ x \in \R : x \leq a\}$, $(-\infty, a) \coloneqq \{ x \in \R : x < a\}$ \\
+$(- \infty, \infty) \coloneqq \R$	
+
+
+\subsection*{Der Betrag} \index{Betrag}
+Für $a \in \R$ hei{\ss}t $|a| \coloneqq \begin{cases} \hspace{0.35cm} a, & \text{falls } a \geq 0 \\ -a, & \text{falls } a < 0\end{cases}$ der Betrag von $a$.
+
+
+\begin{beispiele*}
+	$|1| = 1$, $|-7| = -(-7) = 7$. \\
+	% todo Zeichnung
+	$|a| = \glqq$ Abstand $\grqq$ von $0$ und $a$ \\
+	$|a - b| = \glqq$ Abstand $\grqq$ von $a$ und $b$ \\	
+	Es ist $|-a| = |a|$ und $|a - b| = |b - a|$
+\end{beispiele*}
+
+
+\begin{regeln}
+	\begin{enumerate}
+		\item $|a| \geq 0$
+		\item $|a| = 0 \gdw a = 0$
+		\item $|ab| = |a||b|$
+		\item $\pm a \leq |a|$
+		\item $|a + b| \leq |a| + |b|$ (Dreiecksungleichung)
+		\item $\left| |a| - |b| \right| \leq |a - b|$
+	\end{enumerate}	
+\end{regeln}
+
+\begin{beweis}
+	\begin{description}
+		\item $a) - d)$ leichte Übung
+		\item $e)$~ Fall 1: $a +b \geq 0$. Dann: $|a + b| = a + b \leq_{d)} |a| + |b|$. \\
+			Fall 2: $a + b < 0$. Dann: $|a + b| = - (a + b) = - a + (- b) \leq_{d)} |a| + |b|$.
+		\item $f)$ $c \coloneqq |a| - |b|$; $|a| = |a - b + b| \leq_{d)} |a - b | + |b|$
+			$$
+				\Rightarrow c = |a| - |b| \leq |a - b|. \text{ Analog: } -c = |b| - |a| \leq |b - a| = |a - b| 
+			$$
+			Also: $\pm c \leq |a - b|$.
+	\end{description}
+\end{beweis}
+
+
+\begin{definition*} \index{beschränkt!Menge} \index{Schranke} \index{Supremum} \index{Infimum}
+	Sei $\emptyset \neq M \subseteq \R$. 
+	\begin{enumerate}
+		\item $M$ hei{\ss}t \textbf{nach oben beschränkt} $:\gdw \exists \gamma \in \R ~ \forall x \in M \: x \leq \gamma$ \\
+			In diesem Fall hei{\ss}t $\gamma$ eine \textbf{obere Schranke}
+		\item Ist $\gamma$ eine obere Schranke von $M$ und gilt $\gamma \leq \delta$ für jede weitere obere Schranke $\delta$ von $M$, so hei{\ss}t $\gamma$ das \textbf{Supremum} von $M$ (kleinste obere Schranke von $M$)
+		\item $M$ hei{\ss}t \textbf{nach unten beschränkt} $:\gdw \exists \gamma \in \R ~ \forall x \in M \: \gamma \leq x$\\
+			In diesem Fall hei{\ss}t $\gamma$ eine \textbf{untere Schranke} (US)
+		\item Ist $\gamma$ eine untere Schranke von $M$ und gilt $\gamma \geq \delta$ für jede weitere untere Schranke $\delta$ von $M$, so hei{\ss}t $\gamma$ das \textbf{Infimum} von $M$ (größte untere Schranke von $M$)
+	\end{enumerate}
+\end{definition*}
+
+\textbf{Bez.}: in dem Fall: $\gamma = \sup M$ bzw. $\gamma = \inf M$.
+\newline
+
+
+Aus \hyperref[a.axiom-a11]{$(A11)$} folgt: ist $\sup M$ bzw. $\inf M$ vorhanden, so ist $\sup M$ bzw. $\inf M$ eindeutig bestimmt.
+\newline
+
+
+Ist $\sup M$ bzw. $\inf M$ vorhanden und gilt $\sup M \in M$ bzw. $\inf M \in M$, so hei{\ss}t $\sup M$ das Maximum bzw. $\inf M$ das Minimum von $M$ und wird mit $\max M$ bzw. $\min M$ bezeichnet.
+
+
+\begin{beispiele*}
+	\begin{enumerate}
+		\item $M = (1, 2)$. $\sup M = 2 \notin M$, $\inf M = 1 \notin M$. $M$ hat kein Maximum und kein Minimum.
+		\item $M = (1, 2]$. $\sup M = 2 \in M$, $\max M = 2$
+		\item $M = (3, \infty)$. $M$ ist nicht nach oben beschränkt, $3 = \inf M \notin M$.
+		\item $M = (-\infty, 0]$. $M$ ist nach unten unbeschränkt, $0 = \sup M = \max M$.
+	\end{enumerate}
+\end{beispiele*}
+
+
+
+\textbf{Vollständigkeitsaxiom:} \index{Axiome!Vollständigkeits-} \vspace{-0.25cm}
+\begin{description} \label{v.axiom-a10}
+	\item[\hspace{0.4cm}$(A15)$]Ist $\emptyset \neq M \subseteq \R$ und ist $M$ nach oben beschränkt, so ist $\sup M$ vorhanden.
+\end{description}
+
+\begin{satz} \label{satz-1.1}
+	Ist $\emptyset \neq M \subseteq \R$ und ist $M$ nach unten beschränkt, so ist $\inf M$ vorhanden.
+\end{satz} 
+
+\begin{beweis}
+	i. d. Übungen.
+\end{beweis}
+
+
+\begin{definition*} \index{beschränkt}
+	Sei $\emptyset \neq M \subseteq \R$. $M$ hei{\ss}t beschränkt $:\gdw$ $M$ ist nach oben und nach unten beschränkt ($\gdw \exists c \geq 0 ~\forall x \in M \: |x| \leq c \gdw \exists c \geq 0 ~\forall x \in M \: - c \leq x \leq c$)
+\end{definition*}
+
+
+\begin{satz} \label{satz-1.2}
+	Es sei $\emptyset \neq B \subseteq A \subseteq \R$
+	\begin{enumerate}
+		\item Ist $A$ bechränkt $\Rightarrow$ $\inf A \leq \sup A$
+		\item Ist $A$ nach oben bzw. unten beschränkt $\Rightarrow$ $B$ ist nach oben beschränkt und $\sup B \leq \sup A$ bzw. nach unten beschränkt und $\inf B \geq \inf A$
+		\item $A$ sei nach oben bzw. unten beschränkt und $\gamma$ eine obere bzw. untere Schranke von $A$. Dann
+			$$
+				\gamma = \sup A \gdw \forall \epsilon > 0 ~\exists x = x(\epsilon) \in A : x > \gamma - \epsilon
+			$$
+			\center{ bzw. }
+			$$
+				\gamma = \inf A \gdw \forall \epsilon > 0 ~\exists x = x(\epsilon) \in A : x < \gamma + \epsilon
+			$$			
+	\end{enumerate}
+\end{satz}
+
+\begin{beweis}
+	\begin{enumerate}
+		\item $A \neq \emptyset \Rightarrow \exists x \in \R : x \in A$. Dann $\inf A \leq x$, $x \leq \sup A$ $(A12)$
+			$$ \Rightarrow \inf A \leq \sup A $$
+		\item Sei $x \in B$. Dann: $x \in A$, also $x \leq \sup A$. $B$ ist also nach oben beschränkt und $\sup A$ ist eine obere Schranke von $B$
+			$$ \Rightarrow \sup B \leq \sup A $$
+			Analog der Fall für $A$ nach unten beschränkt.
+		\item $\glqq \Rightarrow \grqq$ Sei $\gamma = \sup A$ und $\epsilon > 0$. Dann: $\gamma - \epsilon < \epsilon$. $\gamma - \epsilon$ ist also keine obere Schranke von $A$. Also: $\exists x \in A : x > \gamma - \epsilon$ \\
+			$\glqq \Leftarrow \grqq$ Sei $\tilde{\gamma} \leq \gamma$. Annahme: $\gamma \neq \tilde{\gamma}$. Dann $\tilde{\gamma} < \gamma$, also $\epsilon \coloneqq \gamma - \tilde{\gamma} > 0$. \\
+			$\Rightarrow_{Vor.} \exists x \in A: x > \gamma - \epsilon = \gamma - (\gamma - \tilde{\gamma}) = \tilde{\gamma}$. Widerspruch zu $x \leq \tilde{\gamma}$.
+	\end{enumerate}
+\end{beweis}
+
+
+\subsection*{Natürliche Zahlen} 
+
+\index{Natürliche Zahlen} \index{Induktionsmenge}
+\begin{definition*}
+	\begin{enumerate}
+		\item $A \subseteq \R$ hei{\ss}t eine Induktionsmenge (IM) $:\gdw \begin{cases}1 . & 1 \in A; \\ 2. & \text{aus } x \in A \text{ folgt stets } x + 1 \in A \end{cases}$ \\ \\
+		Beispiele: $\R, [1, \infty), \{ 1 \} \cup [2, \infty)$ sind Induktionsmengen
+		\item $\N \coloneqq \{ x \in \R : x$ gehört zu \textbf{jeder} IM $\}$ = Durchschnitt aller IMn \\
+			Also: $\N \subseteq A$ für jede Induktionsmenge $A$.
+	\end{enumerate}	
+\end{definition*}
+
+\begin{satz} \label{satz-1.3}
+	\begin{enumerate}
+		\item $\N$ ist eine Induktionsmenge
+		\item $\N$ ist nicht nach oben beschränkt
+		\item Ist $x \in \R$, so ex. ein $n \in \N: N > x$
+	\end{enumerate}
+\end{satz}
+
+
+Von nun an sei $\N = \{ 1, 2, 3, \dotsc \}$ bekannt.
+
+
+\begin{prop}[Prinzip der vollständigen Induktion] \index{vollständige Induktion} \label{prop-1.4}
+	Ist $A \subseteq \N$ und $A$ eine Induktionsmenge, so ist $A = N$.
+\end{prop}
+
+\begin{beweis}
+	$A \subseteq \N$ (nach Vor.) und $\N \subset A$ (nach Def.), also $A = \N$
+\end{beweis}
+
+
+\subsection*{Beweisverfahren durch vollständige Induktion}
+$A(n)$ sei eine Aussage, die für jedes $n \in \N$ definiert ist. Für $A(n)$ gelte:
+$$\begin{cases}
+	(I) & A(1) \text{ ist wahr;} \\ (II) & \text{ist } n \in \N \text{ und } A(n) \text{ wahr, so ist auch } $A(n + 1)$ \text{ wahr;}
+\end{cases}$$
+Dann ist $A(n)$ wahr für \textbf{jedes} $n \in \N$!
+
+\begin{beweis}
+	Sei $A \coloneqq \{ n \in \N : A(n)$ ist wahr $\}$. Dann: \\
+	$A \subseteq \N$ und, wg. $(I)$, $(II)$, $A$ ist eine Induktionsmenge, \hyperref[prop-1.4]{(1.4)} $\Rightarrow A = \N$
+\end{beweis}
+
+
+\begin{beispiel*}
+	Beh.: ~ $\underbrace{1 + 2 + \dotsc + n = \frac{n (n + 1)}{2}}_{A(n)}, \quad \forall n \in \N$
+\end{beispiel*}
+
+\begin{beweis}[induktiv]
+	I.A.: $1 = \frac{1 (1 + 1)}{2} \checkmark$, $A(1)$ ist also wahr. \\ \\
+	I.V.: Für ein $n \in \N$ gelte $1 + 2 + \dotsc + n = \frac{n (n + 1)}{2}$ \\
+	I.S.: $n \curvearrowright n + 1$: 
+	\begin{align*}
+		1 + 2 + \dotsc + n + (n + 1) & =_{I.V.}  \frac{n (n + 1)}{2} + (n + 1) \\
+									 & = (n + 1) \left( \frac{n}{2} + 1 \right) \\
+									 & = \frac{(n + 1)(n + 2)}{2}
+	\end{align*}
+	$\Rightarrow A(n + 1)$ ist wahr.
+\end{beweis}
+
+
+\begin{definition*} \index{ganze Zahlen} \index{rationale Zahlen}
+	\begin{enumerate}
+		\item $\N_{0} \coloneqq \N \cup \{ 0 \}$
+		\item $\Z \coloneqq \N_{0} \cup \{ - n : n \in \N \}$ (ganze Zahlen)
+		\item $\Q \coloneqq \{ \frac{p}{q} : p \in \Z, q \in \N \}$ (rationale Zahlen)
+	\end{enumerate}
+\end{definition*}
+
+
+\begin{satz}
+	Sind $x, y \in \R$ und $x < y \Rightarrow \exists r \in \Q$:
+	$$ x < r < y $$	
+\end{satz}
+
+\begin{beweis}
+	i. d. Übungen.
+\end{beweis}
+
+
+% todo: Einfügen: Seite 9, nicht lesbar
+
+
+\subsection*{Einige Definitionen und Formeln} \index{Fakultäten} \index{Binomialkoeffizient} \index{Binomischer Satz} \index{Bernoullische Ungleichung}
+\begin{enumerate}
+	\item Für $a \in \R$ und $n \in \N: a^{n} \coloneqq \underbrace{a \cdot \dotsc \cdot a}_{n \text{ Faktoren}}$, $a^{0} \coloneqq 1$ und ist $a \neq 0: a^{-n} \coloneqq \frac{1}{a^{n}}$ \\
+		Es gelten die bekannten Rechenregeln.
+	\item Für $n \in \N: n! \coloneqq 1 \cdot 2 \cdot \dotsc \cdot n$, $0! \coloneqq 1$ (\textbf{Fakultäten})
+	\item \textbf{Binomialkoeffizienten}: für $n \in \N_{0}, k \in \N_{0}$ und $k \leq n$:
+		$$
+			\binom{n}{k} \coloneqq \frac{n!}{k!(n - k)!}
+		$$
+		z.B. $\binom{n}{0} = 1 = \binom{n}{n}$. Es gilt (nachrechnen!): \\
+		$$
+			\binom{n}{k} + \binom{n}{k - 1} = \binom{n + 1}{k} \quad \text{für } 1 \leq k \leq n
+		$$
+	\item Für $a, b \in \R$ und $n \in \N$ gilt: 
+		\begin{align*}
+			a^{n + 1} - b^{n + 1} & = (a - b) \left(a^{n} + a^{n-1}b + a^{n-2}b^{2} + \dotsc + a b^{n-1} + b^{n} \right) \\
+				& = (a - b) \sum_{k = 0}^{n} a^{n -k}b^{k}
+		\end{align*}
+	\item \textbf{Binomischer Satz}: $a, b \in \R ~\forall n \in \N:$ $(a + b)^{n} = \sum_{k = 0}^{n} \binom{n}{k} a^{n-k}b^{k}$
+		\begin{beweis}
+			i. d. Übungen.
+		\end{beweis}
+	\item \textbf{Bernoullische Ungleichung}: Sei $x \in \R$ und $x \geq -1$. Dann:
+		$$ (1 + x)^{n} \geq 1 + n x$$
+		\begin{beweis}[induktiv]
+			I.A.: $n = 1$: $1 + x \geq 1 + x$ \\
+			I.V.: Für ein $n \in \N$ gelte $(1 + x)^{n} \geq 1 + nx$ \\
+			I.S.: $n \curvearrowright n + 1$: $\Rightarrow_{I.V.} (1 + x)^{n} \geq 1 + n x$ und da $1 + x \geq 0$:
+			\begin{align*}
+				(1 + x)^{n + 1} & \geq (1 + nx)(1 + x) \\
+								& = 1 + nx + x + \underbrace{nx^{n}}_{\geq 0} \\
+								& \geq 1 + nx + x \\
+								& = 1 + (n + 1)x
+			\end{align*}
+		\end{beweis}
+\end{enumerate}
+
+
+\begin{hilfssatz*}[HS]
+	Für $x, y \geq 0$ und $n \in \N$ gilt: $x \leq y \gdw x^{n} \leq y^{n}$	
+\end{hilfssatz*}
+
+\begin{beweis}
+	i. d. Übungen.
+\end{beweis}
+
+
+\begin{satz} \index{Wurzel}
+	Sei $a \geq 0$ und $n \in \N$. Dann gibt es genau ein $x \geq 0$ mit: $x^{n} = a$. \\
+	Dieses $x$ hei{\ss}t \textbf{n-te Wurzel aus a}; Bez.: $x = \sqrt[n]{a}$. ($\sqrt[2]{a} \eqqcolon \sqrt{a}$)
+\end{satz}
+
+\begin{beweis}
+	Existenz: später in \S 7. \\
+	Eindeutigkeit: seien $x, y \geq 0$ und $x^{n} = a = y^{n}$. $\Rightarrow_{HS} x = y$
+\end{beweis}
+
+
+\begin{bemerkungen*}
+	\begin{enumerate}
+		\item $\sqrt{2} \notin \Q$ (s. Schule)
+		\item Fpr $a \geq 0$ ist $\sqrt[n]{a} \geq 0$. Bsp.: $\sqrt{4} = 2$, $\sqrt{4} \neq - 2$. Die Gleichung $x^{2} = 4$ hat zwei Lösungen: $x = \pm \sqrt{4} = \pm 2$.
+		\item $\sqrt{x^{2}} |x|$ $\forall x \in \R$
+	\end{enumerate}
+\end{bemerkungen*}
+
+
+\subsection*{Rationale Exponenten}
+\begin{enumerate}
+	\item Sei zunächste $a > 0$ und $r \in \Q, r > 0$. Dann ex. $m, n \in \N : r = \frac{m}{n}$. Wir wollen definieren:
+		$$
+			a^{r} \coloneqq \left( \sqrt[n]{a} \right)^{m} \quad (*)
+		$$
+		Problem: gilt auch noch $r = \frac{p}{q}$ mit $p, q \in \N$, gilt dann $\left( \sqrt[n]{a} \right)^{m} = \left( \sqrt[q]{a} \right)^{p}$? \\
+		Antwort: ja (d.h. obige Def. $(*)$ ist sinnvoll).
+		\begin{beweis}
+			$x \coloneqq \left( \sqrt[n]{a} \right)^{m}$, $y \coloneqq \left( \sqrt[q]{a} \right)^{p}$, dann: $x, y \geq 0$ und $mq = np$, also
+			\begin{align*}
+				x^{q} & = \left( \sqrt[n]{a} \right)^{mq} = \left( \sqrt[n]{a} \right)^{np} = \left(  \left( \sqrt[n]{a} \right)^{m}\right)^{p} = a^{p} \\
+					  & = \left( \left( \sqrt[q]{a} \right)^{q}\right)^{p} = \left( \left( \sqrt[q]{a} \right)^{p}\right)^{q} = y^{q}
+			\end{align*}
+			$\Rightarrow_{HS} x = y$.  
+		\end{beweis}
+	\item Sei $a > 0, r \in \Q$ und $r < 0$. $a^{r} \coloneqq \frac{1}{a^{-r}}$. Es gelten die bekannten Rechenregeln:
+		$$
+		\left( ~ a^{r} a^{s} = a^{r + s}, \left( a^{r} \right)^{s} = a^{rs}, \dotsc \right)
+		$$
+		% todo: Seite 12 unten Notiz am Ende unlesbar
+\end{enumerate}
+
+\newpage
