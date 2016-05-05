@@ -1,12 +1,10 @@
-Funktionalanalysis
+Höhere Mathematik I
 ===========
-Dieses Skript zur Vorlesung "Funktionalanalysis" am KIT bei
-Herrn Prof. Dr. Lutz Weis (WS 2015/2016) wurde von Studenten erstellt, es ist somit 
+Dieses Skript zur Vorlesung "Höhere Mathematik I" am KIT (WS 2016/2017) wurde von Studenten erstellt, es ist somit 
 inoffiziell, in Bearbeitung und enthält sehr wahrscheinlich einige
 Fehler (Übertragungsfehler, Tippfehler oder
 Verständnisprobleme) - ich bitte deswegen um Verständnis.
 
-Bis zum Ende des Semesters werde ich wohl auch nicht die Zeit finden, das Skript Korrektur zu lesen, also seht es bitte auch dementsprechend bis dahin mit Wohlwollen.
 
 Den Verbesserungsvorschlag (wenn auch nur
 Rechtschreibfehler) kann man
