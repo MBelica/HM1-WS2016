@@ -1,0 +1,1019 @@
+%%%%% Nicht übernommen
+%% todo #Seite 9: nach "Große Übungen:..." 
+%% todo #Seite 12: unten Notiz am Ende übernehmen?
+%% todo # Seite 23b: Fall 4, über \Rightarrow 2.1 (x^{k}) was steht da? "Bu"? Das Gleiche auch 5. Fall
+\documentclass[titlepage, ngerman, 12pt]{scrartcl}
+
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc} 
+\usepackage[ngerman]{babel} 
+
+
+\title{Höhere Mathematik I}
+\author{G. Herzog, C. Schmoeger}
+\date{Wintersemester 2016/17}
+\publishers{Karlsruher Institut für Technologie}
+
+
+%%%%%%%%%%%%%%%% Setup	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[bookmarks,bookmarksnumbered,hypertexnames=false,pdfpagelayout=OneColumn,colorlinks,linkcolor=blue]{hyperref}
+\usepackage{makeidx} 
+\usepackage{mathtools} 
+\usepackage{tikz}
+\usetikzlibrary{matrix}	
+\usetikzlibrary{decorations.pathreplacing}
+
+\renewcommand{\labelenumi}{\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+\setlength{\parindent}{0pt}
+\renewcommand{\baselinestretch}{1.15}
+\setkomafont{subsection}{\fontsize{0.8em}{1em}\selectfont\bfseries}
+\DeclareUnicodeCharacter{00A0}{ }
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\D}{\mathbb{D}}	
+
+\newtheorem{satz}{Satz}[section]	  	
+\newtheorem{lemma}[satz]{Lemma}	
+\newtheorem{prop}[satz]{Proposition}
+\newtheorem{definition}[satz]{Definition}
+\newtheorem{bemerkung}[satz]{Bemerkung}
+\newtheorem{bemerkungen}[satz]{Bemerkungen}
+\newtheorem{beispiel}[satz]{Beispiel}
+\newtheorem{beispiele}[satz]{Beispiele}  
+\newtheorem*{satz*}{Satz}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{prop*}{Proposition}
+\newtheorem*{definition*}{Definition}
+\newtheorem*{beispiel*}{Beispiel}
+\newtheorem*{beispiele*}{Beispiele}
+\newtheorem*{bemerkung*}{Bemerkung} 
+\newtheorem*{bemerkungen*}{Bemerkungen}
+\newtheorem*{regeln}{Regeln}
+\newtheorem*{vereinbarung}{Vereinbarung}
+\newtheorem*{schreibweise}{Schreibweise}
+\newtheorem*{schreibweisen}{Schreibweisen}
+\newtheorem*{hilfssatz*}{Hilfssatz}
+\newtheorem*{beweis}{Beweis}
+%%%%%%%%%%%%%%%% Setup ende
+
+
+\makeindex
+
+\begin{document}	
+
+
+% Titleblatt
+\maketitle
+ \newpage
+ 
+% Inhaltsverzeichnis
+\tableofcontents
+ \newpage
+
+
+% Einzelne Kapitel
+\section{Reelle Zahlen}
+
+Grundmenge der Analysis is die Menge $\R$, die Menge der \textbf{reellen Zahlen}. Diese führen wir \textbf{axiomatisch} ein, d.h. wir nehmen $\R$ als gegeben an und \textbf{fordern} in den folgenden 15 \textbf{Axiomen} Eigenschaften von $\R$ aus denen sich alle weiteren Rechenregeln herleiten lassen.
+\newline
+
+\index{Axiome!Körper-}
+\textbf{Körperaxiome:} in $\R$ seien zwei Verknüpfungen $\glqq + \grqq$ und $\glqq \cdot \grqq$ gegeben, die jedem Paar $a, b \in \R$ genau ein $a + b \in \R$ und genau ein $a b \coloneqq a \cdot b \in \R$ zuordnen. Dabei soll gelten:
+
+
+\begin{description} \label{k.axiom}
+	\label{k.axiom-a1}
+	\item[\hspace{0.4cm}$(A1)$] $\forall a, b, c \in \R \: a + \left( b + c \right) = \left( a + b \right) + c$  (Assoziativgesetz)
+	\label{k.axiom-a5}
+	\item[\hspace{0.4cm}$(A5)$] $\forall a, b, c \in \R \: a \cdot \left( b \cdot c \right) = \left( a \cdot b \right) \cdot c$
+	\label{k.axiom-a2}
+	\item[\hspace{0.4cm}$(A2)$] $\exists 0 \in \R$ mit $\forall a \in \R \: a + 0 = a$ (Null)
+	\label{k.axiom-a6}
+	\item[\hspace{0.4cm}$(A6)$] $\exists 1 \in \R$ mit $\forall a \in \R \: a \cdot 1 = a$ \textbf{und} $1 \neq 0$ (Eins)
+	\label{k.axiom-a3}
+	\item[\hspace{0.4cm}$(A3)$] $\forall a \in \R ~ \exists -a \in \R \: a + (-a) = 0$
+	\label{k.axiom-a7}
+	\item[\hspace{0.4cm}$(A7)$] $\forall a \in \R \setminus \{ 0 \} ~ \exists a^{-1} \in \R \: a \cdot a^{-1} = 1$
+	\label{k.axiom-a4}
+	\item[\hspace{0.4cm}$(A4)$] $\forall a, b \in \R \: a + b = b + a$ (Kommutativgesetz)
+	\label{k.axiom-a8}
+	\item[\hspace{0.4cm}$(A8)$] $\forall a, b \in \R \: a \cdot b = b \cdot a$ (Kommutativgesetz)
+	\label{k.axiom-a9}
+	\item[\hspace{0.4cm}$(A9)$] $\forall a, b, c \in \R \: a \cdot (b + c) = a \cdot b + a \cdot c$ (Distributivgesetz)
+\end{description}
+
+
+\begin{schreibweisen}
+	für $a, b \in \R$: $a - b \coloneqq a + (-b)$ und für $b \neq 0$: $ \frac{a}{b} \coloneqq a \cdot b^{-1}$.
+\end{schreibweisen}
+
+
+\textbf{Alle} bekannten Regeln der Grundrechnungsarten lassen sich aus \hyperref[k.axiom]{$(A1) - (A9)$} herleiten. Diese Regeln seien von nun an bekannt.
+
+
+\begin{beispiele*}\
+	\begin{enumerate}
+		\item Beh.: $\exists_{1} 0 \in  \R$ mit $\forall a \in \R \: \ a + 0 = a$
+		  \begin{beweis}
+			Sei $\tilde{0} \in \R$ mit $\forall a \in \R \: a + \tilde{0} = a$. Mit $a = 0$ folgt: $0 + \tilde{0} = 0$. Mit $a = \tilde{0}$ in \hyperref[k.axiom-a2]{$(A2)$} folgt: $\tilde{0} + 0 = \tilde{0}$. Dann $0 = 0 + \tilde{0} =_{\hyperref[k.axiom-a4]{(A4)}} \tilde{0} + 0 = \tilde{0}$
+		  \end{beweis}
+		 \item Beh.: $\forall a \in \R \: a \cdot 0 = 0$
+		   \begin{beweis}
+		     Sei $a \in \R$ und $b \coloneqq a \cdot 0$. Dann: $b =_{\hyperref[k.axiom-a2]{(A2)}} a (0 + 0) =_{\hyperref[k.axiom-a9]{(A9)}} a \cdot 0 + a \cdot 0 = b + b$. \\
+		     $0 =_{\hyperref[k.axiom-a2]{(A3)}} b + (-b) = (b + b) + (-b) =_{\hyperref[k.axiom-a1]{(A1)}} b + (b + (-b)) = b + 0 =_{\hyperref[k.axiom-a2]{(A2)}} b$
+		   \end{beweis}
+	\end{enumerate}
+\end{beispiele*}
+
+
+\textbf{Anordnungsaxiome:} \index{Axiome!Anordnungs-} in $\R$ ist eine Relation $\glqq \leq \grqq$ gegeben. \\
+Dabei sollen gelten:
+\begin{description}
+	\label{a.axiom-a10}
+	\item[\hspace{0.4cm}$(A10)$] für $a, b \in \R$ gilt $a \leq b$ oder $b \leq a$
+	\label{a.axiom-a11}
+	\item[\hspace{0.4cm}$(A11)$] aus $a \leq b$ und $b \leq a$ folgt $a = b$
+	\label{a.axiom-a12}
+	\item[\hspace{0.4cm}$(A12)$] aus $a \leq b$ und $b \leq c$ folgt $a \leq c$
+	\label{a.axiom-a13}
+	\item[\hspace{0.4cm}$(A13)$] aus $a \leq b$ folgt $\forall c \in \R \: a + c \leq b + c$
+	\label{a.axiom-a14}
+	\item[\hspace{0.4cm}$(A14)$] aus $a \leq b$ und $0 \leq c$ folgt $ac \leq b c$
+\end{description}
+
+
+\begin{schreibweisen}
+$b \geq a :\iff a \leq b$; $a < b :\iff a \leq b$ und $a \neq b$; $b > 0 :\iff a < b$
+\end{schreibweisen}
+
+
+Aus \hyperref[k.axiom]{$(A1) - (A14)$} lassen sich alle Regeln für Ungleichungen herleiten. Diese Regeln seien von nun an bekannt.
+
+
+\begin{beispiele*}[ohne Beweis]\
+	\begin{enumerate}
+		\item aus $a < b$ und $0 < c$ folgt $ac < bc$
+		\item aus $a \leq b$ und $c \leq 0$ folgt $ac \geq bc$
+		\item aus $a \leq b$ und $c \leq d$ folgt $a + c \geq b + d$
+	\end{enumerate}
+\end{beispiele*}
+
+
+\textbf{Intervalle:} \index{Intervalle} Seien  $a, b \in \R$ und $a < b$
+\begin{description}
+	\item $[a, b] \coloneqq \{ x \in \R : a \leq x \leq b \}$ (abgeschlossenes Intervall) 
+	\item $(a, b) \coloneqq \{ x \in \R : a < x < b \}$ (offenes Intervall)
+	\item $(a, b] \coloneqq \{ x \in \R : a < x \leq b \}$ (halboffenes Intervall)
+	\item $[a, b) \coloneqq \{ x \in \R : a \leq x < b \}$ (halboffenes Intervall)
+	\item $[a, \infty) \coloneqq \{ x \in \R : x \geq a \}$, $(a , \infty) \coloneqq \{ x \in \R : x > a \}$
+	\item $(-\infty, a] \coloneqq \{ x \in \R : x \leq a\}$, $(-\infty, a) \coloneqq \{ x \in \R : x < a\}$ 
+	\item $(- \infty, \infty) \coloneqq \R$
+\end{description}
+
+\subsection*{Der Betrag} \index{Betrag}
+Für $a \in \R$ hei{\ss}t $|a| \coloneqq \begin{cases} \hspace{0.35cm} a, & \text{falls } a \geq 0 \\ -a, & \text{falls } a < 0\end{cases}$ der Betrag von $a$.
+
+
+\begin{beispiele*}
+	$|1| = 1$, $~|-7| = -(-7) = 7$. \\
+		Anschaulich:  \tikz[baseline=-0.5ex]{  \draw(0,0)--(12,0);
+    \foreach \x/\xtext in {0/$$,2/$$,4/$a$,6/{\small $0$},8/$$,10/{\small $b$},12/$$}
+      \draw(\x,3pt)--(\x,-3pt) node[below] {\xtext};
+    \draw[decorate, yshift=2ex]  (6,0) -- node[above=0.4ex] {\small $\underset{\glqq \text{Abstand} \grqq \text{ von } a \text{ und } b}{|a - b| =}$}  (10,0);
+    \draw[decorate, yshift=-4ex] (6,0) -- node[below=0.3ex] {\small $\underset{\glqq \text{Abstand} \grqq \text{ von } 0}{|a| =}$} (4,0);} \\ \\
+	Es ist $|-a| = |a|$ und $|a - b| = |b - a|$
+\end{beispiele*}
+
+
+\begin{regeln}\
+	\begin{enumerate}
+		\item $|a| \geq 0$
+		\item $|a| = 0 \iff a = 0$
+		\item $|ab| = |a||b|$
+		\item $\pm a \leq |a|$
+		\item $|a + b| \leq |a| + |b|$ (Dreiecksungleichung)
+		\item $\left| |a| - |b| \right| \leq |a - b|$
+	\end{enumerate}	
+
+	\begin{beweis}\
+	  \begin{description}
+		\item $a) - d)$ leichte Übung
+		\item $e)$~ Fall 1: $a +b \geq 0$. Dann: $|a + b| = a + b \leq_{d)} |a| + |b|$. \\
+			Fall 2: $a + b < 0$. Dann: $|a + b| = - (a + b) = - a + (- b) \leq_{d)} |a| + |b|$.
+		\item $f)$ $c \coloneqq |a| - |b|$; $|a| = |a - b + b| \leq_{d)} |a - b | + |b|$
+			$$
+				\Rightarrow c = |a| - |b| \leq |a - b|. \text{ Analog: } -c = |b| - |a| \leq |b - a| = |a - b| 
+			$$
+			Also: $\pm c \leq |a - b|$.
+	  \end{description}
+	\end{beweis}
+\end{regeln}
+
+
+\begin{definition*} \index{beschränkt!Menge} \index{Schranke} \index{Supremum} \index{Infimum}
+	Sei $\emptyset \neq M \subseteq \R$. 
+	\begin{enumerate}
+		\item $M$ hei{\ss}t \textbf{nach oben beschränkt} $:\iff \exists \gamma \in \R ~ \forall x \in M \: x \leq \gamma$ \\
+			In diesem Fall hei{\ss}t $\gamma$ eine \textbf{obere Schranke}
+		\item Ist $\gamma$ eine obere Schranke von $M$ und gilt $\gamma \leq \delta$ für jede weitere obere Schranke $\delta$ von $M$, so hei{\ss}t $\gamma$ das \textbf{Supremum} von $M$ (kleinste obere Schranke von $M$)
+		\item $M$ hei{\ss}t \textbf{nach unten beschränkt} $:\iff \exists \gamma \in \R ~ \forall x \in M \: \gamma \leq x$\\
+			In diesem Fall hei{\ss}t $\gamma$ eine \textbf{untere Schranke} (US)
+		\item Ist $\gamma$ eine untere Schranke von $M$ und gilt $\gamma \geq \delta$ für jede weitere untere Schranke $\delta$ von $M$, so hei{\ss}t $\gamma$ das \textbf{Infimum} von $M$ (größte untere Schranke von $M$)
+	\end{enumerate}
+\end{definition*}
+
+\textbf{Bez.}: in dem Fall: $\gamma = \sup M$ bzw. $\gamma = \inf M$.
+\newline
+
+
+Aus \hyperref[a.axiom-a11]{$(A11)$} folgt: ist $\sup M$ bzw. $\inf M$ vorhanden, so ist $\sup M$ bzw. $\inf M$ eindeutig bestimmt.
+\newline
+
+
+Ist $\sup M$ bzw. $\inf M$ vorhanden und gilt $\sup M \in M$ bzw. $\inf M \in M$, so hei{\ss}t $\sup M$ das Maximum bzw. $\inf M$ das Minimum von $M$ und wird mit $\max M$ bzw. $\min M$ bezeichnet.
+
+
+\begin{beispiele*}
+	\begin{enumerate}
+		\item $M = (1, 2)$. $\sup M = 2 \notin M$, $\inf M = 1 \notin M$. $M$ hat kein Maximum und kein Minimum.
+		\item $M = (1, 2]$. $\sup M = 2 \in M$, $\max M = 2$
+		\item $M = (3, \infty)$. $M$ ist nicht nach oben beschränkt, $3 = \inf M \notin M$.
+		\item $M = (-\infty, 0]$. $M$ ist nach unten unbeschränkt, $0 = \sup M = \max M$.
+	\end{enumerate}
+\end{beispiele*}
+
+
+
+\textbf{Vollständigkeitsaxiom:} \index{Axiome!Vollständigkeits-} \vspace{-0.25cm}
+\begin{description} \label{v.axiom-a10}
+	\item[\hspace{0.4cm}$(A15)$]Ist $\emptyset \neq M \subseteq \R$ und ist $M$ nach oben beschränkt, so ist $\sup M$ vorhanden.
+\end{description}
+
+\begin{satz} \label{satz-1.1}
+	Ist $\emptyset \neq M \subseteq \R$ und ist $M$ nach unten beschränkt, so ist $\inf M$ vorhanden.
+
+
+	\begin{beweis}
+		i. d. Übungen.
+	\end{beweis}
+\end{satz} 
+
+
+\begin{definition*} \index{beschränkt} \
+	Sei $\emptyset \neq M \subseteq \R$. $M$ hei{\ss}t beschränkt $:\iff$ $M$ ist nach oben und nach unten beschränkt ($\iff \exists c \geq 0 ~\forall x \in M \: |x| \leq c \iff \exists c \geq 0 ~\forall x \in M \: - c \leq x \leq c$)
+\end{definition*}
+
+
+\begin{satz} \label{satz-1.2}
+	Es sei $\emptyset \neq B \subseteq A \subseteq \R$
+	\begin{enumerate}
+		\item Ist $A$ bechränkt $\Rightarrow$ $\inf A \leq \sup A$
+		\item Ist $A$ nach oben bzw. unten beschränkt $\Rightarrow$ $B$ ist nach oben beschränkt und $\sup B \leq \sup A$ bzw. nach unten beschränkt und $\inf B \geq \inf A$
+		\item $A$ sei nach oben bzw. unten beschränkt und $\gamma$ eine obere bzw. untere Schranke von $A$. Dann
+			$$
+				\gamma = \sup A \iff \forall \varepsilon > 0 ~\exists x = x(\varepsilon) \in A : x > \gamma - \varepsilon
+			$$
+			\center{ bzw. }
+			$$
+				\gamma = \inf A \iff \forall \varepsilon > 0 ~\exists x = x(\varepsilon) \in A : x < \gamma + \varepsilon
+			$$			
+	\end{enumerate}
+
+	\begin{beweis} \
+	  \begin{enumerate}
+		\item $A \neq \emptyset \Rightarrow \exists x \in \R : x \in A$. Dann $\inf A \leq x$, $x \leq \sup A$ $(A12)$
+			$$ \Rightarrow \inf A \leq \sup A $$
+		\item Sei $x \in B$. Dann: $x \in A$, also $x \leq \sup A$. $B$ ist also nach oben beschränkt und $\sup A$ ist eine obere Schranke von $B$
+			$$ \Rightarrow \sup B \leq \sup A $$
+			Analog der Fall für $A$ nach unten beschränkt.
+		\item $\glqq \Rightarrow \grqq$ Sei $\gamma = \sup A$ und $\varepsilon > 0$. Dann: $\gamma - \varepsilon < \varepsilon$. $\gamma - \varepsilon$ ist also keine obere Schranke von $A$. Also: $\exists x \in A : x > \gamma - \varepsilon$ \\
+			$\glqq \Leftarrow \grqq$ Sei $\tilde{\gamma} \leq \gamma$. Annahme: $\gamma \neq \tilde{\gamma}$. Dann $\tilde{\gamma} < \gamma$, also $\varepsilon \coloneqq \gamma - \tilde{\gamma} > 0$.\\
+			$\xRightarrow[]{Vor.} \exists x \in A: x > \gamma - \varepsilon = \gamma- (\gamma - \tilde{\gamma}) = \tilde{\gamma}$. Widerspruch zu $x \leq \tilde{\gamma}$.
+			\end{enumerate}
+	\end{beweis}
+\end{satz}
+
+
+\subsection*{Natürliche Zahlen} 
+
+\index{Natürliche Zahlen} \index{Induktionsmenge}
+\begin{definition*}\
+	\begin{enumerate}
+		\item $A \subseteq \R$ hei{\ss}t eine Induktionsmenge (IM) $:\iff \begin{cases}1 . & 1 \in A; \\ 2. & \text{aus } x \in A \text{ folgt stets } x + 1 \in A \end{cases}$ \\ \\
+		Beispiele: $\R, [1, \infty), \{ 1 \} \cup [2, \infty)$ sind Induktionsmengen
+		\item $\N \coloneqq \{ x \in \R : x$ gehört zu \textbf{jeder} IM $\}$ = Durchschnitt aller IMn \\
+			Also: $\N \subseteq A$ für jede Induktionsmenge $A$.
+	\end{enumerate}	
+\end{definition*}
+
+\begin{satz}\ \label{satz-1.3}
+	\begin{enumerate}
+		\item $\N$ ist eine Induktionsmenge
+		\item $\N$ ist nicht nach oben beschränkt
+		\item Ist $x \in \R$, so ex. ein $n \in \N: N > x$
+	\end{enumerate}
+\end{satz}
+
+
+Von nun an sei $\N = \{ 1, 2, 3, \dotsc \}$ bekannt.
+
+
+\begin{prop}[Prinzip der vollständigen Induktion]\ \index{vollständige Induktion} \label{prop-1.4}
+	Ist $A \subseteq \N$ und $A$ eine Induktionsmenge, so ist $A = N$.
+
+	\begin{beweis}
+		$A \subseteq \N$ (nach Vor.) und $\N \subset A$ (nach Def.), also $A = \N$
+	\end{beweis}
+\end{prop}
+
+
+\subsection*{Beweisverfahren durch vollständige Induktion}
+$A(n)$ sei eine Aussage, die für jedes $n \in \N$ definiert ist. Für $A(n)$ gelte:
+$$\begin{cases}
+	(I) & A(1) \text{ ist wahr;} \\ (II) & \text{ist } n \in \N \text{ und } A(n) \text{ wahr, so ist auch } $A(n + 1)$ \text{ wahr;}
+\end{cases}$$
+Dann ist $A(n)$ wahr für \textbf{jedes} $n \in \N$!
+
+\begin{beweis}
+	Sei $A \coloneqq \{ n \in \N : A(n)$ ist wahr $\}$. Dann: \\
+	$A \subseteq \N$ und, wg. $(I)$, $(II)$, $A$ ist eine Induktionsmenge $\xRightarrow[]{\hyperref[prop-1.4]{(1.4)}} A = \N$
+\end{beweis}
+
+
+\begin{beispiel*}
+	Beh.: ~ $\underbrace{1 + 2 + \dotsc + n = \frac{n (n + 1)}{2}}_{A(n)}, \quad \forall n \in \N$
+	
+	\begin{beweis}[induktiv]
+		I.A.: $1 = \frac{1 (1 + 1)}{2} \checkmark$, $A(1)$ ist also wahr. \\ \\
+		I.V.: Für ein $n \in \N$ gelte $1 + 2 + \dotsc + n = \frac{n (n + 1)}{2}$ \\
+		I.S.: $n \curvearrowright n + 1$: 
+		\begin{align*}
+			1 + 2 + \dotsc + n + (n + 1) & =_{I.V.}  \frac{n (n + 1)}{2} + (n + 1) \\
+									 	 & = (n + 1) \left( \frac{n}{2} + 1 \right) \\
+									 	 & = \frac{(n + 1)(n + 2)}{2}
+		\end{align*}
+		$\Rightarrow A(n + 1)$ ist wahr.
+	\end{beweis}
+\end{beispiel*}
+
+
+\begin{definition*} \index{ganze Zahlen} \index{rationale Zahlen}
+	\begin{enumerate}
+		\item $\N_{0} \coloneqq \N \cup \{ 0 \}$
+		\item $\Z \coloneqq \N_{0} \cup \{ - n : n \in \N \}$ (ganze Zahlen)
+		\item $\Q \coloneqq \{ \frac{p}{q} : p \in \Z, q \in \N \}$ (rationale Zahlen)
+	\end{enumerate}
+\end{definition*}
+
+
+\begin{satz}
+	Sind $x, y \in \R$ und $x < y \Rightarrow \exists r \in \Q$:
+	$$ x < r < y $$	
+
+	\begin{beweis}
+		i. d. Übungen.
+	\end{beweis}
+\end{satz}
+
+
+\subsection*{Einige Definitionen und Formeln} \index{Fakultäten} \index{Binomialkoeffizient} \index{Binomischer Satz} \index{Bernoullische Ungleichung}
+\begin{enumerate}
+	\item Für $a \in \R$ und $n \in \N: a^{n} \coloneqq \underbrace{a \cdot \dotsc \cdot a}_{n \text{ Faktoren}}$, $a^{0} \coloneqq 1$ und ist $a \neq 0: a^{-n} \coloneqq \frac{1}{a^{n}}$ \\
+		Es gelten die bekannten Rechenregeln.
+	\item Für $n \in \N: n! \coloneqq 1 \cdot 2 \cdot \dotsc \cdot n$, $0! \coloneqq 1$ (\textbf{Fakultäten})
+	\item \textbf{Binomialkoeffizienten}: für $n \in \N_{0}, k \in \N_{0}$ und $k \leq n$:
+		$$
+			\binom{n}{k} \coloneqq \frac{n!}{k!(n - k)!}
+		$$
+		z.B. $\binom{n}{0} = 1 = \binom{n}{n}$. Es gilt (nachrechnen!): \\
+		$$
+			\binom{n}{k} + \binom{n}{k - 1} = \binom{n + 1}{k} \quad \text{für } 1 \leq k \leq n
+		$$
+	\item Für $a, b \in \R$ und $n \in \N$ gilt: 
+		\begin{align*}
+			a^{n + 1} - b^{n + 1} & = (a - b) \left(a^{n} + a^{n-1}b + a^{n-2}b^{2} + \dotsc + a b^{n-1} + b^{n} \right) \\
+				& = (a - b) \sum_{k = 0}^{n} a^{n -k}b^{k}
+		\end{align*}
+	\item \textbf{Binomischer Satz}: $a, b \in \R ~\forall n \in \N:$ $(a + b)^{n} = \sum_{k = 0}^{n} \binom{n}{k} a^{n-k}b^{k}$
+		\begin{beweis}
+			i. d. Übungen.
+		\end{beweis}
+	\item \textbf{Bernoullische Ungleichung}: Sei $x \in \R$ und $x \geq -1$. Dann:
+		$$ (1 + x)^{n} \geq 1 + n x$$
+		\begin{beweis}[induktiv]
+			I.A.: $n = 1$: $1 + x \geq 1 + x$ \\
+			I.V.: Für ein $n \in \N$ gelte $(1 + x)^{n} \geq 1 + nx$ \\
+			I.S.: $n \curvearrowright n + 1$: $\xRightarrow[]{I.V.} (1 + x)^{n} \geq 1 + n x$ und da $1 + x \geq 0$:
+			\begin{align*}
+				(1 + x)^{n + 1} & \geq (1 + nx)(1 + x) \\
+								& = 1 + nx + x + \underbrace{nx^{n}}_{\geq 0} \\
+								& \geq 1 + nx + x \\
+								& = 1 + (n + 1)x
+			\end{align*}
+		\end{beweis}
+\end{enumerate}
+
+
+\begin{hilfssatz*}[HS]
+	Für $x, y \geq 0$ und $n \in \N$ gilt: $x \leq y \iff x^{n} \leq y^{n}$	
+
+	\begin{beweis}
+		i. d. Übungen.
+	\end{beweis}
+\end{hilfssatz*}
+
+
+\begin{satz} \index{Wurzel}
+	Sei $a \geq 0$ und $n \in \N$. Dann gibt es genau ein $x \geq 0$ mit: $x^{n} = a$. \\
+	Dieses $x$ hei{\ss}t \textbf{n-te Wurzel aus a}; Bez.: $x = \sqrt[n]{a}$. ($\sqrt[2]{a} \eqqcolon \sqrt{a}$)
+	
+	\begin{beweis}
+		Existenz: später in \S 7. \\
+		Eindeutigkeit: seien $x, y \geq 0$ und $x^{n} = a = y^{n}$. $\xRightarrow[]{HS} x = y$
+	\end{beweis}
+\end{satz}
+
+
+\begin{bemerkungen*}\
+	\begin{enumerate}
+		\item $\sqrt{2} \notin \Q$ (s. Schule)
+		\item Für $a \geq 0$ ist $\sqrt[n]{a} \geq 0$. Bsp.: $\sqrt{4} = 2$, $\sqrt{4} \neq - 2$. Die Gleichung $x^{2} = 4$ hat zwei Lösungen: $x = \pm \sqrt{4} = \pm 2$.
+		\item $\sqrt{x^{2}} |x|$ $\forall x \in \R$
+	\end{enumerate}
+\end{bemerkungen*}
+
+
+\subsection*{Rationale Exponenten}
+\begin{enumerate}
+	\item Sei zunächste $a > 0$ und $r \in \Q, r > 0$. Dann ex. $m, n \in \N : r = \frac{m}{n}$. Wir wollen definieren:
+		$$
+			a^{r} \coloneqq \left( \sqrt[n]{a} \right)^{m} \quad (*)
+		$$
+		Problem: gilt auch noch $r = \frac{p}{q}$ mit $p, q \in \N$, gilt dann $\left( \sqrt[n]{a} \right)^{m} = \left( \sqrt[q]{a} \right)^{p}$? \\
+		Antwort: ja (d.h. obige Def. $(*)$ ist sinnvoll).
+		\begin{beweis}
+			$x \coloneqq \left( \sqrt[n]{a} \right)^{m}$, $y \coloneqq \left( \sqrt[q]{a} \right)^{p}$, dann: $x, y \geq 0$ und $mq = np$, also
+			\begin{align*}
+				x^{q} & = \left( \sqrt[n]{a} \right)^{mq} = \left( \sqrt[n]{a} \right)^{np} = \left(  \left( \sqrt[n]{a} \right)^{m}\right)^{p} = a^{p} \\
+					  & = \left( \left( \sqrt[q]{a} \right)^{q}\right)^{p} = \left( \left( \sqrt[q]{a} \right)^{p}\right)^{q} = y^{q}
+			\end{align*}
+			$\xRightarrow[]{HS} x = y$.  
+		\end{beweis}
+	\item Sei $a > 0, r \in \Q$ und $r < 0$. $a^{r} \coloneqq \frac{1}{a^{-r}}$. Es gelten die bekannten Rechenregeln:
+		$$
+			\left( ~ a^{r} a^{s} = a^{r + s}, \left( a^{r} \right)^{s} = a^{rs}, \dotsc \right)
+		$$
+\end{enumerate}
+
+\newpage
+
+\section{Folgen und Konvergenz}
+
+
+\begin{definition*} \index{Folge} \index{Folge!reelle}
+	Es sei $X$ eine Menge, $X \neq \emptyset$. Eine Funktion $a \colon \N \to X$ hei{\ss}t eine \textbf{Folge in X}. Ist $X = \R$, so hei{\ss}t $a$ eine \textbf{reelle Folge}.
+\end{definition*}
+
+
+\begin{schreibweisen}
+$a_{n}$ statt $a(n)$ (n-tes Folgenglied) \\
+$(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a$
+\end{schreibweisen}
+
+
+\begin{beispiele*}\
+	\begin{enumerate}
+		\item $a_{n} \coloneqq \frac{1}{n}$ $~(n \in \N)$, also $(a_{n}) = (1, \frac{1}{2}, \frac{1}{3}, \dotsc)$
+		\item $a_{2n} \coloneqq 0$, $a_{2n-1} \coloneqq 1$ $~(n \in \N)$, also $(a_{n}) = (1, 0, 1, 0, \dotsc)$
+	\end{enumerate}
+\end{beispiele*}
+
+
+\begin{bemerkung*}
+	Ist $p \in \Z$ und $a \colon \{ p, p + 1, \dotsc \} \to X$ eine Funktion, so spricht man ebenfalls von einer Folge in $X$. Bez.: $(a_{n})_{n = p}^{\infty}$. Meist $p = 0$ oder $p = 1$.
+\end{bemerkung*}
+
+
+\begin{definition*} \index{abzählbar} \index{uberabzahlbar@überabzählbar}
+	Sei $X$ eine Menge, $X \neq \emptyset$.
+	\begin{enumerate}
+		\item $X$ hei{\ss}t \textbf{abzählbar} $:\iff \exists$ Folge $(a_{n})$ in $X$: $X = \{ a_{1}, a_{2}, a_{3}, \dotsc \}$
+		\item $X$ hei{\ss}t \textbf{überabzählbar} $:\iff X$ ist nicht abzählbar
+	\end{enumerate}
+\end{definition*}
+
+
+\begin{beispiele*}\
+	\begin{enumerate}
+		\item Ist $X$ endlich, so ist $X$ abzählbar.
+		\item $\N$ ist abzählbar, denn $\N = \{ a_{1}, a_{2}, a_{3}, \dotsc \}$ mit $a_{n} \coloneqq n$ $(n \in \N)$
+		\item $\Z$ ist abzählbar, denn $\Z = \{ a_{1}, a_{2}, a_{3}, \dotsc \}$ mit $a_{1} \coloneqq 0, a_{2} \coloneqq 1, a_{3} \coloneqq -1, a_{4} \coloneqq 2, a_{5} \coloneqq -2, \dotsc$ also
+			$$ a_{2n} \coloneqq n, \quad a_{2n + 1} \coloneqq -n \quad (n \in \N) $$
+		\item $\Q$ ist abzählbar!
+			\begin{center}
+ 			  \begin{tikzpicture}
+				\matrix(m)[matrix of math nodes,column sep=1cm,row sep=1cm]{
+    				1 & 2 & 3 & 4 &  5 & 6 & \cdots \\
+    				\frac{1}{2} & \frac{2}{2} & \frac{3}{2} & \frac{4}{2} & \frac{5}{2} & \cdots & \cdots \\
+    				\frac{1}{3} & \frac{2}{3} & \frac{3}{3} & \frac{4}{3} & \frac{5}{3} & \cdots \\
+    				\frac{1}{4} & \frac{2}{4} & \frac{3}{4} & \frac{4}{4} & \cdots \\
+    				\frac{1}{5} & \frac{2}{5} & \cdots & \cdots \\
+    				\cdots & \cdots &  \\
+				};
+				\draw[->]
+					(m-1-1)edge(m-1-2) (m-1-2)edge(m-2-1) (m-2-1)edge(m-3-1) (m-3-1)edge(m-2-2) (m-2-2)edge(m-1-3) (m-1-3)edge(m-1-4) (m-1-4)edge(m-2-3) (m-2-3)edge(m-3-2) (m-3-2)edge(m-4-1) (m-4-1)edge(m-5-1) (m-5-1)edge(m-4-2) (m-4-2)edge(m-3-3) (m-3-3)edge(m-2-4) (m-2-4)edge(m-1-5) (m-1-5)edge(m-1-6); 
+  			  \end{tikzpicture}
+			\end{center}
+			Durchnummerieren in Pfeilrichtung liefert
+				$$ \{ x \in \Q : x > 0 \} = \{ a_{1}, a_{2}, a_{3}, \dotsc \} $$
+			$b_{1} \coloneqq 0, b_{2n} \coloneqq a_{n}, b_{2n + 1} \coloneqq - a_{n}$ $(n \in \N)$. Dann:
+			$$ \Q = \{ b_{1}, b_{2}, b_{3}, \dotsc \} $$
+		\item $\R$ ist überabzählbar (Beweis in \S 5).
+	\end{enumerate}	
+\end{beispiele*}
+
+
+\begin{vereinbarung}
+	Solange nichts anderes gesagt wird, seien alle vorkommenden Folgen stets Folgen in $\R$. \\                                                                                                  
+	Die folgenden Sätze und Definitionen formulieren wir nur für Folgen der Form $(a_{n})_{n=1}^{\infty}$. Sie gelten sinngemä{\ss} für Folgen der Form $(a_{n})_{n=p}^{\infty}$ $(p \in \Z)$.
+\end{vereinbarung}
+
+
+\begin{definition*} \index{beschränkt!Folge}
+	Sei $(a_{n})$ eine Folge und $M \coloneqq \{ a_{1}, a_{2}, \dotsc \}$.
+	\begin{enumerate}
+		\item$(a_{n})$ hei{\ss}t \textbf{nach oben beschränkt} $:\iff M$ ist nach oben beschränkt. I.d. Fall: $\sup_{n \in \N} a_{n} \coloneqq \sup_{n = 1}^{\infty} a_{n} \coloneqq \sup M$.
+		\item$(a_{n})$ hei{\ss}t \textbf{nach unten beschränkt} $:\iff M$ ist nach unten beschränkt. I.d. Fall: $\inf_{n \in \N} a_{n} \coloneqq \inf_{n = 1}^{\infty} a_{n} \coloneqq \inf M$.
+		\item$(a_{n})$ hei{\ss}t \textbf{beschränkt} $~:\iff M$ ist beschränkt 
+			$$ \iff \exists c \geq 0: |a_{n}| \leq c ~\forall n \in \N $$
+	\end{enumerate}
+\end{definition*}
+
+
+\begin{definition*} \index{für fast alle}
+	Sei $A(n)$ eine für jedes $n \in \N$ definierte Aussage. \\
+	$A(n)$ gilt \textbf{für fast alle} (ffa) $n \in \N$ $:\iff \exists n_{0} \in \N: A(n)$ ist wahr $\forall n \geq n_{0}$
+\end{definition*}
+
+
+\begin{definition*} \index{Umgebung}
+	Sei $a \in \R$ und $\varepsilon > 0$
+		$$ U_{\varepsilon}(a) \coloneqq (a - \varepsilon, a + \varepsilon) = \{ x \in \R : | x - a| < \varepsilon \} $$
+	hei{\ss}t $\varepsilon$\textbf{-Umgebung von a}.
+\end{definition*}
+
+
+\begin{definition*}\ \index{konvergent} \index{Grenzwert} \index{Limes} \index{divergent}
+	Eine Folge $(a_{n})$ hei{\ss}t \textbf{konvergent}
+	$$ :\iff \exists a \in \R : \begin{cases} \text{zu jedem } \varepsilon > 0 \text{ ex. } n_{0} = n_{0}(\varepsilon) \in \N: \\
+		|a_{n} - a| < \varepsilon ~\forall n \geq n_{0}
+	\end{cases} $$
+	I. d. Fall hei{\ss}t $a$ \textbf{Grenzwert} (GW) oder \textbf{Limes} von $(a_{n})$ und man schreibt
+	$$ 
+		a_{n} \rightarrow a ~(n \rightarrow \infty) \text{ oder } a_{n} \rightarrow a \text{ oder } \lim_{n \rightarrow \infty} a_{n} = a
+	$$
+	Ist $(a_{n})$ nicht konvergent, so hei{\ss}t $(a_{n})$ \textbf{divergent}
+
+	\begin{align*}
+		\text{Beachte: } \quad a_{n} \rightarrow a ~(n \rightarrow \infty) & \iff \forall \varepsilon > 0 ~\exists n_{0} \in \N: a_{n} \in U_{\varepsilon}(a) ~\forall n \geq n_{0} \\
+				& \iff \forall \varepsilon > 0 \text{ gilt: } a_{n} \in U_{\varepsilon}(a) \text{ ffa } n \in \N \\
+				& \iff \forall \varepsilon > 0 \text{ gilt: } a_{n} \notin U_{\varepsilon}(a) \text{ für höchstens endlich viele } n \in \N
+	\end{align*}
+\end{definition*}
+
+
+\begin{satz} \label{satz-2.1}
+	$(a_{n})$ sei konvergent und $a = \lim a_{n}$
+	\begin{enumerate}
+		\item Gilt auch noch $a_{n} \rightarrow b$, so ist $a = b$
+		\item $(a_{n})$ ist beschränkt
+	\end{enumerate}
+	
+	\begin{beweis}\
+	  \begin{enumerate}
+		\item Annahme $a \neq b$. Dann ist $\varepsilon \coloneqq \frac{|a - b|}{2} > 0$.
+			$$
+			\exists n_{0} \in \N: |a_{n_{0}} - a| < \varepsilon \quad \forall n \geq n_{0} \text{ und } \exists n_{1} \in \N: |a_n - b| < \varepsilon \quad \forall n \geq n_{1}
+			$$
+			$N \coloneqq \max \{ n_{0}, n_{1} \}$. Dann:
+			$$
+				2 \varepsilon = |a - b| = | a - a_{N} + a_{N} - b| \leq |a_{N} - a| + |a_{N} - b| < 2 \varepsilon
+			$$
+			Widerspruch! Also $ a = b$
+		\item  Zu $\varepsilon = 1 ~\exists n_{0} \in \N: |a_{n} - a| < 1 ~\forall n \geq n_{0}$. Dann:
+			$$
+				|a_{n}| = |a_{n} - a + a| \leq |a_{n} - a| + |a| \leq 1 + |a| \quad \forall n \geq n_{0}
+			$$
+			$c \coloneqq \max \{ 1 + |a|, |a_{1}|, \dotsc, |a_{n_{0} - 1}| \}$. Dann: $|a_{n}| \leq \varepsilon ~\forall n \geq 1$.
+	  \end{enumerate}
+	\end{beweis}	
+\end{satz}
+
+
+\begin{beispiele*}\
+	\begin{enumerate}
+		\item Sei $c \in \R$ und $a_{n} \coloneqq c ~\forall n \in \N$. Dann:
+			$$
+				| a_{n} - c | = 0 \quad \forall n \in \N
+			$$
+			Also: $a_{n} \rightarrow c$.
+		\item $a_{n} \coloneqq \frac{1}{n} ~(n \in \N)$. Beh: $a_{n} \rightarrow 0 ~(n \rightarrow \infty)$.
+			\begin{beweis}
+				Sei $\varepsilon > 0: |a_{n} - 0 | = |a_{n}| = \frac{1}{n} < \varepsilon \iff n > \frac{1}{\varepsilon}$
+				$$
+						\xRightarrow[]{\hyperref[satz-1.3]{\text{1.3 c)}}} \exists n_{0} \in \N: n_{0} > \frac{1}{\varepsilon}
+				$$
+				Für $n \geq n_{0}$ ist $n > \frac{1}{\varepsilon}$, also $\frac{1}{n} < \varepsilon$. Somit $|a_{n} - 0| < \varepsilon ~\forall n \geq n_{0}$
+			\end{beweis}
+		\item $a_{n} \coloneqq (-1)^{n}$. Es ist $|a_{n}| = 1 ~\forall n \in \N$, $(a_{n})$ ist also beschränkt. Behauptung: $(a_{n})$ ist divergent.
+			\begin{beweis}
+				$\forall n \in \N: |a_{n} - a_{n+1}| = |(-1)^{n} - (-1)^{n+1}| = |(-1)^{n}| \left( 1 - (-1) \right) = 2$. \\
+				Annahme: $(a_{n})$ konvergiert. Definiere $a \coloneqq \lim a_{n}$, dann 
+				$$
+					 \exists n_{0} \in \N: ~ |a_{n} - a| < \frac{1}{2} \quad \forall n \geq n_{0}
+				$$
+				Für $n \geq n_{0}$ gilt dann aber:
+				$$
+					2 = |a_{n} - a_{n+1}| = |a_{n} - a + a - a_{n + 1}| \leq |a_{n} - a| + |a_{n+1} - a| < \frac{1}{2} + \frac{1}{2} = 1
+				$$
+				Widerspruch!
+			\end{beweis}
+		\item $a_{n} \coloneqq n ~(n \in \N)$. $(a_{n})$ ist nicht beschränkt $\xRightarrow[]{\hyperref[satz-2.1]{2.1 b)}} (a_{n})$ ist divergent.
+		\item $a_{n} \coloneqq  \frac{1}{\sqrt{n}} (n \in \N)$. Beh.: $a_{n} \rightarrow 0$
+			\begin{beweis}
+				Sei $\varepsilon > 0$.
+				$$
+					|a_{n} - 0| = \frac{1}{\sqrt{n}} < \varepsilon \iff \sqrt{n} > \frac{1}{n} \iff n > \frac{1}{\varepsilon^{2}}
+				$$
+				$\xRightarrow[]{\hyperref[satz-1.3]{1.3 c)}} \exists n_{0} \in \N: n_{0} > \frac{1}{\varepsilon^{2}}$. Ist $n \geq n_{0} \Rightarrow n > \frac{1}{\varepsilon^{2}} \Rightarrow \frac{1}{\sqrt{n}} < \varepsilon \Rightarrow |a_{n} - 0 | < \varepsilon$ 
+			\end{beweis}
+		\item $a_{n} \coloneqq \sqrt{n + 1} - \sqrt{n}$. 
+			\begin{beweis}
+				$$
+					a_{n} = \frac{(\sqrt{n + 1} - \sqrt{n})(\sqrt{n + 1} + \sqrt{n})}{\sqrt{n + 1} + \sqrt{n}} = \frac{1}{\sqrt{n + 1} + \sqrt{n}} \leq \frac{1}{\sqrt{n}}
+				$$
+				$\Rightarrow |a_{n} - 0| \leq \frac{1}{\sqrt{n}} ~\forall n \in \N$. Sei $\varepsilon > 0$, nach Beispiel e) folgt:
+				$$
+					\exists n_{0} \in \N: ~ \frac{1}{\sqrt{n}} < \varepsilon \quad \forall n \geq n_{0} \Rightarrow |a_{n} - 0| < \varepsilon \quad \forall n \geq n_{0}
+				$$
+				Also $a_{n} \rightarrow 0$.
+			\end{beweis}
+	\end{enumerate}
+\end{beispiele*}
+
+
+\begin{definition*}
+	$(a_{n})$ und $(b_{n})$ seien Folgen und $\alpha \in \R$
+	$$
+		(a_{n}) \pm (b_{n}) \coloneqq (a_{n} \pm b_{n}); ~
+		\alpha (a_{n}) \coloneqq (\alpha a_{n}); ~
+		(a_{n}) (b_{n}) \coloneqq (a_{n} b_{n}) 		
+	$$	
+	Gilt $b_{n} \neq 0 ~\forall n \geq m$, so ist die Folge $\left( \frac{a_{n}}{b_{n}} \right)_{n = m}^{\infty}$ definiert.
+\end{definition*}
+
+
+\begin{satz}\ \label{satz-2.2}
+	$(a_{n}), (b_{n}), (c_{n})$ und $(\alpha_{n})$ seien Folge und $a, b, \alpha \in \R$
+
+	\begin{enumerate}
+		\item $a_{n} \rightarrow a \iff |a_{n} - a| \rightarrow 0$
+		\item Gilt $|a_{n} - a| \leq \alpha_{n}$ ffa $n \in \N$ und $\alpha_{n} \rightarrow 0$, so gilt $a_{n} \rightarrow a$
+		\item Es gelte $a_{n} \rightarrow a$ und $b_{n} \rightarrow b$. Dann:
+			\begin{enumerate}
+				\item $|a_{n}| \rightarrow |a|$ 
+				\item $a_{n} + b_{n} \rightarrow a + b$
+				\item $\alpha a_{n} \rightarrow \alpha a$
+				\item $a_{n} b_{n} \rightarrow a b$
+				\item ist $a \neq 0$, so ex. ein $m \in \N$:
+					$$
+						a_{n} \neq 0 ~\forall n \geq m \text{ und für die Folge } \left( \frac{1}{a_{n}} \right)_{n = m}^{\infty} \text{ gilt: } \frac{1}{a_{n}} \rightarrow \frac{1}{a}
+					$$
+			\end{enumerate}
+		\item Es gelte $a_{n} \rightarrow a$, $b_{n} \rightarrow b$ und $a_{n} \leq b_{n}$ ffa $n \in \N \Rightarrow a \leq b$
+		\item Es gelte $a_{n} \rightarrow a$, $b_{n} \rightarrow a$ und $a_{n} \leq c_{n} \leq b_{n}$ ffa $n \in \N$. Dann $c_{n} \rightarrow a$.
+	\end{enumerate}
+\end{satz}
+
+
+\begin{beispiele*}\
+	\begin{enumerate}
+		\item Sei $p \in \N$ und $a_{n} \coloneqq \frac{1}{n^{p}}$. Es ist $n \leq n^{p} ~\forall n \in \N$. \\
+			Dann: $0 \leq a_{n} \leq \frac{1}{n} ~\forall n \in \N \xRightarrow[]{\hyperref[satz-2.2]{2.2 e)}} a_{n} \rightarrow 0$, also $\frac{1}{n^{p}} \rightarrow 0$.
+		\item $a_{n} \coloneqq \frac{5n^{2} + 3n + 1}{4n^{2} - n + 2} = \frac{5 + \frac{3}{n} + \frac{1}{n^{2}}}{4 - \frac{1}{n} + \frac{2}{n^{2}}} \xrightarrow[]{\label{satz-2.2}} \frac{5}{4}$
+	\end{enumerate}
+	
+	\begin{beweis}[von 2.2]\
+		\begin{enumerate}
+			\item folgt aus der Definition der Konvergenz
+			\item $\exists m \in \N: |a_{n} - a | \leq \alpha_{m} ~\forall n \geq m$. Sei $\varepsilon > 0$
+				$$
+		 		\exists n_{1} \in \N: \alpha_{n} < \varepsilon ~\forall n \geq n_{1}.
+		 		$$
+		 		$n_{0} \coloneqq \max \{ m , n_{1} \}$. Für $n \geq n_{0}$: $|a_{n} - a| \leq \alpha_{n} < \varepsilon$
+			\item \begin{enumerate}
+				\item $| |a_{n}| - |a|| \leq_{\S 1} |a_{n} - a| ~\forall n \in \N \xRightarrow[a)]{b)} |a_{n}| \rightarrow |a|$
+				\item Sei $\varepsilon > 0$. $\exists n_{1}, n_{2} \in \N; |a_{n} - a| < \frac{\varepsilon}{2} ~\forall n \geq n_{1}$, $|b_{n} - b| < \frac{\varepsilon}{2} ~\forall n \geq n_{2}$ \\
+					$n_{0} \coloneqq \max \{ n_{1}, n_{2} \}$. Für $n \geq n_{0}$:
+					$$
+						|a_{n} + b_{n} - (a + b)| = |a_{n} - a + b_{n} - b| \leq |a_{n} - a| + |b_{n} - b| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+					$$
+				\item Übung
+				\item $c_{k} \coloneqq |a_{n} b_{n} - ab|$. z. z.: $c_{n} \rightarrow 0$
+					\begin{align*}
+						c_{n} & = |a_{n}b_{n} - a_{n}b + a_{n}b - ab| = |a{n}(b_{n} - b)+ (a_{n} - a)b| \\
+							  & \leq |a_{n}||b_{n} - b| + |b||a_{n}-a|
+					\end{align*}
+					$\xRightarrow[]{\hyperref[satz-2.1]{2.1 b)}} \exists c \geq 0 : |a_{n}| \leq c ~\forall n \in \N$ und $c \geq |b|$. Dann:
+					$$
+						c_{n} \leq c(|b_{n}-b| + |a_{n}-a|) \eqqcolon \alpha_{n} \xRightarrow[c) (ii), c) (iii)]{a)} \alpha_{n} \rightarrow 0
+					$$
+					Also: $|c_{n} - 0| = c_{n} \leq \alpha_{n} ~\forall n \in \N$ und $\alpha_{n} \rightarrow 0 \xRightarrow[]{b)} c_{n} \rightarrow 0$.
+				\item $\varepsilon \coloneqq \frac{|a|}{2}$; aus (i): $|a_{n}| \rightarrow |a| \Rightarrow \exists n \in N$:
+					$$
+						 |a_{n}| \in U_{\varepsilon}(|a|) = (|a| - \varepsilon, |a| + \varepsilon) = (\frac{|a|}{2}, \frac{3}{2} |a|) \quad \forall n \geq m
+					$$
+					$\Rightarrow |a_{n}| > \frac{|a|}{2} > 0 ~\forall n \geq m \Rightarrow a_{n} \neq 0 ~\forall n \geq m$. \\
+					Für $n \geq m$:
+					$$
+						\left| \frac{1}{a_{n}} - \frac{1}{a} \right| = \frac{|a_{n} - a|}{|a_{n}||a|} \leq \frac{2|a_{n} - a|}{|a|^{2}} \eqqcolon \alpha_{n}
+					$$
+					$\alpha_{n} \rightarrow 0 \xRightarrow[]{b)} \frac{1}{a_{n}} \rightarrow \frac{1}{a}$.
+			  \end{enumerate}
+			\item Annahme $b < a, \varepsilon \coloneqq \frac{a-b}{2} > 0$ \\	% todo Zeichnung
+				Dann: $x < y ~\forall x \in U_{\varepsilon}(b) ~\forall y \in U_{\varepsilon}(a)$. \\
+				\begin{align*}
+				\exists n_{0} \in \N: b_{n} \in U_{\varepsilon}(b) ~\forall n \geq n_{0} \\
+				\exists m \in \N: a_{n} \leq b_{n} ~\forall n \geq m
+				\end{align*} 
+				$m_{0} \coloneqq \max \{ n_{0}, m \}$. Für $n \geq m_{0}$: $a_{n} \leq b_{n} < b + \varepsilon$, also $a_{n} \notin U_{\varepsilon}(a)$. Widerspruch!   
+			\item $\exists m \in \N: a_{n} \leq c_{n} \leq b_{n} ~\forall n \geq m$. Sei $\varepsilon > 0$. $\exists n_{1}, n_{2} \in \N$: 
+				\begin{align*}
+					a - \varepsilon < a_{n} < a + \varepsilon ~\forall n \geq n_{1} \\
+					a - \varepsilon < b_{n} < a + \varepsilon ~\forall n \geq n_{2}
+				\end{align*}
+				$n_{0} \coloneqq \max \{ n_{1}, n_{2}, m \}$. Für $n \geq n_{0}$:
+				$$
+					a - \varepsilon < a_{n} \leq c_{n} \leq b_{n} < a + \varepsilon
+				$$
+				Also: $|a_{n} - a| < \varepsilon \forall n \geq n_{0}$.
+		\end{enumerate}	
+	\end{beweis}	
+\end{beispiele*}
+
+
+\begin{definition*}\ \index{monoton}  \index{monoton! wachsend}   \index{monoton! streng wachsend} \index{monoton! streng fallend} \index{monoton! fallend}
+	\begin{enumerate}
+		\item $(a_{n})$ hei{\ss}t \textbf{monoton wachsend} $: \iff a_{n+1} \geq a_{n} ~\forall n \in \N$.
+		\item $(a_{n})$ hei{\ss}t \textbf{streng monoton wachsend} $: \iff a_{n+1} > a_{n} ~\forall n \in \N$.
+		\item Entsprechend definiert man \textbf{monoton fallend} und \textbf{streng monoton fallend}.
+		\item $(a_{n})$ hei{\ss}t \textbf{monoton} $:\iff (a_{n})$n ist monoton wachsend oder monoton fallend.
+	\end{enumerate}
+\end{definition*}
+
+
+\begin{prop}[Monotoniekriterium]\ \index{Monotoniekriterium} \label{prop:2.3}
+	\begin{enumerate}
+		\item $(a_{n})$ sei monoton wachsend und nach oben beschränkt. Dann ist $(a_{n})$ konvergent und 
+			$$
+				\lim_{n \rightarrow \infty} a_{n} = \sup_{n = 1}^{\infty} a_{n}
+			$$
+		\item $(a_{n})$ sei monoton fallend und nach unten beschränkt. Dann ist $(a_{n})$ konvergent und 
+			$$
+				\lim_{n \rightarrow \infty} a_{n} = \inf_{n = 1}^{\infty} a_{n}
+			$$
+	\end{enumerate}
+	
+	\begin{beweis}
+		$a \coloneqq \sup_{n = 1}^{\infty} a_{n}$. Sei $\varepsilon > 0$. Dann ist $a - \varepsilon$ keine obere Schranke von $\{ a_{1}, a_{2}, \cdots \}$, also existiert ein $n_{0} \in \N: a_{n_{0}} > a - \varepsilon$. Für $n \geq n_{0}$:
+			$$
+				a - \varepsilon < a_{n_{0}} \leq a_{n} \leq a \leq a + \varepsilon
+			$$
+			also $|a_{n} - a| \leq \varepsilon ~\forall n \geq n_{0}$.
+	\end{beweis}
+\end{prop}
+
+
+\begin{beispiel*} $a_{1} \coloneqq \sqrt[3]{6}$, $a_{n + 1} \coloneqq \sqrt[3]{6 + a_{n}} (n \geq 2)$.
+	\begin{description}
+		\item $a_{1} = \sqrt[3]{6} < \sqrt[3]{8} = 2$;
+		\item $a_{2} = \sqrt[3]{6 + a_{1}} < \sqrt[3]{6 + 2} = 2$;
+		\item $a_{2} = \sqrt[3]{6 + a_{1}} < \sqrt[3]{6} = a_{1}$;
+	\end{description}
+	Behauptung: $0 < a_{n} < 2$ und $a_{n + 1} > a_{n}$ $\forall n \in \N$
+
+	\begin{beweis}[induktiv]~\\
+		I.A.: s.o. \\
+		I.V.: Sei $n \in \N$ und $0 < a_{n} < 2$ und $a_{n+1} > a_{n}$. $n \curvearrowright n + 1$: $a_{n + 1} = \sqrt[3]{6 + a_{n}} >_{I.V.} 0$
+		$$
+			a_{n +1} = \sqrt[3]{6 + a_{n}} <_{I.V.} \sqrt[3]{6 + 2} = 2; \quad a_{n + 2} = \sqrt[3]{6 + a_{n+1}} >_{I.V.} \sqrt[3]{6 + a_{n}} = a_{n + 1}
+		$$
+		Also: $(a_{n})$ ist nach oben beschränkt und monoton wachsend. \\
+		$\xRightarrow[]{2.3} (a_{n})$ ist konvergent. $a \coloneqq \lim a_{n}$, $a_{n} \geq 0 ~\forall n \xRightarrow[]{2.2} a \geq 0$. Es ist
+		$$
+			a_{n+1}^{3} = 6 + a_{n} \quad \forall n \in \N
+		$$
+		$$
+			\xRightarrow[]{2.2} a^{3} = 6 + a \Rightarrow 0 = a^{3} - a + 6 = (a-2)(\underbrace{a^{2}-2a+3}_{\geq 3})
+		$$
+		$\Rightarrow a = 2$.
+	\end{beweis}
+\end{beispiel*}
+
+
+\textbf{Wichtige Beispiele:} \\
+
+Vorbemerkung: Seien $x, y \geq 0$ und $p \in \N$: es ist (s. \S 1)
+$$
+	x^{p} - y^{p} = (x - y) \sum_{k = 0}^{p-1} x^{p-1-k}y^{k}
+$$
+$\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1} |x - y|$
+\newline
+
+\begin{beispiel}
+	Sei $a_{n} \geq 0 ~\forall n \in \N$, $a_{n} \rightarrow a (\geq 0)$ und $p \in \N$. Dann $\sqrt[p]{a_{n}} \rightarrow \sqrt[p]{a}$
+	
+	\begin{beweis}~\\
+		Fall 1: $a = 0$. Sei $\varepsilon > 0, \exists n_{0} \in \N: |a_{n}| < \varepsilon^{p} ~\forall n \geq n_{0}$
+		$$
+			\Rightarrow | \sqrt[p]{a_{n}} = \sqrt[p]{|a_{n}|} < \varepsilon ~\forall n \geq n_{0}
+		$$
+		Also $\sqrt[p]{a_{n}} \rightarrow 0$. \newline
+		
+		Fall 2: $a \neq 0$.
+		\begin{align*}
+			|a_{n} - a| & = | (\underbrace{\sqrt[p]{a_{n}}}_{\eqqcolon x})^{p} - |\underbrace{\sqrt[p]{a}}_{\eqqcolon y}|^{p} | =  |x^{p} - y^{p}| \\
+					& \geq_{s.o.} \underbrace{y^{p-1}}_{\coloneqq c} |x - y| = c | \sqrt[p]{a_{n}} - \sqrt[p]{a} |, \quad c > 0
+		\end{align*}
+		$\Rightarrow |\sqrt[p]{a_{n}} - \sqrt[p]{a}| \leq \frac{1}{c} |a_{n} - a| \eqqcolon \alpha_{n}$. $\alpha_{n} \rightarrow 0 \Rightarrow \sqrt[p]{a_{n}} \rightarrow \sqrt[p]{a}$
+	\end{beweis} 
+\end{beispiel}
+
+
+\begin{beispiel} \label{bsp:2.5}
+	Für $x \in \R$ gilt $(x^{n})$ ist konvergent $\iff x \in (-1,1]$, i. d. Fall:
+	$$
+		\lim_{n \rightarrow \infty} x^{n} = \begin{cases} 1, & \text{falls } x = 1 \\ 0, & \text{falls } x \in (-1 , 1) \end{cases}
+	$$
+	
+	\begin{beweis}~\\
+		Fall 1: $x = 0$. Dann $x^{k} \rightarrow 0$. Fall 2: $x = 1$. Dann $x^{k} \rightarrow 1$. \\
+		Fall 3: $x = -1$. Dann $(x^{k}) = ((-1)^{k})$, ist divergent. \\
+		Fall 4: $|x| > 1$. $\exists \delta > 0: |x| = 1 + \delta \Rightarrow |x^{k}| = |x|^{k} = (1 + \delta)^{k} \geq 1 + n \delta \geq n \delta$ \\
+		 $\Rightarrow$ ist nicht beschränkt $\xRightarrow[]{2.1} (x^{k})$ ist divergent.
+		Fall 5: $0 < |x| < 1 \Rightarrow \frac{1}{|x|} > 1 \Rightarrow \exists \eta > 0: \frac{1}{|x|} = 1 + \eta$.
+		$$
+			\Rightarrow |\frac{1}{x^{n}}| = \left( \frac{1}{|x|} \right)^{n} = (1 + \eta)^{n} \geq 1 + n \eta \geq n \eta
+		$$
+		$\Rightarrow |x^{n}| \leq \frac{1}{\eta} \cdot \frac{1}{n} \Rightarrow x^{n} \rightarrow 0$.
+	\end{beweis}	
+\end{beispiel}
+
+
+\begin{beispiel}
+	Sei $x \in \R$ und $s_{n} \coloneqq 1 + x + x^{n} + \dotsc x^{n} = \sum_{k = 0}^{n} x^{k}$ \\
+	Fall 1: $x = 1$. Dann: $x_{n} = n + 1$, $(s_{n})$ ist also divergent. \\
+	Fall 2: $x \neq 1 \Rightarrow s_{n} = \frac{1 - x^{n+1}}{1 - x}$. Aus \hyperref[bsp:2.5]{(2.5)}:
+	$$
+		(s_{n}) \text{ konvergent} \quad \iff \quad |x| < 1
+	$$
+	i.d. Fall: $\lim s_{n} = \frac{1}{1 - x}$
+\end{beispiel}
+
+
+\begin{beispiel}
+	Behauptung: $\sqrt[n]{n} \rightarrow 1$.
+	
+	\begin{beweis}
+		Es ist $\sqrt[n]{n} \geq 1 ~\forall n \in \N$, also $a_{n} \coloneqq \sqrt[n]{n} - 1 \geq 0 ~\forall n \in \N$. Z. z.: $a_{n} \rightarrow 0$. \\
+		Für $n \geq 2$:
+		$$
+			n = \left( \sqrt[n]{n} \right)^{n} = \left( a_{n} + 1 \right)^{n} =_{\S 1} \sum_{k=0}^{n} \binom{n}{k} a_{n}^{k} \geq \binom{n}{2} a_{n}^{2} = \frac{n(n-1)}{2} a_{n}^{2}
+		$$
+		$\Rightarrow \frac{n-1}{2}a_{n}^{2} \leq 1$. Also $\xRightarrow[a_{n} \geq 0]{} 0 \leq a_{n} \leq \frac{\sqrt{2}}{\sqrt{n-1}} (n \geq 2)$. $\Rightarrow a_{n} \rightarrow 0$.
+	\end{beweis}
+\end{beispiel}
+
+
+\begin{beispiel}
+	Sei $c > 0$. Beh.: $\sqrt[n]{c} \rightarrow 1$.
+	
+	\begin{beweis}
+		Fall 1: $c \geq 1$. $\exists m \in \N: 1 \leq c \leq m$
+		$$
+		 \Rightarrow 1 \leq c \leq n ~\forall n \geq m \Rightarrow 1 \leq \sqrt[n]{c} \leq \sqrt[n]{n} ~\forall n\geq m \Rightarrow \text{Beh.}
+		$$
+		Fall 2: $0 < c <1 \Rightarrow \frac{1}{c} > 1 \Rightarrow \sqrt[n]{c} = \frac{1}{\sqrt[n]{\frac{1}{c}}} \xrightarrow[Fall 1]{} 1 (n \rightarrow \infty)$ $\Rightarrow$ Beh.
+	\end{beweis}
+\end{beispiel}
+
+
+\begin{beispiel}
+	$a_{n} \coloneqq \left( 1 + \frac{1}{n} \right)^{n}; b_{n} \coloneqq \sum_{k = 0}^{n} \frac{1}{k!} = 1 + 1 + \frac{1}{2!} + \dotsc + \frac{1}{n!}$ \\
+	Beh.: $(a_{n})$ und $(b_{n})$ sind konvergent und $\lim a_{n} = \lim b_{n}$
+	
+	\begin{beweis}
+		I. d. gr. Übungen wird gezeigt: $2 \leq a_{n} < a_{n+1} < 3 ~\forall n \in \N$
+		$$
+			\xRightarrow []{\hyperref[prop:2.3]{2.3}} (a_{n}) \text{ konvergiert, } a \coloneqq \lim a_{n}
+		$$
+		Es ist $b_{n} > 0$ und $b_{n+1} = b_{n} + \frac{1}{(n+1)!} > b_{n}$. $(b_{n})$ ist also monoton wachsend. Für $n > 3$:
+		\begin{align*} 
+			b_{n} & = 1 + 1 + \frac{1}{2} + \underbrace{\frac{1}{2 \cdot 2}}_{< \left(\frac{1}{2}\right)^{2}} + \underbrace{\frac{1}{2 \cdot 3 \cdot 4}}_{< \left(\frac{1}{2}\right)^{3}} + \dotsc + \underbrace{\frac{1}{2 \cdot \dotsc \cdot n}}_{< \left(\frac{1}{2}\right)^{n-1}} \\
+				  & < 1 + \left( 1 + \frac{1}{2} + (\frac{1}{2})^{2} + \dotsc + (\frac{1}{2})^{n-1} \right) = 1 + \frac{1 - \left( \frac{1}{2} \right)^{n}}{1 - \frac{1}{2}} \\
+				  & < 1 + \frac{1}{1 - \frac{1}{2}} = 3 \quad \forall n \in \N
+		\end{align*} 
+		$\xRightarrow[]{\hyperref[prop:2.3]{2.3}} (b_{n})$ konvergiert. $b \coloneqq \lim b_{n}$. Für $n \geq 2$:
+		\begin{align*}
+			a_{n} & = \left( 1 + \frac{1}{n} \right)^{n} =_{\S 1} \sum_{k=0}{n} \binom{n}{k} \frac{1}{n^{k}} \\
+				  & = 1 + 1 + \sum_{k = 2}^{n} \frac{1}{k!} \frac{n!}{(n-k)!} \frac{1}{n^{k}} = 1 + 1 + \sum_{k=2}^{n} \frac{1}{k!} \frac{n(n-1) \cdot \dotsc \cdot (n-(k-1))}{n \cdot n \cdot \dotsc \cdot n} \\
+				  & = 1 + 1 + \sum_{k=2}^{n} \frac{1}{k!} \underbrace{(1 - \frac{1}{n})}_{< 1} \underbrace{(1 - \frac{2}{n})}_{< 1} \cdot \dotsc \cdot \underbrace{(1 - \frac{k-1}{n})}_{< 1} \\
+				  & \leq 1 + 1 + \sum_{k=2}^{n} \frac{1}{k!} = b_{n}
+		\end{align*}
+		Also $a_{n} \leq b_{n} ~\forall n \geq 2$. Z. z.: $\Rightarrow a \leq b$ \\
+		Sei $j \in \N, j \geq 2$ (zunächst fest). Für $n \in \N, n \geq j$:
+		\begin{align*}
+			a_{n} & =_{s.o.} 1 + 1 + \sum_{k=2}^{n} \frac{1}{k!} (1-\frac{1}{n})(1-\frac{2}{n}) \cdot \dotsc \cdot (1-\frac{k-1}{n}) \\
+				  & \geq 1 + 1 + \sum_{k = 2}^{j} \frac{1}{k!} \underbrace{(1-\frac{1}{n})}_{\rightarrow 1} \underbrace{(1-\frac{2}{n})}_{\rightarrow 1} \cdot \dotsc \cdot \underbrace{(1-\frac{k-1}{n})}_{\rightarrow 1} \\
+				  & \rightarrow 1 + 1 + 1 \sum_{k=2}^{j} \frac{1}{k!} = b_{j} \quad (n \rightarrow \infty)
+		\end{align*}
+		Also $a \geq b_{j} ~\forall j \geq 2 \xRightarrow[]{j \rightarrow \infty} a \geq b$.
+	\end{beweis}
+\end{beispiel}
+
+% todo ab hier formatieren
+
+\begin{definition*} \index{Eulersche Zahl}
+	$$
+		e \coloneqq \lim_{n \rightarrow \infty} \left( 1 + \frac{1}{n} \right)^{n} ~( = \lim_{n \rightarrow \infty} \sum_{k = 0}^{n} \frac{1}{k!} )
+	$$
+	hei{\ss}t \textbf{Eulersche Zahl}. Übung: $2 < e < 3$. \\
+	$e \approx 2,718\dotsc$
+\end{definition*}
+
+
+\begin{definition*} \index{Teilfolge}
+	Sei $(a_{n})$ eine Folge und $(n_{1}, n_{2}, n_{3}, \dotsc)$ eine Folge in $\N$ mit \\
+	$n_{1} < n_{2} < n_{3} < \dotsc$. Für $k \in \N$ setze
+	$$
+		b_{k} \coloneqq a_{n_{k}}
+	$$
+	also $b_{1} = a_{n_{1}}, b_{2} = a_{n_{2}}, \dotsc$. Dann hei{\ss}t $(b_{k}) = (a_{n_{k}})$ eine \textbf{Teilfolge} (TF) von $(a_{n})$.
+\end{definition*}
+
+
+\begin{beispiele*}\
+	\begin{enumerate}
+		\item $(a_{2}, a_{4}, a_{6}, \dotsc)$ ist eine Teilfolge von $(a_{n})$; hier: $n_{k} = 2k$
+		\item $(a_{1}, a_{4}, a_{9}, \dotsc)$ ist eine Teilfolge von $(a_{n})$; hier: $n_{k} = k^2$
+		\item $(a_{2}, a_{6}, a_{4}, a_{10}, a_{8}, a_{14}, \dotsc)$ ist keine Teilfolge von $(a_{n})$.
+	\end{enumerate}
+\end{beispiele*}
+
+
+\begin{definition*}
+	$(a_{n})$ sei eine Folge und $\alpha \in \R$. $\alpha$ hei{\ss}t ein \textbf{Häufungswert} (HW) von $(a_{n})$
+	$$
+		:\iff \exists (TF) (a_{n_{k}}) \text{ von } (a_{n}): a_{n_{k}} \rightarrow \alpha (k \rightarrow \infty) 
+	$$	
+	$H(a_{n}) \coloneqq \{ \alpha \in \R: \alpha$ ist ein Häufungswert von $(a_{n}) \}$.
+\end{definition*}
+
+
+\begin{satz}
+	$\alpha \in \R$ ist ein HW von $(a_{n})$
+	$$
+		\iff \forall \epsilon > 0: a_{n_{k}} \in U_{\epsilon}(\alpha) \quad (*)
+	$$
+	für unendlich viele $n \in \N$.
+\end{satz}
+
+\begin{beweis}
+	$\glqq \Rightarrow \grqq$ Sei $(a_{n_{k}})$ eine Teilfolge mit $a_{n_{k}} \rightarrow \infty$. Sei $\epsilon > 0 \exists k_{0} \in \N: a_{n_{k}} \in U_{\epsilon}(\alpha)$ für $k \geq k_{0} \Rightarrow (*)$ \\
+	$\glqq \Leftarrow \grqq$ $\exists n_{1} \in \N: $ % todo rest missing
+\end{beweis}
+
+
+
+\newpage
+
+
+\section{Unendliche Reihen}
+
+\newpage
+
+
+% Inhaltsverzeichnis
+\appendix \cleardoublepage \phantomsection \renewcommand{\indexname}{Stichwortverzeichnis} \addcontentsline{toc}{section}{\indexname} \printindex
+
+
+\end{document}
