@@ -2,7 +2,12 @@
 %% todo #Seite 9: nach "Große Übungen:..." 
 %% todo #Seite 12: unten Notiz am Ende übernehmen?
 %% todo # Seite 23b: Fall 4, über \Rightarrow 2.1 (x^{k}) was steht da? "Bu"? Das Gleiche auch 5. Fall
-\documentclass[titlepage, ngerman, 12pt]{scrartcl}
+%% todo "<=" bzw "=>" ersetzen
+%% todo beweis qed Zeichen
+%% todo $$ $$ durch \[ \] ersetzen
+%% todo formatierung
+
+\documentclass[titlepage, ngerman, 14pt]{scrartcl}
 
 \usepackage[utf8]{inputenc} 
 \usepackage[T1]{fontenc} 
@@ -41,6 +46,9 @@
 \newcommand{\K}{\mathbb{K}}
 \newcommand{\D}{\mathbb{D}}	
 
+
+\newtheoremstyle{dotless}{}{}{}{}{\bfseries}{:}{ }{}
+\theoremstyle{dotless}
 \newtheorem{satz}{Satz}[section]	  	
 \newtheorem{lemma}[satz]{Lemma}	
 \newtheorem{prop}[satz]{Proposition}
@@ -60,6 +68,7 @@
 \newtheorem*{regeln}{Regeln}
 \newtheorem*{vereinbarung}{Vereinbarung}
 \newtheorem*{schreibweise}{Schreibweise}
+\newtheorem*{folgerung}{Folgerung}
 \newtheorem*{schreibweisen}{Schreibweisen}
 \newtheorem*{hilfssatz*}{Hilfssatz}
 \newtheorem*{beweis}{Beweis}
@@ -188,8 +197,8 @@ Für $a \in \R$ hei{\ss}t $|a| \coloneqq \begin{cases} \hspace{0.35cm} a, & \tex
 		Anschaulich:  \tikz[baseline=-0.5ex]{  \draw(0,0)--(12,0);
     \foreach \x/\xtext in {0/$$,2/$$,4/$a$,6/{\small $0$},8/$$,10/{\small $b$},12/$$}
       \draw(\x,3pt)--(\x,-3pt) node[below] {\xtext};
-    \draw[decorate, yshift=2ex]  (6,0) -- node[above=0.4ex] {\small $\underset{\glqq \text{Abstand} \grqq \text{ von } a \text{ und } b}{|a - b| =}$}  (10,0);
-    \draw[decorate, yshift=-4ex] (6,0) -- node[below=0.3ex] {\small $\underset{\glqq \text{Abstand} \grqq \text{ von } 0}{|a| =}$} (4,0);} \\ \\
+    \draw[decorate,decoration={brace},yshift=2ex]  (6,0) -- node[above=0.4ex] {\small $\underset{\glqq \text{Abstand} \grqq \text{ von } a \text{ und } b}{|a - b| =}$}  (10,0);
+    \draw[decorate,decoration={brace},yshift=-4ex] (6,0) -- node[below=0.3ex] {\small $\underset{\glqq \text{Abstand} \grqq \text{ von } 0}{|a| =}$} (4,0);} \\ \\
 	Es ist $|-a| = |a|$ und $|a - b| = |b - a|$
 \end{beispiele*}
 
@@ -258,7 +267,7 @@ Ist $\sup M$ bzw. $\inf M$ vorhanden und gilt $\sup M \in M$ bzw. $\inf M \in M$
 	\item[\hspace{0.4cm}$(A15)$]Ist $\emptyset \neq M \subseteq \R$ und ist $M$ nach oben beschränkt, so ist $\sup M$ vorhanden.
 \end{description}
 
-\begin{satz} \label{satz-1.1}
+\begin{satz} \label{satz:1.1}
 	Ist $\emptyset \neq M \subseteq \R$ und ist $M$ nach unten beschränkt, so ist $\inf M$ vorhanden.
 
 
@@ -273,7 +282,7 @@ Ist $\sup M$ bzw. $\inf M$ vorhanden und gilt $\sup M \in M$ bzw. $\inf M \in M$
 \end{definition*}
 
 
-\begin{satz} \label{satz-1.2}
+\begin{satz} \label{satz:1.2}
 	Es sei $\emptyset \neq B \subseteq A \subseteq \R$
 	\begin{enumerate}
 		\item Ist $A$ bechränkt $\Rightarrow$ $\inf A \leq \sup A$
@@ -308,14 +317,15 @@ Ist $\sup M$ bzw. $\inf M$ vorhanden und gilt $\sup M \in M$ bzw. $\inf M \in M$
 \index{Natürliche Zahlen} \index{Induktionsmenge}
 \begin{definition*}\
 	\begin{enumerate}
-		\item $A \subseteq \R$ hei{\ss}t eine Induktionsmenge (IM) $:\iff \begin{cases}1 . & 1 \in A; \\ 2. & \text{aus } x \in A \text{ folgt stets } x + 1 \in A \end{cases}$ \\ \\
+		\item $A \subseteq \R$ hei{\ss}t eine Induktionsmenge (IM) \\
+		$$ :\iff \begin{cases}1 . & 1 \in A; \\ 2. & \text{aus } x \in A \text{ folgt stets } x + 1 \in A \end{cases}$$ \\
 		Beispiele: $\R, [1, \infty), \{ 1 \} \cup [2, \infty)$ sind Induktionsmengen
 		\item $\N \coloneqq \{ x \in \R : x$ gehört zu \textbf{jeder} IM $\}$ = Durchschnitt aller IMn \\
 			Also: $\N \subseteq A$ für jede Induktionsmenge $A$.
 	\end{enumerate}	
 \end{definition*}
 
-\begin{satz}\ \label{satz-1.3}
+\begin{satz}\ \label{satz:1.3}
 	\begin{enumerate}
 		\item $\N$ ist eine Induktionsmenge
 		\item $\N$ ist nicht nach oben beschränkt
@@ -375,7 +385,7 @@ Dann ist $A(n)$ wahr für \textbf{jedes} $n \in \N$!
 \end{definition*}
 
 
-\begin{satz}
+\begin{satz} \label{satz:1.5}
 	Sind $x, y \in \R$ und $x < y \Rightarrow \exists r \in \Q$:
 	$$ x < r < y $$	
 
@@ -432,7 +442,7 @@ Dann ist $A(n)$ wahr für \textbf{jedes} $n \in \N$!
 \end{hilfssatz*}
 
 
-\begin{satz} \index{Wurzel}
+\begin{satz} \label{satz:1.6} \index{Wurzel}
 	Sei $a \geq 0$ und $n \in \N$. Dann gibt es genau ein $x \geq 0$ mit: $x^{n} = a$. \\
 	Dieses $x$ hei{\ss}t \textbf{n-te Wurzel aus a}; Bez.: $x = \sqrt[n]{a}$. ($\sqrt[2]{a} \eqqcolon \sqrt{a}$)
 	
@@ -581,17 +591,16 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 	$$ 
 		a_{n} \rightarrow a ~(n \rightarrow \infty) \text{ oder } a_{n} \rightarrow a \text{ oder } \lim_{n \rightarrow \infty} a_{n} = a
 	$$
-	Ist $(a_{n})$ nicht konvergent, so hei{\ss}t $(a_{n})$ \textbf{divergent}
-
+	Ist $(a_{n})$ nicht konvergent, so hei{\ss}t $(a_{n})$ \textbf{divergent}. Beachte:
 	\begin{align*}
-		\text{Beachte: } \quad a_{n} \rightarrow a ~(n \rightarrow \infty) & \iff \forall \varepsilon > 0 ~\exists n_{0} \in \N: a_{n} \in U_{\varepsilon}(a) ~\forall n \geq n_{0} \\
+		a_{n} \rightarrow a ~(n \rightarrow \infty) & \iff \forall \varepsilon > 0 ~\exists n_{0} \in \N: a_{n} \in U_{\varepsilon}(a) ~\forall n \geq n_{0} \\
 				& \iff \forall \varepsilon > 0 \text{ gilt: } a_{n} \in U_{\varepsilon}(a) \text{ ffa } n \in \N \\
 				& \iff \forall \varepsilon > 0 \text{ gilt: } a_{n} \notin U_{\varepsilon}(a) \text{ für höchstens endlich viele } n \in \N
 	\end{align*}
 \end{definition*}
 
 
-\begin{satz} \label{satz-2.1}
+\begin{satz} \label{satz:2.1}
 	$(a_{n})$ sei konvergent und $a = \lim a_{n}$
 	\begin{enumerate}
 		\item Gilt auch noch $a_{n} \rightarrow b$, so ist $a = b$
@@ -630,7 +639,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 			\begin{beweis}
 				Sei $\varepsilon > 0: |a_{n} - 0 | = |a_{n}| = \frac{1}{n} < \varepsilon \iff n > \frac{1}{\varepsilon}$
 				$$
-						\xRightarrow[]{\hyperref[satz-1.3]{\text{1.3 c)}}} \exists n_{0} \in \N: n_{0} > \frac{1}{\varepsilon}
+						\xRightarrow[]{\hyperref[satz:1.3]{\text{1.3 c)}}} \exists n_{0} \in \N: n_{0} > \frac{1}{\varepsilon}
 				$$
 				Für $n \geq n_{0}$ ist $n > \frac{1}{\varepsilon}$, also $\frac{1}{n} < \varepsilon$. Somit $|a_{n} - 0| < \varepsilon ~\forall n \geq n_{0}$
 			\end{beweis}
@@ -647,14 +656,14 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 				$$
 				Widerspruch!
 			\end{beweis}
-		\item $a_{n} \coloneqq n ~(n \in \N)$. $(a_{n})$ ist nicht beschränkt $\xRightarrow[]{\hyperref[satz-2.1]{2.1 b)}} (a_{n})$ ist divergent.
+		\item $a_{n} \coloneqq n ~(n \in \N)$. $(a_{n})$ ist nicht beschränkt $\xRightarrow[]{\hyperref[satz:2.1]{2.1 b)}} (a_{n})$ ist divergent.
 		\item $a_{n} \coloneqq  \frac{1}{\sqrt{n}} (n \in \N)$. Beh.: $a_{n} \rightarrow 0$
 			\begin{beweis}
 				Sei $\varepsilon > 0$.
 				$$
 					|a_{n} - 0| = \frac{1}{\sqrt{n}} < \varepsilon \iff \sqrt{n} > \frac{1}{n} \iff n > \frac{1}{\varepsilon^{2}}
 				$$
-				$\xRightarrow[]{\hyperref[satz-1.3]{1.3 c)}} \exists n_{0} \in \N: n_{0} > \frac{1}{\varepsilon^{2}}$. Ist $n \geq n_{0} \Rightarrow n > \frac{1}{\varepsilon^{2}} \Rightarrow \frac{1}{\sqrt{n}} < \varepsilon \Rightarrow |a_{n} - 0 | < \varepsilon$ 
+				$\xRightarrow[]{\hyperref[satz:1.3]{1.3 c)}} \exists n_{0} \in \N: n_{0} > \frac{1}{\varepsilon^{2}}$. Ist $n \geq n_{0} \Rightarrow n > \frac{1}{\varepsilon^{2}} \Rightarrow \frac{1}{\sqrt{n}} < \varepsilon \Rightarrow |a_{n} - 0 | < \varepsilon$ 
 			\end{beweis}
 		\item $a_{n} \coloneqq \sqrt{n + 1} - \sqrt{n}$. 
 			\begin{beweis}
@@ -682,7 +691,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 \end{definition*}
 
 
-\begin{satz}\ \label{satz-2.2}
+\begin{satz}\ \label{satz:2.2}
 	$(a_{n}), (b_{n}), (c_{n})$ und $(\alpha_{n})$ seien Folge und $a, b, \alpha \in \R$
 
 	\begin{enumerate}
@@ -708,8 +717,8 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 \begin{beispiele*}\
 	\begin{enumerate}
 		\item Sei $p \in \N$ und $a_{n} \coloneqq \frac{1}{n^{p}}$. Es ist $n \leq n^{p} ~\forall n \in \N$. \\
-			Dann: $0 \leq a_{n} \leq \frac{1}{n} ~\forall n \in \N \xRightarrow[]{\hyperref[satz-2.2]{2.2 e)}} a_{n} \rightarrow 0$, also $\frac{1}{n^{p}} \rightarrow 0$.
-		\item $a_{n} \coloneqq \frac{5n^{2} + 3n + 1}{4n^{2} - n + 2} = \frac{5 + \frac{3}{n} + \frac{1}{n^{2}}}{4 - \frac{1}{n} + \frac{2}{n^{2}}} \xrightarrow[]{\label{satz-2.2}} \frac{5}{4}$
+			Dann: $0 \leq a_{n} \leq \frac{1}{n} ~\forall n \in \N \xRightarrow[]{\hyperref[satz:2.2]{2.2 e)}} a_{n} \rightarrow 0$, also $\frac{1}{n^{p}} \rightarrow 0$.
+		\item $a_{n} \coloneqq \frac{5n^{2} + 3n + 1}{4n^{2} - n + 2} = \frac{5 + \frac{3}{n} + \frac{1}{n^{2}}}{4 - \frac{1}{n} + \frac{2}{n^{2}}} \xrightarrow[]{\label{satz:2.2}} \frac{5}{4}$
 	\end{enumerate}
 	
 	\begin{beweis}[von 2.2]\
@@ -733,7 +742,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 						c_{n} & = |a_{n}b_{n} - a_{n}b + a_{n}b - ab| = |a{n}(b_{n} - b)+ (a_{n} - a)b| \\
 							  & \leq |a_{n}||b_{n} - b| + |b||a_{n}-a|
 					\end{align*}
-					$\xRightarrow[]{\hyperref[satz-2.1]{2.1 b)}} \exists c \geq 0 : |a_{n}| \leq c ~\forall n \in \N$ und $c \geq |b|$. Dann:
+					$\xRightarrow[]{\hyperref[satz:2.1]{2.1 b)}} \exists c \geq 0 : |a_{n}| \leq c ~\forall n \in \N$ und $c \geq |b|$. Dann:
 					$$
 						c_{n} \leq c(|b_{n}-b| + |a_{n}-a|) \eqqcolon \alpha_{n} \xRightarrow[c) (ii), c) (iii)]{a)} \alpha_{n} \rightarrow 0
 					$$
@@ -749,7 +758,13 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 					$$
 					$\alpha_{n} \rightarrow 0 \xRightarrow[]{b)} \frac{1}{a_{n}} \rightarrow \frac{1}{a}$.
 			  \end{enumerate}
-			\item Annahme $b < a, \varepsilon \coloneqq \frac{a-b}{2} > 0$ \\	% todo Zeichnung
+			\item Annahme $b < a$, $\varepsilon \coloneqq \frac{a-b}{2} > 0$ ~ \tikz[baseline=-0.5ex]{  \draw(0,0)--(10,0);
+    \foreach \x/\xtext in {0/$$,2/$$,4/$b$,6/$$,8/{\small $a$},10/$$}
+      \draw(\x,3pt)--(\x,-3pt) node[below] {\xtext};
+      \foreach \x/\xtext in {4.75/$x$,8.75/$y$}
+      \draw(\x,2pt)--(\x,-2pt) node[below] {\xtext};
+    \draw[decorate,decoration={brace},yshift=2ex]  (2.75,0) -- node[above=0.4ex] {\small $U_{\varepsilon}(b)$}  (5.25,0);
+    \draw[decorate,decoration={brace},yshift=2ex] (6.75,0) -- node[above=0.4ex] {\small $U_{\varepsilon}(a)$} (9.25,0);} \\
 				Dann: $x < y ~\forall x \in U_{\varepsilon}(b) ~\forall y \in U_{\varepsilon}(a)$. \\
 				\begin{align*}
 				\exists n_{0} \in \N: b_{n} \in U_{\varepsilon}(b) ~\forall n \geq n_{0} \\
@@ -950,7 +965,6 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 	\end{beweis}
 \end{beispiel}
 
-% todo ab hier formatieren
 
 \begin{definition*} \index{Eulersche Zahl}
 	$$
@@ -989,22 +1003,182 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 \end{definition*}
 
 
-\begin{satz}
-	$\alpha \in \R$ ist ein HW von $(a_{n})$
+\begin{satz} \label{satz:2.10}
+	$\alpha \in \R$ ist ein Häufungswert von $(a_{n})$
 	$$
 		\iff \forall \epsilon > 0: a_{n_{k}} \in U_{\epsilon}(\alpha) \quad (*)
 	$$
 	für unendlich viele $n \in \N$.
 \end{satz}
 
-\begin{beweis}
+\begin{beweis} ~\\
 	$\glqq \Rightarrow \grqq$ Sei $(a_{n_{k}})$ eine Teilfolge mit $a_{n_{k}} \rightarrow \infty$. Sei $\epsilon > 0 \exists k_{0} \in \N: a_{n_{k}} \in U_{\epsilon}(\alpha)$ für $k \geq k_{0} \Rightarrow (*)$ \\
-	$\glqq \Leftarrow \grqq$ $\exists n_{1} \in \N: $ % todo rest missing
+	$\glqq \Leftarrow \grqq$ $\exists n_{1} \in \N: a_{n_{1}} \in U_{1}(\alpha)$. $\exists n_{2} \in \N: a_{n_{2}} \in U_{\frac{1}{2}}(\alpha)$ und $n_{2} > n_{1}$. $\exists n_{3} \in \N: a_{n_{3}} \in U_{\frac{1}{3}}(\alpha)$ und $n_{3} > n_{2}$. Etc. ... Man erhält eine Teilfolge $(a_{n_{k}})$ von $(a_{n})$ mit
+	$$
+		a_{n_{k}} \in U_{\frac{1}{k}}(\alpha) ~\forall k \in \N, \text{ also } |a_{n_{k}} - \alpha| < \frac{1}{k} ~\forall k
+	$$
+	Somit: $a_{n_{k}} \rightarrow \alpha$. 
 \end{beweis}
+
+
+\begin{beispiele*}\
+	\begin{enumerate}
+		\item $a_{n} = (-1)^{n}$, $a_{2k} = 1 \rightarrow 1, a_{2k+1} \rightarrow -1$, also $1, -1 \in H(a_{n})$. Sei $\alpha \in \R, \alpha \neq 1, \alpha \neq -1$ \\
+			% todo Zeichnung
+			Wähle $\epsilon>0$ so, dass $1, -1 \notin U_{\epsilon}(\alpha)$. Dann $a_{n} \in U_{\epsilon}(\alpha)$ für kein $n \in \N$ $\xRightarrow[]{\hyperref[satz:2.10]{2.10}} \alpha \notin H(a_{n})$. Fazit: $H(a_{n}) = \{ 1, -1 \}$.
+		\item $a_{n} = n$. Ist $\alpha \in \R$ und $\epsilon > 0$, so gilt: $a_{n} \in U_{\epsilon}(\alpha)$ für höchstens endlich viele $n$, also $\alpha \notin H(a_{n})$. Fazit: $H(a_{n}) = \emptyset$.
+		\item $\Q$ ist abzählbar. Sei $(a_{n})$ eine Folge mit $Q = \{ a_{1}, a_{2}, a_{3}, \dotsc \}$. Sei $\alpha \in \R$ und $\epsilon > 0$ $\xRightarrow[]{\hyperref[satz:1.5]{1.5}} U_{\epsilon}(\alpha) = (\alpha - \epsilon, \alpha + \epsilon)$ enthält unendlich viele verschiedene rationale Zahlen $\xRightarrow[]{\hyperref[satz:2.10]{2.10}} \alpha \in H(a_{n})$. Fazit: $H(a_{n}) = \R$.
+	\end{enumerate}	
+\end{beispiele*}
+
+\begin{folgerung}
+Ist $x \in \R$, so existieren Folgen $(r_{m})$ in $\Q : r_{n} \rightarrow \alpha$.	
+\end{folgerung}
+
+
+\begin{satz} \label{satz:2.11} 
+	$(a_{n})$ sei konvergent, $a \coloneqq \lim a_{n}$ und $(a_{n_{k}})$ eine Teilfolge von $(a_{n})$. Dann:
+	$$ a_{n_{k}} \rightarrow a (k \rightarrow \infty) $$
+	Insbesondere: $H(a_{n}) = \{ \lim a_{n} \}$
+\end{satz}
+
+\begin{beweis}
+	Sei $\epsilon > 0$. Dann: $a{n} \in U_{\epsilon}(a)$ ffa $n \in \N$, also auch $a_{n_{k}} \in U_{\epsilon}(a)$ ffa $k \in \N$. Somit: $a_{n_{k}} \rightarrow \alpha$.
+\end{beweis}
+
+
+\begin{definition*} Sei $(a_{n})$ eine Folge. \index{niedrig}
+	\begin{enumerate}
+		\item $m \in \N$. $m$ hei{\ss}t \textbf{niedrig} (für $(a_{n})$)
+			$$ :\iff a_{n} \geq a_{m} \quad \forall n \geq m $$
+		\item $m \in \N$ hei{\ss}t nicht niedrig
+			$$ :\iff \exists n \geq m: a_{n} < a_{m} \Rightarrow n > m: a_{n} < a_{m} $$
+	\end{enumerate}
+\end{definition*}
+
+
+\begin{hilfssatz*}
+	$(a_{n})$ sei eine Folge. Dann enthält $(a_{n})$ eine monotone Teilfolge.	
+\end{hilfssatz*}
+
+\begin{beweis} ~\\
+	Fall 1: es existieren höchstens endlich viele niedrige Indizes. Also existiert $n_{1} \in \N$: jedes $n \geq n_{1}$ ist nicht niedrig.
+	\begin{description}
+		\item $n_{1}$ nicht niedrig $\Rightarrow \exists n_{2} > n_{1} : a_{n_{2}} < a_{n_{1}}$
+		\item $n_{2}$ nicht niedrig $\Rightarrow \exists n_{3} > n_{2} : a_{n_{3}} < a_{n_{2}}$
+		\item Etc$\dotsc$
+	\end{description}
+	Wir erhalten so eine streng monoton fallende Teilfolge $(a_{n_{k}})$. \\ \\
+	Fall 2: es existieren unendlich viele niedrige Indizes $n_{1}, n_{2}, \dotsc$, etwa $n_{1} < n_{2} < \dotsc$
+	\begin{description}
+		\item $n_{1}$ ist niedrig und $n_{2} > n_{1} \rightarrow a_{n_{2}} \geq a_{n_{1}}$
+		\item $n_{2}$ nicht niedrig $\Rightarrow \exists n_{3} > n_{2} : a_{n_{3}} \geq a_{n_{2}}$
+		\item Etc$\dotsc$
+	\end{description}
+	Wir erhalten so eine monoton wachsende Teilfolge $(a_{n_{k}})$.
+\end{beweis}
+
+
+\begin{satz}[Bolzano-Weierstra{\ss}] \label{satz:2.12-BolzanoWeierstrass} \index{Satz!Bolzano-Weierstra{\ss}} ~\\
+	$(a_{n})$ sei beschränkt, dann: $H(a_{n}) \neq \emptyset$. $(a_{n})$ enthält also eine konvergente Teilfolge
+\end{satz}
+
+\begin{beweis}
+	$\exists c \geq 0: |a_{n}| \leq c$ $\forall n \in \N$. $\xRightarrow[]{Hilfssatz} (a_{n})$ enthält eine monotone Teilfolge $(a_{n_{k}})$. Dann: $|a_{n_{k}}| \leq c \forall k \in \N$ \\
+	$(a_{n_{k}})$ ist also beschränkt $\xRightarrow[]{\hyperref[prop:2.3]{2.3}} (a_{n_{k}})$ ist konvergent. Also $\lim_{k \rightarrow \infty} a_{n_{k}} \in H(a_{n})$.
+\end{beweis}
+
+\begin{satz} \label{satz:2.13}
+	$(a_{n})$ sei beschränkt ($\xRightarrow[]{\hyperref[satz:2.12-BolzanoWeierstrass]{2.12}} H(a_{n}) \neq \emptyset$)
+	\begin{enumerate}
+		\item $H(a_{n})$ ist beschränkt
+		\item $\sup H(a_{n}), \inf H(a_{n}) \in H(a_{n})$; es existieren also
+			$$ \max H(a_{n}), \min H(a_{n}) $$
+	\end{enumerate}
+\end{satz}
+
+
+\begin{definition*} \index{Limes superior} \index{oberer Limes} \index{Limes inferior} \index{unterer Limes}
+	Ist $(a_{n})$ beschränkt, so nennen wir 
+	\begin{enumerate}
+		\item $\limsup_{n \rightarrow \infty} a_{n} \coloneqq \limsup a_{n} \coloneqq \overline{\lim} a_{n} \coloneqq \max H(a_{n})$ hei{\ss}t \textbf{Limes superior} oder \textbf{oberer Limes} von $(a_{n})$.
+		\item $\liminf_{n \rightarrow \infty} a_{n} \coloneqq \liminf a_{n} \coloneqq \underline{\lim} a_{n} \coloneqq \min H(a_{n})$ hei{\ss}t \textbf{Limes inferior} oder \textbf{unterer Limes} von $(a_{n})$.
+	\end{enumerate}
+\end{definition*}
+
+
+\begin{beweis}\
+	\begin{enumerate}
+		\item $\exists c \geq 0: |a_{n}| \leq c$ $\forall n \in \N$. Sei $\alpha \in H(a_{n})$. Es existiert eine Teilfolge $(a_{n_{k}})$ mit $a_{n_{k}} \rightarrow \alpha ~(k \rightarrow \infty)$. Es ist
+			$$ |a_{n_{k}}| \leq c \quad \forall k, \text{ also } -c \leq a_{n_{k}} \leq c \quad \forall k $$ 
+			$\Rightarrow - c \leq \alpha \leq c$. Also $|\alpha| \leq c$ $\forall \alpha \in H(a_{n})$.
+		\item ohne Beweis.
+	\end{enumerate}
+\end{beweis}
+
+
+\begin{satz} \label{satz:2.14}
+	$(a_{n})$ sei beschränkt.
+	\begin{enumerate}
+		\item $\liminf a_{n} \leq \alpha \leq \limsup a_{n} ~\forall \alpha \in H(a_{n})$
+		\item Ist $(a_{n})$ konvergent $\Rightarrow \limsup a_{n} = \liminf a_{n} = \lim a_{n}$
+		\item $\limsup(\alpha a_{n}) = \alpha \limsup a_{n} ~\forall \alpha \geq 0$
+		\item $\limsup(-a_{n}) = - \liminf a_{n}$
+	\end{enumerate}
+\end{satz}
+
+\begin{beweis}
+	a) klar, b) folgt aus \hyperref[satz:2.11]{2.11}	, c) und d) Übung.
+\end{beweis}
+
+
+\textbf{Motivation:} $(a_{n})$ sei konvergent und $\lim a_{n} \eqqcolon a$. Sei $\epsilon > 0$,
+	$$ \exists n_{0} \in \N: |a_{n} - a| < \frac{\epsilon}{2} \quad \forall n \geq n_{0} $$
+Für $n, m \geq n_{0}$:
+	$$ |a_{n} - a_{m}| = |a_{n} - a + a - a_{m} | \leq |a_{n} - a| + |a_{m} - a| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon $$
+D.h.: $(a_{n})$ hat die folgende Eigenschaft:
+	\[ \forall \epsilon > 0 \exists n_{0} = n_{0}(\epsilon) \in \N: |a_{n} - a_{m}| < \epsilon \quad \forall n,m \geq n_{0} \tag*{(c)} \]
+($\iff \forall \epsilon > 0 ~\exists n_{0} = n_{0}(\epsilon) \in \N: |a_{n} - a_{n+k}| < \epsilon \quad \forall n \geq n_{0} ~\forall k \in \N$)
+
+
+\begin{definition*} \index{Cauchyfolge}
+	Eine Folge $(a_{n})$ hei{\ss}t eine \textbf{Cauchyfolge} (CF)
+	$$ :\iff (a_{n}) \text{ hat die Eigenschaft } (c) $$	
+\end{definition*}
+
+
+Konvergente Folgen sind also Cauchy-Folgen!
+
+
+\begin{prop}[Cauchykriterium]
+	$$ (a_{n}) \text{ ist konvergent } \iff (a_{n}) \text{ ist eine Cauchyfolge} $$
+\end{prop}
+
+\begin{beweis}
+	$\glqq \Rightarrow \grqq$ s.o. $\glqq \Leftarrow \grqq$ ohne Beweis
+\end{beweis}
+
+
+\begin{beispiel*}
+	$a_{1} \coloneqq 1, a_{n+1} \coloneqq \frac{1}{1 + a_{n}}$ $(n \in \N)$. Mit Induktion folgt:
+	\begin{enumerate}
+		\item[1)] $0 < a_{n} \leq 1 ~(n \in \N)$ Damit:
+		\item[2)] $a_{n} \geq \frac{1}{2} ~(n \in \N)$
+	\end{enumerate}
+	Für $n \geq 2, k \in \N$ gilt daher:
+	\begin{align*}
+		|a_{n+k} - a_{n} | & = \left| \frac{1}{1+a_{n+k-1}} - \frac{1}{1 - a_{n - 1}} \right| = \frac{|a_{n-1} - a_{n +k-1}|}{(1+a_{n+k-1})(1+a_{n-1})} \\
+			& \leq \frac{1}{(1+\frac{1}{2})^{2}} |a_{n+k-1} a_{n-1}| = \frac{4}{9} |a_{n+k-1} - a_{n-1}| \\
+			& \leq \left(\frac{4}{9} \right)^{2} |a_{n-k-2} - a_{n-2}| \leq \dotsc \leq \left( \frac{4}{9} \right)^{n-1} |a_{k+1} - a_{1}| \\
+			& \leq \left( \frac{4}{9} \right)^{n-1} \left( |a_{k+1}| + |a_{1}|\right) \leq 2 \left( \frac{4}{9} \right)^{n-1} 
+	\end{align*}
+	$\exists n_{0} \in \N \setminus \{ 1 \}$: $2\left(\frac{4}{9}\right)^{n-1} < \epsilon ~(n \geq n_{0})$. Damit: $|a_{n+k} - a_{n}| < \epsilon ~(n \geq n_{0}, k \in \N)$. Also ist $(a_{n})$ Cauchyfolge. $a \coloneqq \lim_{n \rightarrow \infty} a_{n}$. Klar: $a \geq \frac{1}{2}$ und $a = \frac{1}{1 + a}$. Also $a^{2} + a - 1 = 0 \iff a = - \frac{1}{2} \pm \frac{\sqrt{5}}{2}$. Wegen $a \geq \frac{1}{2}$ folgt $a = \frac{\sqrt{5} - 1}{2}$.
+\end{beispiel*}
 
 
 
 \newpage
+
 
 
 \section{Unendliche Reihen}
