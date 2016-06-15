@@ -1,15 +1,14 @@
-%%%%% Nicht übernommen
-%% todo #Seite 9: nach "Große Übungen:..." 
-%% todo #Seite 12: unten Notiz am Ende übernehmen?
-%% todo # Seite 23b: Fall 4, über \Rightarrow 2.1 (x^{k}) was steht da? "Bu"? Das Gleiche auch 5. Fall
+%%%%% Nicht lesbar
+%% Auf Seite 9: nach "Große Übungen:..." 
+%% Auf Seite 12: unten Notiz am Ende übernehmen?
+%% Auf Seite 23b: Fall 4, über \Rightarrow 2.1 (x^{k}) was steht da? "Bu"? Das Gleiche auch 5. Fall
 %%%%% Fragen
-%% todo im Skript waren einige Unterabschnitte, wie z.B."3.3 Leibnitzkriterium..." ich wusste nicht, wie ich es umsetzen sollte, also habe ich so etwas in Propositionen gepackt, hoffe das ist in Ordnung
-%%%%% Ändern
+%% Im Skript gab es einige Unterabschnitte, wie z.B."3.3 Leibnitzkriterium...". Ich wusste nicht, wie ich diese umsetzen sollte, also habe ich solche Abschnitte in Propositionen gepackt, hoffe das ist in Ordnung
+%%%%% Meine ToDos
 %% todo beweis qed Zeichen
-%% todo alle Hyperrefs überarbeiten
-%% todo def überprüfen: Fett gedruckt? Index gesetzt?
+%% todo Inhaltsverzeichnis aus anderem Skript übernehmen
 
-\documentclass[a4paper,titlepage,ngerman,headsepline,DIV15,BCOR12mm,halfparskip*,14pt]{scrartcl}
+\documentclass[titlepage,ngerman,a4paper,headsepline,DIV15,halfparskip*,14pt]{scrartcl}
 
 \usepackage[utf8]{inputenc} 
 \usepackage[T1]{fontenc} 
@@ -25,7 +24,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{color}
-\usepackage[bookmarks,bookmarksnumbered,hypertexnames=false,pdfpagelayout=OneColumn,colorlinks,linkcolor=blue]{hyperref}
+\usepackage[bookmarks,bookmarksnumbered,hypertexnames=false,pdfpagelayout=OneColumn]{hyperref}
 \usepackage{makeidx} 
 \usepackage{mathtools} 
 \usepackage{pgfplots}
@@ -36,7 +35,7 @@
 \renewcommand{\labelenumi}{\alph{enumi})}
 \renewcommand{\labelenumii}{(\roman{enumii})}
 \setlength{\parindent}{0pt}
-\renewcommand{\baselinestretch}{1.15}
+\renewcommand{\baselinestretch}{1.05}
 \setkomafont{subsection}{\fontsize{0.8em}{1em}\selectfont\bfseries}
 \DeclareUnicodeCharacter{00A0}{ }
 \renewcommand*{\qed}{\hfill\ensuremath{\square}}%
@@ -53,8 +52,10 @@
 \newtheorem{satz}{Satz}[section]	  	
 \newtheorem{prop}[satz]{Proposition}
 \newtheorem{folg}[satz]{Folgerung}
+\newtheorem{beispiel}[satz]{Beispiel}
+\newtheorem*{folg*}{Folgerung}
 \newtheorem*{definition}{Definition}
-\newtheorem*{beispiel}{Beispiel}
+\newtheorem*{beispiel*}{Beispiel}
 \newtheorem*{beispiele}{Beispiele}
 \newtheorem*{bemerkung}{Bemerkung} 
 \newtheorem*{bemerkungen}{Bemerkungen}
@@ -97,7 +98,7 @@ Grundmenge der Analysis is die Menge $\R$, die Menge der \textbf{reellen Zahlen}
 	\label{k.axiom-a2}
 	\item[\hspace{0.4cm}$(A2)$] $\exists 0 \in \R$ mit $\forall a \in \R \: a + 0 = a$ (Null)
 	\label{k.axiom-a6}
-	\item[\hspace{0.4cm}$(A6)$] $\exists 1 \in \R$ mit $\forall a \in \R \: a \cdot 1 = a$ \textbf{und} $1 \neq 0$ (Eins)
+	\item[\hspace{0.4cm}$(A6)$] $\exists 1 \in \R$ mit $\forall a \in \R \: a \cdot 1 = a$ und $1 \neq 0$ (Eins)
 	\label{k.axiom-a3}
 	\item[\hspace{0.4cm}$(A3)$] $\forall a \in \R ~ \exists -a \in \R \: a + (-a) = 0$
 	\label{k.axiom-a7}
@@ -123,12 +124,12 @@ Grundmenge der Analysis is die Menge $\R$, die Menge der \textbf{reellen Zahlen}
 	\begin{enumerate}
 		\item Beh.: $\exists_{1} 0 \in  \R$ mit $\forall a \in \R \: \ a + 0 = a$
 		  \begin{beweis}
-			Sei $\tilde{0} \in \R$ mit $\forall a \in \R \: a + \tilde{0} = a$. Mit $a = 0$ folgt: $0 + \tilde{0} = 0$. Mit $a = \tilde{0}$ in \hyperref[k.axiom-a2]{$(A2)$} folgt: $\tilde{0} + 0 = \tilde{0}$. Dann $0 = 0 + \tilde{0} =_{\hyperref[k.axiom-a4]{(A4)}} \tilde{0} + 0 = \tilde{0}$
+			Sei $\tilde{0} \in \R$ mit $\forall a \in \R \: a + \tilde{0} = a$. Mit $a = 0$ folgt: $0 + \tilde{0} = 0$. Mit $a = \tilde{0}$ in \hyperref[k.axiom-a2]{$(A2)$} folgt: $\tilde{0} + 0 = \tilde{0}$. Dann $0 = 0 + \tilde{0} \overset{\hyperref[k.axiom-a4]{(A4)}}{=} \tilde{0} + 0 = \tilde{0}$
 		  \end{beweis}
 		 \item Beh.: $\forall a \in \R \: a \cdot 0 = 0$
 		   \begin{beweis}
-		     Sei $a \in \R$ und $b \coloneqq a \cdot 0$. Dann: $b =_{\hyperref[k.axiom-a2]{(A2)}} a (0 + 0) =_{\hyperref[k.axiom-a9]{(A9)}} a \cdot 0 + a \cdot 0 = b + b$. \\
-		     $0 =_{\hyperref[k.axiom-a2]{(A3)}} b + (-b) = (b + b) + (-b) =_{\hyperref[k.axiom-a1]{(A1)}} b + (b + (-b)) = b + 0 =_{\hyperref[k.axiom-a2]{(A2)}} b$
+		     Sei $a \in \R$ und $b \coloneqq a \cdot 0$. Dann: $b \overset{\hyperref[k.axiom-a2]{(A2)}}{=} a (0 + 0) \overset{\hyperref[k.axiom-a9]{(A9)}}{=} a \cdot 0 + a \cdot 0 = b + b$. \\
+		     $0 \overset{\hyperref[k.axiom-a2]{(A3)}}{=} b + (-b) = (b + b) + (-b) \overset{\hyperref[k.axiom-a1]{(A1)}}{=} b + (b + (-b)) = b + 0 \overset{\hyperref[k.axiom-a2]{(A2)}}{=} b$
 		   \end{beweis}
 	\end{enumerate}
 \end{beispiele}
@@ -151,7 +152,7 @@ Dabei sollen gelten:
 
 
 \begin{schreibweisen}
-$b \geq a :\iff a \leq b$; $a < b :\iff a \leq b$ und $a \neq b$; $b > 0 :\iff a < b$
+$b \geq a \iff a \leq b$; $a < b \iff a \leq b$ und $a \neq b$; $b > 0 \iff a < b$
 \end{schreibweisen}
 
 
@@ -222,22 +223,18 @@ Für $a \in \R$ hei{\ss}t $|a| \coloneqq \begin{cases} \hspace{0.35cm} a, & \tex
 \begin{definition}
 	Sei $\emptyset \neq M \subseteq \R$. 
 	\begin{enumerate}
-		\item $M$ hei{\ss}t \textbf{nach oben beschränkt} $:\iff \exists \gamma \in \R ~ \forall x \in M \: x \leq \gamma$ \\
-			In diesem Fall hei{\ss}t $\gamma$ eine \textbf{obere Schranke}
+		\item $M$ hei{\ss}t \textbf{nach oben beschränkt} $\iff \exists \gamma \in \R ~ \forall x \in M \: x \leq \gamma$ \\
+			In diesem Fall hei{\ss}t $\gamma$ eine \textbf{obere Schranke} (OS)
 		\item Ist $\gamma$ eine obere Schranke von $M$ und gilt $\gamma \leq \delta$ für jede weitere obere Schranke $\delta$ von $M$, so hei{\ss}t $\gamma$ das \textbf{Supremum} von $M$ (kleinste obere Schranke von $M$)
-		\item $M$ hei{\ss}t \textbf{nach unten beschränkt} $:\iff \exists \gamma \in \R ~ \forall x \in M \: \gamma \leq x$\\
+		\item $M$ hei{\ss}t \textbf{nach unten beschränkt} $\iff \exists \gamma \in \R ~ \forall x \in M \: \gamma \leq x$\\
 			In diesem Fall hei{\ss}t $\gamma$ eine \textbf{untere Schranke} (US)
 		\item Ist $\gamma$ eine untere Schranke von $M$ und gilt $\gamma \geq \delta$ für jede weitere untere Schranke $\delta$ von $M$, so hei{\ss}t $\gamma$ das \textbf{Infimum} von $M$ (grö{\ss}te untere Schranke von $M$)
 	\end{enumerate}
 \end{definition}
 
 \textbf{Bez.}: in dem Fall: $\gamma = \sup M$ bzw. $\gamma = \inf M$.
-\newline
-
 
 Aus \hyperref[a.axiom-a11]{$(A11)$} folgt: ist $\sup M$ bzw. $\inf M$ vorhanden, so ist $\sup M$ bzw. $\inf M$ eindeutig bestimmt.
-\newline
-
 
 Ist $\sup M$ bzw. $\inf M$ vorhanden und gilt $\sup M \in M$ bzw. $\inf M \in M$, so hei{\ss}t $\sup M$ das Maximum bzw. $\inf M$ das Minimum von $M$ und wird mit $\max M$ bzw. $\min M$ bezeichnet.
 
@@ -268,7 +265,7 @@ Ist $\sup M$ bzw. $\inf M$ vorhanden und gilt $\sup M \in M$ bzw. $\inf M \in M$
 
 \index{beschränkt} 
 \begin{definition}
-	Sei $\emptyset \neq M \subseteq \R$. $M$ hei{\ss}t beschränkt $:\iff$ $M$ ist nach oben und nach unten beschränkt ($\iff \exists c \geq 0 ~\forall x \in M \: |x| \leq c \iff \exists c \geq 0 ~\forall x \in M \: - c \leq x \leq c$)
+	Sei $\emptyset \neq M \subseteq \R$. $M$ hei{\ss}t beschränkt $\iff$ $M$ ist nach oben und nach unten beschränkt ($\iff \exists c \geq 0 ~\forall x \in M \: |x| \leq c \iff \exists c \geq 0 ~\forall x \in M \: - c \leq x \leq c$)
 \end{definition}
 
 
@@ -308,7 +305,7 @@ Ist $\sup M$ bzw. $\inf M$ vorhanden und gilt $\sup M \in M$ bzw. $\inf M \in M$
 \begin{definition}\
 	\begin{enumerate}
 		\item $A \subseteq \R$ hei{\ss}t eine Induktionsmenge (IM) \\
-		$$ :\iff \begin{cases}1 . & 1 \in A; \\ 2. & \text{aus } x \in A \text{ folgt stets } x + 1 \in A \end{cases}$$ \\
+		$$ \iff \begin{cases}1 . & 1 \in A; \\ 2. & \text{aus } x \in A \text{ folgt stets } x + 1 \in A \end{cases}$$ \\
 		Beispiele: $\R, [1, \infty), \{ 1 \} \cup [2, \infty)$ sind Induktionsmengen
 		\item $\N \coloneqq \{ x \in \R : x$ gehört zu \textbf{jeder} IM $\}$ = Durchschnitt aller IMn \\
 			Also: $\N \subseteq A$ für jede Induktionsmenge $A$.
@@ -326,8 +323,8 @@ Ist $\sup M$ bzw. $\inf M$ vorhanden und gilt $\sup M \in M$ bzw. $\inf M \in M$
 
 Von nun an sei $\N = \{ 1, 2, 3, \dotsc \}$ bekannt.
 
-
-\begin{prop}[Prinzip der vollständigen Induktion]\ \index{vollständige Induktion} \label{prop-1.4}
+\index{vollständige Induktion}
+\begin{prop}[Prinzip der vollständigen Induktion] \label{prop-1.4} ~\\ 
 	Ist $A \subseteq \N$ und $A$ eine Induktionsmenge, so ist $A = N$.
 
 	\begin{beweis}
@@ -345,25 +342,26 @@ Dann ist $A(n)$ wahr für \textbf{jedes} $n \in \N$!
 
 \begin{beweis}
 	Sei $A \coloneqq \{ n \in \N : A(n)$ ist wahr $\}$. Dann: \\
-	$A \subseteq \N$ und, wg. $(I)$, $(II)$, $A$ ist eine Induktionsmenge $\xRightarrow[]{\hyperref[prop-1.4]{(1.4)}} A = \N$
+	$A \subseteq \N$ und, wg. $(I)$, $(II)$, $A$ ist eine Induktionsmenge $\xRightarrow[]{\ref{prop-1.4}
+	} A = \N$
 \end{beweis}
 
 
-\begin{beispiel}
-	Beh.: ~ $\underbrace{1 + 2 + \dotsc + n = \frac{n (n + 1)}{2}}_{A(n)}, \quad \forall n \in \N$
+\begin{beispiel*}
+	Beh.: ~ $\underbrace{1 + 2 + \dotsc + n = \frac{n (n + 1)}{2}}_{A(n)}, ~\forall n \in \N$
 	
 	\begin{beweis}[induktiv]
-		I.A.: $1 = \frac{1 (1 + 1)}{2} \checkmark$, $A(1)$ ist also wahr. \\Â \\
+		I.A.: $1 = \frac{1 (1 + 1)}{2} \checkmark$, $A(1)$ ist also wahr. \\
 		I.V.: Für ein $n \in \N$ gelte $1 + 2 + \dotsc + n = \frac{n (n + 1)}{2}$ \\
 		I.S.: $n \curvearrowright n + 1$: 
 		\begin{align*}
-			1 + 2 + \dotsc + n + (n + 1) & =_{I.V.}  \frac{n (n + 1)}{2} + (n + 1) \\
+			1 + 2 + \dotsc + n + (n + 1) & \overset{I.V.}{=}  \frac{n (n + 1)}{2} + (n + 1) \\
 									 	 & = (n + 1) \left( \frac{n}{2} + 1 \right) \\
 									 	 & = \frac{(n + 1)(n + 2)}{2}
 		\end{align*}
 		$\Rightarrow A(n + 1)$ ist wahr.
 	\end{beweis}
-\end{beispiel}
+\end{beispiel*}
 
 \index{ganze Zahlen} \index{rationale Zahlen}
 \begin{definition} ~\
@@ -384,8 +382,8 @@ Dann ist $A(n)$ wahr für \textbf{jedes} $n \in \N$!
 	\end{beweis}
 \end{satz}
 
-
-\subsection*{Einige Definitionen und Formeln} \index{Fakultäten} \index{Binomialkoeffizient} \index{Binomischer Satz} \index{Bernoullische Ungleichung}
+\index{Fakultäten} \index{Binomialkoeffizient} \index{Binomischer Satz} \index{Bernoullische Ungleichung}
+\subsection*{Einige Definitionen und Formeln} 
 \begin{enumerate}
 	\item Für $a \in \R$, $n \in \N: a^{n} \coloneqq \underbrace{a \cdot \dotsc \cdot a}_{n \text{ Faktoren}}$, $a^{0} \coloneqq 1$ und ist $a \neq 0: a^{-n} \coloneqq \frac{1}{a^{n}}$ \\
 		Es gelten die bekannten Rechenregeln.
@@ -431,8 +429,8 @@ Dann ist $A(n)$ wahr für \textbf{jedes} $n \in \N$!
 	\end{beweis}
 \end{hilfssatz}
 
-
-\begin{satz} \label{satz:1.6} \index{Wurzel}
+\index{Wurzel}
+\begin{satz} \label{satz:1.6}
 	Sei $a \geq 0$ und $n \in \N$. Dann gibt es genau ein $x \geq 0$ mit: $x^{n} = a$. \\
 	Dieses $x$ hei{\ss}t \textbf{n-te Wurzel aus a}; Bez.: $x = \sqrt[n]{a}$. ($\sqrt[2]{a} \eqqcolon \sqrt{a}$)
 	
@@ -474,7 +472,9 @@ Dann ist $A(n)$ wahr für \textbf{jedes} $n \in \N$!
 		$$
 \end{enumerate}
 
+
 \newpage
+
 
 \section{Folgen und Konvergenz}
 
@@ -506,8 +506,8 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 \begin{definition}
 	Sei $X$ eine Menge, $X \neq \emptyset$.
 	\begin{enumerate}
-		\item $X$ hei{\ss}t \textbf{abzählbar} $:\iff \exists$ Folge $(a_{n})$ in $X$: $X = \{ a_{1}, a_{2}, a_{3}, \dotsc \}$
-		\item $X$ hei{\ss}t \textbf{überabzählbar} $:\iff X$ ist nicht abzählbar
+		\item $X$ hei{\ss}t \textbf{abzählbar} $\iff \exists$ Folge $(a_{n})$ in $X$: $X = \{ a_{1}, a_{2}, a_{3}, \dotsc \}$
+		\item $X$ hei{\ss}t \textbf{überabzählbar} $\iff X$ ist nicht abzählbar
 	\end{enumerate}
 \end{definition}
 
@@ -543,7 +543,8 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 
 
 \begin{vereinbarung}
-	Solange nichts anderes gesagt wird, seien alle vorkommenden Folgen stets Folgen in $\R$. \\                                                                                                  
+	Solange nichts anderes gesagt wird, seien alle vorkommenden Folgen stets Folgen in $\R$. 
+	                                                                                               
 	Die folgenden Sätze und Definitionen formulieren wir nur für Folgen der Form $(a_{n})_{n=1}^{\infty}$. Sie gelten sinngemä{\ss} für Folgen der Form $(a_{n})_{n=p}^{\infty}$ $(p \in \Z)$.
 \end{vereinbarung}
 
@@ -551,9 +552,9 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 \begin{definition}
 	Sei $(a_{n})$ eine Folge und $M \coloneqq \{ a_{1}, a_{2}, \dotsc \}$.
 	\begin{enumerate}
-		\item$(a_{n})$ hei{\ss}t \textbf{nach oben beschränkt} $:\iff M$ ist nach oben beschränkt. I.d. Fall: $\sup_{n \in \N} a_{n} \coloneqq \sup_{n = 1}^{\infty} a_{n} \coloneqq \sup M$.
-		\item$(a_{n})$ hei{\ss}t \textbf{nach unten beschränkt} $:\iff M$ ist nach unten beschränkt. I.d. Fall: $\inf_{n \in \N} a_{n} \coloneqq \inf_{n = 1}^{\infty} a_{n} \coloneqq \inf M$.
-		\item$(a_{n})$ hei{\ss}t \textbf{beschränkt} $~:\iff M$ ist beschränkt 
+		\item$(a_{n})$ hei{\ss}t \textbf{nach oben beschränkt} $\iff M$ ist nach oben beschränkt. I.d. Fall: $\sup_{n \in \N} a_{n} \coloneqq \sup_{n = 1}^{\infty} a_{n} \coloneqq \sup M$.
+		\item$(a_{n})$ hei{\ss}t \textbf{nach unten beschränkt} $\iff M$ ist nach unten beschränkt. I.d. Fall: $\inf_{n \in \N} a_{n} \coloneqq \inf_{n = 1}^{\infty} a_{n} \coloneqq \inf M$.
+		\item$(a_{n})$ hei{\ss}t \textbf{beschränkt} $~\iff M$ ist beschränkt 
 			$$ \iff \exists c \geq 0: |a_{n}| \leq c ~\forall n \in \N $$
 	\end{enumerate}
 \end{definition}
@@ -561,11 +562,11 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 \index{für fast alle}
 \begin{definition}
 	Sei $A(n)$ eine für jedes $n \in \N$ definierte Aussage. \\
-	$A(n)$ gilt \textbf{für fast alle} (ffa) $n \in \N$ $:\iff \exists n_{0} \in \N: A(n)$ ist wahr $\forall n \geq n_{0}$
+	$A(n)$ gilt \textbf{für fast alle} (ffa) $n \in \N$ $\iff \exists n_{0} \in \N: A(n)$ ist wahr $\forall n \geq n_{0}$
 \end{definition}
 
-
-\begin{definition} \index{Umgebung}
+\index{Umgebung}
+\begin{definition}
 	Sei $a \in \R$ und $\varepsilon > 0$
 		$$ U_{\varepsilon}(a) \coloneqq (a - \varepsilon, a + \varepsilon) = \{ x \in \R : | x - a| < \varepsilon \} $$
 	hei{\ss}t $\varepsilon$\textbf{-Umgebung von a}.
@@ -574,7 +575,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 \index{konvergent} \index{Grenzwert} \index{Limes} \index{divergent}
 \begin{definition}
 	Eine Folge $(a_{n})$ hei{\ss}t \textbf{konvergent}
-	$$ :\iff \exists a \in \R : \begin{cases} \text{zu jedem } \varepsilon > 0 \text{ ex. } n_{0} = n_{0}(\varepsilon) \in \N: \\
+	$$ \iff \exists a \in \R : \begin{cases} \text{zu jedem } \varepsilon > 0 \text{ ex. } n_{0} = n_{0}(\varepsilon) \in \N: \\
 		|a_{n} - a| < \varepsilon ~\forall n \geq n_{0}
 	\end{cases} $$
 	I. d. Fall hei{\ss}t $a$ \textbf{Grenzwert} (GW) oder \textbf{Limes} von $(a_{n})$ und man schreibt
@@ -629,7 +630,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 			\begin{beweis}
 				Sei $\varepsilon > 0: |a_{n} - 0 | = |a_{n}| = \frac{1}{n} < \varepsilon \iff n > \frac{1}{\varepsilon}$
 				$$
-						\xRightarrow[]{\hyperref[satz:1.3]{\text{1.3 c)}}} \exists n_{0} \in \N: n_{0} > \frac{1}{\varepsilon}
+						\xRightarrow[]{\ref{satz:1.3}~c)} \exists n_{0} \in \N: n_{0} > \frac{1}{\varepsilon}
 				$$
 				Für $n \geq n_{0}$ ist $n > \frac{1}{\varepsilon}$, also $\frac{1}{n} < \varepsilon$. Somit $|a_{n} - 0| < \varepsilon ~\forall n \geq n_{0}$
 			\end{beweis}
@@ -646,14 +647,14 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 				$$
 				Widerspruch!
 			\end{beweis}
-		\item $a_{n} \coloneqq n ~(n \in \N)$. $(a_{n})$ ist nicht beschränkt $\xRightarrow[]{\hyperref[satz:2.1]{2.1 b)}} (a_{n})$ ist divergent.
+		\item $a_{n} \coloneqq n ~(n \in \N)$. $(a_{n})$ ist nicht beschränkt $\xRightarrow[]{\ref{satz:2.1}~b)} (a_{n})$ ist divergent.
 		\item $a_{n} \coloneqq  \frac{1}{\sqrt{n}} (n \in \N)$. Beh.: $a_{n} \rightarrow 0$
 			\begin{beweis}
 				Sei $\varepsilon > 0$.
 				$$
 					|a_{n} - 0| = \frac{1}{\sqrt{n}} < \varepsilon \iff \sqrt{n} > \frac{1}{n} \iff n > \frac{1}{\varepsilon^{2}}
 				$$
-				$\xRightarrow[]{\hyperref[satz:1.3]{1.3 c)}} \exists n_{0} \in \N: n_{0} > \frac{1}{\varepsilon^{2}}$. Ist $n \geq n_{0} \Rightarrow n > \frac{1}{\varepsilon^{2}} \Rightarrow \frac{1}{\sqrt{n}} < \varepsilon \Rightarrow |a_{n} - 0 | < \varepsilon$ 
+				$\xRightarrow[]{\ref{satz:1.3}~c)} \exists n_{0} \in \N: n_{0} > \frac{1}{\varepsilon^{2}}$. Ist $n \geq n_{0} \Rightarrow n > \frac{1}{\varepsilon^{2}} \Rightarrow \frac{1}{\sqrt{n}} < \varepsilon \Rightarrow |a_{n} - 0 | < \varepsilon$ 
 			\end{beweis}
 		\item $a_{n} \coloneqq \sqrt{n + 1} - \sqrt{n}$. 
 			\begin{beweis}
@@ -681,7 +682,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 \end{definition}
 
 
-\begin{satz}\ \label{satz:2.2}
+\begin{satz} \label{satz:2.2}
 	$(a_{n}), (b_{n}), (c_{n})$ und $(\alpha_{n})$ seien Folge und $a, b, \alpha \in \R$
 
 	\begin{enumerate}
@@ -703,12 +704,11 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 	\end{enumerate}
 \end{satz}
 
-
 \begin{beispiele}\
 	\begin{enumerate}
 		\item Sei $p \in \N$ und $a_{n} \coloneqq \frac{1}{n^{p}}$. Es ist $n \leq n^{p} ~\forall n \in \N$. \\
-			Dann: $0 \leq a_{n} \leq \frac{1}{n} ~\forall n \in \N \xRightarrow[]{\hyperref[satz:2.2]{2.2 e)}} a_{n} \rightarrow 0$, also $\frac{1}{n^{p}} \rightarrow 0$.
-		\item $a_{n} \coloneqq \frac{5n^{2} + 3n + 1}{4n^{2} - n + 2} = \frac{5 + \frac{3}{n} + \frac{1}{n^{2}}}{4 - \frac{1}{n} + \frac{2}{n^{2}}} \xrightarrow[]{\label{satz:2.2}} \frac{5}{4}$
+			Dann: $0 \leq a_{n} \leq \frac{1}{n} ~\forall n \in \N \xRightarrow[]{\ref{satz:2.2}~e)} a_{n} \rightarrow 0$, also $\frac{1}{n^{p}} \rightarrow 0$.
+		\item $a_{n} \coloneqq \frac{5n^{2} + 3n + 1}{4n^{2} - n + 2} = \frac{5 + \frac{3}{n} + \frac{1}{n^{2}}}{4 - \frac{1}{n} + \frac{2}{n^{2}}} \xrightarrow[]{\ref{satz:2.2}} \frac{5}{4}$
 	\end{enumerate}
 	
 	\begin{beweis}[von 2.2]\
@@ -732,7 +732,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 						c_{n} & = |a_{n}b_{n} - a_{n}b + a_{n}b - ab| = |a{n}(b_{n} - b)+ (a_{n} - a)b| \\
 							  & \leq |a_{n}||b_{n} - b| + |b||a_{n}-a|
 					\end{align*}
-					$\xRightarrow[]{\hyperref[satz:2.1]{2.1 b)}} \exists c \geq 0 : |a_{n}| \leq c ~\forall n \in \N$ und $c \geq |b|$. Dann:
+					$\xRightarrow[]{\ref{satz:2.1}~b)} \exists c \geq 0 : |a_{n}| \leq c ~\forall n \in \N$ und $c \geq |b|$. Dann:
 					$$
 						c_{n} \leq c(|b_{n}-b| + |a_{n}-a|) \eqqcolon \alpha_{n} \xRightarrow[c) (ii), c) (iii)]{a)} \alpha_{n} \rightarrow 0
 					$$
@@ -775,18 +775,18 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 	\end{beweis}	
 \end{beispiele}
 
-
-\begin{definition}\ \index{monoton}  \index{monoton! wachsend}   \index{monoton! streng wachsend} \index{monoton! streng fallend} \index{monoton! fallend}
+\index{monoton}  \index{monoton! wachsend}   \index{monoton! streng wachsend} \index{monoton! streng fallend} \index{monoton! fallend}
+\begin{definition}\ 
 	\begin{enumerate}
-		\item $(a_{n})$ hei{\ss}t \textbf{monoton wachsend} $: \iff a_{n+1} \geq a_{n} ~\forall n \in \N$.
-		\item $(a_{n})$ hei{\ss}t \textbf{streng monoton wachsend} $: \iff a_{n+1} > a_{n} ~\forall n \in \N$.
+		\item $(a_{n})$ hei{\ss}t \textbf{monoton wachsend} $\iff a_{n+1} \geq a_{n} ~\forall n \in \N$.
+		\item $(a_{n})$ hei{\ss}t \textbf{streng monoton wachsend} $\iff a_{n+1} > a_{n} ~\forall n \in \N$.
 		\item Entsprechend definiert man \textbf{monoton fallend} und \textbf{streng monoton fallend}.
-		\item $(a_{n})$ hei{\ss}t \textbf{monoton} $:\iff (a_{n})$n ist monoton wachsend oder monoton fallend.
+		\item $(a_{n})$ hei{\ss}t \textbf{monoton} $\iff (a_{n})$n ist monoton wachsend oder monoton fallend.
 	\end{enumerate}
 \end{definition}
 
-\label{prop:2.3} \index{Monotoniekriterium}
-\begin{prop}[Monotoniekriterium]\
+\index{Monotoniekriterium}
+\begin{prop}[Monotoniekriterium]\ \label{prop:2.3}
 	\begin{enumerate}
 		\item $(a_{n})$ sei monoton wachsend und nach oben beschränkt. Dann ist $(a_{n})$ konvergent und 
 			$$
@@ -823,7 +823,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 \end{figure*}
 
 
-\begin{beispiel} $a_{1} \coloneqq \sqrt[3]{6}$, $a_{n + 1} \coloneqq \sqrt[3]{6 + a_{n}}$ $(n \geq 2)$.
+\begin{beispiel*} $a_{1} \coloneqq \sqrt[3]{6}$, $a_{n + 1} \coloneqq \sqrt[3]{6 + a_{n}}$ $(n \geq 2)$.
 	\begin{description}
 		\item $a_{1} = \sqrt[3]{6} < \sqrt[3]{8} = 2$;
 		\item $a_{2} = \sqrt[3]{6 + a_{1}} < \sqrt[3]{6 + 2} = 2$;
@@ -838,7 +838,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 			a_{n +1} = \sqrt[3]{6 + a_{n}} <_{I.V.} \sqrt[3]{6 + 2} = 2; \quad a_{n + 2} = \sqrt[3]{6 + a_{n+1}} >_{I.V.} \sqrt[3]{6 + a_{n}} = a_{n + 1}
 		$$
 		Also: $(a_{n})$ ist nach oben beschränkt und monoton wachsend. \\
-		$\xRightarrow[]{2.3} (a_{n})$ ist konvergent. $a \coloneqq \lim a_{n}$, $a_{n} \geq 0 ~\forall n \xRightarrow[]{2.2} a \geq 0$. Es ist
+		$\xRightarrow[]{\ref{prop:2.3}} (a_{n})$ ist konvergent. $a \coloneqq \lim a_{n}$, $a_{n} \geq 0 ~\forall n \xRightarrow[]{\ref{satz:2.2}} a \geq 0$. Es ist
 		$$
 			a_{n+1}^{3} = 6 + a_{n} \quad \forall n \in \N
 		$$
@@ -847,7 +847,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 		$$
 		$\Rightarrow a = 2$.
 	\end{beweis}
-\end{beispiel}
+\end{beispiel*}
 
 
 \textbf{Wichtige Beispiele:} \\
@@ -902,7 +902,7 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 \begin{beispiel} \label{bsp:2.6}
 	Sei $x \in \R$ und $s_{n} \coloneqq 1 + x + x^{n} + \dotsc x^{n} = \sum_{k = 0}^{n} x^{k}$ \\
 	Fall 1: $x = 1$. Dann: $x_{n} = n + 1$, $(s_{n})$ ist also divergent. \\
-	Fall 2: $x \neq 1 \Rightarrow s_{n} = \frac{1 - x^{n+1}}{1 - x}$. Aus \hyperref[bsp:2.5]{(2.5)}:
+	Fall 2: $x \neq 1 \Rightarrow s_{n} = \frac{1 - x^{n+1}}{1 - x}$. Aus \ref{bsp:2.5}:
 	$$
 		(s_{n}) \text{ konvergent} \quad \iff \quad |x| < 1
 	$$
@@ -917,7 +917,7 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 		Es ist $\sqrt[n]{n} \geq 1 ~\forall n \in \N$, also $a_{n} \coloneqq \sqrt[n]{n} - 1 \geq 0 ~\forall n \in \N$. Z. z.: $a_{n} \rightarrow 0$. \\
 		Für $n \geq 2$:
 		$$
-			n = \left( \sqrt[n]{n} \right)^{n} = \left( a_{n} + 1 \right)^{n} =_{\S 1} \sum_{k=0}^{n} \binom{n}{k} a_{n}^{k} \geq \binom{n}{2} a_{n}^{2} = \frac{n(n-1)}{2} a_{n}^{2}
+			n = \left( \sqrt[n]{n} \right)^{n} = \left( a_{n} + 1 \right)^{n} \overset{\S 1}{=} \sum_{k=0}^{n} \binom{n}{k} a_{n}^{k} \geq \binom{n}{2} a_{n}^{2} = \frac{n(n-1)}{2} a_{n}^{2}
 		$$
 		$\Rightarrow \frac{n-1}{2}a_{n}^{2} \leq 1$. Also $\xRightarrow[a_{n} \geq 0]{} 0 \leq a_{n} \leq \frac{\sqrt{2}}{\sqrt{n-1}} (n \geq 2)$. $\Rightarrow a_{n} \rightarrow 0$.
 	\end{beweis}
@@ -944,7 +944,7 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 	\begin{beweis}
 		I. d. gr. Übungen wird gezeigt: $2 \leq a_{n} < a_{n+1} < 3 ~\forall n \in \N$
 		$$
-			\xRightarrow []{\hyperref[prop:2.3]{2.3}} (a_{n}) \text{ konvergiert, } a \coloneqq \lim a_{n}
+			\xRightarrow[]{\ref{prop:2.3}} (a_{n}) \text{ konvergiert, } a \coloneqq \lim a_{n}
 		$$
 		Es ist $b_{n} > 0$ und $b_{n+1} = b_{n} + \frac{1}{(n+1)!} > b_{n}$. $(b_{n})$ ist also monoton wachsend. Für $n > 3$:
 		\begin{align*} 
@@ -952,9 +952,9 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 				  & < 1 + \left( 1 + \frac{1}{2} + (\frac{1}{2})^{2} + \dotsc + (\frac{1}{2})^{n-1} \right) = 1 + \frac{1 - \left( \frac{1}{2} \right)^{n}}{1 - \frac{1}{2}} \\
 				  & < 1 + \frac{1}{1 - \frac{1}{2}} = 3 \quad \forall n \in \N
 		\end{align*} 
-		$\xRightarrow[]{\hyperref[prop:2.3]{2.3}} (b_{n})$ konvergiert. $b \coloneqq \lim b_{n}$. Für $n \geq 2$:
+		$\xRightarrow[]{\ref{prop:2.3}} (b_{n})$ konvergiert. $b \coloneqq \lim b_{n}$. Für $n \geq 2$:
 		\begin{align*}
-			a_{n} & = \left( 1 + \frac{1}{n} \right)^{n} =_{\S 1} \sum_{k=0}{n} \binom{n}{k} \frac{1}{n^{k}} \\
+			a_{n} & = \left( 1 + \frac{1}{n} \right)^{n} \overset{\S 1}{=} \sum_{k=0}{n} \binom{n}{k} \frac{1}{n^{k}} \\
 				  & = 1 + 1 + \sum_{k = 2}^{n} \frac{1}{k!} \frac{n!}{(n-k)!} \frac{1}{n^{k}} = 1 + 1 + \sum_{k=2}^{n} \frac{1}{k!} \frac{n(n-1) \cdot \dotsc \cdot (n-(k-1))}{n \cdot n \cdot \dotsc \cdot n} \\
 				  & = 1 + 1 + \sum_{k=2}^{n} \frac{1}{k!} \underbrace{(1 - \frac{1}{n})}_{< 1} \underbrace{(1 - \frac{2}{n})}_{< 1} \cdot \dotsc \cdot \underbrace{(1 - \frac{k-1}{n})}_{< 1} \\
 				  & \leq 1 + 1 + \sum_{k=2}^{n} \frac{1}{k!} = b_{n}
@@ -962,7 +962,7 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 		Also $a_{n} \leq b_{n} ~\forall n \geq 2$. Z. z.: $\Rightarrow a \leq b$Â \\
 		Sei $j \in \N, j \geq 2$ (zunächst fest). Für $n \in \N, n \geq j$:
 		\begin{align*}
-			a_{n} & =_{s.o.} 1 + 1 + \sum_{k=2}^{n} \frac{1}{k!} (1-\frac{1}{n})(1-\frac{2}{n}) \cdot \dotsc \cdot (1-\frac{k-1}{n}) \\
+			a_{n} & \overset{s.o.}{=} 1 + 1 + \sum_{k=2}^{n} \frac{1}{k!} (1-\frac{1}{n})(1-\frac{2}{n}) \cdot \dotsc \cdot (1-\frac{k-1}{n}) \\
 				  & \geq 1 + 1 + \sum_{k = 2}^{j} \frac{1}{k!} \underbrace{(1-\frac{1}{n})}_{\rightarrow 1} \underbrace{(1-\frac{2}{n})}_{\rightarrow 1} \cdot \dotsc \cdot \underbrace{(1-\frac{k-1}{n})}_{\rightarrow 1} \\
 				  & \rightarrow 1 + 1 + 1 \sum_{k=2}^{j} \frac{1}{k!} = b_{j} \quad (n \rightarrow \infty)
 		\end{align*}
@@ -970,8 +970,8 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 	\end{beweis}
 \end{beispiel}
 
-
-\begin{definition} \index{Eulersche Zahl}
+\index{Eulersche Zahl}
+\begin{definition} 
 	$$
 		e \coloneqq \lim_{n \rightarrow \infty} \left( 1 + \frac{1}{n} \right)^{n} ~( = \lim_{n \rightarrow \infty} \sum_{k = 0}^{n} \frac{1}{k!} )
 	$$
@@ -979,8 +979,8 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 	$e \approx 2,718\dotsc$
 \end{definition}
 
-
-\begin{definition} \index{Teilfolge}
+\index{Teilfolge}
+\begin{definition} 
 	Sei $(a_{n})$ eine Folge und $(n_{1}, n_{2}, n_{3}, \dotsc)$ eine Folge in $\N$ mit \\
 	$n_{1} < n_{2} < n_{3} < \dotsc$. Für $k \in \N$ setze
 	$$
@@ -1002,7 +1002,7 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 \begin{definition}
 	$(a_{n})$ sei eine Folge und $\alpha \in \R$. $\alpha$ hei{\ss}t ein \textbf{Häufungswert} (HW) von $(a_{n})$
 	$$
-		:\iff \exists (TF) (a_{n_{k}}) \text{ von } (a_{n}): a_{n_{k}} \rightarrow \alpha (k \rightarrow \infty) 
+		\iff \exists \text{ Teilfolge } (a_{n_{k}}) \text{ von } (a_{n}) : ~a_{n_{k}} \rightarrow \alpha ~(k \rightarrow \infty) 
 	$$	
 	$H(a_{n}) \coloneqq \{ \alpha \in \R: \alpha$ ist ein Häufungswert von $(a_{n}) \}$.
 \end{definition}
@@ -1030,9 +1030,9 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 	\begin{enumerate}
 		\item $a_{n} = (-1)^{n}$, $a_{2k} = 1 \rightarrow 1, a_{2k+1} \rightarrow -1$, also $1, -1 \in H(a_{n})$. Sei $\alpha \in \R, \alpha \neq 1, \alpha \neq -1$ \\
 			% todo Zeichnung
-			Wähle $\epsilon>0$ so, dass $1, -1 \notin U_{\epsilon}(\alpha)$. Dann $a_{n} \in U_{\epsilon}(\alpha)$ für kein $n \in \N$ $\xRightarrow[]{\hyperref[satz:2.10]{2.10}} \alpha \notin H(a_{n})$. Fazit: $H(a_{n}) = \{ 1, -1 \}$.
+			Wähle $\epsilon>0$ so, dass $1, -1 \notin U_{\epsilon}(\alpha)$. Dann $a_{n} \in U_{\epsilon}(\alpha)$ für kein $n \in \N$ $\xRightarrow[]{\ref{satz:2.10}} \alpha \notin H(a_{n})$. Fazit: $H(a_{n}) = \{ 1, -1 \}$.
 		\item $a_{n} = n$. Ist $\alpha \in \R$ und $\epsilon > 0$, so gilt: $a_{n} \in U_{\epsilon}(\alpha)$ für höchstens endlich viele $n$, also $\alpha \notin H(a_{n})$. Fazit: $H(a_{n}) = \emptyset$.
-		\item $\Q$ ist abzählbar. Sei $(a_{n})$ eine Folge mit $Q = \{ a_{1}, a_{2}, a_{3}, \dotsc \}$. Sei $\alpha \in \R$ und $\epsilon > 0$ $\xRightarrow[]{\hyperref[satz:1.5]{1.5}} U_{\epsilon}(\alpha) = (\alpha - \epsilon, \alpha + \epsilon)$ enthält unendlich viele verschiedene rationale Zahlen $\xRightarrow[]{\hyperref[satz:2.10]{2.10}} \alpha \in H(a_{n})$. Fazit: $H(a_{n}) = \R$.
+		\item $\Q$ ist abzählbar. Sei $(a_{n})$ eine Folge mit $Q = \{ a_{1}, a_{2}, a_{3}, \dotsc \}$. Sei $\alpha \in \R$ und $\epsilon > 0$ $\xRightarrow[]{\ref{satz:1.5}} U_{\epsilon}(\alpha) = (\alpha - \epsilon, \alpha + \epsilon)$ enthält unendlich viele verschiedene rationale Zahlen $\xRightarrow[]{\ref{satz:2.10}} \alpha \in H(a_{n})$. Fazit: $H(a_{n}) = \R$.
 	\end{enumerate}	
 \end{beispiele}
 
@@ -1051,13 +1051,11 @@ Ist $x \in \R$, so existieren Folgen $(r_{m})$ in $\Q : r_{n} \rightarrow \alpha
 	Sei $\epsilon > 0$. Dann: $a{n} \in U_{\epsilon}(a)$ ffa $n \in \N$, also auch $a_{n_{k}} \in U_{\epsilon}(a)$ ffa $k \in \N$. Somit: $a_{n_{k}} \rightarrow \alpha$.
 \end{beweis}
 
-
-\begin{definition} Sei $(a_{n})$ eine Folge. \index{niedrig}
+\index{niedrig}
+\begin{definition} Sei $(a_{n})$ eine Folge. 
 	\begin{enumerate}
-		\item $m \in \N$. $m$ hei{\ss}t \textbf{niedrig} (für $(a_{n})$)
-			$$Â :\iff a_{n} \geq a_{m} \quad \forall n \geq m $$
-		\item $m \in \N$ hei{\ss}t nicht niedrig
-			$$Â :\iff \exists n \geq m: a_{n} < a_{m} \Rightarrow n > m: a_{n} < a_{m} $$
+		\item $m \in \N$. $m$ hei{\ss}t \textbf{niedrig} (für $(a_{n})$) $\iff a_{n} \geq a_{m} ~\forall n \geq m $
+		\item $m \in \N$ hei{\ss}t nicht niedrig $\iff \exists n \geq m: a_{n} < a_{m} \Rightarrow n > m: a_{n} < a_{m}$
 	\end{enumerate}
 \end{definition}
 
@@ -1083,18 +1081,18 @@ Ist $x \in \R$, so existieren Folgen $(r_{m})$ in $\Q : r_{n} \rightarrow \alpha
 	Wir erhalten so eine monoton wachsende Teilfolge $(a_{n_{k}})$.
 \end{beweis}
 
-
-\begin{satz}[Bolzano-Weierstra{\ss}] \label{satz:2.12-BolzanoWeierstrass} \index{Satz!Bolzano-Weierstra{\ss}} ~\\
+\index{Satz!Bolzano-Weierstra{\ss}}
+\begin{satz}[Bolzano-Weierstra{\ss}] \label{satz:2.12-BolzanoWeierstrass}  ~\\
 	$(a_{n})$ sei beschränkt, dann: $H(a_{n}) \neq \emptyset$. $(a_{n})$ enthält also eine konvergente Teilfolge
 \end{satz}
 
 \begin{beweis}
 	$\exists c \geq 0: |a_{n}| \leq c$ $\forall n \in \N$. $\xRightarrow[]{Hilfssatz} (a_{n})$ enthält eine monotone Teilfolge $(a_{n_{k}})$. Dann: $|a_{n_{k}}| \leq c \forall k \in \N$ \\
-	$(a_{n_{k}})$ ist also beschränkt $\xRightarrow[]{\hyperref[prop:2.3]{2.3}} (a_{n_{k}})$ ist konvergent. Also $\lim_{k \rightarrow \infty} a_{n_{k}} \in H(a_{n})$.
+	$(a_{n_{k}})$ ist also beschränkt $\xRightarrow[]{\ref{prop:2.3}} (a_{n_{k}})$ ist konvergent. Also $\lim_{k \rightarrow \infty} a_{n_{k}} \in H(a_{n})$.
 \end{beweis}
 
 \begin{satz} \label{satz:2.13}
-	$(a_{n})$ sei beschränkt ($\xRightarrow[]{\hyperref[satz:2.12-BolzanoWeierstrass]{2.12}} H(a_{n}) \neq \emptyset$)
+	$(a_{n})$ sei beschränkt $\left( å\xRightarrow[]{\ref{satz:2.12-BolzanoWeierstrass}} H(a_{n}) \neq \emptyset \right)$
 	\begin{enumerate}
 		\item $H(a_{n})$ ist beschränkt
 		\item $\sup H(a_{n}), \inf H(a_{n}) \in H(a_{n})$; es existieren also
@@ -1102,8 +1100,8 @@ Ist $x \in \R$, so existieren Folgen $(r_{m})$ in $\Q : r_{n} \rightarrow \alpha
 	\end{enumerate}
 \end{satz}
 
-
-\begin{definition} \index{Limes superior} \index{oberer Limes} \index{Limes inferior} \index{unterer Limes}
+\index{Limes superior} \index{oberer Limes} \index{Limes inferior} \index{unterer Limes}
+\begin{definition} 
 	Ist $(a_{n})$ beschränkt, so nennen wir 
 	\begin{enumerate}
 		\item $\limsup_{n \rightarrowÂ \infty} a_{n}Â \coloneqq \limsup a_{n} \coloneqq \overline{\lim} a_{n} \coloneqq \max H(a_{n})$ hei{\ss}t \textbf{Limes superior} oder \textbf{oberer Limes} von $(a_{n})$.
@@ -1133,7 +1131,7 @@ Ist $x \in \R$, so existieren Folgen $(r_{m})$ in $\Q : r_{n} \rightarrow \alpha
 \end{satz}
 
 \begin{beweis}
-	a) klar, b) folgt aus \hyperref[satz:2.11]{2.11}	, c) und d) Übung.
+	a) klar, b) folgt aus \ref{satz:2.11}, c) und d) Übung.
 \end{beweis}
 
 
@@ -1145,10 +1143,10 @@ D.h.: $(a_{n})$ hat die folgende Eigenschaft:
 	\[ \forall \epsilon > 0 \exists n_{0} = n_{0}(\epsilon) \in \N: |a_{n} - a_{m}| < \epsilon \quad \forall n,m \geq n_{0} \tag*{(c)} \]
 $(\iff\forall \epsilon > 0 ~\exists n_{0} = n_{0}(\epsilon) \in \N: |a_{n} - a_{n+k}| < \epsilon \quad \forall n \geq n_{0} ~\forall k \in \N)$
 
-
-\begin{definition} \index{Cauchyfolge}
+\index{Cauchyfolge}
+\begin{definition} 
 	Eine Folge $(a_{n})$ hei{\ss}t eine \textbf{Cauchyfolge} (CF)
-	$$ :\iff (a_{n}) \text{ hat die Eigenschaft } (c) $$	
+	$$ \iff (a_{n}) \text{ hat die Eigenschaft } (c) $$	
 \end{definition}
 
 
@@ -1164,7 +1162,7 @@ Konvergente Folgen sind also Cauchy-Folgen!
 \end{beweis}
 
 
-\begin{beispiel}
+\begin{beispiel*}
 	$a_{1} \coloneqq 1, a_{n+1} \coloneqq \frac{1}{1 + a_{n}}$ $(n \in \N)$. Mit Induktion folgt:
 	\begin{enumerate}
 		\item[1)] $0 < a_{n} \leq 1 ~(n \in \N)$ Damit:
@@ -1178,15 +1176,14 @@ Konvergente Folgen sind also Cauchy-Folgen!
 			& \leq \left( \frac{4}{9} \right)^{n-1} \left( |a_{k+1}| + |a_{1}|\right) \leq 2 \left( \frac{4}{9} \right)^{n-1} 
 	\end{align*}
 	$\exists n_{0} \in \N \setminus \{ 1 \}$: $2\left(\frac{4}{9}\right)^{n-1} < \epsilon ~(n \geq n_{0})$. Damit: $|a_{n+k} - a_{n}| < \epsilon ~(n \geq n_{0}, k \in \N)$. Also ist $(a_{n})$ Cauchyfolge. $a \coloneqq \lim_{n \rightarrow \infty} a_{n}$. Klar: $a \geq \frac{1}{2}$ und $a = \frac{1}{1 + a}$. Also $a^{2} + a - 1 = 0 \iff a = - \frac{1}{2} \pm \frac{\sqrt{5}}{2}$. Wegen $a \geq \frac{1}{2}$ folgt $a = \frac{\sqrt{5} - 1}{2}$.
-\end{beispiel}
-
+\end{beispiel*}
 
 
 \newpage
 
 
-
 \section{Unendliche Reihen}
+
 
 \index{Reihe!unendliche} \index{Teilsumme} \index{konvergent} \index{divergent} \index{Reihenwert}
 \begin{definition} $(a_{n})$ sei eine Folge;
@@ -1194,7 +1191,7 @@ Konvergente Folgen sind also Cauchy-Folgen!
 		\item $ s_{n} \coloneqq a_{1} + a_{2} + \dotsc a_{n} \quad (n \in \N)$
 		(also $a_{1} = a_{1}, a_{2} = a_{1} + a_{2}, \dotsc$). $(s_{n})$ hei{\ss}t \textbf{(unendliche) Reihe} und wird mit $\sum_{n = 1}^{\infty} a_{n}$ bezeichnet. Weitere Bezeichnungen: $a_{1} + a_{2} + a_{3} + \dotsc$
 		\item $s_{n}$ hei{\ss}t \textbf{n-te Teilsumme} von $\sum_{n=1}^{\infty} a_{n}$.	
-		\item $\sum_{n=1}^{\infty} a_{n}$ hei{\ss}t konvergent bzw. divergent $: \iff (s_{n})$ ist konvergent 	bzw. divergent.
+		\item $\sum_{n=1}^{\infty} a_{n}$ hei{\ss}t konvergent bzw. divergent $\iff (s_{n})$ ist konvergent 	bzw. divergent.
 		\item Ist $\sum_{n = 1}^{\infty} a_{n}$ konvergent, so hei{\ss}t $\lim s_{n}$ der Reiehenwert und wird ebenfalls mit $\sum_{n=1}^{\infty} a_{n}$ bezeichnet (schlecht, aber so üblich)
 	\end{enumerate} 	
 \end{definition}
@@ -1213,7 +1210,7 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 \begin{beispiele} ~\
 	\begin{enumerate}
 		\item Sei $x \in \R$. $\sum_{n=0}^{\infty} x^{n} = 1 + x + x^{2} + \dotsc$ hei{\ss}t \textbf{geometrische Reihe}. \\
-			$s_{m} = 1 + x + \dotsc x^{m} \xRightarrow[]{\hyperref[bsp:2.6]{2.6}} (s_{n})$ konvergiert $\iff |x| < 1$ und $\lim s_{n} = \frac{1}{1 - x}$ für $|x| < 1$. Also: $\sum_{n=0}^{\infty} x^{n}$ konvergent $\iff |x| < 1$ und $\sum_{n=0}^{\infty} x^{n} = \frac{1}{1 - x}$ für $|x] < 1$.
+			$s_{m} = 1 + x + \dotsc x^{m} \xRightarrow[]{\ref{bsp:2.6}} (s_{n})$ konvergiert $\iff |x| < 1$ und $\lim s_{n} = \frac{1}{1 - x}$ für $|x| < 1$. Also: $\sum_{n=0}^{\infty} x^{n}$ konvergent $\iff |x| < 1$ und $\sum_{n=0}^{\infty} x^{n} = \frac{1}{1 - x}$ für $|x] < 1$.
 		\item $\sum_{n=1}^{\infty} \frac{1}{n(n+1)}; a_{n} ) \frac{1}{n(n+1)} = \frac{1}{n} - \frac{1}{n+1}$
 			\begin{align*}
 				\Rightarrow s_{n} & = a_{1} + \dotsc + a_{n} \\
@@ -1221,7 +1218,7 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 						& = 1 - \frac{1}{n+1} \rightarrow 1
 			\end{align*}
 			Also $\sum_{n=1}^{\infty} \frac{1}{n(n+1))}$ konvergent und $\sum_{n=1}^{\infty} \frac{1}{n(n+1)} = 1$.
-		\item $\sum_{n=0}^{\infty} \frac{1}{n!} = 1 + 1 + \frac{1}{2!} + \frac{1}{3!} + \dotsc$; $s_{n} = 1 + 1 + \frac{1}{2!} + \dotsc + \frac{1}{n!} \xRightarrow[]{\hyperref[bsp:2.9]{2.9}} s_{n} \rightarrow e$. \\
+		\item $\sum_{n=0}^{\infty} \frac{1}{n!} = 1 + 1 + \frac{1}{2!} + \frac{1}{3!} + \dotsc$; $s_{n} = 1 + 1 + \frac{1}{2!} + \dotsc + \frac{1}{n!} \xRightarrow[]{\ref{bsp:2.9}} s_{n} \rightarrow e$. \\
 			Also: $\sum_{n = 0}^{\infty} \frac{1}{n!}$ konvergiert und $\sum_{n=1}^{\infty} \frac{1}{n!} = e$.
 		\item Die \textbf{harmonischen Reihe} $\sum_{n=1}^{\infty} \frac{1}{n}$. Dann ist $s_{n} = 1 + \frac{1}{2} + \dotsc \frac{1}{n}$, \\
 			$s_{2n} = 1 + \frac{1}{2} + \dotsc + \frac{1}{n} + \frac{1}{n+1} + \dotsc + \frac{1}{2n} = s_{n} + \underbrace{\frac{1}{n+1}}_{\geq \frac{1}{2n}} + \underbrace{\frac{1}{n+2}}_{\geq \frac{1}{2n}} + \dotsc + + \underbrace{\frac{1}{2n}}_{\geq \frac{1}{2n}} \geq s_{n} + \frac{1}{2}$ \\
@@ -1229,8 +1226,8 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 	\end{enumerate}	
 \end{beispiele}
 
-\label{satz:3.1} \index{Monotoniekriterium} \index{Cauchykriterium}
-\begin{satz}
+\index{Monotoniekriterium} \index{Cauchykriterium}
+\begin{satz} \label{satz:3.1} 
 	$(a_{n})$ sei eine Foge und $s_{n} = a_{1} + \dotsc + a_{n}$.
 	\begin{enumerate}
 		\item \textbf{Monotoniekriterium:} Sind alle $a_{n} \geq 0$ und ist $(s_{n})$ beschränkt, so ist $\sum_{n = 1}^{\infty} a_{n}$ konvergent.
@@ -1243,8 +1240,8 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 
 \begin{beweis} ~\
 	\begin{enumerate}
-		\item $s_{n+1} = a_{1} + \dotsc + a_{n} + a_{n+1} = s_{n} + a_{n+1} \geq s_{n}$. $(s_{n})$ ist also wachsend und beschränkt $\xRightarrow[]{\hyperref[prop.2.3]{2.3}} (s_{n})$ konvergent.
-		\item Für $m > n: |s_{m} - s_{n}| = | a_{1} + \dotsc + a_{n} + a_{n+1} + \dotsc + a_{m} - (a_{1} + \dotsc a_{n})| = |a_{n+1} + \dotsc + a_{m}| = |\sum_{k=n+1}^{m} a_{k}|$. Behauptung folgt aus \hyperref[prop:2.15]{2.15}.
+		\item $s_{n+1} = a_{1} + \dotsc + a_{n} + a_{n+1} = s_{n} + a_{n+1} \geq s_{n}$. $(s_{n})$ ist also wachsend und beschränkt $\xRightarrow[]{\ref{prop.2.3}} (s_{n})$ konvergent.
+		\item Für $m > n: |s_{m} - s_{n}| = | a_{1} + \dotsc + a_{n} + a_{n+1} + \dotsc + a_{m} - (a_{1} + \dotsc a_{n})| = |a_{n+1} + \dotsc + a_{m}| = |\sum_{k=n+1}^{m} a_{k}|$. Behauptung folgt aus \ref{prop:2.15}.
 		\item $s_{n+1} - s_{n} = a_{n+1}$. Ist $(s_{n})$ konvergent, so folgt $a_{n+1} \rightarrow 0$
 		\item ohne Beweis!
 	\end{enumerate}	
@@ -1255,18 +1252,18 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 	Ist $(a_{n})$ eine Folge und gilt $a_{n} \not\rightarrow 0$, so ist $\sum a_{n}$ divergent!
 \end{bemerkung}
 
-\label{satz:3.2}
-\begin{satz}
+
+\begin{satz} \label{satz:3.2}
 	Die Reihen $\sum a_{n}$ und $\sum b_{n}$ seien konvergent und es seien $\alpha, \beta \in \R$. Dann konvergiert
 		$$ \sum ( \alpha a_{n} + \beta b_{n}) $$
 	und $\sum ( \alpha a_{n} + \beta b_{n}) = \alpha \sum a_{n} + \beta \sum b_{n}$
 \end{satz}
 
 \begin{beweis}
-	\hyperref[satz:2.2]{2.2}	
+	\ref{satz:2.2} ab
 \end{beweis}
 
-\index{Leibnitzkriterium}
+\index{Konvergenzkriterium!Reihen!Leibnitz}
 \begin{prop}[Leibnitzkriterium] \label{prop:3.3-leibnitzkriterium}
 	Sei $(b_{n})$ eine Folge mit:
 		$$ b_{n} \geq 0 ~\forall n \in \N, (b_{n}) \text{ ist monoton fallend und } b_{n} \rightarrow 0  $$
@@ -1274,17 +1271,17 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 \end{prop}
 
 \index{Reihe!alternierende harmonische Reihe}
-\begin{beispiel}
-	Aus \hyperref[prop:3.3-leibnitzkriterium]{3.3} folgt: \\
+\begin{beispiel*}
+	Aus \ref{prop:3.3-leibnitzkriterium} folgt: \\
 	Die \textbf{alternierende harmonische Reihe} $\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}$ ist konvergent.
-\end{beispiel}
+\end{beispiel*}
 
 \begin{beweis}[von 3.3]
 	$a_{n} \coloneqq (-1)^{n+1} b_{n}$, $s_{n} \coloneqq a_{1} + \dotsc + a_{n}$. $s_{2n+2} = s_{2n} + a_{2n+1} + a_{2n+2} = s_{2n} + \underbrace{b_{2n+1}-b_{2n+2}}_{\geq 0} \geq s_{2n}$. $(s_{2n})$ ist also monoton fallend. Es gilt:
 	\[ \forall n \in \N: s_{2n} = s_{2n-1} - a_{2n} = s_{2n-1} - b_{2n} \leq s_{2n-1} \tag*{$(*)$} \]
 	Also:
 	$$ s_{2} \leq s_{4} \leq \dotsc \leq s_{2n} \overset{(*)}{\leq} s_{2n-1} \leq \dotsc \leq s_{3} \leq s_{1} $$
-	$(s_{2n})$ und $(s_{2n+1})$ sind also beschränkt $\xRightarrow[]{\hyperref[prop:2.3]{2.3}} (s_{2n})$ und $(s_{2n+1})$ sind konvergent. $s \coloneqq \lim s_{2n} \xRightarrow[]{(*)} s = \lim s_{2n+1}$. \\
+	$(s_{2n})$ und $(s_{2n+1})$ sind also beschränkt $\xRightarrow[]{\ref{prop:2.3}} (s_{2n})$ und $(s_{2n+1})$ sind konvergent. $s \coloneqq \lim s_{2n} \xRightarrow[]{(*)} s = \lim s_{2n+1}$. \\
 	Sei $\epsilon > 0$:
 	$$
 		\begin{rcases*}
@@ -1297,16 +1294,16 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 
 \index{konvergent!absolut}
 \begin{definition}
-	$\sum a_{n}$ hei{\ss}t \textbf{absolut konvergent} $: \iff \sum |a_{n}|$ ist konvergent.
+	$\sum a_{n}$ hei{\ss}t \textbf{absolut konvergent} $\iff \sum |a_{n}|$ ist konvergent.
 \end{definition}
 
 
-\begin{beispiel}
+\begin{beispiel*}
 	$\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}$ ist konvergent, aber nicht absolut konvergent.
-\end{beispiel}
+\end{beispiel*}
 
-\label{satz:3.4}
-\begin{satz}
+
+\begin{satz} \label{satz:3.4}
 	$\sum a_{n}$ sei absolut konvergent. Dann:
 	\begin{enumerate}
 		\item $\sum a_{n}$ ist konvergent
@@ -1318,15 +1315,15 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 	\begin{enumerate}
 		\item Seien $m,n \in \N, m > n$
 			\[ \underbrace{| \sum_{k = n+1}^{m} a_{k} |}_{\eqqcolon \sigma_{m, n}} \leq \underbrace{\sum_{k = n+1}^{m}|a_{k}|}_{\eqqcolon \tau_{m, n}} \tag*{$(*)$} \]
-			Sei $\epsilon > 0$ \hyperref[satz:3.1]{3.1 b)} n. Vor $\Rightarrow \exists n_{0} \in \N: \tau_{m, n} < \epsilon$ für $m > n > n_{0} \xRightarrow[]{(*)} \sigma_{m, n} < \epsilon$ für $m > n \geq n_{0} \xRightarrow[]{\hyperref[satz:3.1]{\text{3.1 b)}}} \sum a_{n}$ konvergiert
+			Sei $\epsilon > 0$, Voraussetzung nach \ref{satz:3.1}~b) $\Rightarrow \exists n_{0} \in \N: \tau_{m, n} < \epsilon$ für $m > n > n_{0} \xRightarrow[]{(*)} \sigma_{m, n} < \epsilon$ für $m > n \geq n_{0} \xRightarrow[]{\ref{satz:3.1}~b)} \sum a_{n}$ konvergiert
 		\item Sei $s_{k} \coloneqq a_{1} + \dotsc + a_{k}$, $s \coloneqq \lim s_{n}$, $\sigma_{k} \coloneqq |a_{1}| + \dotsc |a_{k}|$ und $\sigma = \lim \sigma_{n}$. Dann: $|s_{n}| \rightarrow |s|$ und 
 			$$ |s| \leq \sigma \quad \forall n $$
 			$\Rightarrow |s| \leq \sigma \Rightarrow$ $\triangle$-Ungleichung
 	\end{enumerate}
 \end{beweis}
 
-\label{satz:3.5} \index{Majorantenkriterium} \index{Minorantenkriterium}
-\begin{satz} ~\
+\index{Konvergenzkriterium!Reihen!Majoranten} \index{Konvergenzkriterium!Reihen!Minoranten}
+\begin{satz} ~\ \label{satz:3.5}
 	\begin{enumerate}
 		\item \textbf{Majorantenkriterium}: Gilt $|a_{n}| \leq b_{n}$ ffa $n \in \N$ und ist $\sum b_{n}$ konvergent, so ist $\sum a_{n}$ absolut konvergent.
 		\item \textbf{Minorantenkriterium}: Gilt $a_{n} \geq b_{n} \geq 0$ ffa $n \in \N$ und ist $\sum b_{n}$ divergent, so ist $\sum a_{n}$ divergent.
@@ -1337,7 +1334,7 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 	\begin{enumerate}
 		\item $\exists j \in \N$: $|a_{n}| \leq b_{n} ~\forall n \geq j$. Sei $m > n \geq j$, dann
 			\[ \underbrace{\sum_{k=n+1}^{m}|a_{n}|}_{\eqqcolon \sigma_{m, n}} \leq \underbrace{\sum_{k=n+1}^{m} b_{k}}_{\eqqcolon \tau_{m,n}}  \]
-			Sei $\epsilon > 0$ Vor. n. $\hyperref[satz:3.1]{3.1 b)} \Rightarrow \exists n_{0} \in \N: n_{0} \geq j$ und $\tau_{m,n} < \epsilon$ für $m > n \geq n_{0}$. Dann: $\sigma_{m,n} < \epsilon$ für $m > n \geq n_{0} \xRightarrow[]{\hyperref[satz:3.1]{3.1 b)}} \sum |a_{n}|$ konvergiert.
+			Sei $\epsilon > 0$ Voraussetzung nach $\ref{satz:3.1}~b) \Rightarrow \exists n_{0} \in \N: n_{0} \geq j$ und $\tau_{m,n} < \epsilon$ für $m > n \geq n_{0}$. Dann: $\sigma_{m,n} < \epsilon$ für $m > n \geq n_{0} \xRightarrow[]{\ref{satz:3.1}~b)} \sum |a_{n}|$ konvergiert.
 		\item Annahme: $\sum a_{n}$ konvergent $\xRightarrow[]{a)} \sum b_{n}$ konvergent, Widerspruch.
 	\end{enumerate}	
 \end{beweis}
@@ -1347,18 +1344,18 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 	\begin{enumerate}
 		\item $\sum_{n=1}^{\infty} \frac{1}{(n+1)^{2}}$, $\forall n \in \N$:
 			$$ a_{n} = \frac{1}{(n+1)^{2}} = |a_{n}| = \frac{1}{n^{2} + 2n +1} \leq \frac{1}{n^{2} + 2n} \leq \frac{1}{n(n+1)} \eqqcolon b_{n} $$
-			Bekannt: $\sum b_{n}$ konvergiert $\xRightarrow[]{\hyperref[satz:3.5]{3.5 a)}} \sum_{n=1}^{\infty} \frac{1}{(n+1)^{2}}$ konvergiert
+			Bekannt: $\sum b_{n}$ konvergiert $\xRightarrow[]{\ref{satz:3.5}~a)} \sum_{n=1}^{\infty} \frac{1}{(n+1)^{2}}$ konvergiert
 		\item Aus Beispiel a): $\sum_{n=1}^{\infty} \frac{1}{n^{2}}$ ist konvergent.
 		\item Sei $\alpha > 0$ und $\alpha \in \Q$: Betrachte: $\sum_{n=1}^{\infty} \frac{1}{n^{\alpha}}$. \\
 			Fall 1: $\alpha \in (0, 1]$.
-				$$ \forall n \in \N: ~ \frac{1}{n^{\alpha}} \geq \frac{1}{n} \geq 0 \xRightarrow[]{\hyperref[satz:3.5]{3.5 b)}} \sum \frac{1}{n^{\alpha}} $$
+				$$ \forall n \in \N: ~ \frac{1}{n^{\alpha}} \geq \frac{1}{n} \geq 0 \xRightarrow[]{\ref{satz:3.5}~b)} \sum \frac{1}{n^{\alpha}} $$
 			Fall 2: $\alpha \geq 2$: \\
-				$$ \forall n \in \N: ~ 0 \leq \frac{1}{n^{\alpha}} \frac{1}{n^{2}} \xRightarrow[]{\hyperref[satz:3.5]{3.5 a)}} \sum_{n=1}^{\infty} \frac{1}{n^{\alpha}} \text{ konvergent} $$
+				$$ \forall n \in \N: ~ 0 \leq \frac{1}{n^{\alpha}} \frac{1}{n^{2}} \xRightarrow[]{\ref{satz:3.5}~a)} \sum_{n=1}^{\infty} \frac{1}{n^{\alpha}} \text{ konvergent} $$
 			Fall 3: $\alpha \in (1, 2)$: vgl. Übungsblatt, $\sum \frac{1}{n^{\alpha}}$ konvergent. \\ \\
 			\textbf{Fazit}: Ist $\alpha > 0$ und $\alpha \in \Q$, so gilt $\sum_{n=1}^{\infty} \frac{1}{n^{\alpha}}$ konvergiert $\Leftrightarrow \alpha > 1$
-		\item $\sum_{n=1}^{\infty} (-1)^{n} \frac{n^{2} + 2}{n^{3} + 1}$; $|a_{n}| = \frac{n+2}{n^{3} + 1} \leq \frac{n+2}{n^{3}} \leq \frac{2n}{n^{3}} = \frac{2n}{n^{2}} \eqqcolon b_{n}$. Für $n \geq 2$ $\sum b_{n}$ konvergiert $\xRightarrow[]{\hyperref[satz:3.5]{3.5 a)}} \sum a_{n}$ konvergiert absolut
+		\item $\sum_{n=1}^{\infty} (-1)^{n} \frac{n^{2} + 2}{n^{3} + 1}$; $|a_{n}| = \frac{n+2}{n^{3} + 1} \leq \frac{n+2}{n^{3}} \leq \frac{2n}{n^{3}} = \frac{2n}{n^{2}} \eqqcolon b_{n}$. Für $n \geq 2$ $\sum b_{n}$ konvergiert $\xRightarrow[]{\ref{satz:3.5}~a)} \sum a_{n}$ konvergiert absolut
 		\item $\sum_{n=1}^{\infty} \frac{\sqrt{n}}{n+1}$; $a_{n} = |a_{n}| = \frac{\sqrt{n}}{n+1} \geq \frac{\sqrt{n}}{2n} = \frac{1}{2} \cdot \frac{1}{\sqrt{n}} = \underbrace{\frac{1}{2} \cdot \frac{1}{n^{\frac{1}{2}}}}_{\geq 0} \eqqcolon b_{n}$. \\
-			$\sum b_{n}$ divergiert $\xRightarrow[]{\hyperref[satz:3.5]{3.5 b)}} \sum a_{n}$ divergiert
+			$\sum b_{n}$ divergiert $\xRightarrow[]{\ref{satz:3.5}~b)} \sum a_{n}$ divergiert
 	\end{enumerate}		
 \end{beispiele}
 
@@ -1382,12 +1379,12 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 \begin{beweis} ~\
 	\begin{enumerate}
 		\item[b)] Sei $\epsilon > 0$. $x \coloneq \epsilon \xRightarrow[]{a)} -\epsilon < 0 \leq c_{n} < \epsilon$ ffa $n \in \N$, also $c_{n} \in U_{\epsilon}(0)$ ffa $n$.
-		\item[a)] Annahme: $c_{n} \geq x$ für unendlich viele $n$, etwa für $n_{1}, n_{2}, n_{3}, \dotsc$ mit $n_{1} < n_{2} < n_{3} < \dotsc$, Die Teilfolge $(c_{n_{k}})$ ist beschränkt $\xRightarrow[]{\hyperref[satz:2.11]{2.11}} (c_{n_{k}})$ enthält eine konvergente Teilfolge $(c_{n_{k_{j}}})$. $\beta \coloneqq \lim_{j\rightarrow \infty} c_{n_{k_{j}}}$. Es ist $c_{n_{k_{j}}} \geq x ~\forall j \Rightarrow \beta \geq x > \alpha$; $(c_{n_{k_{j}}})$ ist eine Teilfolge von $(c_{n}) \Rightarrow \beta \in H(a_{n}) \Rightarrow \beta \leq \alpha$, Widerspruch.
+		\item[a)] Annahme: $c_{n} \geq x$ für unendlich viele $n$, etwa für $n_{1}, n_{2}, n_{3}, \dotsc$ mit $n_{1} < n_{2} < n_{3} < \dotsc$, Die Teilfolge $(c_{n_{k}})$ ist beschränkt $\xRightarrow[]{\ref{satz:2.11}} (c_{n_{k}})$ enthält eine konvergente Teilfolge $(c_{n_{k_{j}}})$. $\beta \coloneqq \lim_{j\rightarrow \infty} c_{n_{k_{j}}}$. Es ist $c_{n_{k_{j}}} \geq x ~\forall j \Rightarrow \beta \geq x > \alpha$; $(c_{n_{k_{j}}})$ ist eine Teilfolge von $(c_{n}) \Rightarrow \beta \in H(a_{n}) \Rightarrow \beta \leq \alpha$, Widerspruch.
 	\end{enumerate}	
 \end{beweis}
 
-\label{Wurzelkriterium} \index{Wurzelkriterium}
-\begin{prop}[Wurzelkriterium (WK)]
+\index{Konvergenzkriterium!Reihen!Wurzel}
+\begin{prop}[Wurzelkriterium (WK)] \label{prop:3.6-Wurzelkriterium}
 	Sei $(a_{n})$ eine Folge, $c_{n} \coloneqq \sqrt[n]{|a_{n}|}$.
 	\begin{enumerate}
 		\item Ist $(c_{n})$ unbeschränkt, so ist $\sum_{n=1}^{\infty} a_{n}$ divergent.
@@ -1402,10 +1399,10 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 
 \begin{beweis} ~\
 	\begin{enumerate}
-		\item $(c_{n})$ unbeschränkt $\Rightarrow c_{n} \geq 1$ für unendlich viele $n \Rightarrow |a_{n}| \geq 1$ für unendlich viele $n \Rightarrow a_{n} \rightarrow 0 \xRightarrow[]{\hyperref[satz:3.1]{3.1 c)}}$ Beh.
+		\item $(c_{n})$ unbeschränkt $\Rightarrow c_{n} \geq 1$ für unendlich viele $n \Rightarrow |a_{n}| \geq 1$ für unendlich viele $n \Rightarrow a_{n} \rightarrow 0 \xRightarrow[]{\ref{satz:3.1}~c)}$ Beh.
 		\item  % todo beide Zeichnungen
 			\begin{enumerate}
-				\item Sei $\alpha < 1$, sei $x \in (\alpha, 1) \xRightarrow[]{Hilfssatz} c_{n} \leq x$ ffa n $\Rightarrow |a_{n}| \leq x^{n}$ ffa $n$. $\sum x^{n}$ konvergiert $\xRightarrow[]{\hyperref[satz:3.5]{3.5 a)}} \sum a_{n}$ konvergiert absolut 
+				\item Sei $\alpha < 1$, sei $x \in (\alpha, 1) \xRightarrow[]{Hilfssatz} c_{n} \leq x$ ffa n $\Rightarrow |a_{n}| \leq x^{n}$ ffa $n$. $\sum x^{n}$ konvergiert $\xRightarrow[]{\ref{satz:3.5}~a)} \sum a_{n}$ konvergiert absolut 
 				\item Sei $\alpha > 1$, wähle $\epsilon > 0$ so, dass $\alpha - \epsilon > 1$. Es gilt $c_{n} U_{\epsilon}(\alpha)$ für unendlich viele $n$. Dann: $c_{n} > \alpha - \epsilon > 1$ für unendlich viele $n$. Wie bei $a)$: $\sum a_{n}$ divergiert 
 			\end{enumerate}
 	\end{enumerate}
@@ -1428,8 +1425,8 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 	\end{enumerate}	
 \end{beispiele}
 
-\label{prop:3.7-Quotientenkriterium} \index{Quotientenkriterium}
-\begin{prop}[Quotientenkriterium (QK)]
+\index{Konvergenzkriterium!Reihen!Quotienten}
+\begin{prop}[Quotientenkriterium (QK)] \label{prop:3.7-Quotientenkriterium}
 	Es sei $a_{n} \neq 0 ~\forall n \in \N$ und $c_{n} \coloneqq \left| \frac{a_{n+1}}{a_{n}} \right| ~(n \in \N)$.
 	\begin{enumerate}
 		\item Ist $c_{n} \geq 1$ ffa $n \in \N$, so ist $\sum a_{n}$ divergent
@@ -1441,9 +1438,9 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 	\end{enumerate}
 \end{prop}
 
-\label{folg:3.8}
-\begin{folg}
-	$(a_{n})$ und $(c_{n})$ seien wie in \hyperref[Quotientenkriterium]{3.7}, $(c_{n})$ sei konvergent und $\alpha \coloneqq \lim c_{n}$.
+
+\begin{folg} \label{folg:3.8}
+	$(a_{n})$ und $(c_{n})$ seien wie in \ref{prop:3.7-Quotientenkriterium}, $(c_{n})$ sei konvergent und $\alpha \coloneqq \lim c_{n}$.
 	$$ \sum a_{n} \text{ ist} \begin{cases} \text{absolut konv.}, & \text{falls } \alpha < 1 \\ \text{divergent}, & \text{falls } \alpha > 1 \end{cases} $$
 	Im Falle $\alpha = 1$ ist keine allg. Aussage möglich.
 \end{folg}
@@ -1457,13 +1454,13 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 \end{beispiele}
 
 \index{Exponentialreihe} \index{Exponentialfunktion}
-\begin{prop}[Die Exponentialreihe]
+\begin{prop}[Die Exponentialreihe] \label{prop:3.9-Exponentialreihe}
 	Für $x \in \R$ betrachte die Reihe 
 	$$ \sum_{n=0}^{\infty} \frac{x^{n}}{n!} = 1 + x + \frac{x^{2}}{2!} + \frac{x^{3}}{3!} + \dotsc $$
 	Frage: für welche $x \in \R$ konvergiert die Reihe (absolut). \\
 	Klar, die Reihe konvergiert für $x = 0$. Sei $x \ne q$ und $a_{n} \coloneqq \frac{x^{n}}{n!}$.
 		$$ \left| \frac{a_{n+1}}{a_{n}} \right| = \left| \frac{x^{n+1}}{(n+1)!} \cdot \frac{n!}{x^{n}} \right| = \frac{|x|}{n+1} \rightarrow 0 \quad (n \rightarrow \infty) $$
-	Aus \hyperref[folg:3.8]{3.8} folgt:
+	Aus \ref{folg:3.8} folgt:
 		$$ \sum_{n=0}^{\infty} \frac{x^{n}}{n!} \text{ konv. absolut für jedes } x \in \R $$
 	Damit ist auf $\R$ eine Funktion $E \colon \R \rightarrow \R$ definiert:
 		$$ E(x) \coloneqq \sum_{n=0}^{\infty} \frac{x^{n}}{n!} \quad \text{Exponentialfunktion} $$
@@ -1478,12 +1475,12 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 	Dann hei{\ss}t $(b_{n})$ eine \textbf{Umordnung} von $(a_{n})$.
 \end{definition}
 
-\begin{beispiel}
+\begin{beispiel*}
 $(a_{2}, a_{4}, a_{1} a_{3}, a_{6}, a_{8}, a_{5}, a_{7}, \dotsc)$ ist eine Umordnung von $(a_{n})$.	
-\end{beispiel}
+\end{beispiel*}
 
-\label{satz:3.10}
-\begin{satz}
+
+\begin{satz} \label{satz:3.10}
 	$(b_{n})$ sei eine Umordnung von $(a_{n})$.
 	\begin{enumerate}
 		\item Ist $(a_{n})$ konvergent, so ist $(b_{n})$ konvergent und $\lim b_{n} = \lim a_{n}$.
@@ -1515,29 +1512,29 @@ $(a_{2}, a_{4}, a_{1} a_{3}, a_{6}, a_{8}, a_{5}, a_{7}, \dotsc)$ ist eine Umord
 		c_{n} & \coloneqq \sum_{k=0}^{\infty} a_{k} b_{n-k}, \text{ also: } \\
 		c_{n} & = a_{0} b_{n} + a_{1} b_{n-1} + \dotsc + a_{n} b_{0}
 	\end{align*} 
-	Die Reihe $\sum_{n=0}^{\infty} c_{n}$ hei{\ss}t das \textbf{Cauchyprodukt (CP)} von $\sum a_{n}$ und $\sum b_{n}$.
+	Die Reihe $\sum_{n=0}^{\infty} c_{n}$ hei{\ss}t das \textbf{Cauchyprodukt} (CP) von $\sum a_{n}$ und $\sum b_{n}$.
 \end{definition}
 
-\label{satz:3.11}
-\begin{satz}[ohne Beweis]
+
+\begin{satz}[ohne Beweis] \label{satz:3.11}
 $\sum_{n=0}^{\infty} a_{n}$ und $\sum_{n=0}^{\infty} b_{n}$ seien absolut konvergent. Für ihr Cauchyprodukt $\sum_{n=0}^{\infty} c_{n}$ gilt dann:
 	$$ \sum_{n=0}^{\infty} c_{n} \text{ ist absolut konvergent und } \sum_{n=0}^{\infty} c_{n} = (\sum_{n=0}^{\infty} a_{n}) (\sum_{n=0}^{\infty} b_{n}) $$
 \end{satz}
 
 
-\begin{beispiel}
+\begin{beispiel*}
 	Sei $x \in \R$ und $|x | < 1$. \\
 	Bekannt: $\sum_{n=0}^{\infty} x^{n}$ konvergiert absolut und	 $\sum_{k=0}^{\infty} x^{n} = \frac{1}{1-x}$. Also
-	$$ \frac{1}{(1-x)^{2}} = (\sum_{n=0}^{\infty} x^{n})(\sum_{n=0}^{\infty} x^{n}) \overset{\hyperref[satz:3.11]{3.11}}{=} \sum_{n=0}^{\infty} c_{n} $$
+	$$ \frac{1}{(1-x)^{2}} = (\sum_{n=0}^{\infty} x^{n})(\sum_{n=0}^{\infty} x^{n}) \overset{\ref{satz:3.11}}{=} \sum_{n=0}^{\infty} c_{n} $$
 	mit $c_{n} = \sum_{k=0}^{n} x^{k} x^{n-k} = (n+1)x^{n}$. Also:
 	$$ \frac{1}{(1-x)^{2}} = \sum_{n=0}^{\infty} (n+1) x^{n} \quad (|x| < 1) $$
 	z.B.: $(x = \frac{1}{2}): 4 = \sum_{n=0}^{\infty} \frac{(n+1)}{2^{n}}$. Weiter:
 	$$ \frac{x}{(1-x)^{2}} = \sum_{n=0}^{\infty} (n+1) x^{n+1} = \sum_{n=1}^{\infty} n x^{n} $$
 	z.B.: $(x = \frac{1}{2}): 2 = \sum_{n=1}^{\infty} \frac{n}{2^{n}}$, also $1 = \sum_{n=1}^{\infty} \frac{n}{2^{n+1}}$
-\end{beispiel}
+\end{beispiel*}
 
-\label{prop:3.12-Exponentialfunktion}
-\begin{prop}
+
+\begin{prop} \label{prop:3.12-Exponentialfunktion}
 	$E(X) = \sum_{n=0}^{\infty} \frac{x^{n}}{n!}$ $(x \in \R)$
 	\begin{enumerate}
 		\item $E(0) = 1, E(1) = e$
@@ -1551,8 +1548,114 @@ $\sum_{n=0}^{\infty} a_{n}$ und $\sum_{n=0}^{\infty} b_{n}$ seien absolut konver
 \end{prop}
 
 \begin{beweis}
-	todo	
+	\begin{enumerate}
+		\item klar.
+		\item $E(x)E(y) = (\sum_{n=0}^{\infty} \frac{x^{n}}{n!})(\sum_{n=0}^{\infty} \frac{y^{n}}{n!}) \overset{\ref{satz:3.11}}{=} \sum_{n=0}^{\infty} c_{n}$, wobei
+			$$ c_{n} = \sum_{k=0}^{\infty} \frac{x^{k}}{k!} \cdot \frac{y^{n-k}}{(n-k)!} = \frac{1}{n!} \sum_{k=0}^{n} \underbrace{\frac{n!}{k! (n-k)!}}_{\binom{n}{k}} x^{k} y^{n-k} \overset{\S1}{=} \frac{1}{n!} (x+y)^{n} $$
+			Also: $E(x)E(y) = \sum_{n=0}^{\infty} \frac{(x+y)^{n}}{n!} = E(x+y)$
+		\item folgt aus b)
+		\item Für $x > 0$: $E(x) = 1 + \underbrace{x + \frac{x^{2}}{2!} + \frac{x^{3}}{3!} + \dotsc}_{> 0} > 1$ \\
+			$1 = E\left(x + (-x)\right) \overset{b)}{=} E(x) E(-x) ~\forall x \in \R$; Insb.: $E(x) > 0 ~(x < 0)$ und $E(-x) = E(x)^{-1}$.
+		\item Sei $x \in \R$. Für $n \in \N$:
+			$$ E(nx) = E(x + \dotsc + x) \overset{c)}{=} E(x)^{n} $$
+			$E(x) = (E n(\frac{x}{n}) = E(\frac{x}{n})^{n}$, also $E(\frac{1}{n} x) = E(x)^{\frac{1}{n}}$. \\
+			Für $m, n \in \N$:
+			$E(\frac{m}{n} x ) = E(m \frac{x}{n}) = E(\frac{x}{n})^{m} = (E(x)^{\frac{1}{n}})^{m} = E(x)^{\frac{m}{b}}$
+			Also $E(rx) = E(x)^{r} ~\forall r \in \Q$ mit $r > 0$. Sei $r \in Q$ und $r < 0$. Dann: $-r > 0$, also
+			$$ \underbrace{E(-rx)}_{\overset{d)}{=} \frac{1}{E(rx)}} =e(x)^{-r} = \frac{1}{E(x)^{r}} $$
+			Also $E(rx) = E(x)^{r}$
+		\item folgt aus d) mit $x = 1$.
+		\item Sei $x < y \Rightarrow y - x > 0 \xRightarrow[]{d)} E(y - x) > 1$
+			$$ \Rightarrow 1 < E(y - x) \overset{b)}{=} E(y)E(-x) \overset{d)}{=} \frac{E(y)}{E(x)} \xRightarrow[]{d)} E(x) < E(y) $$
+	\end{enumerate}
 \end{beweis}
+
+
+\newpage
+
+
+\section{Potenzreihen}
+
+\index{Potenzreihe}
+\begin{definition}
+	$(a_{n})_{n=0}^{\infty}$ sei eine Folge in $\R$ und $x_{0} \in \R$. Eine Reihe der Form
+		$$ \sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n} = a_{0} + a_{1} (x - x_{0}) + a_{2} (x - x_{0})^{2} + \dotsc $$
+		hei{\ss}t \textbf{Potenzreihe} (PR). 
+\end{definition}
+
+Frage: für welche $x \in \R$ konvergiert die Potenzreihe (absolut)? Klar: die Potenzreihe konvergiert absolut für $x = x_{0}$.
+
+\begin{beispiele} ~\
+	\begin{enumerate}
+		\item $\sum_{n=0}^{\infty} \frac{x^{n}}{n!}$. Hier: $a_{n} = \frac{1}{n!}, x_{0} = 0$. Bekannt: die Potenzreihe konvergiert absolut in jeden $x \in \R$.
+		\item $\sum_{n=0}^{\infty} (x - x_{0})^{n}$. Hier: $a_{n} = 1$. Setze $q \coloneqq x - x_{0}$. Bekannt: $\sum_{n=0}^{\infty} q^{n}$ konvergiert absolut $\iff |q| < 1$. D.g. die Potenzreihe konvergiert absolut $\iff |x - x_{0} | < 1$
+			% todo image
+		\item $\sum_{n=0}^{\infty} n^{n} (x - x_{0})^{n}$. Hier: $a_{n} = n^{n}$. Sei $x \neq x_{0}$ und $b_{n} \coloneqq n^{n} (x - x_{0})^{n}$; $\sqrt[n]{|b_{n}|} = n |x - x_{0}| \xRightarrow[]{x \neq x_{0}} \left( \sqrt[n]{|b_{n}|} \right)$ ist unbeschränkt $\xRightarrow[]{\ref{prop:3.6-Wurzelkriterium}} \sum n^{n} (x - x_{0})^{n}$ ist divergent. \\
+			Also: $\sum_{n=0}^{\infty} n^{n} (x - x_{0})^{n}$ konvergiert nur für $x = x_{0}$.
+	\end{enumerate}	
+\end{beispiele}
+
+\index{Konvergenzradius}
+\begin{definition}
+	$\sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n}$ sei eine Potenzreihe. Setze
+		$$ \rho \coloneqq \begin{cases}
+			\infty, & \text{falls } \left( \sqrt[n]{|b_{n}|} \right) \text{ unbeschränkt}; \\
+			\limsup \sqrt[n]{|b_{n}|}, & \text{falls } \left( \sqrt[n]{|b_{n}|} \right) \text{ beschränkt}
+		\end{cases} $$
+	und
+		$$ r \coloneqq \begin{cases}
+			0, & \text{falls } \rho = \infty \\
+			\infty, & \text{falls } \rho = 0 \\
+			\frac{1}{\rho}, & \text{falls } \rho \in (0, \infty)
+		\end{cases} $$
+	(kurz: \glqq $r = \frac{1}{\rho}$\grqq). $r$ hei{\ss}t der \textbf{Konvergenzradius} (KR) der Potenzreihe.
+\end{definition}
+
+
+\begin{satz} \label{satz:4.1}
+	$\sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n}$ sei eine Potenzreihe und $\rho$ und $r$ seien wie oben.
+	\begin{enumerate}
+		\item Ist $r = 0$, so konvergiert die Potenzreihe nur für $x = x_{0}$.
+		\item Ist $r = \infty$, so konvergiert die Potenzreihe absolut für jedes $x \in \R$.
+		\item Ist $r \in (0, \infty)$, so konvergiert die Potenzreihe absolut für $x \in \R$ mit $|x - x_{0}| < r$, sie divergiert für $x \in \R$ mit $|x - x_{0}| > r$. Für $x = x_{0} \pm r$ ist keine allg. Aussage möglich.
+			% todo image
+	\end{enumerate}
+\end{satz}
+
+\begin{beweis}
+	Für $x \in \R$ sei $b_{n} \coloneqq a_{n} (x - x_{0})^{n} ~(n \in \N_{0})$. \\
+	Damit: $\sqrt[n]{|b_{n}(x)|} = \sqrt[n]{|a_{n}|} |x - x_{0}|$
+	\begin{enumerate}
+		\item Sei $x \neq x_{0}$. $r = 0 \iff \rho = 0 \iff \left( \sqrt[n]{|b_{n}(x)|} \right)$ unbeschränkt $\xRightarrow[]{\ref{prop:3.6-Wurzelkriterium}} \sum b_{n}(x)$ divergiert.
+		\item $r = \infty \iff \rho = 0 \iff \limsup \sqrt[n]{|b_{n}(x)|} = 0 ~\forall x \in \R \xRightarrow[]{\ref{prop:3.6-Wurzelkriterium}}$ Beh.
+		\item $\limsup \sqrt[b]{|b_{n}(x)|} = \limsup \sqrt[n]{|a_{n}|} |x - x_{0}| = \rho |x - x_{0}| = \frac{1}{r} |x - x_{0}| < 1$ 
+			$$ \iff |x - x| < r $$
+			Analog für $|x - x| > r$. Behauptung folgt aus \ref{prop:3.6-Wurzelkriterium}.
+	\end{enumerate}	
+\end{beweis}
+
+
+\begin{folg*}
+	$\lim_{n \rightarrow \infty} \frac{1}{\sqrt[n]{n!}} = 0$	
+\end{folg*}
+
+\begin{beweis}
+	$\sum_{n=0}^{\infty} \frac{x^{n}}{n!}$ hat den Konvergenzradius $r = \infty$; $a_{n} = \frac{1}{n!} \xRightarrow[]{\ref{satz:4.1}} \rho = 0$, also $\limsup \sqrt[n]{|a_{n}|} = 0$ Hilfssatz vor \ref{prop:3.6-Wurzelkriterium} $\Rightarrow \lim \sqrt[n]{|a_{n}|} = 0$.
+\end{beweis}
+
+
+\begin{beispiele} ~\
+	\begin{enumerate}
+		\item $\sum_{n=0}^{\infty} x^{n}$; $a_{n} = 1 ~(n \in \N_{0})$, $x_{0}$ = 1; $\rho = 1, r = 1$. Die Potenzreihe konvergiert für $|x| <$ absolut; sie divergiert für $|x| > 1$. $|x| = 1$: die Potenzreihe divergiert.
+		\item $\sum_{n=1}^{\infty} \frac{x^{n}}{n}$, $a_{0} = 0, a_{n} = \frac{1}{n} ~(n \geq 1)$, $x_{0} = 0$; $\sqrt[n]{|a_{n}|} = \frac{1}{\sqrt[n]{n}} \rightarrow 1 \Rightarrow \rho = 1 \Rightarrow r = 1$. Die Potenzreihe konvergiert absolut für $|x| < 1$ und sie divergiert für $|x| > 1$. $x = 1$: $\sum_{n=1}^{\infty} \frac{1}{n}$ divergiert; $x = -1$: $\sum_{n=1}^{\infty} \frac{(-1)^{n}}{n}$ konvergiert.
+		\item $\sum \frac{x^{n}}{n^{2}}$; $a_{0} = 0, a_{n} = \frac{1}{n^{2}} ~(n \geq 1)$, $x_{0} = 0$; $\sqrt[n]{|a_{n}|} \rightarrow 1 \Rightarrow \rho = 1 \Rightarrow r = 1$. Die Potenzreihe konvergiert absolut für $|x|< 1$, sie divergiert für $|x| > 1$. $x = 1$: $\sum \frac{1}{n^{2}}$ konvergiert absolut; $x = -1$: $\sum \frac{(-1)^{n}}{n^{2}}$ konvergiert absolut.
+	\end{enumerate}	
+\end{beispiele}
+
+\index{Cosinus}
+\begin{prop}[Cosinus] \label{prop:4.2-Cosinus}
+	a
+\end{prop}
 
 
 \newpage
