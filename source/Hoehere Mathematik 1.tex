@@ -21,7 +21,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{color}
-\usepackage[bookmarks,bookmarksnumbered,hypertexnames=false,pdfpagelayout=OneColumn]{hyperref}
+\usepackage[bookmarks,bookmarksnumbered,hypertexnames=false,pdfpagelayout=OneColumn,colorlinks]{hyperref}
 \usepackage{makeidx} 
 \usepackage{mathtools} 
 \usepackage{pgfplots}
@@ -35,9 +35,6 @@
 \renewcommand{\baselinestretch}{1.05}
 \setkomafont{subsection}{\fontsize{0.8em}{1em}\selectfont\bfseries}
 \DeclareUnicodeCharacter{00A0}{ }
-\renewcommand*{\qed}{\hfill\ensuremath{\square}} % \square vs. \blacksquare
-
-\newtheoremstyle{dotless}{}{}{}{}{\bfseries}{:}{ }{}
 
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\R}{\mathbb{R}}
@@ -45,25 +42,25 @@
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\Q}{\mathbb{Q}}
 
+\newtheoremstyle{dotless}{}{}{}{}{\bfseries}{:}{ }{}
+\renewcommand*{\qed}{\hfill\ensuremath{\square}} % \square vs. \blacksquare
 \theoremstyle{dotless}
 \newtheorem{satz}{Satz}[section]	  	
-\newtheorem{prop}[satz]{Proposition}
-\newtheorem{folg}[satz]{Folgerung}
 \newtheorem{beispiel}[satz]{Beispiel}
-\newtheorem*{folg*}{Folgerung}
-\newtheorem*{definition}{Definition}
+\newtheorem{folg}[satz]{Folgerung}
+\newtheorem{prop}[satz]{Proposition}
 \newtheorem*{beispiel*}{Beispiel}
 \newtheorem*{beispiele}{Beispiele}
 \newtheorem*{bemerkung}{Bemerkung} 
 \newtheorem*{bemerkungen}{Bemerkungen}
-\newtheorem*{regeln}{Regeln}
-\newtheorem*{vereinbarung}{Vereinbarung}
-\newtheorem*{schreibweise}{Schreibweise}
+\newtheorem*{bezeichnung}{Bezeichnung}
+\newtheorem*{definition}{Definition}
 \newtheorem*{folgerung}{Folgerung}
-\newtheorem*{schreibweisen}{Schreibweisen}
 \newtheorem*{hilfssatz}{Hilfssatz}
-\newtheorem*{beweis}{Beweis}
-
+\newtheorem*{regeln}{Regeln}
+\newtheorem*{schreibweise}{Schreibweise}
+\newtheorem*{schreibweisen}{Schreibweisen}
+\newtheorem*{vereinbarung}{Vereinbarung}
 %%%%%%%%%%%%%%%% Setup ende
 
 \makeindex
@@ -321,7 +318,7 @@ Ist $\sup M$ bzw. $\inf M$ vorhanden und gilt $\sup M \in M$ bzw. $\inf M \in M$
 Von nun an sei $\N = \{ 1, 2, 3, \dotsc \}$ bekannt.
 
 \index{vollständige Induktion}
-\begin{prop}[Prinzip der vollständigen Induktion] \label{prop-1.4} ~\\ 
+\begin{prop}[Prinzip der vollständigen Induktion] \label{prop:1.4} ~\\ 
 	Ist $A \subseteq \N$ und $A$ eine Induktionsmenge, so ist $A = N$.
 
 	\begin{proof}
@@ -339,7 +336,7 @@ Dann ist $A(n)$ wahr für \textbf{jedes} $n \in \N$!
 
 \begin{proof}
 	Sei $A \coloneqq \{ n \in \N : A(n)$ ist wahr $\}$. Dann: \\
-	$A \subseteq \N$ und, wg. $(I)$, $(II)$, $A$ ist eine Induktionsmenge $\xRightarrow[]{\ref{prop-1.4}
+	$A \subseteq \N$ und, wg. $(I)$, $(II)$, $A$ ist eine Induktionsmenge $\xRightarrow[]{\ref{prop:1.4}
 	} A = \N$
 \end{proof}
 
@@ -1237,7 +1234,7 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 
 \begin{proof} ~\
 	\begin{enumerate}
-		\item $s_{n+1} = a_{1} + \dotsc + a_{n} + a_{n+1} = s_{n} + a_{n+1} \geq s_{n}$. $(s_{n})$ ist also wachsend und beschränkt $\xRightarrow[]{\ref{prop.2.3}} (s_{n})$ konvergent.
+		\item $s_{n+1} = a_{1} + \dotsc + a_{n} + a_{n+1} = s_{n} + a_{n+1} \geq s_{n}$. $(s_{n})$ ist also wachsend und beschränkt $\xRightarrow[]{\ref{prop:2.3}} (s_{n})$ konvergent.
 		\item Für $m > n: |s_{m} - s_{n}| = | a_{1} + \dotsc + a_{n} + a_{n+1} + \dotsc + a_{m} - (a_{1} + \dotsc a_{n})| = |a_{n+1} + \dotsc + a_{m}| = |\sum_{k=n+1}^{m} a_{k}|$. Behauptung folgt aus \ref{prop:2.15}.
 		\item $s_{n+1} - s_{n} = a_{n+1}$. Ist $(s_{n})$ konvergent, so folgt $a_{n+1} \rightarrow 0$
 		\item ohne Beweis!
@@ -1257,7 +1254,7 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 \end{satz}
 
 \begin{proof}
-	\ref{satz:2.2} ab
+	\ref{satz:2.2}
 \end{proof}
 
 \index{Konvergenzkriterium!Reihen!Leibnitz}
@@ -1632,9 +1629,9 @@ Frage: für welche $x \in \R$ konvergiert die Potenzreihe (absolut)? Klar: die P
 \end{proof}
 
 
-\begin{folg*}
+\begin{folgerung}
 	$\lim_{n \rightarrow \infty} \frac{1}{\sqrt[n]{n!}} = 0$	
-\end{folg*}
+\end{folgerung}
 
 \begin{proof}
 	$\sum_{n=0}^{\infty} \frac{x^{n}}{n!}$ hat den Konvergenzradius $r = \infty$; $a_{n} = \frac{1}{n!} \xRightarrow[]{\ref{satz:4.1}} \rho = 0$, also $\limsup \sqrt[n]{|a_{n}|} = 0$ Hilfssatz vor \ref{prop:3.6-Wurzelkriterium} $\Rightarrow \lim \sqrt[n]{|a_{n}|} = 0$.
@@ -1706,12 +1703,227 @@ Für alle $x \in \R$ ist $\cos^{2} x \leq \cos^{2} x + \sin^{2} x = 1$, also $|\
 
 \section{q-adische Entwicklung}
 
+\begin{definition}
+	Sei $x \in \R$. Dann existiert genau eine Zahl $k \in \Z$: $k \leq x < k + 1$; 
+		$$ [x] \coloneqq k = \text{ grö{\ss}te ganze Zahl } \leq x $$
+	% todo Zeichnung
+\end{definition}
+
+
+\begin{vereinbarung}
+	In diesem $\S$ sei stets $a \geq 0, q \in \N$ und $q > 1$.
+\end{vereinbarung}
+
+
+Setze $z_{0} \coloneqq [a]$, dann: $z_{0} \leq a < z_{0} + 1$. \\
+Setze $z_{1} \coloneqq [(a-z_{0})q]$, dann: $z_{1} \leq aq - z_{0}q < z_{1} + 1$. \\
+Also
+	$$ z_{0} + \frac{z_{1}}{q} \leq a < z_{0} + \frac{z_{1}}{q} + \frac{1}{q} $$
+Es ist $z_{1} \in \N_{0}$: Annahme: $z_{1} \geq 1 \Rightarrow \frac{z_{1}}{q} \geq 1$
+	$$ \Rightarrow z_{0} + 1 \leq z_{0} + \frac{z_{1}}{q} \leq a < z_{0} +1 $$
+Widerspruch! Also: $z_{1} \in \{ 0, 1, \dotsc, q - 1 \}$. \\
+Setze  $z_{2} \coloneqq [(a-z_{0}-\frac{z_{1}}{q})q^{2}]$, dann (wie oben)
+	$$ z_{0} + \frac{z_{1}}{q} + \frac{z_{2}}{q^{2}} \leq a < z_{0} + \frac{z_{1}}{q} + \frac{z_{2}}{q^{2}} + \frac{1}{q^{2}} $$
+und $z_{2} \in \{ 0, 1, \dotsc, q - 1 \}$. \\
+Allgemein (induktiv): sind $z_{0}, \dotsc, z_{n}$ schon definiert, so setze
+	$$ z_{n+1} \coloneqq [(a - z_{0} - \frac{z_{1}}{q} - \dotsc - \frac{z_{n}}{q^{n}}) q^{n+1}] $$
+Wir erhalten so eine Folge $(z_{n})_{n=0}^{\infty}$ mit:
+	$$ (*) \begin{cases} ~ z_{0} \in \N_{0}, z_{n} \in \{ 0, 1, \dotsc, q - 1 \} ~\forall n \geq 1 \\ \text{ und} \\ ~\underbrace{z_{0} + \frac{z_{1}}{q} + \dotsc + \frac{z_{n}}{q^{n}}}_{\eqqcolon S_{n}} \leq a < \underbrace{ z_{0} + \frac{z_{1}}{q} + \dotsc + \frac{z_{n}}{q^{n}} + \frac{1}{q^{n}}}_{= S_{n} + \frac{1}{q^{n}}} \end{cases} $$
+
+
+In den gro{\ss}en Übungen wird gezeigt:
+
+\begin{satz} \label{satz:5.1}
+	Ist $(\tilde{z}_{n})_{0}^{\infty}$ eine weitere Folge mit den Eigenschaften in $(*)$, so gilt: 
+	$$ z_{n} = \tilde{z}_{n} \quad \forall n \in \N_{0} $$
+\end{satz}
+
+\index{q-adische Entwicklung}
+Es ist
+	$$ 0 \leq \frac{z_{n}}{q^{n}} \leq \frac{q - 1}{q^n} ~\forall n \in \N \quad \text{und} \quad \sum_{n=1}^{\infty} \frac{q - 1}{q^{n}} \text{ konvergiert}. $$
+$\xRightarrow[]{\ref{satz:3.5}~a)} \sum_{n=0}^{\infty}\sqrt{z_{n}}{q^{n}}$ konvergiert. Also ist $(s_{n})$ konvergent.
+	$$ \xRightarrow[]{(*)} a = \lim s_{n} = \sum_{n=0}^{\infty} \frac{z_{n}}{q^{n}} $$
+Dafür schreibt man: $a = z_{0}, z_{1} z_{2} z_{3} \dotsc$ (\textbf{q-adische Entwicklung von }$a$)
+
+$q = 10$: Dezimalentwicklung; $q = 2$: Dualentwciklung; \\
+(Gilt mit einem $m \in \N$: $z_{n} = 0 ~\forall n > m$, so schreibt man auch: $a = z_{0}, z_{1} \dotsc z_{m}$).
+
+
+\begin{beispiele} ~\
+	\begin{enumerate}
+		\item $q = 10, a = 1$. $z_{0} = 1, z_{1} = [(a - z_{0})q] = 0$; \\
+			$z_{2} = [(a - z_{0} - \frac{z_{1}}{q})q^{2}] = 0, \dotsc$ allg: $z_{n} = 0 ~\forall n \geq 1$. \\
+			Also $1 = 1,000\dotsc$
+		\item $q = 10, a = \frac{1}{2}$. $z_{0} = 0, z_{1} = [(a - z_{0})q] = [\frac{1}{2} 10] = 5$; \\
+			$z_{2} = [(a - z_{0} - \frac{z_{1}}{q})q^{2}] = [(\frac{1}{2} - \frac{5}{10}) 100] = 0, \dotsc$ allg.: $z_{n} = 0 ~\forall n \geq 2$. \\
+			Also $\frac{1}{2} = 0,5000\dotsc = 0,5$
+	\end{enumerate}
+\end{beispiele}
+
+
+\begin{definition} % todo Ist das wirklich eine Definition?
+	Sei $b \in \R$ und $b < =$. Weiter sei
+		$$ -b = z_{0}, z_{1} z_{2} \dotsc $$
+	die q-adische Entwicklung von $-b$. Dann ist $b = - z_{0}, z_{1} z_{2} \dotsc$ die q-adische Entwicklung von $b$.
+\end{definition}
+
+
+\begin{satz} \label{satz:5.2}
+	Sei $a = z_{0}, z_{1} z_{2} z_{3} \dotsc$ die q-adische Entwicklung von $a$. Dan ist $z_{n} = q -$ ffa $n \in \N$ nicht möglich.
+\end{satz}
+
+\begin{proof}
+	Annahme: $\exists m \in \N$: $z_{n} = q - 1 ~\forall n \geq m$. Dann 
+		$$ a = \sum_{n=0}^{\infty} \frac{z_{n}}{q^{n}} = \underbrace{\sum_{n=0}^{m-1} \frac{z_{n}}{q^{n}}}_{= S_{m-1}} + \sum_{n=m}^{\infty} \frac{q-1}{q^{n}} $$
+		$$ \sum_{n=m}^{\infty} \frac{q-1}{q^{m}} = (q-1) \left( \frac{1}{q^{m}} + \frac{1}{q^{m+1}} + \dotsc \right) = \frac{q - 1}{q^{m}} (1 + \frac{1}{q} + \frac{1}{q^{2}} + \dotsc ) = \frac{q - 1}{q^{m}} \frac{1}{1 - \frac{1}{q}} = \frac{1}{q^{m-1}}$$
+	Also $a = S_{m-1} + \frac{1}{q^{m-1}} \overset{(*)}{>} a$, Widerspruch!
+\end{proof}
+
+
+\begin{satz} \label{satz:5.3}
+	$\R$ ist überazählbar.
+\end{satz}
+
+\begin{proof}
+	es genügt zu zeigen: $[0, 1)$ ist überabzählbar. Annahme $[0, 1)$ abzählbar, also $[0, 1) = \{ a_{1}, a_{2}, \dotsc \}$. Für $j \in \N$ sei
+		$$ a_{j} = 0, z_{1}^{(j)} z_{2}^{(j)} z_{3}^{(j)} \dotsc $$
+	die 3-adische Entwicklung von $a_{j}$, also $z_{k}^{(j)} \in \{ 0, 1, 2 \}$. Setze
+		$$ z_{k} \coloneqq \begin{cases} 1, & \text{falls } z_{k}^{(k)} = 0 \text{ oder } z_{k}^{(k)} = 2 \\ 0, & \text{falls } z_{k}^{(k)} = 1 \end{cases} $$
+	Dann: $z_{k} \neq z_{k}^{k} ~\forall k \in \N$ $(**)$ \\
+	Setze $a \coloneqq \sum_{n=1}^{\infty} \frac{z_{n}}{3^{n}}$. Dann:
+		$$ 0 \leq a \leq \sum_{n=1}^{\infty} \frac{1}{3^{n}} = \frac{1}{2}, \text{ also } a \in [0, 1) $$
+	Übung: $0, z_{1} z_{2} z_{3} \dotsc$ ist die 3-adische Entwicklung von $a$.$a \in [0, 1) \Rightarrow \exists m \in \N: a = a_{m}$, also
+		$$ 0, z_{1} z_{2} z_{3} \dotsc = 0, z_{1}^{(m)} z_{2}^{(m)} \dotsc $$
+	und $z_{j} = z_{j}^{(m)} ~\forall j \in \N \xRightarrow[]{j = m} z_{m} = z_{m}^{(m)}$. Widerspruch zu $(**)$.
+\end{proof}
+
 
 \newpage
 
+
+\section{Grenzwerte bei Funktionen}
+
+\index{Häufungspunkt}
+\begin{definition}
+	Sei $D \subseteq \R$ und $x_{0} \in \R$. $x_{0}$ hei{\ss}t ein \textbf{Häufungspunkt} (HP) von $D \iff \exists$ Folge $(x_{n})$ in $D \setminus \{ x_{0} \}$ mit $x_{n} \rightarrow x_{0}$.
+\end{definition}
+
+
+\begin{beispiele}
+	\begin{enumerate}
+		\item $D = (0, 1]$ \\ % todo image
+			$x_{0}$ ist Häufungspunkt von $D \iff x_{0} \in [0 1]$
+		\item $D = \{ \frac{1}{n} : n \in \N \}$ \\ % todo image
+			$D$ hat genau einen Häufungspunkt: $x_{0} = 0$.
+		\item Ist $D$ endlich, so hat $D$ keine Häufungspunkte. 
+	\end{enumerate}	
+\end{beispiele}
+
+
+\begin{hilfssatz}
+	Sei $D \subseteq \R$ und $x_{0} \in \R$. $x_{0}$ ist Häufungspunkt von $D \iff \forall \epsilon > 0: U_{\epsilon}(x_{0}) \cap (D \setminus \{ x_{0} \} ) \neq \emptyset$.
+\end{hilfssatz}
+
+\begin{proof} ~\\
+	$"'\Rightarrow"'"$ $\exists$ Folge $(x_{n})$ in $D \setminus \{ x_{0} \} : x_{n} \rightarrow x_{0}$. Sei $\epsilon > 0$: $\exists n_{0} \in \N: x_{n} \in U_{\epsilon}(x_{0}) \cap (D \setminus \{ x_{0} \})$ $\forall n \geq n_{0}$ \\
+	$"'\Leftarrow"'"$ $\exists x_{1} \in U_{1}(x_{0}) \cap (D \setminus \{ x_{0} \})$, also $|x_{1} - x_{0}| < 1$ $\exists x_{2} \in U_{\frac{1}{2}}(x_{0} \cap (D \setminus \{ x_{0} \})$, also $|x_{2} - x_{0}| < \frac{1}{2}$, etc. \\
+	Wir erhalten eine Folge $(x_{n})$ in $D \setminus \{ x_{0} \}$ mit $|x_{n} - x_{0}| < \frac{1}{n} ~\forall n$, also $x_{n} \rightarrow x_{0}$.
+\end{proof}
+
+
+\begin{vereinbarung}
+	ab jetzt sei stets in den $\S$en:
+	\begin{itemize}
+		\item $\emptyset \neq D \subseteq \R, x_{0}$ ein Häufungspunkt von $D$ und
+		\item $f \coloneqq D \rightarrow \R$ eine Funktion	
+	\end{itemize}
+\end{vereinbarung}
+
+
+\begin{bezeichnung} ~\
+	\begin{enumerate}
+		\item $D_{\delta}(x_{0}) \coloneqq U_{\delta}(x_{0}) \cap (D \setminus \{ x_{0} \})$
+		\item Sei $M \subseteq D$ und $g \colon D \rightarrow \R$ eine weitere Funktion mit $f \leq g$ auf $M \iff f(x) \leq g(x) ~\forall x \in M$.
+	\end{enumerate}
+\end{bezeichnung}
+
+
+\begin{definition}
+	$\lim_{x \rightarrow x_{0}} f(x)$ existiert $\iff \exists a \in \R$: für jede Folge $(x_{n})$ in $D \in \{ x_{0} \}$ mit $x_{n} \rightarrow x_{0}$ gilt: $f(x_{n}) \rightarrow a$.
+	In diesem Fall ist $a$ eindeutig bestimmt und wir schreiben:
+		$$ \lim_{x \rightarrow x_{0}} f(x) = a \text{ oder } f(x) \rightarrow a ~(x \rightarrow x_{0}) $$
+\end{definition}
+
+
+\begin{bemerkung}
+	sollte $x_{0} \in D$ sein, so ist der Wert $f(x_{0})$ in obiger Definition nicht relevant. Relevant ist allein das Verfahren von $f$ in das $\glqq$Nähe$\grqq$ von $x_{0}$.	
+\end{bemerkung}
+
+\index{Grenzwert!linksseitiger} \index{Grenzwert!rechtsseitiger}
+\begin{beispiele} ~\
+	\begin{enumerate}
+		\item $D \coloneqq [0, \infty), p \in \N; f(x) \coloneqq \sqrt[p]{x}$. Sei $x_{0} \in D$ (dann ist $x_{0}$ eine Häufungspunkt von $D$). Sei $(x_{n})$ eine Folge in $D \setminus \{ x_{0} \}$ und $x_{n} \rightarrow x_{0} \xRightarrow[]{\ref{bsp:2.4}} \sqrt[p]{x_{n}} \rightarrow \sqrt[p]{x_{0}}$. Also
+			$$ \lim_{x \rightarrow x_{0}} f(x) = \sqrt[p]{x_{0}} $$
+		\item $D = (0, 1]$
+			$$ f(x) \coloneqq \begin{cases} x^{2}, & 0 < x < \frac{1}{2} \\ \frac{1}{2}, & x = \frac{1}{2} \\ 1, & \frac{1}{2} < x < 1 \\ 0, & x = 1 \end{cases} $$
+			Klar: $\lim_{x \rightarrow 0} f(x), \lim_{x \rightarrow 1} f(x) = 1$
+			$$ x_{n} \coloneqq \frac{1}{2} - \frac{1}{n}, z_{n} \coloneqq \frac{1}{2} + \frac{1}{n} ~(n \geq 3) $$
+			Dann: $x_{n} \rightarrow \frac{1}{2}, z_{n} \rightarrow \frac{1}{2}$, aber $f(x) = \left( \frac{1}{2} - \frac{1}{n} \right)^{2} \rightarrow \frac{1}{4} \neq 1 \leftarrow f(z_{n})$. \\
+			D.h. $\lim_{x \rightarrow \frac{1}{2}} f(x)$ existiert nicht, aber $\lim_{\underset{x \in (0, \frac{1}{2})}{x \rightarrow \frac{1}{2}}} f(x) = \frac{1}{4}$, dafür schreibt man $\lim_{x \rightarrow \frac{1}{2}-0} f(x) = \frac{1}{4}$ (linksseitiger Grenzwert) \\
+			Analog: $\lim_{\underset{x \in (\frac{1}{2}, \infty)}{x \rightarrow \frac{1}{2}}} f(x) = 1$ (rechtsseitiger Grenzwert)
+		\item $D = \R$, $f = E$, also $f(x) = \sum_{n=0}^{\infty} \frac{x^{n}}{n!}; x_{0} = 0$. Sei $|x| \leq 1$
+			\begin{align*}
+				|E(x) - E(0)| & = |E(x) - 1| = |x + \frac{x^{2}}{2!} + \frac{x^{3}}{3!} + \dotsc | \\
+				& = |x| \left| 1 + \frac{x}{2!} + \frac{x^{2}}{3!} + \dotsc \right| \\
+				& \leq |x| \left( 1 + \frac{|x|}{2!} + \frac{|x|^{2}}{3!} + \dotsc \right) \leq |x| \left( 1 + \frac{1}{2!} + \frac{1}{3!} + \dotsc \right) \\
+				& = |x| ( e - 1 )
+			\end{align*}
+			Sei $(x_{n})$ Folge in $\R$: $x_{n} \rightarrow 0$. $\exists n_{0} \in \N: |x_{n}| \leq 1 ~\forall n \geq n_{0} \Rightarrow |E(x_{n}) - | \leq |x_{n}|(e-1) ~\forall n \geq n_{0} \Rightarrow E(x_{n}) \rightarrow 1$ \\
+			Also: $\lim_{x \rightarrow 0} E(x) = 1 = E(0)$. Somit: $\lim_{x \rightarrow 0} \sum_{n=0}^{\infty} \frac{x^{n}}{n!} = \sum_{n=0}^{\infty} \left( \lim_{x \rightarrow 0} \frac{x1{n}}{n!} \right)$.
+	\end{enumerate}	
+\end{beispiele}
+
+
+\begin{satz} \label{satz:6.2}
+	a
+\end{satz}
+
+
+
+\newpage
 
 % Inhaltsverzeichnis
 \appendix \cleardoublepage \phantomsection \renewcommand{\indexname}{Stichwortverzeichnis} \addcontentsline{toc}{section}{\indexname} \printindex
 
 
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
