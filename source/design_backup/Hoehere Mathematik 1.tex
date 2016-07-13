@@ -1,57 +1,51 @@
-\documentclass{extreport}
+%%%%% Meine Sachen:
+%% todo Korrekturlesen, d.h. Tippfehler, quad bzw. Abstände und Punkte und Kommata
+%% $$ und \[ \]
+\documentclass[14pt,titlepage,ngerman,a4paper,headsepline,DIV15,halfparskip*]{scrartcl}
 
-%% Packages
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{chngcntr}
-\usepackage{cmap}
-\usepackage{color}
-\usepackage{enumitem}
-\usepackage{hyperref}
-\usepackage{makeidx}
-\usepackage{mathtools} 
-\usepackage{pgfplots}
-\usepackage{scrextend}
-\usepackage{xpatch}
-\usetikzlibrary{matrix}	
-
-% Language Setup
 \usepackage[utf8]{inputenc} 
 \usepackage[T1]{fontenc} 
 \usepackage[ngerman]{babel}
 
-% Options
-\makeatletter%
-  \changefontsizes{14pt}
-  \def\mystretch{1.2}
-  \definecolor{darkgreen}{rgb}{0,0.35,0.35}
-  \newcommand\publishers[1]{\newcommand\@publishers{#1}}
-  \renewcommand{\labelenumi}{\alph{enumi})}
-  \renewcommand{\labelenumii}{(\roman{enumii})}
-  \renewcommand{\thesubsection}{\thechapter.\arabic{subsection}} 
-  \setlength{\parindent}{0pt}
-  \setlist[enumerate,1]{ref={\thesatz ~ \alph*)}}
-  \xpatchcmd{\proof}{\@addpunct{.}}{\@addpunct{:}}{}{} 
-  \@ifundefined{thechapter}{}{\def\thefigure{\thechapter.\arabic{figure}}}
-\makeatother%
-
-% Meta Setup
 \title{Höhere Mathematik I}
 \author{G. Herzog, C. Schmoeger}
 \date{Wintersemester 2016/17}
 \publishers{Karlsruher Institut für Technologie}
 
+%%%%%%%%%%%%%%%% Setup - Anfang
+%% Packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{chngcntr}
+\usepackage{enumitem}
+\usepackage[colorlinks]{hyperref}
+\usepackage{makeidx} 
+\usepackage{mathtools} 
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usetikzlibrary{matrix}	
+%% Hacks
+\counterwithin{figure}{section}
+
+\DeclareUnicodeCharacter{00A0}{ }
+\newcommand{\indexsection}{section}
+\renewcommand{\baselinestretch}{1.05}
+\renewcommand{\labelenumi}{\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+\setkomafont{subsection}{\fontsize{0.8em}{0em}\normalfont\bfseries}
+\setlist[enumerate,1]{ref={\thesatz ~ \alph*)}}
+\setlength{\parindent}{0pt} 
 %% Math. Definitions
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
-
 %% Theorems
 \newtheoremstyle{named}{}{}{\normalfont}{}{\bfseries}{:}{0.25em}{#2 \thmnote{#3}}
 \theoremstyle{named}
-\newtheorem{namedtheorem}{Theorem} \counterwithin{namedtheorem}{chapter}
+\newtheorem{namedtheorem}{Theorem} \counterwithin{namedtheorem}{section}
 \newtheoremstyle{dotless}{}{}{}{}{\bfseries}{:}{ }{}
 \renewcommand*{\qed}{\hfill\ensuremath{\square}}
 \theoremstyle{dotless}
@@ -78,10 +72,7 @@
 \newtheorem*{uebung}{Übung}
 \newtheorem*{vereinbarung}{Vereinbarung}
 
-%% Template Hack
-\makeatletter%
-\DeclareUnicodeCharacter{00A0}{ } \DeclareOption{doublespace}{} \DeclareOption{singlespace}{\typeout{Single spaced}\def\mystretch{1}} \newif\if@leftblank \@leftblankfalse \DeclareOption{leftblank}{\typeout{Intentionally Leaving Pages Blank} \@leftblanktrue} \hypersetup{colorlinks,breaklinks, urlcolor=darkgreen, linkcolor=darkgreen, pdftitle=\@title, pdfauthor=\@author, pdfsubject=\@title, pdfcreator=\@publishers}\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}} \ProcessOptions \def\baselinestretch{\mystretch} \setlength{\oddsidemargin}{0.125in} \setlength{\evensidemargin}{0.125in} \setlength{\topmargin}{0.5in} \setlength{\textwidth}{6.25in} \setlength{\textheight}{8in} \addtolength{\topmargin}{-\headheight} \addtolength{\topmargin}{-\headsep} \def\pulldownheader{ \addtolength{\topmargin}{\headheight} \addtolength{\topmargin}{\headsep} \addtolength{\textheight}{-\headheight} \addtolength{\textheight}{-\headsep} } \def\pullupfooter{ \addtolength{\textheight}{-\footskip} } \def\ps@headings{\let\@mkboth\markboth \def\@oddfoot{} \def\@evenfoot{} \def\@oddhead{\hbox {}\sl \rightmark \hfil \rm\thepage} \def\chaptermark##1{\markright {\uppercase{\ifnum \c@secnumdepth >\m@ne \@chapapp\ \thechapter. \ \fi ##1}}} \pulldownheader } \def\ps@myheadings{\let\@mkboth\@gobbletwo \def\@oddfoot{} \def\@evenfoot{} \def\sectionmark##1{} \def\subsectionmark##1{}  \def\@evenhead{\rm \thepage\hfil\sl\leftmark\hbox {}} \def\@oddhead{\hbox{}\sl\rightmark \hfil \rm\thepage} \pulldownheader }	\def\chapter{\cleardoublepage  \thispagestyle{plain}  \global\@topnum\z@ \@afterindentfalse \secdef\@chapter\@schapter} \def\@makeschapterhead#1{ {\parindent \z@ \raggedright \normalfont \interlinepenalty\@M \Huge \bfseries  #1\par\nobreak \vskip 40\p@ }} \newcommand{\indexsection}{chapter} \patchcmd{\@makechapterhead}{\vspace*{50\p@}}{}{}{} \def\maketitle{\begin{titlepage} ~\vspace{3cm} \begin{center} {\Huge \@title} \end{center} \vspace*{1cm} \begin{center} {\large \@author} \end{center} \begin{center} \@date \end{center} ~\newline \vspace*{5cm} ~\newline \begin{center} \@publishers \end{center} \vfill \end{titlepage}}
-\makeatother%
+%%%%%%%%%%%%%%%% Setup - Ende
 
 \makeindex
 
@@ -91,11 +82,10 @@
 	
 % Inhaltsverzeichnis
 \tableofcontents
- \thispagestyle{empty}
  \newpage 
   
 % Skript - Anfang
-\chapter{Reelle Zahlen}
+\section{Reelle Zahlen}
 
 Grundmenge der Analysis is die Menge $\R$, die Menge der \textbf{reellen Zahlen}. Diese führen wir \textbf{axiomatisch} ein, d.h. wir nehmen $\R$ als gegeben an und \textbf{fordern} in den folgenden 15 \textbf{Axiomen} Eigenschaften von $\R$ aus denen sich alle weiteren Rechenregeln herleiten lassen.
 \newline
@@ -298,7 +288,7 @@ Ist $\sup M$ bzw. $\inf M$ vorhanden und gilt $\sup M \in M$ bzw. $\inf M \in M$
 	\end{proof}
 \end{satz}
 
-\section*{Natürliche Zahlen} 
+\subsection*{Natürliche Zahlen} 
 
 \index{Natürliche Zahlen} \index{Induktionsmenge}
 \begin{definition} ~\
@@ -473,7 +463,7 @@ Dann ist $A(n)$ wahr für \textbf{jedes} $n \in \N$!
 \newpage
 
 
-\chapter{Folgen und Konvergenz}
+\section{Folgen und Konvergenz}
 
 \index{Folge}
 \begin{definition}
@@ -1131,9 +1121,7 @@ Ist $x \in \R$, so existieren Folgen $(r_{m})$ in $\Q : r_{n} \rightarrow \alpha
 Für $n, m \geq n_{0}$:
 	$$ |a_{n} - a_{m}| = |a_{n} - a + a - a_{m} | \leq |a_{n} - a| + |a_{m} - a| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon $$
 D.h.: $(a_{n})$ hat die folgende Eigenschaft:
-	\begin{align*}
-		\forall \epsilon > 0 \exists n_{0} = n_{0}(\epsilon) \in \N: |a_{n} - a_{m}| < \epsilon \quad \forall n,m \geq n_{0} \tag{c}
-	\end{align*}
+	\[ \forall \epsilon > 0 \exists n_{0} = n_{0}(\epsilon) \in \N: |a_{n} - a_{m}| < \epsilon \quad \forall n,m \geq n_{0} \tag*{(c)} \]
 $$ (\iff \forall \epsilon > 0 ~\exists n_{0} = n_{0}(\epsilon) \in \N: |a_{n} - a_{n+k}| < \epsilon \quad \forall n \geq n_{0} ~\forall k \in \N) $$
 
 \index{Cauchyfolge}
@@ -1177,7 +1165,7 @@ Konvergente Folgen sind also Cauchy-Folgen!
 \newpage
 
 
-\chapter{Unendliche Reihen}
+\section{Unendliche Reihen}
 
 
 \index{Reihe!unendliche} \index{Teilsumme} \index{konvergent} \index{divergent} \index{Reihenwert}
@@ -1273,9 +1261,7 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 
 \begin{proof}(von 3.3) $a_{n} \coloneqq (-1)^{n+1} b_{n}$, \\
 	$s_{n} \coloneqq a_{1} + \dotsc + a_{n}$. $s_{2n+2} = s_{2n} + a_{2n+1} + a_{2n+2} = s_{2n} + \underbrace{b_{2n+1}-b_{2n+2}}_{\geq 0} \geq s_{2n}$. $(s_{2n})$ ist also monoton fallend. Es gilt:
-	\begin{align}
-		 \forall n \in \N: s_{2n} = s_{2n-1} - a_{2n} = s_{2n-1} - b_{2n} \leq s_{2n-1} \tag{$*$}
-	\end{align}
+	\[ \forall n \in \N: s_{2n} = s_{2n-1} - a_{2n} = s_{2n-1} - b_{2n} \leq s_{2n-1} \tag*{$(*)$} \]
 	Also:
 	$$ s_{2} \leq s_{4} \leq \dotsc \leq s_{2n} \overset{(*)}{\leq} s_{2n-1} \leq \dotsc \leq s_{3} \leq s_{1} $$
 	$(s_{2n})$ und $(s_{2n+1})$ sind also beschränkt $\xRightarrow[]{\ref{2.3:prop}} (s_{2n})$ und $(s_{2n+1})$ sind konvergent. $s \coloneqq \lim s_{2n} \xRightarrow[]{(*)} s = \lim s_{2n+1}$. \\
@@ -1311,9 +1297,7 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 \begin{proof} ~\
 	\begin{enumerate}
 		\item Seien $m,n \in \N, m > n$
-			\begin{align}
-				 \underbrace{| \sum_{k = n+1}^{m} a_{k} |}_{\eqqcolon \sigma_{m, n}} \leq \underbrace{\sum_{k = n+1}^{m}|a_{k}|}_{\eqqcolon \tau_{m, n}} \tag{$*$}
-			\end{align}
+			\[ \underbrace{| \sum_{k = n+1}^{m} a_{k} |}_{\eqqcolon \sigma_{m, n}} \leq \underbrace{\sum_{k = n+1}^{m}|a_{k}|}_{\eqqcolon \tau_{m, n}} \tag*{$(*)$} \]
 			Sei $\epsilon > 0$, Voraussetzung nach $\ref{3.1.b:satz} \Rightarrow \exists n_{0} \in \N: \tau_{m, n} < \epsilon$ für $m > n > n_{0} \xRightarrow[]{(*)} \sigma_{m, n} < \epsilon$ für $m > n \geq n_{0} \xRightarrow[]{\ref{3.1.b:satz}} \sum a_{n}$ konvergiert
 		\item Sei $s_{k} \coloneqq a_{1} + \dotsc + a_{k}$, $s \coloneqq \lim s_{n}$, $\sigma_{k} \coloneqq |a_{1}| + \dotsc |a_{k}|$ und $\sigma = \lim \sigma_{n}$. Dann: $|s_{n}| \rightarrow |s|$ und 
 			$$ |s| \leq \sigma \quad \forall n $$
@@ -1332,7 +1316,7 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 \begin{proof} ~\
 	\begin{enumerate}
 		\item $\exists j \in \N$: $|a_{n}| \leq b_{n} ~\forall n \geq j$. Sei $m > n \geq j$, dann
-			$$ \underbrace{\sum_{k=n+1}^{m}|a_{n}|}_{\eqqcolon \sigma_{m, n}} \leq \underbrace{\sum_{k=n+1}^{m} b_{k}}_{\eqqcolon \tau_{m,n}} $$
+			\[ \underbrace{\sum_{k=n+1}^{m}|a_{n}|}_{\eqqcolon \sigma_{m, n}} \leq \underbrace{\sum_{k=n+1}^{m} b_{k}}_{\eqqcolon \tau_{m,n}}  \]
 			Sei $\epsilon > 0$ Voraussetzung nach $\ref{3.1.b:satz} \Rightarrow \exists n_{0} \in \N: n_{0} \geq j$ und $\tau_{m,n} < \epsilon$ für $m > n \geq n_{0}$. Dann: $\sigma_{m,n} < \epsilon$ für $m > n \geq n_{0} \xRightarrow[]{\ref{3.1.b:satz}} \sum |a_{n}|$ konvergiert.
 		\item Annahme: $\sum a_{n}$ konvergent $\xRightarrow[]{a)} \sum b_{n}$ konvergent, Widerspruch.
 	\end{enumerate}	
@@ -1572,7 +1556,7 @@ $\sum_{n=0}^{\infty} a_{n}$ und $\sum_{n=0}^{\infty} b_{n}$ seien absolut konver
 \newpage
 
 
-\chapter{Potenzreihen}
+\section{Potenzreihen}
 
 \index{Potenzreihe}
 \begin{definition}
@@ -1689,9 +1673,7 @@ Für alle $x \in \R$ ist $\cos^{2} x \leq \cos^{2} x + \sin^{2} x = 1$, also $|\
 
 \begin{proof}
 	Sei $x \in \R$, $x \neq x_{0}$ und $b_{n} \coloneqq a_{n} (x - x_{0})^{n}$. Dann:
-	\begin{align}
-		 \left| \frac{b_{n+1}}{b_{n}} \right| = \left| \frac{a_{n+1}}{a_{n}} \right| |x - x_{0}| \tag{$*$}
-	\end{align}
+	\[ \left| \frac{b_{n+1}}{b_{n}} \right| = \left| \frac{a_{n+1}}{a_{n}} \right| |x - x_{0}| \tag*{$(*)$} \]
 	Fall 1: $L = 0$. $|x - x_{0}| > 0 \Rightarrow \frac{|a_{n}|}{|a_{n+1}|} \leq | x - x_{0}|$ ffa $n$
 	$$ \xRightarrow[]{(*)} \left| \frac{b_{n+1}}{b_{n}} \right| \geq \text{ ffa } n \xRightarrow[]{\ref{3.7:prop-Quotientenkriterium}} \sum b_{n} \text{ divergiert} $$
 	Die Potenzreihe konvergiert also nur für $x = x_{0}$, also $r = 0 = L$. \\
@@ -1707,7 +1689,7 @@ Für alle $x \in \R$ ist $\cos^{2} x \leq \cos^{2} x + \sin^{2} x = 1$, also $|\
 \newpage
 
 
-\chapter{q-adische Entwicklung}
+\section{q-adische Entwicklung}
 
 \begin{definition}
 	Sei $x \in \R$. Dann existiert genau eine Zahl $k \in \Z$: $k \leq x < k + 1$; 
@@ -1812,7 +1794,7 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 \newpage
 
 
-\chapter{Grenzwerte bei Funktionen}
+\section{Grenzwerte bei Funktionen}
 
 \index{Häufungspunkt}
 \begin{definition}
@@ -1975,7 +1957,7 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 \newpage
 
 
-\chapter{Stetigkeit}
+\section{Stetigkeit}
 
 \index{stetig}
 \begin{definition}
@@ -2330,7 +2312,7 @@ Ohne Beweis.
 
 \newpage
 
-\chapter{Funktionenfolge und -reihen}
+\section{Funktionenfolge und -reihen}
 I. d. $\S$en sei stets: $\emptyset \neq D \subseteq \R$, $(f_{n})$ eine Folge von Funktionen $f_{n} \colon D \rightarrow \R$ und $s_{n} \coloneqq f_{1} + f_{n} + \cdots + f_{n}$ $(n /in \N)$
 
 \index{konvergent!punktweise} \index{Grenzfunktion} \index{Summenfunktion}
@@ -2420,9 +2402,7 @@ Anschaulich: $(f_{n})$ konvergiert auf $D$ gleichmä{\ss}ig gegen $f$ bedeutet: 
 \begin{proof}
 	Sei o. B. d. A. $x_{0} = 0$ \\	% todo image
 	Wähle $\delta > 0$ so, dass $-r < -\delta <a < b < \delta < r$. Sei $x \in [a, b]$. Dann $|x| \leq \delta$, also
-		\begin{align}
-			\left| a_{n} x^{n} \right| = |a_{n}| |x|^{n} \leq |a_{n}| \delta^{n} \coloneqq c_{n} \tag{$*$}
-		\end{align}
+		\[ \left| a_{n} x^{n} \right| = |a_{n}| |x|^{n} \leq |a_{n}| \delta^{n} \coloneqq c_{n} \tag*{$(*)$} \]
 	$\xRightarrow[]{\ref{4.1:satz}} \sum_{n=0}^{\infty} a_{n} \delta^{n}$ konvergiert absolut; also ist $\sum_{n=0}^{\infty} c_{n}$ konvergent. Aus $(*)$ und $\ref{8.1.b:satz}$ folgt die Behauptung.
 \end{proof}
 
@@ -2474,7 +2454,7 @@ Anschaulich: $(f_{n})$ konvergiert auf $D$ gleichmä{\ss}ig gegen $f$ bedeutet: 
 \newpage
 
 
-\chapter{Differentialrechnung}
+\section{Differentialrechnung}
 
 I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ eine Funktion. 
 % todo image
@@ -2782,7 +2762,7 @@ $\sin x =\sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{(2n+1)!} \xRightarrow[]{\r
 \index{Tangens}
 \begin{definition}
 	$\tan \colon \R \setminus \{ (2k + 1) \frac{\pi}{2} \colon k \in \Z \} \rightarrow \R$; $\tan x \coloneqq \frac{\sin x}{\cos x}$ \textbf{Tangens}
-	$$ (\tan x)' = \frac{\cos^{2} x + \sin^{2} x}{\cos^{2} x} = \frac{1}{\cos^{2} x} > 0 $$
+	\[ (\tan x)' = \frac{\cos^{2} x + \sin^{2} x}{\cos^{2} x} = \frac{1}{\cos^{2} x} > 0 \]
 	$\tan$ ist also auf $(-\frac{\pi}{2}, \frac{\pi}{2})$ streng wachsend.
 	% todo image
 \end{definition}
@@ -2790,7 +2770,7 @@ $\sin x =\sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{(2n+1)!} \xRightarrow[]{\r
 \index{Arkustangens}
 \begin{uebung}
 	$\tan((-\frac{\pi}{2}, \frac{\pi}{2})) = \R$. Es ex. also
-	$$ \arctan \coloneqq \tan^{-1} \colon \R \rightarrow (-\frac{\pi}{2},\frac{\pi}{2}) $$
+	\[ \arctan \coloneqq \tan^{-1} \colon \R \rightarrow (-\frac{\pi}{2},\frac{\pi}{2}) \]
 	\textbf{Arkustangens}. \\
 	% todo image	
 	I.d. Übungen wird gezeigt: $(\arctan x)' = \frac{1}{1 + x^{2}}$ auf $\R$.
@@ -2912,7 +2892,7 @@ Ohne Beweis:
 \newpage
 
 
-\chapter{Das Riemann-Integral}
+\section{Das Riemann-Integral}
 
 \index{Zerlegung}
 \begin{vereinbarung}
@@ -2928,10 +2908,7 @@ Sei $Z = \{ x_{0}, \dotsc, x_{n} \} \in \mathcal{J}$. Definiere $I_{j} \coloneqq
 		S_{f}(Z) & \coloneqq \sum_{j=1}^{n} M_{j} |I_{j}| \text{\textbf{Obersumme} von $f$ bzgl. $Z$.}
 	\end{align*}
 Es ist $m \leq m_{j} \leq M_{j} \leq M$, also $m |I_{j}| \leq m_{j} |I_{j}| \leq M_{j} |I_{j}| \leq M |I_{j}|$, somit
-	\begin{align}
-		\underbrace{\sum_{j=1}^{n} |I_{j}|}_{=b-a} \leq s_{f}(Z) \leq S_{f}(Z) \leq M \sum_{j=1}^{n} |I_{j}| = M (b - a) \tag{$*$}
-	\end{align}
- 
+	\[ m \underbrace{\sum_{j=1}^{n} |I_{j}|}_{=b-a} \leq s_{f}(Z) \leq S_{f}(Z) \leq M \sum_{j=1}^{n} |I_{j}| = M (b - a) \tag*{$(*)$} \]
 
 
 \begin{definition}
@@ -2954,14 +2931,12 @@ Seien $Z_{1}, Z_{2} \in \mathcal{J}$.
 \end{satz}
 
 Aus $(*)$ und \ref{10.1.a:satz} mit $Z \in \mathcal{J}$:
-	\begin{align}
-		m (b - a) \leq s_{f} \leq S_{f}(Z) \leq S_{f} \leq M (b - a). \tag{$**$}
-	\end{align} 
+	\[ m (b - a) \leq s_{f} \leq S_{f}(Z) \leq S_{f} \leq M (b - a). \tag*{$(**)$} \]
 
 \index{integrierbar} \index{integrierbar!Riemann} \index{Integral} \index{Integral!Riemann}
 \begin{definition}
 	$f$ hei{\ss}t (Riemann-)\textbf{integrierbar} (ib) über $[a, b] \iff s_{f} = S_{f}$. I. d. Fall hei{\ss}t
-		$$ \int_{a}^{b} f dx \coloneqq \int_{a}^{b} f(x) dx \coloneqq S_{f} (= s_{f}) $$
+		\[ \int_{a}^{b} f dx \coloneqq \int_{a}^{b} f(x) dx \coloneqq S_{f} (= s_{f}) \]
 	das (Riemann-)\textbf{Integral}	von $f$ über $[a, b]$ und wir schreiben: $f \in R[a, b]$.
 \end{definition}
 
@@ -3019,9 +2994,7 @@ Aus $(*)$ und \ref{10.1.a:satz} mit $Z \in \mathcal{J}$:
 
 \begin{proof}
 	Sei $f \in C[a, b]$ und $\epsilon > 0 \xRightarrow[]{\ref{7.16:satz}} \exists \delta > 0$:
-	\begin{align}
-		|f(t) - f(s)| < \frac{\epsilon}{b - a} \quad \forall t, s \in [a, b] \text{ mit } |t - s| < \delta. \tag{$*$}
-	\end{align}
+	\[ |f(t) - f(s)| < \frac{\epsilon}{b - a} \quad \forall t, s \in [a, b] \text{ mit } |t - s| < \delta. \tag*{$(*)$} \]
 	Sei $Z = \{ x_{0}, \dotsc, x_{n} \} \in \mathcal{J}$, $I_{j}, M_{j}, m_{j}$ wie immer und $Z$ sei so gewählt, dass $|I_{j}| < \delta ~(j = 1, \dotsc, n)$. Betrachte $I_{j}$: % todo image
 	$$ \xRightarrow[]{\ref{7.11:satz}} \exists \xi, \eta \in I_{j}: \quad f(\xi) = m_{j}, f(\eta) = M_{j} $$
 	$|I_{j}| < \delta \Rightarrow |\xi - \eta| < \delta \xRightarrow[]{(*)}$
@@ -3125,9 +3098,7 @@ Ohne Beweis:
 	$\sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n}$ sei eine Potenzreihe mit Konvergenzradius $r > 0$, $I \coloneqq (x_{0} - r, x_{0} + r)$ ($I \coloneqq \R$, falls $r = \infty$) und
 	$$ g(x) \coloneqq \sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n} \quad (x \in I) $$
 	Dann hat die Potenzreihe $\sum_{n=0}^{\infty} \frac{a_{n}}{n + 1} (x - x_{0})^{n+1}$ den Konvergenzradius $r$ und für
-	\begin{align}
-		G(x) \coloneqq \sum_{n=0}^{\infty} \frac{a_{n}}{n + 1} (x - x_{0})^{n+1} \quad (x \in I) \tag{$*$}
-	\end{align}
+	\[ G(x) \coloneqq \sum_{n=0}^{\infty} \frac{a_{n}}{n + 1} (x - x_{0})^{n+1} \quad (x \in I) \tag*{$(*)$} \]
 	gilt $G' = g$ auf $I$.
 \end{satz}
 
@@ -3382,7 +3353,7 @@ Ohne Beweis:
 \newpage
 
 
-\chapter{Uneigentliche Integrale}
+\section{Uneigentliche Integrale}
 
 
 \begin{vereinbarung}
@@ -3507,7 +3478,7 @@ Den folgenden Satz beweist man mit \ref{11.1:prop-Cauchykriterium} ähnlich wie 
 
 \newpage
 
-\chapter{Die komplexe Exponentialfunktion}
+\section{Die komplexe Exponentialfunktion}
 
 \index{Betrag!einer komplexen Zahl}
 Sei $z = x + iy \in \C ~(x, y \in \R)$.
@@ -3725,7 +3696,7 @@ Ohne Beweis:
 
 \newpage
 
-\chapter{Fourierreihen}
+\section{Fourierreihen}
 
 I. d. $\S$-en sei $f \colon \R \rightarrow \R$ eine Funktion mit:
 	$$ (V) ~ \begin{cases}
@@ -3929,7 +3900,7 @@ Ohne Beweis:
 
 \newpage
 
-\chapter{Der Raum $\R^{n}$}
+\section{Der Raum $\R^{n}$}
 
 Es sei $n \in \N$. $\R^{n} \coloneqq \{ (x_{1}, \dotsc, x_{n}) : x_{1}, \dotsc, x_{n} \in \R \}$. $\R^{n}$ ist mit der bekannten Addition und Skalarmultiplikation ein Vektorraum über $\R$, $\dim \R^{n} = n$.
 

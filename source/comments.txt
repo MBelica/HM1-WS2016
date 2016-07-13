@@ -1,0 +1,8 @@
+%%%%% Nicht lesbar
+%% Seite 9: nach "Große Übungen:..." 
+%% Seite 12: unten Notiz am Ende übernehmen?
+%% Seite 23b: Fall 4, über \Rightarrow 2.1 (x^{k}) was steht da? "Bu"? Das Gleiche auch im 5. Fall
+%% Seite 91: Handschriftliches unten, wusste nicht, wie ich das dazuschreiben sollte
+%% Seite 137 & 137 a: Bei dem handschriftlichen Beispiel unten und dem nachfolgenden Blatt war ich mir nicht sicher, wie ich es einbauen sollte. Bitte einmal drüber schauen
+%%%%% Fragen
+%% Im Skript gab es einige Unterabschnitte, wie z.B."3.3 Leibnitzkriterium...". Ich wusste nicht, wie ich diese umsetzen sollte, also habe ich solche Abschnitte in Propositionen gepackt, hoffe das ist in Ordnung
