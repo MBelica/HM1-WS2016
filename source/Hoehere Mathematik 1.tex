@@ -24,11 +24,10 @@
 \makeatletter%
   \changefontsizes{14pt}
   \def\mystretch{1.2}
-  \definecolor{darkgreen}{rgb}{0,0.35,0.35}
+  \definecolor{linkcolor}{rgb}{0,0.35,0.35}
   \newcommand\publishers[1]{\newcommand\@publishers{#1}}
   \renewcommand{\labelenumi}{\alph{enumi})}
   \renewcommand{\labelenumii}{(\roman{enumii})}
-  \renewcommand{\thesubsection}{\thechapter.\arabic{subsection}} 
   \setlength{\parindent}{0pt}
   \setlist[enumerate,1]{ref={\thesatz ~ \alph*)}}
   \xpatchcmd{\proof}{\@addpunct{.}}{\@addpunct{:}}{}{} 
@@ -57,9 +56,8 @@
 \theoremstyle{dotless}
 \newtheorem{satz}[namedtheorem]{Satz}	
 \newtheorem{beispiel}[namedtheorem]{Beispiel}
-\newtheorem{folg}[namedtheorem]{Folgerung}
+\newtheorem{folgerung}[namedtheorem]{Folgerung}
 \newtheorem{hilfssatz}[namedtheorem]{Hilfssatz}
-\newtheorem{prop}[namedtheorem]{Proposition}
 \newtheorem{anwendung}[namedtheorem]{Anwendung}
 \newtheorem{anwendungen}[namedtheorem]{Anwendungen}
 \newtheorem*{beispiel*}{Beispiel}
@@ -69,7 +67,7 @@
 \newtheorem*{bezeichnung}{Bezeichnung}
 \newtheorem*{definition}{Definition}
 \newtheorem*{eigenschaften}{Eigenschaften}
-\newtheorem*{folgerung}{Folgerung}
+\newtheorem*{folgerung*}{folgerung*}
 \newtheorem*{folgerungen}{Folgerungen}
 \newtheorem*{hilfssatz*}{Hilfssatz}
 \newtheorem*{regeln}{Regeln}
@@ -78,9 +76,9 @@
 \newtheorem*{uebung}{Übung}
 \newtheorem*{vereinbarung}{Vereinbarung}
 
-%% Template Hack
+%% Template
 \makeatletter%
-\DeclareUnicodeCharacter{00A0}{ } \DeclareOption{doublespace}{} \DeclareOption{singlespace}{\typeout{Single spaced}\def\mystretch{1}} \newif\if@leftblank \@leftblankfalse \DeclareOption{leftblank}{\typeout{Intentionally Leaving Pages Blank} \@leftblanktrue} \hypersetup{colorlinks,breaklinks, urlcolor=darkgreen, linkcolor=darkgreen, pdftitle=\@title, pdfauthor=\@author, pdfsubject=\@title, pdfcreator=\@publishers}\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}} \ProcessOptions \def\baselinestretch{\mystretch} \setlength{\oddsidemargin}{0.125in} \setlength{\evensidemargin}{0.125in} \setlength{\topmargin}{0.5in} \setlength{\textwidth}{6.25in} \setlength{\textheight}{8in} \addtolength{\topmargin}{-\headheight} \addtolength{\topmargin}{-\headsep} \def\pulldownheader{ \addtolength{\topmargin}{\headheight} \addtolength{\topmargin}{\headsep} \addtolength{\textheight}{-\headheight} \addtolength{\textheight}{-\headsep} } \def\pullupfooter{ \addtolength{\textheight}{-\footskip} } \def\ps@headings{\let\@mkboth\markboth \def\@oddfoot{} \def\@evenfoot{} \def\@oddhead{\hbox {}\sl \rightmark \hfil \rm\thepage} \def\chaptermark##1{\markright {\uppercase{\ifnum \c@secnumdepth >\m@ne \@chapapp\ \thechapter. \ \fi ##1}}} \pulldownheader } \def\ps@myheadings{\let\@mkboth\@gobbletwo \def\@oddfoot{} \def\@evenfoot{} \def\sectionmark##1{} \def\subsectionmark##1{}  \def\@evenhead{\rm \thepage\hfil\sl\leftmark\hbox {}} \def\@oddhead{\hbox{}\sl\rightmark \hfil \rm\thepage} \pulldownheader }	\def\chapter{\cleardoublepage  \thispagestyle{plain}  \global\@topnum\z@ \@afterindentfalse \secdef\@chapter\@schapter} \def\@makeschapterhead#1{ {\parindent \z@ \raggedright \normalfont \interlinepenalty\@M \Huge \bfseries  #1\par\nobreak \vskip 40\p@ }} \newcommand{\indexsection}{chapter} \patchcmd{\@makechapterhead}{\vspace*{50\p@}}{}{}{} \def\maketitle{\begin{titlepage} ~\vspace{3cm} \begin{center} {\Huge \@title} \end{center} \vspace*{1cm} \begin{center} {\large \@author} \end{center} \begin{center} \@date \end{center} ~\newline \vspace*{5cm} ~\newline \begin{center} \@publishers \end{center} \vfill \end{titlepage}}
+\DeclareUnicodeCharacter{00A0}{ } \DeclareOption{doublespace}{} \DeclareOption{singlespace}{\typeout{Single spaced}\def\mystretch{1}} \newif\if@leftblank \@leftblankfalse \DeclareOption{leftblank}{\typeout{Intentionally Leaving Pages Blank} \@leftblanktrue} \hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor, pdftitle=\@title, pdfauthor=\@author, pdfsubject=\@title, pdfcreator=\@publishers}\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}} \ProcessOptions \def\baselinestretch{\mystretch} \setlength{\oddsidemargin}{0.125in} \setlength{\evensidemargin}{0.125in} \setlength{\topmargin}{0.5in} \setlength{\textwidth}{6.25in} \setlength{\textheight}{8in} \addtolength{\topmargin}{-\headheight} \addtolength{\topmargin}{-\headsep} \def\pulldownheader{ \addtolength{\topmargin}{\headheight} \addtolength{\topmargin}{\headsep} \addtolength{\textheight}{-\headheight} \addtolength{\textheight}{-\headsep} } \def\pullupfooter{ \addtolength{\textheight}{-\footskip} } \def\ps@headings{\let\@mkboth\markboth \def\@oddfoot{} \def\@evenfoot{} \def\@oddhead{\hbox {}\sl \rightmark \hfil \rm\thepage} \def\chaptermark##1{\markright {\uppercase{\ifnum \c@secnumdepth >\m@ne \@chapapp\ \thechapter. \ \fi ##1}}} \pulldownheader } \def\ps@myheadings{\let\@mkboth\@gobbletwo \def\@oddfoot{} \def\@evenfoot{} \def\sectionmark##1{} \def\subsectionmark##1{}  \def\@evenhead{\rm \thepage\hfil\sl\leftmark\hbox {}} \def\@oddhead{\hbox{}\sl\rightmark \hfil \rm\thepage} \pulldownheader }	\def\chapter{\cleardoublepage  \thispagestyle{plain}  \global\@topnum\z@ \@afterindentfalse \secdef\@chapter\@schapter} \def\@makeschapterhead#1{ {\parindent \z@ \raggedright \normalfont \interlinepenalty\@M \Huge \bfseries  #1\par\nobreak \vskip 40\p@ }} \newcommand{\indexsection}{chapter} \patchcmd{\@makechapterhead}{\vspace*{50\p@}}{}{}{} \def\maketitle{ \begin{titlepage} ~ \vspace{3cm} \begin{center} {\Huge \@title} \end{center} \vspace*{1cm} \begin{center} {\large \@author} \end{center} \begin{center} \@date \end{center} \vspace*{7cm} \begin{center} \@publishers \end{center} \vfill \end{titlepage} }
 \makeatother%
 
 \makeindex
@@ -1027,9 +1025,9 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 	\end{enumerate}	
 \end{beispiele}
 
-\begin{folgerung}
+\begin{folgerung*}
 Ist $x \in \R$, so existieren Folgen $(r_{m})$ in $\Q : r_{n} \rightarrow \alpha$.	
-\end{folgerung}
+\end{folgerung*}
 
 
 \begin{satz} \label{2.11:satz} 
@@ -1167,7 +1165,8 @@ Konvergente Folgen sind also Cauchy-Folgen!
 			& \leq \left(\frac{4}{9} \right)^{2} |a_{n-k-2} - a_{n-2}| \leq \dotsc \leq \left( \frac{4}{9} \right)^{n-1} |a_{k+1} - a_{1}| \\
 			& \leq \left( \frac{4}{9} \right)^{n-1} \left( |a_{k+1}| + |a_{1}|\right) \leq 2 \left( \frac{4}{9} \right)^{n-1} 
 	\end{align*}
-	$\exists n_{0} \in \N \setminus \{ 1 \}$: $2\left(\frac{4}{9}\right)^{n-1} < \epsilon ~(n \geq n_{0})$. Damit: $|a_{n+k} - a_{n}| < \epsilon ~(n \geq n_{0}, k \in \N)$. \\
+	$\exists n_{0} \in \N \setminus \{ 1 \}$: $2\left(\frac{4}{9}\right)^{n-1} < \epsilon ~(n \geq n_{0})$. Damit: 
+		$$ |a_{n+k} - a_{n}| < \epsilon \quad (n \geq n_{0}, k \in \N). $$
 	Also ist $(a_{n})$ eine Cauchyfolge. $a \coloneqq \lim_{n \rightarrow \infty} a_{n}$. Klar: 
 	$$ a \geq \frac{1}{2} \text{ und } a = \frac{1}{1 + a} $$
 	Also $a^{2} + a - 1 = 0 \iff a = - \frac{1}{2} \pm \frac{\sqrt{5}}{2}$. Wegen $a \geq \frac{1}{2}$ folgt $a = \frac{\sqrt{5} - 1}{2}$.
@@ -1180,7 +1179,7 @@ Konvergente Folgen sind also Cauchy-Folgen!
 \chapter{Unendliche Reihen}
 
 
-\index{Reihe!unendliche} \index{Teilsumme} \index{konvergent} \index{divergent} \index{Reihenwert}
+\index{Reihe} \index{Reihe!unendliche} \index{Teilsumme} \index{konvergent} \index{divergent} \index{Reihenwert}
 \begin{definition} $(a_{n})$ sei eine Folge;
 	\begin{enumerate}
 		\item $ s_{n} \coloneqq a_{1} + a_{2} + \dotsc a_{n} \quad (n \in \N)$
@@ -1437,11 +1436,11 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 	\end{enumerate}
 \end{namedtheorem}
 
-\begin{folg} \label{3.8:folg}
+\begin{folgerung} \label{3.8:folg}
 	$(a_{n})$ und $(c_{n})$ seien wie in \ref{3.7:prop-Quotientenkriterium}, $(c_{n})$ sei konvergent und $\alpha \coloneqq \lim c_{n}$.
 	$$ \sum a_{n} \text{ ist} \begin{cases} \text{absolut konv.}, & \text{falls } \alpha < 1 \\ \text{divergent}, & \text{falls } \alpha > 1 \end{cases} $$
 	Im Falle $\alpha = 1$ ist keine allg. Aussage möglich.
-\end{folg}
+\end{folgerung}
 
 
 \begin{beispiele} ~\
@@ -1633,9 +1632,9 @@ Frage: für welche $x \in \R$ konvergiert die Potenzreihe (absolut)? Klar: die P
 \end{proof}
 
 
-\begin{folgerung}
+\begin{folgerung*}
 	$\lim_{n \rightarrow \infty} \frac{1}{\sqrt[n]{n!}} = 0$	
-\end{folgerung}
+\end{folgerung*}
 
 \begin{proof}
 	$\sum_{n=0}^{\infty} \frac{x^{n}}{n!}$ hat den Konvergenzradius $r = \infty$; $a_{n} = \frac{1}{n!} \xRightarrow[]{\ref{4.1:satz}} \rho = 0$, also $\limsup \sqrt[n]{|a_{n}|} = 0$ Hilfssatz vor \ref{3.6:prop-Wurzelkriterium} $\Rightarrow \lim \sqrt[n]{|a_{n}|} = 0$.
@@ -2081,9 +2080,9 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 \end{proof}
 
 
-\begin{folgerung}
+\begin{folgerung*}
 	$\forall x_{0} \in \R$: $\lim_{h \rightarrow 0} \frac{E(x_{0} + h) - E(x_{0})}{h} = E(x_{0})$
-\end{folgerung}
+\end{folgerung*}
 
 \begin{proof}
 	$\frac{E(x_{0} + h) - E(x_{0})}{h} =  \frac{E(x_{0}) E(h) - E(x_{0})}{h} =  E(x_{0}) \frac{E(h) - 1}{h} \xrightarrow[]{\ref{7.6:bsp}} E(x_{0}) ~(h \rightarrow 0)$
@@ -2109,9 +2108,9 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 \end{proof}
 
 
-\begin{folgerung}[vgl. \ref{1.6:satz}]
+\begin{folgerung*}[vgl. \ref{1.6:satz}]
 	Ist $\alpha > 0$ und $n \in \N$, so existiert ein $x_{0} > 0$: $x_{0}^{n} = \alpha$.	
-\end{folgerung}
+\end{folgerung*}
 
 \begin{proof}
 	$b \coloneqq 1 + \alpha, f(x) \coloneqq x^{n} ~(x \in [a, b])$. \\
@@ -2641,9 +2640,9 @@ I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ e
 \end{proof}
 
 
-\begin{folg} \label{9.8:folg}
+\begin{folgerung} \label{9.8:folg}
 	$f \colon I \rightarrow \R$ sei differenzierbar auf $I$. $f$ ist auf $I$ konstant $\iff f' \equiv 0$ auf $I$.	
-\end{folg}
+\end{folgerung}
 
 \begin{proof}
 	$"'\Rightarrow"'$ \checkmark, $"'\Leftarrow"'$ Seien $x_{1}, x_{2} \in I, x_{1} < x_{2} \xRightarrow[]{\hyperref[9.7:prop-Mittelwertsatz]{MWS}} \exists \xi \in (x_{1}, x_{2})$: 
@@ -3214,11 +3213,11 @@ Ohne Beweis:
 
 Aus \ref{10.10:satz} folgt (Übung):
 
-\begin{folg} \label{10.12:folg}
+\begin{folgerung} \label{10.12:folg}
 	Sei $I \subseteq \R$ ein Intervall, $g \in C(I)$ und $\xi \in I$ (fest). Definiere $G \colon I \rightarrow \R$ durch
 	$$ G(x) \coloneqq \int_{\xi}^{x} f(t) dt. $$
 	Dann: $G \in C^{1}(I)$ und $G' = g$ auf $I$.
-\end{folg}
+\end{folgerung}
 
 \index{Integral!unbestimmtes}
 \begin{definition}
