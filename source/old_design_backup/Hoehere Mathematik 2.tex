@@ -1,4 +1,4 @@
-\documentclass[14pt,titlepage,ngerman,a4paper,headsepline,DIV15,halfparskip*]{scrartcl}
+\documentclass[titlepage,ngerman,a4paper,headsepline]{scrartcl}
 
 \usepackage[utf8]{inputenc} 
 \usepackage[T1]{fontenc} 
@@ -9,7 +9,6 @@
 \date{Wintersemester 2016/17}
 \publishers{Karlsruher Institut für Technologie}
 
-%%%%%%%%%%%%%%%% Setup - Anfang
 %% Packages
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -17,22 +16,28 @@
 \usepackage{chngcntr}
 \usepackage{enumitem}
 \usepackage[colorlinks]{hyperref}
+\usepackage{lmodern}
 \usepackage{makeidx} 
 \usepackage{mathtools} 
 \usepackage{pgfplots}
 \usepackage{tikz}
+\pgfplotsset{compat=1.7}
 \usetikzlibrary{matrix}	
-%% Hacks
-\counterwithin{figure}{section}
 
-\DeclareUnicodeCharacter{00A0}{ }
-\newcommand{\indexsection}{section}
-\renewcommand{\baselinestretch}{1.05}
-\renewcommand{\labelenumi}{\alph{enumi})}
-\renewcommand{\labelenumii}{(\roman{enumii})}
-\setkomafont{subsection}{\fontsize{0.8em}{0em}\normalfont\bfseries}
-\setlist[enumerate,1]{ref={\thesatz ~ \alph*)}}
-\setlength{\parindent}{0pt} 
+%% Options
+\makeatletter%
+	\changefontsizes{14pt}
+	\DeclareUnicodeCharacter{00A0}{ }
+	\newcommand{\indexsection}{section}
+	\renewcommand{\baselinestretch}{1.05}
+	\renewcommand{\labelenumi}{\alph{enumi})}
+	\renewcommand{\labelenumii}{(\roman{enumii})}
+	\setkomafont{subsection}{\fontsize{0.8em}{0em}\normalfont\bfseries}
+	\setlist[enumerate,1]{ref={\thesatz ~ \alph*)}}
+	\setlength{\parindent}{0pt} 
+	\counterwithin{figure}{section}
+\makeatother%
+
 %% Math. Definitions
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\N}{\mathbb{N}}
@@ -69,8 +74,6 @@
 \newtheorem*{uebung}{Übung}
 \newtheorem*{vereinbarung}{Vereinbarung}
 
-%%%%%%%%%%%%%%%% Setup - Ende
-
 \makeindex
 
 \begin{document}
@@ -85,11 +88,11 @@
 % Skript - Anfang
 \section{Reelle Zahlen}
 
-Grundmenge der Analysis is die Menge $\R$, die Menge der \textbf{reellen Zahlen}. Diese führen wir \textbf{axiomatisch} ein, d.h. wir nehmen $\R$ als gegeben an und \textbf{fordern} in den folgenden 15 \textbf{Axiomen} Eigenschaften von $\R$ aus denen sich alle weiteren Rechenregeln herleiten lassen.
-\newline
+Grundmenge der Analysis is die Menge $\R$, die Menge der \textbf{reellen Zahlen}. Diese führen wir \textbf{axiomatisch} ein, d.h. wir nehmen $\R$ als gegeben an und \textbf{fordern} in den folgenden 15 \textbf{Axiomen} Eigenschaften von $\R$ aus denen sich alle weiteren Rechenregeln herleiten lassen.  
+
 
 \index{Axiome!Körper-}
-\textbf{Körperaxiome:} in $\R$ seien zwei Verknüpfungen $"'+"'$ und $"'\cdot"'$ gegeben, die jedem Paar $a, b \in \R$ genau ein $a + b \in \R$ und genau ein $a b \coloneqq a \cdot b \in \R$ zuordnen. Dabei soll gelten:
+\textbf{Körperaxiome:} in $\R$ seien zwei Verknüpfungen "'$+$"' und "'$\cdot$"' gegeben, die jedem Paar $a, b \in \R$ genau ein $a + b \in \R$ und genau ein $a b \coloneqq a \cdot b \in \R$ zuordnen. Dabei soll gelten:
 
 
 \begin{description} \addtolength{\itemindent}{0.4cm} \label{k.axiom}
@@ -128,7 +131,7 @@ Grundmenge der Analysis is die Menge $\R$, die Menge der \textbf{reellen Zahlen}
 \end{beispiele}
 
 \index{Axiome!Anordnungs-} 
-\textbf{Anordnungsaxiome:} in $\R$ ist eine Relation $"'\leq"'$ gegeben. \\
+\textbf{Anordnungsaxiome:} in $\R$ ist eine Relation "'$\leq$"' gegeben. \\
 Dabei sollen gelten:
 \begin{description} \addtolength{\itemindent}{0.4cm}
 	\item[$(A10)$] für $a, b \in \R$ gilt $a \leq b$ oder $b \leq a$ \label{a.axiom-a10}
@@ -172,12 +175,13 @@ Für $a \in \R$ hei{\ss}t $|a| \coloneqq \begin{cases} \hspace{0.35cm} a, & \tex
 
 
 \begin{beispiele}
-	$|1| = 1$, $~|-7| = -(-7) = 7$. \\
-		Anschaulich:  \tikz[baseline=-0.5ex]{  \draw(0,0)--(12,0);
+	$|1| = 1$, $~|-7| = -(-7) = 7$. 
+	
+	Anschaulich:  \tikz[baseline=-0.5ex]{  \draw(0,0)--(12,0);
     \foreach \x/\xtext in {0/$$,2/$$,4/$a$,6/{\small $0$},8/$$,10/{\small $b$},12/$$}
       \draw(\x,3pt)--(\x,-3pt) node[below] {\xtext};
-    \draw[decorate,decoration={brace},yshift=2ex]  (6,0) -- node[above=0.4ex] {\small $\underset{\glqq \text{Abstand} \grqq \text{ von } a \text{ und } b}{|a - b| =}$}  (10,0);
-    \draw[decorate,decoration={brace},yshift=-4ex] (6,0) -- node[below=0.3ex] {\small $\underset{\glqq \text{Abstand} \grqq \text{ von } 0}{|a| =}$} (4,0);} \\ \\
+    \draw[decorate,decoration={brace},yshift=2ex]  (4,0) -- node[above=0.4ex] {\small $\underset{ \text{"'Abstand"'} \text{ von } a \text{ und } b}{|a - b| =}$}  (10,0);
+    \draw[decorate,decoration={brace},yshift=-4ex] (6,0) -- node[below=0.3ex] {\small $\underset{\text{"'Abstand"'} \text{ von } 0}{|a| =}$} (4,0);} \\
 	Es ist $|-a| = |a|$ und $|a - b| = |b - a|$
 \end{beispiele}
 
@@ -278,8 +282,8 @@ Ist $\sup M$ bzw. $\inf M$ vorhanden und gilt $\sup M \in M$ bzw. $\inf M \in M$
 			\item Sei $x \in B$. Dann: $x \in A$, also $x \leq \sup A$. $B$ ist also nach oben beschränkt und $\sup A$ ist eine obere Schranke von $B$
 			$$ \Rightarrow \sup B \leq \sup A $$
 			Analog der Fall für $A$ nach unten beschränkt.
-			\item $"'\Rightarrow"'$ Sei $\gamma = \sup A$ und $\varepsilon > 0$. Dann: $\gamma - \varepsilon < \varepsilon$. $\gamma - \varepsilon$ ist also keine obere Schranke von $A$. Also: $\exists x \in A : x > \gamma - \varepsilon$ \\
-				$"'\Leftarrow"'$ Sei $\tilde{\gamma} \leq \gamma$. Annahme: $\gamma \neq \tilde{\gamma}$. Dann $\tilde{\gamma} < \gamma$, also $\varepsilon \coloneqq \gamma - \tilde{\gamma} > 0$.\\
+			\item "'$\Rightarrow$"' Sei $\gamma = \sup A$ und $\varepsilon > 0$. Dann: $\gamma - \varepsilon < \varepsilon$. $\gamma - \varepsilon$ ist also keine obere Schranke von $A$. Also: $\exists x \in A : x > \gamma - \varepsilon$ \\
+				"'$\Leftarrow$"' Sei $\tilde{\gamma} \leq \gamma$. Annahme: $\gamma \neq \tilde{\gamma}$. Dann $\tilde{\gamma} < \gamma$, also $\varepsilon \coloneqq \gamma - \tilde{\gamma} > 0$.\\
 				$\xRightarrow[]{Vor.} \exists x \in A: x > \gamma - \varepsilon = \gamma- (\gamma - \tilde{\gamma}) = \tilde{\gamma}$. Widerspruch zu $x \leq \tilde{\gamma}$.
 			\item Analog zu c)
 		\end{enumerate}
@@ -291,7 +295,7 @@ Ist $\sup M$ bzw. $\inf M$ vorhanden und gilt $\sup M \in M$ bzw. $\inf M \in M$
 \index{Natürliche Zahlen} \index{Induktionsmenge}
 \begin{definition} ~\
 	\begin{enumerate}
-		\item $A \subseteq \R$ hei{\ss}t eine Induktionsmenge (IM) \\
+		\item $A \subseteq \R$ hei{\ss}t eine Induktionsmenge (IM)
 		$$ \iff \begin{cases}1 . & 1 \in A; \\ 2. & \text{aus } x \in A \text{ folgt stets } x + 1 \in A \end{cases}$$ \\
 		Beispiele: $\R$, $[1, \infty)$, $\{ 1 \} \cup [2, \infty)$ sind Induktionsmengen
 		\item $\N \coloneqq \{ x \in \R : x$ gehört zu jeder IM $\}$ = Durchschnitt aller IMn. \\
@@ -321,7 +325,7 @@ Von nun an sei $\N = \{ 1, 2, 3, \dotsc \}$ bekannt.
 
 
 \subsection*{Beweisverfahren durch vollständige Induktion}
-$A(n)$ sei eine Aussage, die für jedes $n \in \N$ definiert ist. Für $A(n)$ gelte:
+$A(n)$ sei eine Aussage, die für jedes $n \in \N$ definiert ist. Für $A(n)$ gelte:
 $$\begin{cases}
 	(I) & A(1) \text{ ist wahr;} \\ (II) & \text{ist } n \in \N \text{ und } A(n) \text{ wahr, so ist auch } $A(n + 1)$ \text{ wahr;}
 \end{cases}$$
@@ -337,7 +341,7 @@ Dann ist $A(n)$ wahr für \textbf{jedes} $n \in \N$!
 	Beh.: ~ $\underbrace{1 + 2 + \dotsc + n = \frac{n (n + 1)}{2}}_{A(n)}, ~\forall n \in \N$
 	
 	\begin{proof}(induktiv) \\
-		I.A.: $1 = \frac{1 (1 + 1)}{2} \checkmark$, $A(1)$ ist also wahr. \\
+		I.A.: $1 = \frac{1 (1 + 1)}{2} \checkmark$, $A(1)$ ist also wahr. \\
 		I.V.: Für ein $n \in \N$ gelte $1 + 2 + \dotsc + n = \frac{n (n + 1)}{2}$ \\
 		I.S.: $n \curvearrowright n + 1$: 
 		\begin{align*}
@@ -353,7 +357,7 @@ Dann ist $A(n)$ wahr für \textbf{jedes} $n \in \N$!
 \begin{definition} ~\
 	\begin{enumerate}
 		\item $\N_{0} \coloneqq \N \cup \{ 0 \}$
-		\item $\Z \coloneqq \N_{0} \cup \{ - n : n \in \N \}$ (ganze Zahlen)
+		\item $\Z \coloneqq \N_{0} \cup \{ - n : n \in \N \}$ (ganze Zahlen)
 		\item $\Q \coloneqq \{ \frac{p}{q} : p \in \Z, q \in \N \}$ (rationale Zahlen)
 	\end{enumerate}
 \end{definition}
@@ -374,13 +378,9 @@ Dann ist $A(n)$ wahr für \textbf{jedes} $n \in \N$!
 		Es gelten die bekannten Rechenregeln.
 	\item Für $n \in \N: n! \coloneqq 1 \cdot 2 \cdot \dotsc \cdot n$, $0! \coloneqq 1$ (\textbf{Fakultäten})
 	\item \textbf{Binomialkoeffizienten} (BK): für $n \in \N_{0}, k \in \N_{0}$ und $k \leq n$:
-		$$
-			\binom{n}{k} \coloneqq \frac{n!}{k!(n - k)!}
-		$$
-		z.B. $\binom{n}{0} = 1 = \binom{n}{n}$. Es gilt (nachrechnen!): \\
-		$$
-			\binom{n}{k} + \binom{n}{k - 1} = \binom{n + 1}{k} \quad \text{für } 1 \leq k \leq n
-		$$
+		$$ \binom{n}{k} \coloneqq \frac{n!}{k!(n - k)!} $$
+		z.B. $\binom{n}{0} = 1 = \binom{n}{n}$. Es gilt (nachrechnen!):
+		$$ \binom{n}{k} + \binom{n}{k - 1} = \binom{n + 1}{k} \quad \text{für } 1 \leq k \leq n $$
 	\item Für $a, b \in \R$ und $n \in \N$ gilt: 
 		\begin{align*}
 			a^{n + 1} - b^{n + 1} & = (a - b) \left(a^{n} + a^{n-1}b + a^{n-2}b^{2} + \dotsc + a b^{n-1} + b^{n} \right) \\
@@ -651,7 +651,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 				$$
 					\exists n_{0} \in \N: ~ \frac{1}{\sqrt{n}} < \varepsilon \quad \forall n \geq n_{0} \Rightarrow |a_{n} - 0| < \varepsilon \quad \forall n \geq n_{0}
 				$$
-				Also $a_{n} \rightarrow 0$.
+				Also $a_{n} \rightarrow 0$.
 			\end{proof}
 	\end{enumerate}
 \end{beispiele}
@@ -693,7 +693,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 \begin{beispiele} \
 	\begin{enumerate}
 		\item Sei $p \in \N$ und $a_{n} \coloneqq \frac{1}{n^{p}}$. Es ist $n \leq n^{p} ~\forall n \in \N$. Dann: 
-			$$ 0 \leq a_{n} \leq \frac{1}{n} ~\forall n \in \N \xRightarrow[]{\label{2.2.e:satz}} a_{n} \rightarrow 0, \text{ also } \frac{1}{n^{p}} \rightarrow 0. $$
+			$$ 0 \leq a_{n} \leq \frac{1}{n} ~\forall n \in \N \xRightarrow[]{\ref{2.2.e:satz}} a_{n} \rightarrow 0, \text{ also } \frac{1}{n^{p}} \rightarrow 0. $$
 		\item $a_{n} \coloneqq \frac{5n^{2} + 3n + 1}{4n^{2} - n + 2} = \frac{5 + \frac{3}{n} + \frac{1}{n^{2}}}{4 - \frac{1}{n} + \frac{2}{n^{2}}} \xrightarrow[]{\ref{2.2:satz}} \frac{5}{4}$
 	\end{enumerate}
 	
@@ -724,26 +724,15 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 					$$
 					Also: $|c_{n} - 0| = c_{n} \leq \alpha_{n} ~\forall n \in \N$ und $\alpha_{n} \rightarrow 0 \xRightarrow[]{b)} c_{n} \rightarrow 0$.
 				\item $\varepsilon \coloneqq \frac{|a|}{2}$; aus (i): $|a_{n}| \rightarrow |a| \Rightarrow \exists n \in N$:
-					$$
-						 |a_{n}| \in U_{\varepsilon}(|a|) = (|a| - \varepsilon, |a| + \varepsilon) = (\frac{|a|}{2}, \frac{3}{2} |a|) \quad \forall n \geq m
-					$$
+					$$  |a_{n}| \in U_{\varepsilon}(|a|) = (|a| - \varepsilon, |a| + \varepsilon) = (\frac{|a|}{2}, \frac{3}{2} |a|) \quad \forall n \geq m $$
 					$\Rightarrow |a_{n}| > \frac{|a|}{2} > 0 ~\forall n \geq m \Rightarrow a_{n} \neq 0 ~\forall n \geq m$. Für $n \geq m$:
-					$$
-						\left| \frac{1}{a_{n}} - \frac{1}{a} \right| = \frac{|a_{n} - a|}{|a_{n}||a|} \leq \frac{2|a_{n} - a|}{|a|^{2}} \eqqcolon \alpha_{n}
-					$$
+					$$ \left| \frac{1}{a_{n}} - \frac{1}{a} \right| = \frac{|a_{n} - a|}{|a_{n}||a|} \leq \frac{2|a_{n} - a|}{|a|^{2}} \eqqcolon \alpha_{n} $$
 					$\alpha_{n} \rightarrow 0 \xRightarrow[]{b)} \frac{1}{a_{n}} \rightarrow \frac{1}{a}$.
 			  \end{enumerate}
-			\item Annahme $b < a$, $\varepsilon \coloneqq \frac{a-b}{2} > 0$. ~ \tikz[baseline=-0.5ex]{  \draw(0,0)--(8,0);
-    				\foreach \x/\xtext in {0/$$,1.75/$$,3/$b$,4.5/$$,6.25/{\small $a$},8/$$}
-     					\draw(\x,3pt)--(\x,-3pt) node[below] {\xtext};
-      				\foreach \x/\xtext in {4/$x$,5.5/$y$}
-      						\draw(\x,2pt)--(\x,-2pt) node[below] {\xtext};
-    				\draw[decorate,decoration={brace},yshift=2ex]  (1.75,0) -- node[above=0.4ex] {\small $U_{\varepsilon}(b)$}  (4.25,0);
-   					\draw[decorate,decoration={brace},yshift=2ex] (5.25,0) -- node[above=0.4ex] {\small $U_{\varepsilon}(a)$} (7.25,0);
-   				} \\
-				Dann: $x < y ~\forall x \in U_{\varepsilon}(b) ~\forall y \in U_{\varepsilon}(a)$. \\
-				$$ \exists n_{0} \in \N: b_{n} \in U_{\varepsilon}(b) ~\forall n \geq n_{0} $$
-				$$ \exists m \in \N: a_{n} \leq b_{n} ~\forall n \geq m $$
+			\item Annahme $b < a$, $\varepsilon \coloneqq \frac{a-b}{2} > 0$.  \tikz[baseline=-0.5ex]{  \draw(0,0)--(8,0); \foreach \x/\xtext in {0/$$,1.75/$$,3/$b$,4.5/$$,6.25/{\small $a$},8/$$} \draw(\x,3pt)--(\x,-3pt) node[below] {\xtext}; \foreach \x/\xtext in {4/$x$,5.5/$y$} \draw(\x,2pt)--(\x,-2pt) node[below] {\xtext}; \draw[decorate,decoration={brace},yshift=2ex]  (1.75,0) -- node[above=0.4ex] {\small $U_{\varepsilon}(b)$}  (4.25,0); \draw[decorate,decoration={brace},yshift=2ex] (5.25,0) -- node[above=0.4ex] {\small $U_{\varepsilon}(a)$} (7.25,0); }
+				Dann: $x < y ~\forall x \in U_{\varepsilon}(b) ~\forall y \in U_{\varepsilon}(a)$. 
+					$$ \exists n_{0} \in \N: b_{n} \in U_{\varepsilon}(b) ~\forall n \geq n_{0} $$
+					$$ \exists m \in \N: a_{n} \leq b_{n} ~\forall n \geq m $$
 				$m_{0} \coloneqq \max \{ n_{0}, m \}$. Für $n \geq m_{0}$: $a_{n} \leq b_{n} < b + \varepsilon$, also $a_{n} \notin U_{\varepsilon}(a)$. Widerspruch!   
 			\item $\exists m \in \N: a_{n} \leq c_{n} \leq b_{n} ~\forall n \geq m$. Sei $\varepsilon > 0$. $\exists n_{1}, n_{2} \in \N$: 
 				\begin{align*}
@@ -828,14 +817,12 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 \end{beispiel*}
 
 
-\textbf{Wichtige Beispiele:} \\
+\textbf{Wichtige Beispiele:} 
+
 
 Vorbemerkung: Seien $x, y \geq 0$ und $p \in \N$: es ist (s. \S 1)
-$$
-	x^{p} - y^{p} = (x - y) \sum_{k = 0}^{p-1} x^{p-1-k}y^{k}
-$$
+	$$ x^{p} - y^{p} = (x - y) \sum_{k = 0}^{p-1} x^{p-1-k}y^{k} $$
 $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1} |x - y|$
-\newline
 
 \begin{beispiel} \label{2.4:bsp}
 	Sei $a_{n} \geq 0 ~\forall n \in \N$: $a_{n} \rightarrow a \geq 0$ und $p \in \N$. Dann $\sqrt[p]{a_{n}} \rightarrow \sqrt[p]{a}$
@@ -843,7 +830,7 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 	\begin{proof} ~\\
 		Fall 1: $a = 0$. Sei $\varepsilon > 0, \exists n_{0} \in \N: |a_{n}| < \varepsilon^{p} ~\forall n \geq n_{0}$. Daraus folgt:
 		$$ | \sqrt[p]{a_{n}} = \sqrt[p]{|a_{n}|} < \varepsilon \quad \forall n \geq n_{0} $$
-		Also $\sqrt[p]{a_{n}} \rightarrow 0$. \newline
+		Also $\sqrt[p]{a_{n}} \rightarrow 0$.
 		
 		Fall 2: $a \neq 0$.
 		\begin{align*}
@@ -935,7 +922,7 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 				  & = 1 + 1 + \sum_{k=2}^{n} \frac{1}{k!} \underbrace{(1 - \frac{1}{n})}_{< 1} \underbrace{(1 - \frac{2}{n})}_{< 1} \cdot \dotsc \cdot \underbrace{(1 - \frac{k-1}{n})}_{< 1} \\
 				  & \leq 1 + 1 + \sum_{k=2}^{n} \frac{1}{k!} = b_{n}
 		\end{align*}
-		Also $a_{n} \leq b_{n} ~\forall n \geq 2$. Z. z.: $\Rightarrow a \leq b$ \\
+		Also $a_{n} \leq b_{n} ~\forall n \geq 2$. Z. z.: $\Rightarrow a \leq b$ \\
 		Sei $j \in \N, j \geq 2$ (zunächst fest). Für $n \in \N, n \geq j$:
 		\begin{align*}
 			a_{n} & \overset{s.o.}{=} 1 + 1 + \sum_{k=2}^{n} \frac{1}{k!} (1-\frac{1}{n})(1-\frac{2}{n}) \cdot \dotsc \cdot (1-\frac{k-1}{n}) \\
@@ -993,8 +980,8 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 \end{satz}
 
 \begin{proof} ~\\
-	$"'\Rightarrow"'$ Sei $(a_{n_{k}})$ eine Teilfolge mit $a_{n_{k}} \rightarrow \infty$. Sei $\epsilon > 0 \exists k_{0} \in \N: a_{n_{k}} \in U_{\epsilon}(\alpha)$ für $k \geq k_{0} \Rightarrow (*)$. \\
-	$"'\Leftarrow"'$ $\exists n_{1} \in \N: a_{n_{1}} \in U_{1}(\alpha)$. $\exists n_{2} \in \N: a_{n_{2}} \in U_{\frac{1}{2}}(\alpha)$ und $n_{2} > n_{1}$. $\exists n_{3} \in \N: a_{n_{3}} \in U_{\frac{1}{3}}(\alpha)$ und $n_{3} > n_{2}$. Etc. ... Man erhält eine Teilfolge $(a_{n_{k}})$ von $(a_{n})$ mit
+	"'$\Rightarrow$"' Sei $(a_{n_{k}})$ eine Teilfolge mit $a_{n_{k}} \rightarrow \infty$. Sei $\epsilon > 0 \exists k_{0} \in \N: a_{n_{k}} \in U_{\epsilon}(\alpha)$ für $k \geq k_{0} \Rightarrow (*)$. \\
+	"'$\Leftarrow$"' $\exists n_{1} \in \N: a_{n_{1}} \in U_{1}(\alpha)$. $\exists n_{2} \in \N: a_{n_{2}} \in U_{\frac{1}{2}}(\alpha)$ und $n_{2} > n_{1}$. $\exists n_{3} \in \N: a_{n_{3}} \in U_{\frac{1}{3}}(\alpha)$ und $n_{3} > n_{2}$. Etc. ... Man erhält eine Teilfolge $(a_{n_{k}})$ von $(a_{n})$ mit
 	$$
 		a_{n_{k}} \in U_{\frac{1}{k}}(\alpha) ~\forall k \in \N, \text{ also } |a_{n_{k}} - \alpha| < \frac{1}{k} \quad \forall k
 	$$
@@ -1047,7 +1034,7 @@ Ist $x \in \R$, so existieren Folgen $(r_{m})$ in $\Q : r_{n} \rightarrow \alpha
 		\item $n_{2}$ nicht niedrig $\Rightarrow \exists n_{3} > n_{2} : a_{n_{3}} < a_{n_{2}}$
 		\item Etc$\dotsc$
 	\end{description}
-	Wir erhalten so eine streng monoton fallende Teilfolge $(a_{n_{k}})$. \\ \\
+	Wir erhalten so eine streng monoton fallende Teilfolge $(a_{n_{k}})$. \\
 	Fall 2: es existieren unendlich viele niedrige Indizes $n_{1}, n_{2}, \dotsc$, etwa $n_{1} < n_{2} < \dotsc$
 	\begin{description}
 		\item $n_{1}$ ist niedrig und $n_{2} > n_{1} \rightarrow a_{n_{2}} \geq a_{n_{1}}$
@@ -1080,8 +1067,8 @@ Ist $x \in \R$, so existieren Folgen $(r_{m})$ in $\Q : r_{n} \rightarrow \alpha
 \begin{definition} 
 	Ist $(a_{n})$ beschränkt, so nennen wir 
 	\begin{enumerate}
-		\item $\limsup_{n \rightarrow \infty} a_{n} \coloneqq \limsup a_{n} \coloneqq \overline{\lim} a_{n} \coloneqq \max H(a_{n})$ hei{\ss}t \textbf{Limes superior} oder \textbf{oberer Limes} von $(a_{n})$.
-		\item $\liminf_{n \rightarrow \infty} a_{n} \coloneqq \liminf a_{n} \coloneqq \underline{\lim} a_{n} \coloneqq \min H(a_{n})$ hei{\ss}t \textbf{Limes inferior} oder \textbf{unterer Limes} von $(a_{n})$.
+		\item $\limsup_{n \rightarrow \infty} a_{n} \coloneqq \limsup a_{n} \coloneqq \overline{\lim} a_{n} \coloneqq \max H(a_{n})$ hei{\ss}t \textbf{Limes superior} oder \textbf{oberer Limes} von $(a_{n})$.
+		\item $\liminf_{n \rightarrow \infty} a_{n} \coloneqq \liminf a_{n} \coloneqq \underline{\lim} a_{n} \coloneqq \min H(a_{n})$ hei{\ss}t \textbf{Limes inferior} oder \textbf{unterer Limes} von $(a_{n})$.
 	\end{enumerate}
 \end{definition}
 
@@ -1112,7 +1099,7 @@ Ist $x \in \R$, so existieren Folgen $(r_{m})$ in $\Q : r_{n} \rightarrow \alpha
 
 
 \textbf{Motivation:} $(a_{n})$ sei konvergent und $\lim a_{n} \eqqcolon a$. Sei $\epsilon > 0$,
-	$$ \exists n_{0} \in \N: |a_{n} - a| < \frac{\epsilon}{2} \quad \forall n \geq n_{0} $$
+	$$ \exists n_{0} \in \N: |a_{n} - a| < \frac{\epsilon}{2} \quad \forall n \geq n_{0} $$
 Für $n, m \geq n_{0}$:
 	$$ |a_{n} - a_{m}| = |a_{n} - a + a - a_{m} | \leq |a_{n} - a| + |a_{m} - a| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon $$
 D.h.: $(a_{n})$ hat die folgende Eigenschaft:
@@ -1135,7 +1122,7 @@ Konvergente Folgen sind also Cauchy-Folgen!
 \end{namedtheorem}
 
 \begin{proof}
-	$"'\Rightarrow"'$ s.o. $"'\Leftarrow"'$ ohne Beweis.
+	"'$\Rightarrow$"' s.o. "'$\Leftarrow$"' ohne Beweis.
 \end{proof}
 
 
@@ -1320,7 +1307,7 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 
 \begin{proof} ~\
 	\begin{enumerate}
-		\item $\exists j \in \N$: $|a_{n}| \leq b_{n} ~\forall n \geq j$. Sei $m > n \geq j$, dann
+		\item $\exists j \in \N$: $|a_{n}| \leq b_{n} ~\forall n \geq j$. Sei $m > n \geq j$, dann
 			$$ \underbrace{\sum_{k=n+1}^{m}|a_{n}|}_{\eqqcolon \sigma_{m, n}} \leq \underbrace{\sum_{k=n+1}^{m} b_{k}}_{\eqqcolon \tau_{m,n}} $$
 			Sei $\epsilon > 0$ Voraussetzung nach $\ref{3.1.b:satz} \Rightarrow \exists n_{0} \in \N: n_{0} \geq j$ und $\tau_{m,n} < \epsilon$ für $m > n \geq n_{0}$. Dann: $\sigma_{m,n} < \epsilon$ für $m > n \geq n_{0} \xRightarrow[]{\ref{3.1.b:satz}} \sum |a_{n}|$ konvergiert.
 		\item Annahme: $\sum a_{n}$ konvergent $\xRightarrow[]{a)} \sum b_{n}$ konvergent. Widerspruch.
@@ -1337,9 +1324,10 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 		\item Sei $\alpha > 0$ und $\alpha \in \Q$: Betrachte: $\sum_{n=1}^{\infty} \frac{1}{n^{\alpha}}$. \\
 			Fall 1: $\alpha \in (0, 1]$.
 				$$ \forall n \in \N: ~ \frac{1}{n^{\alpha}} \geq \frac{1}{n} \geq 0 \xRightarrow[]{\ref{3.5.b:satz}} \sum \frac{1}{n^{\alpha}} \text{ divergiert.} $$
-			Fall 2: $\alpha \geq 2$: \\
+			Fall 2: $\alpha \geq 2$:
 				$$ \forall n \in \N: ~ 0 \leq \frac{1}{n^{\alpha}} \leq \frac{1}{n^{2}} \xRightarrow[]{\ref{3.5.a:satz}} \sum_{n=1}^{\infty} \frac{1}{n^{\alpha}} \text{ konvergiert.} $$
-			Fall 3: $\alpha \in (1, 2)$: vgl. Übungsblatt, $\sum \frac{1}{n^{\alpha}}$ konvergiert. \\ \\
+			Fall 3: $\alpha \in (1, 2)$: vgl. Übungsblatt, $\sum \frac{1}{n^{\alpha}}$ konvergiert. 
+			
 			\textbf{Fazit}: Ist $\alpha > 0$ und $\alpha \in \Q$, so gilt $\sum_{n=1}^{\infty} \frac{1}{n^{\alpha}}$ konvergiert $\Leftrightarrow \alpha > 1$
 		\item $\sum_{n=1}^{\infty} (-1)^{n} \frac{n^{2} + 2}{n^{3} + 1}$; $|a_{n}| = \frac{n+2}{n^{3} + 1} \leq \frac{n+2}{n^{3}} \leq \frac{2n}{n^{3}} = \frac{2n}{n^{2}} \eqqcolon b_{n}$. Für $n \geq 2$ $\sum b_{n}$ konvergiert $\xRightarrow[]{\ref{3.5.a:satz}} \sum a_{n}$ konvergiert absolut.
 		\item $\sum_{n=1}^{\infty} \frac{\sqrt{n}}{n+1}$; $a_{n} = |a_{n}| = \frac{\sqrt{n}}{n+1} \geq \frac{\sqrt{n}}{2n} = \frac{1}{2} \cdot \frac{1}{\sqrt{n}} = \underbrace{\frac{1}{2} \cdot \frac{1}{n^{\frac{1}{2}}}}_{\geq 0} \eqqcolon b_{n}$. \\
@@ -1404,10 +1392,9 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 		\item $a_{n} \coloneqq \frac{1}{n^{2}}$; $c_{n} = \sqrt[n]{|a_{n}|} = \frac{1}{(\sqrt[n]{n})^{2}} \rightarrow 1$, also $\alpha = 1$ und $\sum a_{n}$ konvergiert.
 		\item Sei $x \in \R$ und $a_{n} \coloneqq \begin{cases} \frac{1}{2^{n}}, & \text{falls } n = 2k \\ n x^{n}, & \text{falls } n = 2k - 1 \end{cases}$ \\
 			Frage: Wann ist $\sum a_{n}$ (abs.) konvergent? Es ist
-			$$c_{n} = \sqrt[n]{|a_{n}|} = \begin{cases}
-				\frac{1}{2}, & \text{falls } n = 2k \\ \sqrt[n]{n}|x|, & \text{falls } n = 2k - 1
-			\end{cases}$$
-			$(c_{n})$ ist also beschränkt, $H(c_{n}) = \left\{ \frac{1}{2}, |x| \right\}$. \\ \\
+				$$ c_{n} = \sqrt[n]{|a_{n}|} = \begin{cases} \frac{1}{2}, & \text{falls } n = 2k \\ \sqrt[n]{n}|x|, & \text{falls } n = 2k - 1 \end{cases} $$
+			$(c_{n})$ ist also beschränkt, $H(c_{n}) = \left\{ \frac{1}{2}, |x| \right\}$.  
+			
 			Fall 1: $|x| < 1$. Dann: $\alpha = \limsup c_{n} < 1$, also ist $\sum a_{n}$ absolut konvergent. \\
 			Fall 2: $|x| > 1$. Dann: $\alpha = \limsup c_{n} < 1$, also ist $\sum a_{n}$ divergent. \\
 			Fall 3: $|x| = 1$. Dann: $\alpha = \limsup c_{n} = 1$. Es ist $|a_{n}| = n$ falls $n = 2k - 1$. Also: $a_{n} \not\rightarrow 0$. $\sum a_{n}$ ist also divergent.			
@@ -1429,15 +1416,15 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 
 \begin{folgerung} \label{3.8:folg}
 	$(a_{n})$ und $(c_{n})$ seien wie in \ref{3.7:prop-Quotientenkriterium}, $(c_{n})$ sei konvergent und $\alpha \coloneqq \lim c_{n}$.
-	$$ \sum a_{n} \text{ ist} \begin{cases} \text{absolut konv.}, & \text{falls } \alpha < 1 \\ \text{divergent}, & \text{falls } \alpha > 1 \end{cases} $$
+	$$ \sum a_{n} \text{ ist} \begin{cases} \text{absolut konv.}, & \text{falls } \alpha < 1 \\ \text{divergent}, & \text{falls } \alpha > 1 \end{cases} $$
 	Im Falle $\alpha = 1$ ist keine allg. Aussage möglich.
 \end{folgerung}
 
 
 \begin{beispiele} ~\
 	\begin{enumerate}
-		\item $a_{n} = \frac{1}{n}$, $\left| \frac{a_{n+1}}{a_{n}} \right| = \frac{n}{n+1} \rightarrow 1$, $\sum a_{n}$ divergiert.
-		\item $a_{n} = \frac{1}{n^{2}}$, $ \left| \frac{a_{n+1}}{a_{n}} \right| = \frac{n^{2}}{(n+1)^{2}} \rightarrow 1$, $\sum a_{n}$ konvergiert.
+		\item $a_{n} = \frac{1}{n}$, $\left| \frac{a_{n+1}}{a_{n}} \right| = \frac{n}{n+1} \rightarrow 1$, $\sum a_{n}$ divergiert.
+		\item $a_{n} = \frac{1}{n^{2}}$, $ \left| \frac{a_{n+1}}{a_{n}} \right| = \frac{n^{2}}{(n+1)^{2}} \rightarrow 1$, $\sum a_{n}$ konvergiert.
 	\end{enumerate}	
 \end{beispiele}
 
@@ -1528,7 +1515,7 @@ $\sum_{n=0}^{\infty} a_{n}$ und $\sum_{n=0}^{\infty} b_{n}$ seien absolut konver
 		\item $E(0) = 1, E(1) = e$
 		\item $E(x + y) = E(x) E(y)$ $\forall x, y \in \R$
 		\item $E(x_{1} + \dotsc + x_{m}) = E(x_{1}) \cdot \dotsc \cdot E(x_{m})$ $\forall x_{1}, \dotsc, x_{m} \in \R$
-		\item $E(x) > 1 ~\forall x > 0$; $E(X) > 0 ~\forall x \in \R$; $E(-x) = E(x)^{-1} ~\forall x \in \R$
+		\item $E(x) > 1 ~\forall x > 0$; $E(X) > 0 ~\forall x \in \R$; $E(-x) = E(x)^{-1} ~\forall x \in \R$
 		\item $E(rx) = E(x)^{r} ~\forall x \in \R, \forall r \in \Q$
 		\item $E(r) = e^{r} ~\forall r \in \Q$
 		\item $E$ ist auf $\R$ streng monoton wachsend, d.h. aus $x < y$ folgt stets $E(x) < E(y)$.
@@ -1596,7 +1583,7 @@ Frage: für welche $x \in \R$ konvergiert die Potenzreihe (absolut)? Klar: die P
 			\infty, & \text{falls } \rho = 0 \\
 			\frac{1}{\rho}, & \text{falls } \rho \in (0, \infty)
 		\end{cases} $$
-	(kurz: \glqq $r = \frac{1}{\rho}$\grqq). $r$ hei{\ss}t der \textbf{Konvergenzradius} (KR) der Potenzreihe.
+	(kurz: "'$r = \frac{1}{\rho}$"'). $r$ hei{\ss}t der \textbf{Konvergenzradius} (KR) der Potenzreihe.
 \end{definition}
 
 
@@ -1628,7 +1615,9 @@ Frage: für welche $x \in \R$ konvergiert die Potenzreihe (absolut)? Klar: die P
 \end{folgerung*}
 
 \begin{proof}
-	$\sum_{n=0}^{\infty} \frac{x^{n}}{n!}$ hat den Konvergenzradius $r = \infty$; $a_{n} = \frac{1}{n!} \xRightarrow[]{\ref{4.1:satz}} \rho = 0$, also $\limsup \sqrt[n]{|a_{n}|} = 0$ Hilfssatz vor \ref{3.6:prop-Wurzelkriterium} $\Rightarrow \lim \sqrt[n]{|a_{n}|} = 0$.
+	$\sum_{n=0}^{\infty} \frac{x^{n}}{n!}$ hat den Konvergenzradius $r = \infty$; $a_{n} = \frac{1}{n!} \xRightarrow[]{\ref{4.1:satz}} \rho = 0$, also 
+	$$ \limsup \sqrt[n]{|a_{n}|} = 0. $$
+	Hilfssatz vor \ref{3.6:prop-Wurzelkriterium} $\Rightarrow \lim \sqrt[n]{|a_{n}|} = 0$.
 \end{proof}
 
 
@@ -1661,7 +1650,7 @@ Frage: für welche $x \in \R$ konvergiert die Potenzreihe (absolut)? Klar: die P
 Klar: $\sin 0 = 0, \cos 0 = 1$, $\sin (-x) = - \sin(x), \cos(-x) = \cos(x) ~\forall x \in \R$.
 
 \index{Additionstheoreme}
-Ähnlich wie in \ref{3.12:prop-Exponentialfunktion} zeigt man (mit Cauchyprodukt) die \textbf{Additiostheoreme} $\forall x,y \in \R$:
+Ähnlich wie in \ref{3.12:prop-Exponentialfunktion} zeigt man (mit Cauchyprodukt) die \textbf{Additiostheoreme}, dassfüraööe $x, y \in \R$:
 \begin{align*}
 	\sin(x+y) & = \sin x \cos y + \cos x \sin y \\
 	\cos(x+y) & = \cos x \cos y - \sin x \sin y
@@ -1678,7 +1667,7 @@ Für alle $x \in \R$ ist $\cos^{2} x \leq \cos^{2} x + \sin^{2} x = 1$, also $|\
 \end{satz}
 
 \begin{proof}
-	Sei $x \in \R$, $x \neq x_{0}$ und $b_{n} \coloneqq a_{n} (x - x_{0})^{n}$. Dann:
+	Sei $x \in \R$, $x \neq x_{0}$ und $b_{n} \coloneqq a_{n} (x - x_{0})^{n}$. Dann:
 	\begin{align}
 		 \left| \frac{b_{n+1}}{b_{n}} \right| = \left| \frac{a_{n+1}}{a_{n}} \right| |x - x_{0}| \tag{$*$}
 	\end{align}
@@ -1741,8 +1730,7 @@ $\xRightarrow[]{\ref{3.5.a:satz}} \sum_{n=0}^{\infty}\sqrt{z_{n}}{q^{n}}$ konver
 	$$ \xRightarrow[]{(*)} a = \lim s_{n} = \sum_{n=0}^{\infty} \frac{z_{n}}{q^{n}} $$
 Dafür schreibt man: $a = z_{0}, z_{1} z_{2} z_{3} \dotsc$ (\textbf{q-adische Entwicklung von }$a$)
 
-$q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
-(Gilt mit einem $m \in \N$: $z_{n} = 0 ~\forall n > m$, so schreibt man auch: $a = z_{0}, z_{1} \dotsc z_{m}$).
+$q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; (Gilt mit einem $m \in \N$: $z_{n} = 0 ~\forall n > m$, so schreibt man auch: $a = z_{0}, z_{1} \dotsc z_{m}$).
 
 
 \begin{beispiele} ~\
@@ -1790,7 +1778,7 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 		$$ a_{j} = 0, z_{1}^{(j)} z_{2}^{(j)} z_{3}^{(j)} \dotsc $$
 	die 3-adische Entwicklung von $a_{j}$, also $z_{k}^{(j)} \in \{ 0, 1, 2 \}$. Setze
 		$$ z_{k} \coloneqq \begin{cases} 1, & \text{falls } z_{k}^{(k)} = 0 \text{ oder } z_{k}^{(k)} = 2 \\ 0, & \text{falls } z_{k}^{(k)} = 1 \end{cases} $$
-	Dann: $z_{k} \neq z_{k}^{k} ~\forall k \in \N$ $(**)$. Setze $a \coloneqq \sum_{n=1}^{\infty} \frac{z_{n}}{3^{n}}$, dann:
+	Dann: $z_{k} \neq z_{k}^{k} ~\forall k \in \N$ $(**)$. Setze $a \coloneqq \sum_{n=1}^{\infty} \frac{z_{n}}{3^{n}}$, dann:
 		$$ 0 \leq a \leq \sum_{n=1}^{\infty} \frac{1}{3^{n}} = \frac{1}{2}, \text{ also } a \in [0, 1). $$
 	Übung: $0, z_{1} z_{2} z_{3} \dotsc$ ist die 3-adische Entwicklung von $a$.$a \in [0, 1) \Rightarrow \exists m \in \N: a = a_{m}$, also
 		$$ 0, z_{1} z_{2} z_{3} \dotsc = 0, z_{1}^{(m)} z_{2}^{(m)} \dotsc $$
@@ -1825,9 +1813,9 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 \end{hilfssatz}
 
 \begin{proof} ~\\
-	$"'\Rightarrow"'$ $\exists$ Folge $(x_{n})$ in $D \setminus \{ x_{0} \} : x_{n} \rightarrow x_{0}$. Sei $\epsilon > 0$: 
+	"'$\Rightarrow$"' $\exists$ Folge $(x_{n})$ in $D \setminus \{ x_{0} \} : x_{n} \rightarrow x_{0}$. Sei $\epsilon > 0$: 
 	$$ \exists n_{0} \in \N: x_{n} \in U_{\epsilon}(x_{0}) \cap (D \setminus \{ x_{0} \}) ~\forall n \geq n_{0}. $$
-	$"'\Leftarrow"'$ $\exists x_{1} \in U_{1}(x_{0}) \cap (D \setminus \{ x_{0} \})$, also $|x_{1} - x_{0}| < 1$; \\
+	"'$\Leftarrow$"' $\exists x_{1} \in U_{1}(x_{0}) \cap (D \setminus \{ x_{0} \})$, also $|x_{1} - x_{0}| < 1$; \\
 	$\exists x_{2} \in U_{\frac{1}{2}}(x_{0} \cap (D \setminus \{ x_{0} \})$, also $|x_{2} - x_{0}| < \frac{1}{2}$; etc. \\
 	Wir erhalten eine Folge $(x_{n})$ in $D \setminus \{ x_{0} \}$ mit 
 	$$ |x_{n} - x_{0}| < \frac{1}{n} \quad \forall n \in \N, $$
@@ -1860,7 +1848,7 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 
 
 \begin{bemerkung}
-	sollte $x_{0} \in D$ sein, so ist der Wert $f(x_{0})$ in obiger Definition nicht relevant. Relevant ist allein das Verfahren von $f$ in das $\glqq$Nähe$\grqq$ von $x_{0}$.	
+	sollte $x_{0} \in D$ sein, so ist der Wert $f(x_{0})$ in obiger Definition nicht relevant. Relevant ist allein das Verfahren von $f$ in das "'Nähe"' von $x_{0}$.	
 \end{bemerkung}
 
 \index{Grenzwert!linksseitiger} \index{Grenzwert!rechtsseitiger}
@@ -1886,7 +1874,7 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 				& = |x| ( e - 1 )
 			\end{align*}
 			Sei $(x_{n})$ Folge in $\R$: $x_{n} \rightarrow 0$. $\exists n_{0} \in \N: |x_{n}| \leq 1 ~\forall n \geq n_{0} \Rightarrow |E(x_{n}) - | \leq |x_{n}|(e-1) ~\forall n \geq n_{0} \Rightarrow E(x_{n}) \rightarrow 1$ \\
-			Also: $\lim_{x \rightarrow 0} E(x) = 1 = E(0)$. Somit: $\lim_{x \rightarrow 0} \sum_{n=0}^{\infty} \frac{x^{n}}{n!} = \sum_{n=0}^{\infty} \left( \lim_{x \rightarrow 0} \frac{x1{n}}{n!} \right)$.
+			Also: $\lim_{x \rightarrow 0} E(x) = 1 = E(0)$. Somit: $\lim_{x \rightarrow 0} \sum_{n=0}^{\infty} \frac{x^{n}}{n!} = \sum_{n=0}^{\infty} \left( \lim_{x \rightarrow 0} \frac{x1{n}}{n!} \right)$.
 	\end{enumerate}	
 \end{beispiele}
 
@@ -1906,7 +1894,7 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 
 
 \begin{satz} \label{6.3:satz}
-	$f, g, h \colon D \rightarrow \R$ seien Funktionen. (Erinnerung: $D_{\delta}(x_{0}) \coloneqq U_{\delta}(x_{0}) \cap (D \setminus \{ x_{0} \})$). Es seien $a, b \in \R$ und es gelte $f(x) \rightarrow a, g(x) \rightarrow b ~(x \rightarrow x_{0})$. Dann:
+	$f, g, h \colon D \rightarrow \R$ seien Funktionen. (Erinnerung: $D_{\delta}(x_{0}) \coloneqq U_{\delta}(x_{0}) \cap (D \setminus \{ x_{0} \})$). Es seien $a, b \in \R$ und es gelte $f(x) \rightarrow a, g(x) \rightarrow b ~(x \rightarrow x_{0})$. Dann:
 	\begin{enumerate}
 		\item $\alpha f(x) + \beta g(x) \rightarrow \alpha a + \beta b$; $f(x) g(x) \rightarrow a b$, \\
 			$|f(x)| \rightarrow |a| ~(x \rightarrow x_{0})$ \label{6.3.a:satz}
@@ -2043,7 +2031,7 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 
 
 \begin{satz} \label{7.4:satz}
-	$\sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n}$ sei eine Potenzreihe mit Konvergenzradius $r > 0$. Es sei $D \coloneqq (x_{0} - r, x_{0} + r)$. falls $r < \infty$ und $D \coloneqq \R$ falls $r = \infty$. Weiter sei
+	$\sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n}$ sei eine Potenzreihe mit Konvergenzradius $r > 0$. Es sei $D \coloneqq (x_{0} - r, x_{0} + r)$. falls $r < \infty$ und $D \coloneqq \R$ falls $r = \infty$. Weiter sei
 		$$ f(x) \coloneqq \sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n} ~(x \in D) $$
 	Dann: $f \in C(D)$.	
 \end{satz}
@@ -2171,10 +2159,10 @@ Aus \ref{7.7:prop-Zwischenwertsatz} folgt mit $y_{0} = 0$:
 \end{beispiele}
 
 
-\begin{proof}(7.10) \\
+\begin{proof}(7.10)
 	\begin{enumerate}
 		\item i. d. gro{\ss}en Übung.
-		\item $"'\Leftarrow"'$ Folgt direkt aus \ref{2.12:satz-BolzanoWeierstrass}, $"'\Rightarrow"'$ Übung.
+		\item "'$\Leftarrow$"' Folgt direkt aus \ref{2.12:satz-BolzanoWeierstrass}, "'$\Rightarrow$"' Übung.
 		\item Sei $s \coloneqq \sup D$. 
 			$$ \forall n \in \N ~\exists x_{n} \in D: x_{n} > s - \frac{1}{n}, \text{ also } \forall n \in \N: s - \frac{1}{n} < x_{n} \leq s. $$
 			 Somit: $x_{n} \rightarrow s \xRightarrow[]{b)} D$ ist abgeschlossen $\Rightarrow s \in D \Rightarrow s = \max D$. \\
@@ -2213,8 +2201,8 @@ Aus \ref{7.7:prop-Zwischenwertsatz} folgt mit $y_{0} = 0$:
  \index{monoton! wachsend}   \index{monoton! streng wachsend} \index{monoton! streng fallend} \index{monoton! fallend}
 \begin{definition} ~\
 	\begin{enumerate}
-		\item $f \colon D \rightarrow \R$ hei{\ss}t \textbf{monoton wachsend} $\iff$ aus $x_{1}, x_{2} \in D$ und $x_{1} < x_{2}$ folgt stets $f(x_{1}) \leq f(x_{2})$. \\
-			$f \colon D \rightarrow \R$ hei{\ss}t \textbf{streng monoton wachsend} $\iff$ aus $x_{1}, x_{2} \in D$ und $x_{1} < x_{2}$ folgt stets $f(x_{1}) < f(x_{2})$.
+		\item $f \colon D \rightarrow \R$ hei{\ss}t \textbf{monoton wachsend} $\iff$ aus $x_{1}, x_{2} \in D$ und $x_{1} < x_{2}$ folgt stets $f(x_{1}) \leq f(x_{2})$. \\
+			$f \colon D \rightarrow \R$ hei{\ss}t \textbf{streng monoton wachsend} $\iff$ aus $x_{1}, x_{2} \in D$ und $x_{1} < x_{2}$ folgt stets $f(x_{1}) < f(x_{2})$.
 		\item Entsprechend definiert man \textbf{(streng) monoton fallend}.
 		\item $f$ hei{\ss}t (streng) monoton $\iff f$ ist (streng) monoton wachsend oder (streng) monoton fallend.
 	\end{enumerate}
@@ -2285,7 +2273,7 @@ Es gilt $\forall x \in I$: $f^{-1}(f(x)) = x$ und $\forall y \in F(I)$: $f(f^{-1
 		\item $a^{x} > 0 ~\forall x \in \R$.
 		\item Die Funktion $x \mapsto a^{x}$ ist auf $\R$ stetig.
 		\item $a^{x+y} = e^{(x+y)\log a} = e^{x\log a + y \log a} = e^{x \log a} e^{y \log a} = a^{x} a^{y}$
-		\item $a^{-x} = e^{-x\log a} = \frac{1}{e^{x} \log a} = \frac{1}{a^{x}}$
+		\item $a^{-x} = e^{-x\log a} = \frac{1}{e^{x} \log a} = \frac{1}{a^{x}}$
 		\item $\log(a^{x}) = \log ( e^{x \log a}) = x \log a$
 		\item $(a^{x})^{y} = e^{y \log a^{x}} \overset{e)}{=} e^{xy \log a} = a^{xy}$.
 		\item Ist $x > 0$, so ist $a^{x^{y}} \coloneqq a^{\left(x^{y}\right)}$.
@@ -2299,10 +2287,10 @@ Es gilt $\forall x \in I$: $f^{-1}(f(x)) = x$ und $\forall y \in F(I)$: $f(f^{-1
 
 \index{stetig!gleichmä{\ss}ig}
 \begin{definition}
-	$f \colon D \rightarrow \R$ hei{\ss}t auf $D$ \textbf{gleichmä{\ss}ig stetig} $\iff \forall \epsilon > 0 ~\exists \delta = \delta(\epsilon) > 0$: $|f(x) - f(z)| < \epsilon ~\forall x, z \in D: |x - z| < \delta$.
+	$f \colon D \rightarrow \R$ hei{\ss}t auf $D$ \textbf{gleichmä{\ss}ig stetig} $\iff \forall \epsilon > 0 ~\exists \delta = \delta(\epsilon) > 0$: $|f(x) - f(z)| < \epsilon ~\forall x, z \in D: |x - z| < \delta$.
 \end{definition}
 
-Klar: $f$ gleichmä{\ss}ig stetig $\Rightarrow f$ stetig. ($"'\Leftarrow "'$ ist i.A. falsch!). \\
+Klar: $f$ gleichmä{\ss}ig stetig $\Rightarrow f$ stetig. ("$\Leftarrow$"' ist i.A. falsch!). \\
 Ohne Beweis.
 
 \begin{satz} \label{7.16:satz}
@@ -2370,15 +2358,16 @@ I. d. $\S$en sei stets: $\emptyset \neq D \subseteq \R$, $(f_{n})$ eine Folge vo
 	\end{enumerate}
 \end{definition}
 
-Klar: gleichmä{\ss}ige Konvergenz $\Rightarrow$ punktweise Konvergenz $("'\Leftarrow"'$ ist i. A. falsch, siehe Beispiele unten). \\
+Klar: gleichmä{\ss}ige Konvergenz $\Rightarrow$ punktweise Konvergenz ("'$\Leftarrow$"' ist i. A. falsch, siehe Beispiele unten).
 
-Anschaulich: $(f_{n})$ konvergiert auf $D$ gleichmä{\ss}ig gegen $f$ bedeutet: zu $\epsilon > 0$ existiert ein $n_{0} = n_{0}(\epsilon) \in \N$: für $n \geq n_{0}$ liegt der Graph von $f_{n}$ im $"'\epsilon$-Schlauch$"'$ um $f$.
+
+Anschaulich: $(f_{n})$ konvergiert auf $D$ gleichmä{\ss}ig gegen $f$ bedeutet: zu $\epsilon > 0$ existiert ein $n_{0} = n_{0}(\epsilon) \in \N$: für $n \geq n_{0}$ liegt der Graph von $f_{n}$ im "'$\epsilon$-Schlauch"' um $f$.
 %todo image
 
 \begin{beispiele} ~\
 	\begin{enumerate}
 		\item Sei $D = [0, 1], f_{n}(x) = x^{n}$. $(f_{n})$ konvergiert punktweise gegen 
-			$$ f(x) = \begin{cases} 0, & \text{falls } x \in [0, 1], \\ 1, & \text{falls } x = 1 \end{cases} $$
+			$$ f(x) = \begin{cases} 0, & \text{falls } x \in [0, 1], \\ 1, & \text{falls } x = 1 \end{cases} $$
 			Sei $0 < \epsilon < \frac{1}{2}$. Es ist $f_{n}(x) = \frac{1}{2} \iff x = \frac{1}{\sqrt[n]{2}}$ und damit
 				$$ |f_{n}(\frac{1}{\sqrt[n]{2}}) - f(\frac{1}{\sqrt[n]{2}}) = \frac{1}{2} > \epsilon \quad \forall n \in \N $$
 			$(f_{n})$ konvergiert also nicht gleichmä{\ss}ig auf $[0, 1]$ gegen $f$.
@@ -2408,7 +2397,7 @@ Anschaulich: $(f_{n})$ konvergiert auf $D$ gleichmä{\ss}ig gegen $f$ bedeutet: 
 
 \begin{proof} ~\
 	\begin{enumerate}
-		\item Sei $\epsilon > 0 ~\exists n_{0} = n_{0}(\epsilon)\geq m$: $\alpha_{n} < \epsilon ~\forall n \geq n_{0}$. Dann:
+		\item Sei $\epsilon > 0 ~\exists n_{0} = n_{0}(\epsilon)\geq m$: $\alpha_{n} < \epsilon ~\forall n \geq n_{0}$. Dann:
 			$$ | f_{n}(x) - f(x) | < \epsilon \quad \forall n \geq n_{0} ~\forall x \in D $$
 		\item Sei $x \in D$. $|f_{n}(x)| \leq c_{n} ~\forall n \geq m \xRightarrow[]{\ref{3.5.a:satz}} \sum_{n=1}^{\infty} f_{n}(x)$ konvergiert (absolut).
 	\end{enumerate}
@@ -2443,7 +2432,7 @@ Anschaulich: $(f_{n})$ konvergiert auf $D$ gleichmä{\ss}ig gegen $f$ bedeutet: 
 		\item Konvergiert $(f_{n})$ auf $D$ punktweise gegen $f \colon D \rightarrow \R$ und gilt $f_{n} \in C(D) ~\forall n$ aber $f \notin C(D)$, so ist Konvergenz nicht gleichmä{\ss}ig!
 		\item Voraussetzung wie in $\ref{8.3.a:satz}$; $x_{0}$ sei Häufungspunkt von $D$. Dann:
 			\begin{align*}
-				\lim_{x \rightarrow x_{0}} \left( \lim_{n \rightarrow \infty} f_{n}(x) \right) & = \lim_{x \rightarrow x_{0}} f(x) \overset{\ref{8.3.a:satz}}{=} f(x_{0}) = \lim_{n \rightarrow \infty} f_{n}(x_{0}) \\
+				\lim_{x \rightarrow x_{0}} \left( \lim_{n \rightarrow \infty} f_{n}(x) \right) & = \lim_{x \rightarrow x_{0}} f(x) \overset{\ref{8.3.a:satz}}{=} f(x_{0}) = \lim_{n \rightarrow \infty} f_{n}(x_{0}) \\
 					& = \lim_{n \rightarrow \infty} \left( \lim_{x \rightarrow x_{0}} f_{n}(x) \right)  
 			\end{align*}
 	\end{enumerate}	
@@ -2455,7 +2444,7 @@ Anschaulich: $(f_{n})$ konvergiert auf $D$ gleichmä{\ss}ig gegen $f$ bedeutet: 
 			\begin{align*}
 				|f(x) - f(x_{0})| & = |f(x) - f_{m}(x) + f_{m}(x) - f_{m}(x_{0}) + f_{m}(x_{0}) - f(x_{0})| \\ 
 					& \leq |f(x) - f_{m}(x) | + | f_{m}(x) - f_{m}(x_{0})| + | f_{m}(x_{0}) - f(x_{0})| \\
-					& < \frac{\epsilon}{3} +  \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon
+					& < \frac{\epsilon}{3} +  \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon
 			\end{align*}
 			$\xRightarrow[]{\ref{7.1:satz}}$ Beh.
 	\end{enumerate}
@@ -2498,7 +2487,7 @@ I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ e
 		\item $I = \R$, $f(x) = |x|, x_{0} = 0$
 			$$ \frac{f(x) - f(x_{0})}{x - x_{0}} = \frac{|x|}{x} = \begin{cases} ~1, & x > 0 \\ -1, & x < 0 \end{cases} $$ % todo image
 			$f$ ist also in $x_{0} = 0$ nicht differenzierbar.
-		\item $I = \R$, $f(x) = x^{n} ~(x \in \N)$. Sei $x_{0} \in \R, x \neq x_{0}$.
+		\item $I = \R$, $f(x) = x^{n} ~(x \in \N)$. Sei $x_{0} \in \R, x \neq x_{0}$.
 			\begin{align*}
 				\frac{f(x) - f(x_{0})}{x - x_{0}} & = \frac{x^{n} - x_{0}^{n}}{x - x_{0}} \\
 					& \overset{\S}{=} \frac{(x - x_{0}) (x^{n-1} + x^{n-2} x_{0} + \dotsc + x x_{0}^{n-2} + x_{0}^{n-1}}{x - x_{0}} \\
@@ -2599,7 +2588,7 @@ I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ e
 \begin{anwendung} \label{9.5:anwendung}
 	Sei $a \in \R$ und o.B.d.A. $a \neq 0$. $f(t) \coloneqq \log(1 + t) ~(t > -1)$. Dann: $f'(t) = \frac{1}{1 + t}$
 	$$ \lim_{t \rightarrow 0} \frac{\log(1+t)}{t} \lim_{t \rightarrow 0} \frac{f(t) - f(0)}{t - 0} = f'(0) = 1 $$
-	$$ \Rightarrow 1 = \lim_{x \rightarrow \infty} \frac{\log(1 + \frac{a}{x})}{\frac{a}{x}} = \frac{1}{a} x \log(1 + \frac{a}{x}) = \frac{1}{a} \log (1 + \frac{a}{x})^{x} $$
+	$$ \Rightarrow 1 = \lim_{x \rightarrow \infty} \frac{\log(1 + \frac{a}{x})}{\frac{a}{x}} = \frac{1}{a} x \log(1 + \frac{a}{x}) = \frac{1}{a} \log (1 + \frac{a}{x})^{x} $$
 	$\Rightarrow \log (1 + \frac{a}{x})^{x} \rightarrow a ~(x \rightarrow \infty) \Rightarrow \lim_{x \rightarrow \infty} (1 + \frac{a}{x})^{x} = e^{a}$
 \end{anwendung}
 
@@ -2649,7 +2638,7 @@ I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ e
 \end{folgerung}
 
 \begin{proof}
-	$"'\Rightarrow"'$ \checkmark, $"'\Leftarrow"'$ Seien $x_{1}, x_{2} \in I, x_{1} < x_{2} \xRightarrow[]{\hyperref[9.7:prop-Mittelwertsatz]{MWS}} \exists \xi \in (x_{1}, x_{2})$: 
+	"'$\Rightarrow$"' \checkmark, "'$\Leftarrow$"' Seien $x_{1}, x_{2} \in I, x_{1} < x_{2} \xRightarrow[]{\hyperref[9.7:prop-Mittelwertsatz]{MWS}} \exists \xi \in (x_{1}, x_{2})$: 
 		$$ f(x_{2}) - f(x_{1}) = f'(\xi) (x_{2} - x_{1}) = 0, $$ 
 	also $f(x_{1}) = f(x_{2})$.
 \end{proof}
@@ -2661,7 +2650,7 @@ I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ e
 \end{anwendung}
 
 \begin{proof}
-	$"'\Rightarrow"'$ \checkmark, $"'\Leftarrow"'$ $g(x) \coloneqq \frac{f(x)}{e^{x}}$. Dann:
+	"'$\Rightarrow$"' \checkmark, "'$\Leftarrow$"' $g(x) \coloneqq \frac{f(x)}{e^{x}}$. Dann:
 	$$ g'(x) = \frac{f'(x) e^{x} - e^{x} f(x)}{e^{2x}} = 0 \quad \forall x \in I. $$
 	$\xRightarrow[]{\ref{9.8:folg}} \exists c \in \R: g(x) = c ~\forall x \in I \Rightarrow$ Beh.
 \end{proof}
@@ -2688,19 +2677,27 @@ I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ e
 
 Ohne Beweis:
 \begin{namedtheorem}[Die Regeln von de l'Hospital] \label{9.11:prop:lHopital}
-	Es sei $I = (a, b)$, wobei $a = -\infty$ oder $b = \infty$ zugelassen ist. $f, g \colon I \rightarrow \R$ seien auf $I$ differenzierbar und $g'(x) \neq 0 ~\forall x \in I$. Es existiere
-	$$ L \coloneqq \lim_{x \rightarrow {a \above 0pt b}} \frac{f'(x)}{g'(x)} \quad  (L \in \R \cup \{ - \infty, \infty \}) $$
-	Gilt (I) $\lim_{x \rightarrow {a \above 0pt b}} f(x) = \lim_{x \rightarrow {a \above 0pt b}} g(x) = 0$ \\
-	oder (II) $\lim_{x \rightarrow {a \above 0pt b}} g(x) = \pm \infty$, \\
+	Es sei $I = (a, b)$, wobei $a = -\infty$ oder $b = \infty$ zugelassen ist. $f, g \colon I \rightarrow \R$ seien auf $I$ differenzierbar und $g'(x) \neq 0 ~\forall x \in I$. 
+	\begin{enumerate}
+		\item Es existiere
+	$$ L \coloneqq \lim_{x \rightarrow a} \frac{f'(x)}{g'(x)} \quad  (L \in \R \cup \{ - \infty, \infty \}) $$
+	Gilt (I) $\lim_{x \rightarrow a} f(x) = \lim_{x \rightarrow a} g(x) = 0$ oder (II) $\lim_{x \rightarrow a} g(x) = \pm \infty$, \\
 	so ist 
-	$$ \lim_{x \rightarrow {a \above 0pt b}} \frac{f(x)}{g(x)} = L. $$
+	$$ \lim_{x \rightarrow a} \frac{f(x)}{g(x)} = L. $$
+		\item Es existiere
+	$$ L \coloneqq \lim_{x \rightarrow b} \frac{f'(x)}{g'(x)} \quad  (L \in \R \cup \{ - \infty, \infty \}) $$
+	Gilt (I) $\lim_{x \rightarrow b} f(x) = \lim_{x \rightarrow b} g(x) = 0$ oder (II) $\lim_{x \rightarrow b} g(x) = \pm \infty$, \\
+	so ist 
+	$$ \lim_{x \rightarrow b} \frac{f(x)}{g(x)} = L. $$
+	\end{enumerate}
+	
 \end{namedtheorem}
 
 \begin{beispiele} ~\
 	\begin{enumerate}
 		\item $a, b > 0$. $\lim_{x \rightarrow 0} \frac{a^{x} - b^{x}}{x} = \lim_{x \rightarrow 0} \frac{a^{x} \log a - b^{x} \log b}{1} = \log a - \log b$.
-		\item $\lim_{x \rightarrow \infty} \frac{\log x}{x} = \lim_{x \rightarrow \infty} \frac{\frac{1}{x}}{1} = 0$.
-		\item $\lim_{x \rightarrow 0} x \log x = \lim_{x \rightarrow 0} \frac{\log x}{\frac{1}{x}} = \lim_{x \rightarrow 0} \frac{\frac{1}{x}}{\frac{-1}{x^{2}}} = \lim_{x \rightarrow 0} (-x) = \epsilon$.
+		\item $\lim_{x \rightarrow \infty} \frac{\log x}{x} = \lim_{x \rightarrow \infty} \frac{\frac{1}{x}}{1} = 0$.
+		\item $\lim_{x \rightarrow 0} x \log x = \lim_{x \rightarrow 0} \frac{\log x}{\frac{1}{x}} = \lim_{x \rightarrow 0} \frac{\frac{1}{x}}{\frac{-1}{x^{2}}} = \lim_{x \rightarrow 0} (-x) = \epsilon$.
 		\item $\lim_{x \rightarrow 0 + 0} x^{x} = \lim_{x \rightarrow 0} e^{x \log x} \overset{c)}{=} e^{0} = 1$.
 	\end{enumerate}
 \end{beispiele}
@@ -2717,7 +2714,7 @@ Ohne Beweis:
 
 \begin{proof} ~\
 	\begin{enumerate}
-		\item $\sum[n]{n |a_{n}|} = \underbrace{\sqrt[n]{n}}_{\rightarrow 1} \sqrt[n]{|a_{n}|}$; $r > 0 \xRightarrow[]{\ref{4.1:satz}} \sqrt[n]{|a_{n}|}$ ist beschränkt $\Rightarrow \sqrt[n]{n|a_{n}|}$ ist beschränkt $\Rightarrow \limsup \sqrt[n]{n|a_{n}|} = \limsup \sqrt[n]{|a_{n}|}$, da $H(\sqrt[n]{|a_{n}|}) = H(\sqrt[n]{|n a_{n}|}) \Rightarrow$ Beh.
+		\item $\sum[n]{n |a_{n}|} = \underbrace{\sqrt[n]{n}}_{\rightarrow 1} \sqrt[n]{|a_{n}|}$; $r > 0 \xRightarrow[]{\ref{4.1:satz}} \sqrt[n]{|a_{n}|}$ ist beschränkt $\Rightarrow \sqrt[n]{n|a_{n}|}$ ist beschränkt $\Rightarrow \limsup \sqrt[n]{n|a_{n}|} = \limsup \sqrt[n]{|a_{n}|}$, da $H(\sqrt[n]{|a_{n}|}) = H(\sqrt[n]{|n a_{n}|}) \Rightarrow$ Beh.
 		\item später, nach \ref{10.17:satz}.
 	\end{enumerate}
 \end{proof}
@@ -2801,9 +2798,17 @@ $\sin x =\sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{(2n+1)!} \xRightarrow[]{\r
 
 Ohne Beweis: \index{Abelscher Grenzwertsatz}
 \begin{namedtheorem}[Abelscher Grenzwertsatz] \label{9.16:prop-AbelscherGrenzwertsatz}
-$\sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n}$ sei eine Potenzreihe mit Konvergenzradius $r > 0$ und $r < \infty$. Die Potenzreihe konvergiere auch noch in ${x_{0} + r \above 0pt x_{0} - r}$. Es sei
-	$$ f(x) \coloneqq \sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n} \text{ für } x \in {(x_{0} - r, x_{0} + r] \above 0pt [x_{0} - r, x_{0} + r)} $$
-	Dann ist f stetig in ${x_{0} + r \above 0pt x_{0} - r}$.
+$\sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n}$ sei eine Potenzreihe mit Konvergenzradius $r > 0$ und $r < \infty$.
+	\begin{enumerate}
+		\item Die Potenzreihe konvergiere auch noch in $x_{0} + r$. Es sei
+			$$ f(x) \coloneqq \sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n} \text{ für } x \in [x_{0} - r, x_{0} + r) $$
+			Dann ist f stetig in $x_{0} + r$.
+		\item Die Potenzreihe konvergiere auch noch in $x_{0} - r$. Es sei
+			$$ f(x) \coloneqq \sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n} \text{ für } x \in [x_{0} - r, x_{0} + r) $$
+			Dann ist f stetig in $x_{0} - r$.
+	\end{enumerate}
+
+
 \end{namedtheorem}
 
 
@@ -2830,9 +2835,11 @@ $\sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n}$ sei eine Potenzreihe mit Konvergenzr
 \begin{definition} ~\
 	\begin{enumerate}
 		\item $f \colon I \rightarrow \R$ sei auf $I$ differenzierbar. Ist $f'$ in $x_{0} \in I$ differenzierbar, so hei{\ss}t f \textbf{in $x_{0}$ zweimal differenzierbar} und
-		$$ f''(x_{0}) \coloneqq (f')'(x_{0}) \text{ die 2. Ableitung von $f$ in $x_{0}$.} $$
-		\item Ist $f'$ auf $I$ differenzierbar, so hei{\ss}t $f$ \textbf{auf $I$ zweimal differenzierbar} und $'' \coloneqq (f')'$ die 2. Ableitung von $f$ auf $I$. \\
-			Entsprechend definiert man, falls vorhanden: $f'''(x_{0}), f^{(4)}(x_{0}), \dotsc$ und $f''', f^{(4)}, \dotsc$ 
+		$$ f''(x_{0}) \coloneqq (f')'(x_{0}) \text{ die 2. Ableitung von } f \text{ in } x_{0}. $$
+		\item Ist $f'$ auf $I$ differenzierbar, so hei{\ss}t $f$ \textbf{auf} $I$ \textbf{zweimal differenzierbar} und
+			 $$ f'' \coloneqq (f')' $$
+			 die 2. Ableitung von $f$ auf $I$. Entsprechend definiert man, falls vorhanden: 
+			 $$ f'''(x_{0}), f^{(4)}(x_{0}), \dotsc \text{ und } f''', f^{(4)}, \dotsc $$ 
 		\item $C^{0}(I) \coloneqq C(I); f^{0} \coloneqq f$; Sei $n \in \N$. $f$ hei{\ss}t \textbf{auf $I$ n-mal stetig differenzierbar} $\iff f$ ist auf $I$ n-mal differenzierbar $f, f', \dotsc, f^{(n)} \in C(I)$.
 			$$ C^{\infty} \coloneqq \bigcap_{n \geq 0} C^{n}(I). $$
 	\end{enumerate}
@@ -2919,7 +2926,7 @@ Ohne Beweis:
 
 \index{Zerlegung}
 \begin{vereinbarung}
-I. d. $\S$en sei stets $a < b$, $f \colon [a, b] \rightarrow \R$ eine Funktion und $f$ beschränkt auf $[a, b]$; $m \coloneqq \inf f([a, b]), M \coloneqq \sup f([a, b])$. \\
+I. d. $\S$en sei stets $a < b$, $f \colon [a, b] \rightarrow \R$ eine Funktion und $f$ beschränkt auf $[a, b]$; $m \coloneqq \inf f([a, b]), M \coloneqq \sup f([a, b])$.
 \end{vereinbarung}
 
 
@@ -2934,7 +2941,7 @@ Es ist $m \leq m_{j} \leq M_{j} \leq M$, also $m |I_{j}| \leq m_{j} |I_{j}| \leq
 	\begin{align}
 		\underbrace{\sum_{j=1}^{n} |I_{j}|}_{=b-a} \leq s_{f}(Z) \leq S_{f}(Z) \leq M \sum_{j=1}^{n} |I_{j}| = M (b - a) \tag{$*$}
 	\end{align}
- 
+ 
 
 
 \begin{definition}
@@ -3006,7 +3013,7 @@ Aus $(*)$ und \ref{10.1.a:satz} mit $Z \in \mathcal{J}$:
 \begin{proof}
 	Sei $\epsilon > 0$. Wähle $n \in \N$ so, dass 
 	$$ \frac{b - a}{n} (f(b) - f(a)) < \epsilon. $$
-	Für $j = 0, \dotsc, n$ sei $x_{j} \coloneqq a + j \frac{b - a}{n}$ und $Z \coloneqq \{ x_{0}, \dotsc, x_{n} \} \in \mathcal{J}$. Seien $I_{j}, m_{j}$ und $M_{j}$ wie immer, dann $|I_{j}| = \frac{b - a}{n}, m_{j} = f(x_{j-1}), M_{j} = f(x_{j})$. Also: \\ % todo image 
+	Für $j = 0, \dotsc, n$ sei $x_{j} \coloneqq a + j \frac{b - a}{n}$ und $Z \coloneqq \{ x_{0}, \dotsc, x_{n} \} \in \mathcal{J}$. Seien $I_{j}, m_{j}$ und $M_{j}$ wie immer, dann $|I_{j}| = \frac{b - a}{n}, m_{j} = f(x_{j-1}), M_{j} = f(x_{j})$. Also: % todo image 
 	\begin{align*}
 		S_{f}(Z) - s_{f}(Z) & = \sum_{j=1}^{n} (M_{j} - m_{j})|I_{j}| \\
 		& = \frac{b - a}{n} \sum_{j=1}^{n} ( f(x_{j}) - f(x_{j-1}) ) \\
@@ -3081,7 +3088,7 @@ Warnungen:
 			$f$ ist monoton $\xRightarrow[]{\ref{10.4:satz}} f \in R[0, 1]$. \\
 			Annahme: $f$ besitzt auf $[0, 1]$ eine Stammfunktion $F$. Dann:
 			$$ F'(x) = f(x) ~\forall x \in [0, 1] \Rightarrow F'(x) = 1 = (x)' \text{ auf } (0, 1] $$
-			$\xRightarrow[]{\ref{9.10:satz}} \exists c \in \R: F(x) = x + c$ auf $(0, 1]$. $F$ ist differenzierbar in $0 \Rightarrow F$ stetig in $0 \xRightarrow[]{x \rightarrow 0} F(0) = c$. Also: $F(x) = x ü c ~\forall x \in [0, 1]$. Aber:
+			$\xRightarrow[]{\ref{9.10:satz}} \exists c \in \R: F(x) = x + c$ auf $(0, 1]$. $F$ ist differenzierbar in $0 \Rightarrow F$ stetig in $0 \xRightarrow[]{x \rightarrow 0} F(0) = c$. Also: $F(x) = x + c ~\forall x \in [0, 1]$. Aber:
 			$$ 0 = f(0) = F'(0) = \lim_{x \rightarrow 0} \frac{F(x) - F(0)}{x - 0} = \lim_{x \rightarrow 0} \frac{x + c - c}{x} = 1, $$
 			Widerspruch!
 		\item $F(x) \coloneqq \begin{cases} x^{\frac{3}{2}} \sin \frac{1}{x}, & x \in (0, 1] \\ 0, & x = 0 \end{cases} \xRightarrow[]{\ref{9.18:bsp}} F$ ist auf $[0, 1]$ differenzierbar; $f \coloneqq F'$. Dann ist $F$ eine Stammfunktion von $f$ auf $[0, 1] \xRightarrow[]{\ref{9.18:bsp}} f$ ist auf $[0, 1]$ nicht beschränkt, also $f \notin R[a, b]$. 
@@ -3097,8 +3104,8 @@ Ohne Beweis:
 \end{satz}
 
 
-\textbf{Motivation}
-Für	$n \geq 2$ sei $f_{n} \colon [0, 1] \rightarrow \R$, $f_{n}(x) = \begin{cases} n^{2} x, & x \in [0, \frac{1}{n}), \\ n - (x - \frac{1}{n}) n^{2}, & x \in [\frac{1}{n}, \frac{2}{n}) \\ 0, & x \in [\frac{2}{n}, 1] \end{cases} $
+\textbf{Motivation}: Für $n \geq 2$ sei 
+	$$f_{n} \colon [0, 1] \rightarrow \R, f_{n}(x) = \begin{cases} n^{2} x, & x \in [0, \frac{1}{n}), \\ n - (x - \frac{1}{n}) n^{2}, & x \in [\frac{1}{n}, \frac{2}{n}) \\ 0, & x \in [\frac{2}{n}, 1] \end{cases} $$
 
 
 \begin{figure*}[!ht] \centering
@@ -3142,9 +3149,9 @@ Ohne Beweis:
 \begin{satz} \label{10.10:satz}
 	Es seien $f, g \in R[a, b]$.
 	\begin{enumerate}
-		\item Sei $D \coloneqq f([a, b])$ und mit einem $L \geq 0$ gelte für $h \colon D \rightarrow \R$:
+		\item Sei $D \coloneqq f([a, b])$ und mit einem $L \geq 0$ gelte für $h \colon D \rightarrow \R$:
 			$$ |h(s) - h(t)| \leq L |s - t| \quad \forall t, s \in D $$
-			Dann: $h \circ f \in R[a, b]$.
+			Dann: $h \circ f \in R[a, b]$.
 		\item $|f| \in R[a, b]$ und $|\int_{a}^{b} f(x) dx| \leq \int_{a}^{b} |f(x)| dx$ ($\triangle$-Ungleichung für Integrale).
 		\item $fg \in R[a, b]$.
 		\item Ist $g(x) \neq 0 ~\forall x \in [a, b]$ und $\frac{1}{g}$ auf $[a, b]$ beschränkt, so ist $\frac{1}{g} \in R[a, b]$.
@@ -3243,8 +3250,8 @@ Aus \ref{10.10:satz} folgt (Übung):
 
 \begin{proof}
 	$(f g)' = f' g + f g' \Rightarrow f' g = (fg)' - fg'$ \\
-	$\Rightarrow$ a), sowie \\ 
-	$$ \int_{a}^{b} f' g dx = \int_{a}^{b} (fg)' dx - \int_{a}^{b} fg' dx \overset{\ref{10.6:prop-1Hauptsatz}}{\underset{1. HS}{=}} fg \Big|_{a}^{b} - \int_{a}^{b} fg' dx. $$ 
+	$\Rightarrow$ a), sowie
+		$$ \int_{a}^{b} f' g dx = \int_{a}^{b} (fg)' dx - \int_{a}^{b} fg' dx \overset{\ref{10.6:prop-1Hauptsatz}}{\underset{1. HS}{=}} fg \Big|_{a}^{b} - \int_{a}^{b} fg' dx. $$ 
 \end{proof}
 
 
@@ -3294,7 +3301,7 @@ Aus \ref{10.10:satz} folgt (Übung):
 \textbf{Merkregel}:  Ist $y = y(x)$ eine differenzierbare Funktion, so schreibt man für $y'$ auch $\frac{dy}{dx}$.
 
 Zu \ref{10.14:prop-Substitutionsregeln}: substituiere $x = g(t)$, fasse also $x$ als Funktion von $t$ auf. Dann: $\frac{dx}{dt} = g'(t)$, also
-	$$ "' dx = g'(t) dt "' $$
+	$$ \text{"'} dx = g'(t) dt \text{"'} $$
 
 
 \begin{beispiele} ~\
@@ -3415,7 +3422,7 @@ Ohne Beweis:
 			$$ \int_{1}^{t} \frac{1}{x^{\gamma}} dx = \begin{cases} \log t, & \text{ falls } \gamma = 1 \\ \frac{1}{1 - \gamma} (t^{1 - \gamma} - 1), & \text{ falls } \gamma \neq 1. \end{cases} $$
 			Also: $\int_{1}^{\infty} \frac{1}{x^{\gamma}} dx$ konvergiert $\iff \gamma > 1$. In diesem Fall:
 			$$ \int_{1}^{\infty} \frac{1}{x^{\gamma}} dx = \frac{1}{\gamma - 1} $$
-		\item $\int_{0}^{\infty} \frac{1}{1 + x^{2}} dx$ ($a = 0, \beta = \infty$). \\
+		\item $\int_{0}^{\infty} \frac{1}{1 + x^{2}} dx$ ($a = 0, \beta = \infty$).
 			$$ \int_{0}^{t} \frac{1}{1 + x^{2}} dx = \arctan t \rightarrow \frac{\pi}{2} ~(t \rightarrow \infty). $$ \label{11.0:bsp-obigeBspb}
 			Also ist $\int_{0}^{\infty} \frac{1}{1 + x^{2}} dx$ konvergent und $= \frac{\pi}{2}$.
 		\item $\int_{0}^{1} \frac{1}{x^{\gamma}} dx ~(\gamma > 0)$ ($\alpha = 0, b = 1$). Wie in Beispiel a) sieht man: \label{11.0:bsp-obigeBspc}
@@ -3450,7 +3457,9 @@ Ohne Beweis:
 	\end{enumerate}
 \end{beispiele}
 
-Die folgenden Definitionen und Sätze formulieren wir nur für Funktionen $f \colon [a, \beta) \rightarrow \R$ (wie in der ersten Definition dieses Kapitels). Diese Definitionen und Sätze gelten sinngemä{\ss} auch für die beiden anderen Typen uneigentlicher Integrale.
+Die folgenden Definitionen und Sätze formulieren wir nur für Funktionen 
+	$$ f \colon [a, \beta) \rightarrow \R $$
+(wie in der ersten Definition dieses Kapitels). Diese Definitionen und Sätze gelten sinngemä{\ss} auch für die beiden anderen Typen uneigentlicher Integrale.
 
 \textbf{Beachte}: Für $t \in (a, \beta)$: $g(t) \coloneqq \int_{a}^{t} f(x) dx$. Dann:
 	$$ \int_{a}^{\beta} f(x) dx \text{ konvergiert } \iff \lim_{t \rightarrow \beta} g(t) \text{ existiert.} $$
@@ -3568,8 +3577,8 @@ Ist $z = x \in \R$: $e^{z} = e^{x}$; ist $z = it ~(t \in \R)$: $e^{it} = \cos t 
 \end{satz}
 
 \begin{proof}
-	$"' \Leftarrow "'$: $\ref{12.1.d:satz}$. \\
-	$"' \Rightarrow "'$ Sei $e^{z} = 1$, also $1 = e^{x} ( \cos y + i \sin y) = e^{x} \cos y + i e^{x} \sin y \Rightarrow e^{x} \cos y = 1, e^{x} \sin y = 0 \Rightarrow \sin y = 0 \Rightarrow \exists j \in \Z: y = j \pi \Rightarrow \cos y = (-1)^{j}$ somit $1 = e^{x} (-1)^{j} \Rightarrow j = 2k ~(k \in \Z)$ und $x = 0$. Also: $z = 2k \pi i$.
+	"'$\Leftarrow$"': $\ref{12.1.d:satz}$. \\
+	"'$\Rightarrow$"' Sei $e^{z} = 1$, also $1 = e^{x} ( \cos y + i \sin y) = e^{x} \cos y + i e^{x} \sin y \Rightarrow e^{x} \cos y = 1, e^{x} \sin y = 0 \Rightarrow \sin y = 0 \Rightarrow \exists j \in \Z: y = j \pi \Rightarrow \cos y = (-1)^{j}$ somit $1 = e^{x} (-1)^{j} \Rightarrow j = 2k ~(k \in \Z)$ und $x = 0$. Also: $z = 2k \pi i$.
 \end{proof}
 
 \index{Polarkoordinaten} \index{Argument}
@@ -3676,7 +3685,7 @@ Ohne Beweis:
 \end{satz}
 
 \begin{proof}
-	$"' \Leftarrow "'$ nachrechnen. Rest mit \ref{12.3:prop-FundamentalsatzDerAlgebra}.
+	"'$\Leftarrow$"' nachrechnen. Rest mit \ref{12.3:prop-FundamentalsatzDerAlgebra}.
 \end{proof}
 
 
@@ -3707,8 +3716,8 @@ Ohne Beweis:
 \end{satz}
 
 \begin{proof}
-	$"' \Leftarrow "'$ $e^{z} = e^{\log |w|} e^{i \varphi} e^{2 k \pi i} = |w| e^{i \varphi} = w$. \\
-	$"' \Rightarrow "'$ Sei $z = x + iy ~(x, y \in \R)$ und $w = e^{z} = e^{x} e^{iy} \Rightarrow |w| = e^{x} \Rightarrow x = \log |w|$. Es ist
+	"'$\Leftarrow$"' $e^{z} = e^{\log |w|} e^{i \varphi} e^{2 k \pi i} = |w| e^{i \varphi} = w$. \\
+	"'$\Rightarrow$"' Sei $z = x + iy ~(x, y \in \R)$ und $w = e^{z} = e^{x} e^{iy} \Rightarrow |w| = e^{x} \Rightarrow x = \log |w|$. Es ist
 	$$ |w| e^{i \varphi} = w = e^{z} = e^{x} e^{iy} = |w| e^{iy} $$
 	$\Rightarrow e^{i \varphi} = e^{iy} \xRightarrow[]{s.o.} \exists k \in \Z: i y = i \varphi + 2k \pi i \Rightarrow z = \log |w| + i \varphi + 2k \pi i$.
 \end{proof}
@@ -3753,8 +3762,7 @@ I. d. $\S$-en sei $f \colon \R \rightarrow \R$ eine Funktion mit:
 			\begin{align*}
 				\int_{-\pi}^{\pi} \sin(nx) \cos(kx) dx & = 0
 				\intertext{und}
-				\int_{-\pi}^{\pi} \sin(nx) \sin(kx) dx & = \int_{-\pi}^{\pi} \cos(nx) \cos(kx) dx \\
-				& = \begin{cases} \pi, & k = n \\ 0, & k \neq n. \end{cases}				
+				\int_{-\pi}^{\pi} \sin(nx) \sin(kx) dx & = \int_{-\pi}^{\pi} \cos(nx) \cos(kx) dx = \begin{cases} \pi, & k = n \\ 0, & k \neq n. \end{cases}				
 			\end{align*}
 	\end{enumerate}	
 \end{satz}
@@ -3766,7 +3774,8 @@ I. d. $\S$-en sei $f \colon \R \rightarrow \R$ eine Funktion mit:
 
 \textbf{Motivation}: Es seien $(a_{n})_{n=0}^{\infty}$ und $(b_{n})_{n=1}^{\infty}$ Folgen und es gelte
 	$$ f(x) = \frac{a_{0}}{2} + \sum_{n=1}^{\infty} \left( a_{n} \cos(nx) + b_{n} \sin(nx) \right) \quad \forall x \in \R. $$
-	Weiter sei diese trigonometrisch Reihe auf $\R$ gleichmä{\ss}ig konvergent. Sei $k \in \N$, dann:
+	Weiter sei diese trigonometrisch Reihe auf $\R$ gleichmä{\ss}ig konvergent. \\
+	Sei $k \in \N$, dann:
 	$$ f(x) \sin(k x) = \frac{a_{0}}{2} \sin(kx) + \sum_{n=1}^{\infty} \left( a_{n} \cos(nx) \sin(kx) + b_{n} \sin(nx) \sin(kx) \right) \quad \forall x \in \R.$$
 	Übung: die letzte Reihe konvergiert auf $\R$ ebenfalls gleichmä{\ss}ig.
 	\begin{align*}
@@ -3850,8 +3859,8 @@ Ohne Beweis:
 	$f \colon \R \rightarrow \R$ sei $2\pi$-periodisch und auf $(-\pi, \pi]$ definiert durch
 	$$ f(x) \coloneqq \begin{cases} x, & x \in (-\pi, \pi) \\ 0, & x = \pi \end{cases} $$
 	% todo image
-	$\xRightarrow[]{\ref{10.15:satz}} f \in R[-\pi, \pi]$, $f$ erfüllt also $(V)$. $f$ ist stückweise glatt und $s_{f}(x) = f(x) ~\forall x \in \R$. $f$ ist ungerade $\xRightarrow[]{\ref{13.2:satz}} a_{n} = 0 ~\forall n \in \N_{0}$ und
-	$$ b_{n} = \frac{2}{\pi} \int_{0}^{\pi} f(x) \sin(nx) dx \overset{\ref{10.15:satz}}{=} \frac{2}{\pi} \int_{0}^{\pi} x \sin(nx) dx \overset{Übung}{=} (-1)^{n+1} \frac{2}{n} \quad \forall n \in \N. $$
+	$\xRightarrow[]{\ref{10.15:satz}} f \in R[-\pi, \pi]$, $f$ erfüllt also $(V)$. $f$ ist stückweise glatt und $s_{f}(x) = f(x) ~\forall x \in \R$. $f$ ist ungerade $\xRightarrow[]{\ref{13.2:satz}} a_{n} = 0 ~\forall n \in \N_{0}$ und
+	$$ b_{n} = \frac{2}{\pi} \int_{0}^{\pi} f(x) \sin(nx) dx \overset{\ref{10.15:satz}}{=} \frac{2}{\pi} \int_{0}^{\pi} x \sin(nx) dx \overset{\text{Übung}}{=} (-1)^{n+1} \frac{2}{n} \quad \forall n \in \N. $$
 	$\xRightarrow[]{\ref{13.3:satz}} f(x) = 2 \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n} \sin(nx) ~\forall x \in \R$.
 	$$ \Rightarrow \frac{x}{2} = \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n} \sin(nx) \quad \forall x \in (-\pi, \pi). $$
 	$x = \frac{\pi}{2}$: $\frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} +- \dotsc$ (vgl. \ref{9.17.b:anwendungen}).
@@ -3919,7 +3928,7 @@ Ohne Beweis:
 	\end{align*}
 	$\Rightarrow \alpha_{n} \coloneqq \frac{a_{0}^{2}}{2} + \underbrace{\sum_{k=1}^{b}(a_{k}^{2} + b_{k}^{2})}_{\eqqcolon \beta_{n}} \leq \frac{1}{\pi} \int_{-\pi}^{\pi} g(x)^{2} dx \eqqcolon \alpha$. \\
 	Also ist $(\alpha_{n})$ monoton und beschränkt, somit ist $(\alpha_{n})$ konvergent. Damit ist $(\beta_{n})$ konvergent $\Rightarrow (1)$. \\
-	$\alpha_{n} \leq \alpha ~\forall n \in \N \Rightarrow (2)$. \\
+	$\alpha_{n} \leq \alpha ~\forall n \in \N \Rightarrow (2)$. \\
 	$(3) ~ a_{n}^{2} \leq a_{n}^{2} + b_{n}^{2}$. Aus $(1)$ und \ref{3.1:satz}: $a_{n}^{2} + b_{n}^{2} \rightarrow 0 \Rightarrow a_{n}^{2} \rightarrow 0 \Rightarrow a_{n} \rightarrow 0$. Genauso: $b_{n} \rightarrow 0$.
 \end{proof}
 
@@ -3932,7 +3941,7 @@ Ohne Beweis:
 
 \newpage
 
-\section{Der Raum $\R^{n}$}
+\section{\texorpdfstring{Der Raum $\R^{n}$}{Der Raum Rn}}
 
 Es sei $n \in \N$. $\R^{n} \coloneqq \{ (x_{1}, \dotsc, x_{n}) : x_{1}, \dotsc, x_{n} \in \R \}$. $\R^{n}$ ist mit der bekannten Addition und Skalarmultiplikation ein Vektorraum über $\R$, $\dim \R^{n} = n$.
 
@@ -3973,7 +3982,7 @@ $$ x = x_{1} e_{1} + \dotsc + x_{n} e_{n}. $$
 		\item $\| x \cdot y \| \leq \| x \| \| y \|$ \textbf{Cauchy-Schwarz Ungleichung} (CSU).
 		\item $\| x + y\| \leq \| x \| + \| y \|$ \textbf{Dreiecksungleichung}.
 		\item $\left \|x\| - \| y \| \right| \leq \| x - y \|$.
-		\item Für $j \in \{ 1, \dotsc, n \}$: $|x_{j}| \leq \| x \| \leq \sum_{k=1}^{n} |x_{k}|$
+		\item Für $j \in \{ 1, \dotsc, n \}$: $|x_{j}| \leq \| x \| \leq \sum_{k=1}^{n} |x_{k}|$
 	\end{enumerate}
 \end{satz}
 
