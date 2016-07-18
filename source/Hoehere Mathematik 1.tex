@@ -15,26 +15,26 @@
 \usepackage{xpatch}
 \usetikzlibrary{matrix}	
 
-% Language Setup
+% Language Setup (Deutsch)
 \usepackage[utf8]{inputenc} 
 \usepackage[T1]{fontenc} 
 \usepackage[ngerman]{babel}
 
 % Options
 \makeatletter%
-  \changefontsizes{14pt}
-  \def\mystretch{1.2}
-  \definecolor{linkcolor}{rgb}{0,0.35,0.35}
-  \newcommand\publishers[1]{\newcommand\@publishers{#1}}
-  \renewcommand{\labelenumi}{\alph{enumi})}
-  \renewcommand{\labelenumii}{(\roman{enumii})}
-  \setlength{\parindent}{0pt}
-  \setlist[enumerate,1]{ref={\thesatz ~ \alph*)}}
-  \xpatchcmd{\proof}{\@addpunct{.}}{\@addpunct{:}}{}{} 
-  \@ifundefined{thechapter}{}{\def\thefigure{\thechapter.\arabic{figure}}}
+  \changefontsizes{14pt} % Schriftgröße 10pt - 14pt
+  \def\mystretch{1.2} % Zeilenabstand für Leserlichkeit
+  \definecolor{linkcolor}{rgb}{0,0.35,0.35} % Linkfarbe, {0,0.35,0.35} für Türkis
+  \newcommand\publishers[1]{\newcommand\@publishers{#1}} % Publisher
+  \renewcommand{\labelenumi}{\alph{enumi})} % Enumerate im 1. Level: \alph für a), b),..
+  \renewcommand{\labelenumii}{(\roman{enumii})} % Enumerate im 2. Level: \roman für (i), (ii),...
+  \setlength{\parindent}{0pt} % Zeileneinrückung am Anfang des Absatzes
+  \setlist[enumerate,1]{ref={\thesatz ~ \alph*)}} % Verweise auf Enumerate, z.B.: 3.2 a)
+  \xpatchcmd{\proof}{\@addpunct{.}}{\@addpunct{:}}{}{} % Beweis: anstatt Beweis.
+  \@ifundefined{thechapter}{}{\def\thefigure{\thechapter.\arabic{figure}}} % Nummerierung der Bilder: Abbildung 4.1 (im 4. Kapitel)
 \makeatother%
 
-% Meta Setup
+% Meta Setup (Für Titelblatt und Metadaten im PDF)
 \title{Höhere Mathematik I}
 \author{G. Herzog, C. Schmoeger}
 \date{Wintersemester 2016/17}
@@ -67,7 +67,7 @@
 \newtheorem*{bezeichnung}{Bezeichnung}
 \newtheorem*{definition}{Definition}
 \newtheorem*{eigenschaften}{Eigenschaften}
-\newtheorem*{folgerung*}{folgerung*}
+\newtheorem*{folgerung*}{Folgerung}
 \newtheorem*{folgerungen}{Folgerungen}
 \newtheorem*{hilfssatz*}{Hilfssatz}
 \newtheorem*{regeln}{Regeln}
@@ -150,7 +150,7 @@ Dabei sollen gelten:
 
 
 \begin{schreibweisen}
-$b \geq a \iff a \leq b$; $a < b \iff a \leq b$ und $a \neq b$; $b > 0 \iff a < b$
+$b \geq a \iff a \leq b$; $a < b \iff a \leq b$ und $a \neq b$; $b > a \iff a < b$
 \end{schreibweisen}
 
 Aus \hyperref[k.axiom]{$(A1) - (A14)$} lassen sich alle Regeln für Ungleichungen herleiten. Diese Regeln seien von nun an bekannt.
@@ -160,7 +160,7 @@ Aus \hyperref[k.axiom]{$(A1) - (A14)$} lassen sich alle Regeln für Ungleichunge
 	\begin{enumerate}
 		\item aus $a < b$ und $0 < c$ folgt $ac < bc$
 		\item aus $a \leq b$ und $c \leq 0$ folgt $ac \geq bc$
-		\item aus $a \leq b$ und $c \leq d$ folgt $a + c \geq b + d$
+		\item aus $a \leq b$ und $c \leq d$ folgt $a + c \leq b + d$
 	\end{enumerate}
 \end{beispiele}
 
@@ -325,7 +325,7 @@ Von nun an sei $\N = \{ 1, 2, 3, \dotsc \}$ bekannt.
 \end{namedtheorem}
 
 \begin{proof}
-	$A \subseteq \N$ (nach Vor.) und $\N \subset A$ (nach Def.), also $A = \N$
+	$A \subseteq \N$ (nach Vor.) und $\N \subseteq A$ (nach Def.), also $A = \N$
 \end{proof}
 
 
@@ -370,7 +370,7 @@ Dann ist $A(n)$ wahr für \textbf{jedes} $n \in \N$!
 
 
 \begin{satz} \label{1.5:satz}
-	Sind $x, y \in \R$ und $x < y \Rightarrow \exists r \in \Q$: $x < r < y$	
+	Sind $x, y \in \R$ und $x < y \Rightarrow \exists r \in \Q$: $x < r < y$.	
 
 	\begin{proof}
 		i. d. Übungen.
@@ -417,7 +417,7 @@ Dann ist $A(n)$ wahr für \textbf{jedes} $n \in \N$!
 
 
 \begin{hilfssatz*}[HS]
-	Für $x, y \geq 0$ und $n \in \N$ gilt: $x \leq y \iff x^{n} \leq y^{n}$	
+	Für $x, y \geq 0$ und $n \in \N$ gilt: $x \leq y \iff x^{n} \leq y^{n}$.
 
 	\begin{proof}
 		i. d. Übungen.
@@ -431,16 +431,16 @@ Dann ist $A(n)$ wahr für \textbf{jedes} $n \in \N$!
 	
 	\begin{proof}
 		Existenz: später in \S 7. \\
-		Eindeutigkeit: seien $x, y \geq 0$ und $x^{n} = a = y^{n}$. $\xRightarrow[]{HS} x = y$
+		Eindeutigkeit: seien $x, y \geq 0$ und $x^{n} = a = y^{n} \xRightarrow[]{HS} x = y$.
 	\end{proof}
 \end{satz}
 
 
 \begin{bemerkungen} \
 	\begin{enumerate}
-		\item $\sqrt{2} \notin \Q$ (s. Schule)
+		\item $\sqrt{2} \notin \Q$ (s. Schule).
 		\item Für $a \geq 0$ ist $\sqrt[n]{a} \geq 0$. Bsp.: $\sqrt{4} = 2$, $\sqrt{4} \neq - 2$. Die Gleichung $x^{2} = 4$ hat zwei Lösungen: $x = \pm \sqrt{4} = \pm 2$.
-		\item $\sqrt{x^{2}} |x|$ $\forall x \in \R$
+		\item $\sqrt{x^{2}} |x|$ $\forall x \in \R$.
 	\end{enumerate}
 \end{bemerkungen}
 
@@ -448,9 +448,9 @@ Dann ist $A(n)$ wahr für \textbf{jedes} $n \in \N$!
 \subsection*{Rationale Exponenten}
 \begin{enumerate}
 	\item Sei zunächst $a > 0$ und $r \in \Q, r > 0$. Dann ex. $m, n \in \N : r = \frac{m}{n}$. Wir wollen definieren:
-		$$
-			a^{r} \coloneqq \left( \sqrt[n]{a} \right)^{m} \quad (*)
-		$$
+		\begin{align}
+			a^{r} \coloneqq \left( \sqrt[n]{a} \right)^{m} \tag{$*$}.			
+		\end{align}
 		Problem: gilt auch noch $r = \frac{p}{q}$ mit $p, q \in \N$, gilt dann $\left( \sqrt[n]{a} \right)^{m} = \left( \sqrt[q]{a} \right)^{p}$? \\
 		Antwort: ja (d.h. obige Def. $(*)$ ist sinnvoll).
 		\begin{proof}
@@ -481,14 +481,14 @@ Dann ist $A(n)$ wahr für \textbf{jedes} $n \in \N$!
 
 \begin{schreibweisen}
 $a_{n}$ statt $a(n)$ (n-tes Folgenglied) \\
-$(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a$
+$(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a$.
 \end{schreibweisen}
 
 
 \begin{beispiele} ~\
 	\begin{enumerate}
-		\item $a_{n} \coloneqq \frac{1}{n}$ $~(n \in \N)$, also $(a_{n}) = (1, \frac{1}{2}, \frac{1}{3}, \dotsc)$
-		\item $a_{2n} \coloneqq 0$, $a_{2n-1} \coloneqq 1$ $~(n \in \N)$, also $(a_{n}) = (1, 0, 1, 0, \dotsc)$
+		\item $a_{n} \coloneqq \frac{1}{n}$ $~(n \in \N)$, also $(a_{n}) = (1, \frac{1}{2}, \frac{1}{3}, \dotsc)$.
+		\item $a_{2n} \coloneqq 0$, $a_{2n-1} \coloneqq 1$ $~(n \in \N)$, also $(a_{n}) = (1, 0, 1, 0, \dotsc)$.
 	\end{enumerate}
 \end{beispiele}
 
@@ -510,9 +510,9 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 \begin{beispiele} ~\
 	\begin{enumerate}
 		\item Ist $X$ endlich, so ist $X$ abzählbar.
-		\item $\N$ ist abzählbar, denn $\N = \{ a_{1}, a_{2}, a_{3}, \dotsc \}$ mit $a_{n} \coloneqq n$ $(n \in \N)$
+		\item $\N$ ist abzählbar, denn $\N = \{ a_{1}, a_{2}, a_{3}, \dotsc \}$ mit $a_{n} \coloneqq n$ $(n \in \N)$.
 		\item $\Z$ ist abzählbar, denn $\Z = \{ a_{1}, a_{2}, a_{3}, \dotsc \}$ mit $a_{1} \coloneqq 0, a_{2} \coloneqq 1, a_{3} \coloneqq -1, a_{4} \coloneqq 2, a_{5} \coloneqq -2, \dotsc$ also
-			$$ a_{2n} \coloneqq n, \quad a_{2n + 1} \coloneqq -n \quad (n \in \N) $$
+			$$ a_{2n} \coloneqq n, \quad a_{2n + 1} \coloneqq -n \quad (n \in \N). $$
 		\item $\Q$ ist abzählbar!
 			\begin{figure*}[!ht] \centering
 				\begin{tikzpicture}
@@ -531,7 +531,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 			Durchnummerieren in Pfeilrichtung liefert:
 				$$ \{ x \in \Q : x > 0 \} = \{ a_{1}, a_{2}, a_{3}, \dotsc \} $$
 			$b_{1} \coloneqq 0, b_{2n} \coloneqq a_{n}, b_{2n + 1} \coloneqq - a_{n}$ $(n \in \N)$. Dann:
-			$$ \Q = \{ b_{1}, b_{2}, b_{3}, \dotsc \} $$
+			$$ \Q = \{ b_{1}, b_{2}, b_{3}, \dotsc \}. $$
 		\item $\R$ ist überabzählbar (Beweis in \S 5).
 	\end{enumerate}	
 \end{beispiele}
@@ -587,10 +587,10 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 
 
 \begin{satz} \label{2.1:satz}
-	$(a_{n})$ sei konvergent und $a = \lim a_{n}$
+	$(a_{n})$ sei konvergent und $a = \lim a_{n}$.
 	\begin{enumerate}
-		\item Gilt auch noch $a_{n} \rightarrow b$, so ist $a = b$
-		\item $(a_{n})$ ist beschränkt \label{2.1.b:satz}
+		\item Gilt auch noch $a_{n} \rightarrow b$, so ist $a = b$.
+		\item $(a_{n})$ ist beschränkt. \label{2.1.b:satz}
 	\end{enumerate}
 	
 	\begin{proof}\
@@ -603,7 +603,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 			$$
 				2 \varepsilon = |a - b| = | a - a_{N} + a_{N} - b| \leq |a_{N} - a| + |a_{N} - b| < 2 \varepsilon
 			$$
-			Widerspruch! Also $ a = b$
+			Widerspruch! Also $ a = b$.
 		\item  Zu $\varepsilon = 1 ~\exists n_{0} \in \N: |a_{n} - a| < 1 ~\forall n \geq n_{0}$. Dann:
 			$$
 				|a_{n}| = |a_{n} - a + a| \leq |a_{n} - a| + |a| \leq 1 + |a| \quad \forall n \geq n_{0}
@@ -627,7 +627,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 				$$
 						\xRightarrow[]{\ref{1.3.c:satz}} \exists n_{0} \in \N: n_{0} > \frac{1}{\varepsilon}
 				$$
-				Für $n \geq n_{0}$ ist $n > \frac{1}{\varepsilon}$, also $\frac{1}{n} < \varepsilon$. Somit $|a_{n} - 0| < \varepsilon ~\forall n \geq n_{0}$
+				Für $n \geq n_{0}$ ist $n > \frac{1}{\varepsilon}$, also $\frac{1}{n} < \varepsilon$. Somit $|a_{n} - 0| < \varepsilon ~\forall n \geq n_{0}$.
 			\end{proof}
 		\item $a_{n} \coloneqq (-1)^{n}$. Es ist $\forall n \in \N$: $|a_{n}| = 1$, $(a_{n})$ ist also beschränkt. Behauptung: $(a_{n})$ ist divergent.
 			\begin{proof}
@@ -668,7 +668,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 
 
 \begin{definition}
-	$(a_{n})$ und $(b_{n})$ seien Folgen und $\alpha \in \R$
+	$(a_{n})$ und $(b_{n})$ seien Folgen und $\alpha \in \R$.
 	$$
 		(a_{n}) \pm (b_{n}) \coloneqq (a_{n} \pm b_{n}); ~
 		\alpha (a_{n}) \coloneqq (\alpha a_{n}); ~
@@ -679,7 +679,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 
 
 \begin{satz} \label{2.2:satz}
-	$(a_{n}), (b_{n}), (c_{n})$ und $(\alpha_{n})$ seien Folge und $a, b, \alpha \in \R$
+	$(a_{n}), (b_{n}), (c_{n})$ und $(\alpha_{n})$ seien Folge und $a, b, \alpha \in \R$.
 
 	\begin{enumerate}
 		\item $a_{n} \rightarrow a \iff |a_{n} - a| \rightarrow 0$
@@ -702,19 +702,19 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 
 \begin{beispiele} \
 	\begin{enumerate}
-		\item Sei $p \in \N$ und $a_{n} \coloneqq \frac{1}{n^{p}}$. Es ist $n \leq n^{p} ~\forall n \in \N$. \\
-			Dann: $0 \leq a_{n} \leq \frac{1}{n} ~\forall n \in \N \xRightarrow[]{\label{2.2.e:satz}} a_{n} \rightarrow 0$, also $\frac{1}{n^{p}} \rightarrow 0$.
+		\item Sei $p \in \N$ und $a_{n} \coloneqq \frac{1}{n^{p}}$. Es ist $n \leq n^{p} ~\forall n \in \N$. Dann: 
+			$$ 0 \leq a_{n} \leq \frac{1}{n} ~\forall n \in \N \xRightarrow[]{\label{2.2.e:satz}} a_{n} \rightarrow 0, \text{ also } \frac{1}{n^{p}} \rightarrow 0. $$
 		\item $a_{n} \coloneqq \frac{5n^{2} + 3n + 1}{4n^{2} - n + 2} = \frac{5 + \frac{3}{n} + \frac{1}{n^{2}}}{4 - \frac{1}{n} + \frac{2}{n^{2}}} \xrightarrow[]{\ref{2.2:satz}} \frac{5}{4}$
 	\end{enumerate}
 	
 	\begin{proof}(von 2.2) ~\
 		\begin{enumerate}
-			\item folgt aus der Definition der Konvergenz
+			\item folgt aus der Definition der Konvergenz.
 			\item $\exists m \in \N: |a_{n} - a | \leq \alpha_{m} ~\forall n \geq m$. Sei $\varepsilon > 0$
 				$$
-		 		\exists n_{1} \in \N: \alpha_{n} < \varepsilon ~\forall n \geq n_{1}.
+		 		\exists n_{1} \in \N: \alpha_{n} < \varepsilon \quad \forall n \geq n_{1}.
 		 		$$
-		 		$n_{0} \coloneqq \max \{ m , n_{1} \}$. Für $n \geq n_{0}$: $|a_{n} - a| \leq \alpha_{n} < \varepsilon$
+		 		$n_{0} \coloneqq \max \{ m , n_{1} \}$. Für $n \geq n_{0}$: $|a_{n} - a| \leq \alpha_{n} < \varepsilon$.
 			\item \begin{enumerate}
 				\item $| |a_{n}| - |a|| \overset{\S 1}{\leq} |a_{n} - a| ~\forall n \in \N \xRightarrow[]{a), b)} |a_{n}| \rightarrow |a|$
 				\item Sei $\varepsilon > 0$. $\exists n_{1}, n_{2} \in \N; |a_{n} - a| < \frac{\varepsilon}{2} ~\forall n \geq n_{1}$, $|b_{n} - b| < \frac{\varepsilon}{2} ~\forall n \geq n_{2}$ \\
@@ -722,7 +722,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 					$$
 						|a_{n} + b_{n} - (a + b)| = |a_{n} - a + b_{n} - b| \leq |a_{n} - a| + |b_{n} - b| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
 					$$
-				\item Übung
+				\item Übung.
 				\item $c_{k} \coloneqq |a_{n} b_{n} - ab|$. z. z.: $c_{n} \rightarrow 0$
 					\begin{align*}
 						c_{n} & = |a_{n}b_{n} - a_{n}b + a_{n}b - ab| = |a_{n}(b_{n} - b)+ (a_{n} - a)b| \\
@@ -737,14 +737,13 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 					$$
 						 |a_{n}| \in U_{\varepsilon}(|a|) = (|a| - \varepsilon, |a| + \varepsilon) = (\frac{|a|}{2}, \frac{3}{2} |a|) \quad \forall n \geq m
 					$$
-					$\Rightarrow |a_{n}| > \frac{|a|}{2} > 0 ~\forall n \geq m \Rightarrow a_{n} \neq 0 ~\forall n \geq m$. \\
-					Für $n \geq m$:
+					$\Rightarrow |a_{n}| > \frac{|a|}{2} > 0 ~\forall n \geq m \Rightarrow a_{n} \neq 0 ~\forall n \geq m$. Für $n \geq m$:
 					$$
 						\left| \frac{1}{a_{n}} - \frac{1}{a} \right| = \frac{|a_{n} - a|}{|a_{n}||a|} \leq \frac{2|a_{n} - a|}{|a|^{2}} \eqqcolon \alpha_{n}
 					$$
 					$\alpha_{n} \rightarrow 0 \xRightarrow[]{b)} \frac{1}{a_{n}} \rightarrow \frac{1}{a}$.
 			  \end{enumerate}
-			\item Annahme $b < a$, $\varepsilon \coloneqq \frac{a-b}{2} > 0$ ~ \tikz[baseline=-0.5ex]{  \draw(0,0)--(8,0);
+			\item Annahme $b < a$, $\varepsilon \coloneqq \frac{a-b}{2} > 0$. ~ \tikz[baseline=-0.5ex]{  \draw(0,0)--(8,0);
     				\foreach \x/\xtext in {0/$$,1.75/$$,3/$b$,4.5/$$,6.25/{\small $a$},8/$$}
      					\draw(\x,3pt)--(\x,-3pt) node[below] {\xtext};
       				\foreach \x/\xtext in {4/$x$,5.5/$y$}
@@ -758,14 +757,14 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 				$m_{0} \coloneqq \max \{ n_{0}, m \}$. Für $n \geq m_{0}$: $a_{n} \leq b_{n} < b + \varepsilon$, also $a_{n} \notin U_{\varepsilon}(a)$. Widerspruch!   
 			\item $\exists m \in \N: a_{n} \leq c_{n} \leq b_{n} ~\forall n \geq m$. Sei $\varepsilon > 0$. $\exists n_{1}, n_{2} \in \N$: 
 				\begin{align*}
-					a - \varepsilon < a_{n} < a + \varepsilon ~\forall n \geq n_{1} \\
-					a - \varepsilon < b_{n} < a + \varepsilon ~\forall n \geq n_{2}
+					a - \varepsilon < a_{n} < a + \varepsilon \quad \forall n \geq n_{1} \\
+					a - \varepsilon < b_{n} < a + \varepsilon \quad \forall n \geq n_{2}
 				\end{align*}
 				$n_{0} \coloneqq \max \{ n_{1}, n_{2}, m \}$. Für $n \geq n_{0}$:
 				$$
 					a - \varepsilon < a_{n} \leq c_{n} \leq b_{n} < a + \varepsilon
 				$$
-				Also: $|a_{n} - a| < \varepsilon \forall n \geq n_{0}$.
+				Also: $|a_{n} - a| < \varepsilon ~\forall n \geq n_{0}$.
 		\end{enumerate}	
 	\end{proof}	
 \end{beispiele}
@@ -852,10 +851,8 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 	Sei $a_{n} \geq 0 ~\forall n \in \N$: $a_{n} \rightarrow a \geq 0$ und $p \in \N$. Dann $\sqrt[p]{a_{n}} \rightarrow \sqrt[p]{a}$
 	
 	\begin{proof} ~\\
-		Fall 1: $a = 0$. Sei $\varepsilon > 0, \exists n_{0} \in \N: |a_{n}| < \varepsilon^{p} ~\forall n \geq n_{0}$
-		$$
-			\Rightarrow | \sqrt[p]{a_{n}} = \sqrt[p]{|a_{n}|} < \varepsilon ~\forall n \geq n_{0}
-		$$
+		Fall 1: $a = 0$. Sei $\varepsilon > 0, \exists n_{0} \in \N: |a_{n}| < \varepsilon^{p} ~\forall n \geq n_{0}$. Daraus folgt:
+		$$ | \sqrt[p]{a_{n}} = \sqrt[p]{|a_{n}|} < \varepsilon \quad \forall n \geq n_{0} $$
 		Also $\sqrt[p]{a_{n}} \rightarrow 0$. \newline
 		
 		Fall 2: $a \neq 0$.
@@ -889,13 +886,13 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 
 
 \begin{beispiel} \label{2.6:bsp}
-	Sei $x \in \R$ und $s_{n} \coloneqq 1 + x + x^{n} + \dotsc x^{n} = \sum_{k = 0}^{n} x^{k}$ \\
+	Sei $x \in \R$ und $s_{n} \coloneqq 1 + x + x^{n} + \dotsc x^{n} = \sum_{k = 0}^{n} x^{k}$. \\
 	Fall 1: $x = 1$. Dann: $x_{n} = n + 1$, $(s_{n})$ ist also divergent. \\
 	Fall 2: $x \neq 1 \Rightarrow s_{n} = \frac{1 - x^{n+1}}{1 - x}$. Aus \ref{2.5:bsp}:
 	$$
 		(s_{n}) \text{ konvergent} \quad \iff \quad |x| < 1
 	$$
-	i.d. Fall: $\lim s_{n} = \frac{1}{1 - x}$
+	i.d. Fall: $\lim s_{n} = \frac{1}{1 - x}$.
 \end{beispiel}
 
 
@@ -903,7 +900,8 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 	Behauptung: $\sqrt[n]{n} \rightarrow 1$.
 	
 	\begin{proof}
-		Es ist $\sqrt[n]{n} \geq 1 ~\forall n \in \N$, also $a_{n} \coloneqq \sqrt[n]{n} - 1 \geq 0 ~\forall n \in \N$. Z. z.: $a_{n} \rightarrow 0$. \\
+		Es ist $\sqrt[n]{n} \geq 1 ~\forall n \in \N$, also $a_{n} \coloneqq \sqrt[n]{n} - 1 \geq 0 ~\forall n \in \N$. Z. z.: 
+			$$ a_{n} \rightarrow 0. $$
 		Für $n \geq 2$:
 		$$
 			n = \left( \sqrt[n]{n} \right)^{n} = \left( a_{n} + 1 \right)^{n} \overset{\S 1}{=} \sum_{k=0}^{n} \binom{n}{k} a_{n}^{k} \geq \binom{n}{2} a_{n}^{2} = \frac{n(n-1)}{2} a_{n}^{2}
@@ -917,10 +915,9 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 	Sei $c > 0$. Beh.: $\sqrt[n]{c} \rightarrow 1$.
 	
 	\begin{proof}
-		Fall 1: $c \geq 1$. $\exists m \in \N: 1 \leq c \leq m$
-		$$
-		 \Rightarrow 1 \leq c \leq n ~\forall n \geq m \Rightarrow 1 \leq \sqrt[n]{c} \leq \sqrt[n]{n} ~\forall n\geq m \Rightarrow \text{Beh.}
-		$$
+		Fall 1: $c \geq 1$. $\exists m \in \N: 1 \leq c \leq m$. Daraus folgt:
+		$$ 1 \leq c \leq n ~\forall n \geq m \Rightarrow 1 \leq \sqrt[n]{c} \leq \sqrt[n]{n} \quad \forall n\geq m $$
+		$\Rightarrow$ Beh. \\
 		Fall 2: $0 < c <1 \Rightarrow \frac{1}{c} > 1 \Rightarrow \sqrt[n]{c} = \frac{1}{\sqrt[n]{\frac{1}{c}}} \xrightarrow[Fall 1]{} 1 (n \rightarrow \infty)$ $\Rightarrow$ Beh.
 	\end{proof}
 \end{beispiel}
@@ -960,12 +957,11 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 \end{beispiel}
 
 \index{Eulersche Zahl}
-\begin{definition} 
+\begin{definition} Die Konstante
 	$$
 		e \coloneqq \lim_{n \rightarrow \infty} \left( 1 + \frac{1}{n} \right)^{n} ~( = \lim_{n \rightarrow \infty} \sum_{k = 0}^{n} \frac{1}{k!} )
 	$$
-	hei{\ss}t \textbf{Eulersche Zahl}. Übung: $2 < e < 3$. \\
-	$e \approx 2,718\dotsc$
+	hei{\ss}t \textbf{Eulersche Zahl}. Übung: $2 < e < 3$ ($e \approx 2,718\dotsc$).
 \end{definition}
 
 \index{Teilfolge}
@@ -975,7 +971,8 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 	$$
 		b_{k} \coloneqq a_{n_{k}}
 	$$
-	also $b_{1} = a_{n_{1}}, b_{2} = a_{n_{2}}, \dotsc$. Dann hei{\ss}t $(b_{k}) = (a_{n_{k}})$ eine \textbf{Teilfolge} (TF) von $(a_{n})$.
+	also $b_{1} = a_{n_{1}}, b_{2} = a_{n_{2}}, \dotsc$. \\
+	Dann hei{\ss}t $(b_{k}) = (a_{n_{k}})$ eine \textbf{Teilfolge} (TF) von $(a_{n})$.
 \end{definition}
 
 
@@ -1006,10 +1003,10 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 \end{satz}
 
 \begin{proof} ~\\
-	$"'\Rightarrow"'$ Sei $(a_{n_{k}})$ eine Teilfolge mit $a_{n_{k}} \rightarrow \infty$. Sei $\epsilon > 0 \exists k_{0} \in \N: a_{n_{k}} \in U_{\epsilon}(\alpha)$ für $k \geq k_{0} \Rightarrow (*)$ \\
+	$"'\Rightarrow"'$ Sei $(a_{n_{k}})$ eine Teilfolge mit $a_{n_{k}} \rightarrow \infty$. Sei $\epsilon > 0 \exists k_{0} \in \N: a_{n_{k}} \in U_{\epsilon}(\alpha)$ für $k \geq k_{0} \Rightarrow (*)$. \\
 	$"'\Leftarrow"'$ $\exists n_{1} \in \N: a_{n_{1}} \in U_{1}(\alpha)$. $\exists n_{2} \in \N: a_{n_{2}} \in U_{\frac{1}{2}}(\alpha)$ und $n_{2} > n_{1}$. $\exists n_{3} \in \N: a_{n_{3}} \in U_{\frac{1}{3}}(\alpha)$ und $n_{3} > n_{2}$. Etc. ... Man erhält eine Teilfolge $(a_{n_{k}})$ von $(a_{n})$ mit
 	$$
-		a_{n_{k}} \in U_{\frac{1}{k}}(\alpha) ~\forall k \in \N, \text{ also } |a_{n_{k}} - \alpha| < \frac{1}{k} ~\forall k
+		a_{n_{k}} \in U_{\frac{1}{k}}(\alpha) ~\forall k \in \N, \text{ also } |a_{n_{k}} - \alpha| < \frac{1}{k} \quad \forall k
 	$$
 	Somit: $a_{n_{k}} \rightarrow \alpha$. 
 \end{proof}
@@ -1032,8 +1029,8 @@ Ist $x \in \R$, so existieren Folgen $(r_{m})$ in $\Q : r_{n} \rightarrow \alpha
 
 \begin{satz} \label{2.11:satz} 
 	$(a_{n})$ sei konvergent, $a \coloneqq \lim a_{n}$ und $(a_{n_{k}})$ eine Teilfolge von $(a_{n})$. Dann:
-	$$ a_{n_{k}} \rightarrow a (k \rightarrow \infty) $$
-	Insbesondere: $H(a_{n}) = \{ \lim a_{n} \}$
+	$$ a_{n_{k}} \rightarrow a \quad (k \rightarrow \infty) $$
+	Insbesondere: $H(a_{n}) = \{ \lim a_{n} \}$.
 \end{satz}
 
 \begin{proof}
@@ -1049,7 +1046,7 @@ Ist $x \in \R$, so existieren Folgen $(r_{m})$ in $\Q : r_{n} \rightarrow \alpha
 \end{definition}
 
 
-\begin{hilfssatz*}
+\begin{hilfssatz*}[HS]
 	$(a_{n})$ sei eine Folge. Dann enthält $(a_{n})$ eine monotone Teilfolge.	
 \end{hilfssatz*}
 
@@ -1072,20 +1069,20 @@ Ist $x \in \R$, so existieren Folgen $(r_{m})$ in $\Q : r_{n} \rightarrow \alpha
 
 \index{Satz!Bolzano-Weierstra{\ss}}
 \begin{satz}[Bolzano-Weierstra{\ss}] \label{2.12:satz-BolzanoWeierstrass}  ~\\
-	$(a_{n})$ sei beschränkt, dann: $H(a_{n}) \neq \emptyset$. $(a_{n})$ enthält also eine konvergente Teilfolge
+	$(a_{n})$ sei beschränkt, dann: $H(a_{n}) \neq \emptyset$. $(a_{n})$ enthält also eine konvergente Teilfolge.
 \end{satz}
 
 \begin{proof}
-	$\exists c \geq 0: |a_{n}| \leq c$ $\forall n \in \N$. $\xRightarrow[]{hilfssatz*} (a_{n})$ enthält eine monotone Teilfolge $(a_{n_{k}})$. Dann: $|a_{n_{k}}| \leq c \forall k \in \N$ \\
-	$(a_{n_{k}})$ ist also beschränkt $\xRightarrow[]{\ref{2.3:prop}} (a_{n_{k}})$ ist konvergent. Also $\lim_{k \rightarrow \infty} a_{n_{k}} \in H(a_{n})$.
+	$\exists c \geq 0: |a_{n}| \leq c$ $\forall n \in \N$. $\xRightarrow[]{HS} (a_{n})$ enthält eine monotone Teilfolge $(a_{n_{k}})$. Dann: $|a_{n_{k}}| \leq c ~\forall k \in \N$, $(a_{n_{k}})$ ist also beschränkt. \\
+		$\xRightarrow[]{\ref{2.3:prop}} (a_{n_{k}})$ ist konvergent. Also $\lim_{k \rightarrow \infty} a_{n_{k}} \in H(a_{n})$.
 \end{proof}
 
 \begin{satz} \label{2.13:satz}
-	$(a_{n})$ sei beschränkt $\left( å\xRightarrow[]{\ref{2.12:satz-BolzanoWeierstrass}} H(a_{n}) \neq \emptyset \right)$
+	$(a_{n})$ sei beschränkt (nach \ref{2.12:satz-BolzanoWeierstrass} gilt damit $H(a_{n}) \neq \emptyset$).
 	\begin{enumerate}
-		\item $H(a_{n})$ ist beschränkt
+		\item $H(a_{n})$ ist beschränkt.
 		\item $\sup H(a_{n}), \inf H(a_{n}) \in H(a_{n})$; es existieren also
-			$$ \max H(a_{n}), \min H(a_{n}) $$
+			$$ \max H(a_{n}), \min H(a_{n}). $$
 	\end{enumerate}
 \end{satz}
 
@@ -1103,7 +1100,7 @@ Ist $x \in \R$, so existieren Folgen $(r_{m})$ in $\Q : r_{n} \rightarrow \alpha
 	\begin{enumerate}
 		\item $\exists c \geq 0: |a_{n}| \leq c$ $\forall n \in \N$. Sei $\alpha \in H(a_{n})$. Es existiert eine Teilfolge $(a_{n_{k}})$ mit $a_{n_{k}} \rightarrow \alpha ~(k \rightarrow \infty)$. Es ist
 			$$ |a_{n_{k}}| \leq c \quad \forall k, \text{ also } -c \leq a_{n_{k}} \leq c \quad \forall k $$ 
-			$\Rightarrow - c \leq \alpha \leq c$. Also $|\alpha| \leq c$ $\forall \alpha \in H(a_{n})$.
+			$\Rightarrow - c \leq \alpha \leq c$. Also $|\alpha| \leq c \forall \alpha \in H(a_{n})$.
 		\item ohne Beweis.
 	\end{enumerate}
 \end{proof}
@@ -1112,10 +1109,10 @@ Ist $x \in \R$, so existieren Folgen $(r_{m})$ in $\Q : r_{n} \rightarrow \alpha
 \begin{satz} \label{2.14:satz}
 	$(a_{n})$ sei beschränkt.
 	\begin{enumerate}
-		\item $\liminf a_{n} \leq \alpha \leq \limsup a_{n} ~\forall \alpha \in H(a_{n})$
-		\item Ist $(a_{n})$ konvergent $\Rightarrow \limsup a_{n} = \liminf a_{n} = \lim a_{n}$
-		\item $\limsup(\alpha a_{n}) = \alpha \limsup a_{n} ~\forall \alpha \geq 0$
-		\item $\limsup(-a_{n}) = - \liminf a_{n}$
+		\item $\liminf a_{n} \leq \alpha \leq \limsup a_{n} ~\forall \alpha \in H(a_{n})$.
+		\item Ist $(a_{n})$ konvergent $\Rightarrow \limsup a_{n} = \liminf a_{n} = \lim a_{n}$.
+		\item $\limsup(\alpha a_{n}) = \alpha \limsup a_{n} ~\forall \alpha \geq 0$.
+		\item $\limsup(-a_{n}) = - \liminf a_{n}$.
 	\end{enumerate}
 \end{satz}
 
@@ -1148,7 +1145,7 @@ Konvergente Folgen sind also Cauchy-Folgen!
 \end{namedtheorem}
 
 \begin{proof}
-	$"'\Rightarrow"'$ s.o. $"'\Leftarrow"'$ ohne Beweis
+	$"'\Rightarrow"'$ s.o. $"'\Leftarrow"'$ ohne Beweis.
 \end{proof}
 
 
@@ -1180,13 +1177,14 @@ Konvergente Folgen sind also Cauchy-Folgen!
 
 
 \index{Reihe} \index{Reihe!unendliche} \index{Teilsumme} \index{konvergent} \index{divergent} \index{Reihenwert}
-\begin{definition} $(a_{n})$ sei eine Folge;
+\begin{definition} $(a_{n})$ sei eine Folge.
 	\begin{enumerate}
 		\item $ s_{n} \coloneqq a_{1} + a_{2} + \dotsc a_{n} \quad (n \in \N)$
-		(also $a_{1} = a_{1}, a_{2} = a_{1} + a_{2}, \dotsc$). $(s_{n})$ hei{\ss}t \textbf{(unendliche) Reihe} und wird mit $\sum_{n = 1}^{\infty} a_{n}$ bezeichnet. Weitere Bezeichnungen: $a_{1} + a_{2} + a_{3} + \dotsc$
+		(also $a_{1} = a_{1}, a_{2} = a_{1} + a_{2}, \dotsc$). $(s_{n})$ hei{\ss}t \textbf{(unendliche) Reihe} und wird mit $\sum_{n = 1}^{\infty} a_{n}$ bezeichnet. \\
+		Weitere Bezeichnungen: $a_{1} + a_{2} + a_{3} + \dotsc$
 		\item $s_{n}$ hei{\ss}t \textbf{n-te Teilsumme} von $\sum_{n=1}^{\infty} a_{n}$.	
 		\item $\sum_{n=1}^{\infty} a_{n}$ hei{\ss}t konvergent bzw. divergent $\iff (s_{n})$ ist konvergent 	bzw. divergent.
-		\item Ist $\sum_{n = 1}^{\infty} a_{n}$ konvergent, so hei{\ss}t $\lim s_{n}$ der Reihenwert und wird ebenfalls mit $\sum_{n=1}^{\infty} a_{n}$ bezeichnet (schlecht, aber so üblich)
+		\item Ist $\sum_{n = 1}^{\infty} a_{n}$ konvergent, so hei{\ss}t $\lim s_{n}$ der Reihenwert und wird ebenfalls mit $\sum_{n=1}^{\infty} a_{n}$ bezeichnet (schlecht, aber so üblich).
 	\end{enumerate} 	
 \end{definition}
 
@@ -1194,11 +1192,11 @@ Konvergente Folgen sind also Cauchy-Folgen!
 \begin{bemerkung}
 	Ist $p \in \Z$ und $(a_{n})_{n=p}^{\infty}$ eine Folge, so definiert man entsprechend
 		$$ s_{n} = a_{p} + a_{p+1} + \dotsc + a_{n} \quad (n \geq p) $$
-	und $\sum_{n=p}^{\infty} a_{n}$ (meist: $p = 1$ oder $p = 0$)
+	und $\sum_{n=p}^{\infty} a_{n}$ (meist: $p = 1$ oder $p = 0$).
 \end{bemerkung}
 
 
-Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $\sum_{n=1}^{\infty} a_{n}$. Diese Sätze und Definitionen gelten entsprechend für Reihen der Form $\sum_{n=p}^{\infty} a_{n}$ $(p \in \Z)$
+Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $\sum_{n=1}^{\infty} a_{n}$. Diese Sätze und Definitionen gelten entsprechend für Reihen der Form $\sum_{n=p}^{\infty} a_{n}$ $(p \in \Z)$.
 
 \index{Reihe!geometrische} \index{Reihe!harmonische}
 \begin{beispiele} ~\
@@ -1214,9 +1212,11 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 			Also $\sum_{n=1}^{\infty} \frac{1}{n(n+1))}$ konvergent und $\sum_{n=1}^{\infty} \frac{1}{n(n+1)} = 1$.
 		\item $\sum_{n=0}^{\infty} \frac{1}{n!} = 1 + 1 + \frac{1}{2!} + \frac{1}{3!} + \dotsc$; $s_{n} = 1 + 1 + \frac{1}{2!} + \dotsc + \frac{1}{n!} \xRightarrow[]{\ref{2.9:bsp}} s_{n} \rightarrow e$. \\
 			Also: $\sum_{n = 0}^{\infty} \frac{1}{n!}$ konvergiert und $\sum_{n=1}^{\infty} \frac{1}{n!} = e$.
-		\item Die \textbf{harmonischen Reihe} $\sum_{n=1}^{\infty} \frac{1}{n}$. Dann ist $s_{n} = 1 + \frac{1}{2} + \dotsc \frac{1}{n}$, \\
-			$s_{2n} = 1 + \frac{1}{2} + \dotsc + \frac{1}{n} + \frac{1}{n+1} + \dotsc + \frac{1}{2n} = s_{n} + \underbrace{\frac{1}{n+1}}_{\geq \frac{1}{2n}} + \underbrace{\frac{1}{n+2}}_{\geq \frac{1}{2n}} + \dotsc + + \underbrace{\frac{1}{2n}}_{\geq \frac{1}{2n}} \geq s_{n} + \frac{1}{2}$ \\
-			Annahme: $(s_{n})$ ist konvergent. $s \coloneqq \lim s_{n} \xRightarrow[2.11:satz]{2.11} s_{2n} \rightarrow s \Rightarrow s \geq s + \frac{1}{2} \rightarrow 0 \geq \frac{1}{2}$. Widerspruch! Also: $\sum_{n=1}^{\infty} \frac{1}{n}$ ist divergent!
+		\item Die \textbf{harmonischen Reihe} $\sum_{n=1}^{\infty} \frac{1}{n}$. Dann ist $s_{n} = 1 + \frac{1}{2} + \dotsc \frac{1}{n}$,
+			$$ s_{2n} = 1 + \frac{1}{2} + \dotsc + \frac{1}{n} + \frac{1}{n+1} + \dotsc + \frac{1}{2n} = s_{n} + \underbrace{\frac{1}{n+1}}_{\geq \frac{1}{2n}} + \dotsc + \underbrace{\frac{1}{2n}}_{\geq \frac{1}{2n}} \geq s_{n} + \frac{1}{2} $$
+			Annahme: $(s_{n})$ ist konvergent. $s \coloneqq \lim s_{n}$
+			$$ \xRightarrow[]{\ref{2.11:satz}} s_{2n} \rightarrow s \Rightarrow s \geq s + \frac{1}{2} \rightarrow 0 \geq \frac{1}{2}. $$
+		 	Widerspruch! Also: $\sum_{n=1}^{\infty} \frac{1}{n}$ ist divergent!
 	\end{enumerate}	
 \end{beispiele}
 
@@ -1313,10 +1313,10 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 			\begin{align}
 				 \underbrace{| \sum_{k = n+1}^{m} a_{k} |}_{\eqqcolon \sigma_{m, n}} \leq \underbrace{\sum_{k = n+1}^{m}|a_{k}|}_{\eqqcolon \tau_{m, n}} \tag{$*$}
 			\end{align}
-			Sei $\epsilon > 0$, Voraussetzung nach $\ref{3.1.b:satz} \Rightarrow \exists n_{0} \in \N: \tau_{m, n} < \epsilon$ für $m > n > n_{0} \xRightarrow[]{(*)} \sigma_{m, n} < \epsilon$ für $m > n \geq n_{0} \xRightarrow[]{\ref{3.1.b:satz}} \sum a_{n}$ konvergiert
+			Sei $\epsilon > 0$, Voraussetzung nach $\ref{3.1.b:satz} \Rightarrow \exists n_{0} \in \N: \tau_{m, n} < \epsilon$ für $m > n > n_{0} \xRightarrow[]{(*)} \sigma_{m, n} < \epsilon$ für $m > n \geq n_{0} \xRightarrow[]{\ref{3.1.b:satz}} \sum a_{n}$ konvergiert.
 		\item Sei $s_{k} \coloneqq a_{1} + \dotsc + a_{k}$, $s \coloneqq \lim s_{n}$, $\sigma_{k} \coloneqq |a_{1}| + \dotsc |a_{k}|$ und $\sigma = \lim \sigma_{n}$. Dann: $|s_{n}| \rightarrow |s|$ und 
 			$$ |s| \leq \sigma \quad \forall n $$
-			$\Rightarrow |s| \leq \sigma \Rightarrow$ $\triangle$-Ungleichung
+			$\Rightarrow |s| \leq \sigma \Rightarrow$ $\triangle$-Ungleichung.
 	\end{enumerate}
 \end{proof}
 
@@ -1333,7 +1333,7 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 		\item $\exists j \in \N$: $|a_{n}| \leq b_{n} ~\forall n \geq j$. Sei $m > n \geq j$, dann
 			$$ \underbrace{\sum_{k=n+1}^{m}|a_{n}|}_{\eqqcolon \sigma_{m, n}} \leq \underbrace{\sum_{k=n+1}^{m} b_{k}}_{\eqqcolon \tau_{m,n}} $$
 			Sei $\epsilon > 0$ Voraussetzung nach $\ref{3.1.b:satz} \Rightarrow \exists n_{0} \in \N: n_{0} \geq j$ und $\tau_{m,n} < \epsilon$ für $m > n \geq n_{0}$. Dann: $\sigma_{m,n} < \epsilon$ für $m > n \geq n_{0} \xRightarrow[]{\ref{3.1.b:satz}} \sum |a_{n}|$ konvergiert.
-		\item Annahme: $\sum a_{n}$ konvergent $\xRightarrow[]{a)} \sum b_{n}$ konvergent, Widerspruch.
+		\item Annahme: $\sum a_{n}$ konvergent $\xRightarrow[]{a)} \sum b_{n}$ konvergent. Widerspruch.
 	\end{enumerate}	
 \end{proof}
 
@@ -1342,7 +1342,7 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 	\begin{enumerate}
 		\item $\sum_{n=1}^{\infty} \frac{1}{(n+1)^{2}}$, $\forall n \in \N$:
 			$$ a_{n} = \frac{1}{(n+1)^{2}} = |a_{n}| = \frac{1}{n^{2} + 2n +1} \leq \frac{1}{n^{2} + 2n} \leq \frac{1}{n(n+1)} \eqqcolon b_{n} $$
-			Bekannt: $\sum b_{n}$ konvergiert $\xRightarrow[]{\ref{3.5.a:satz}} \sum_{n=1}^{\infty} \frac{1}{(n+1)^{2}}$ konvergiert
+			Bekannt: $\sum b_{n}$ konvergiert $\xRightarrow[]{\ref{3.5.a:satz}} \sum_{n=1}^{\infty} \frac{1}{(n+1)^{2}}$ konvergiert.
 		\item Aus Beispiel a): $\sum_{n=1}^{\infty} \frac{1}{n^{2}}$ ist konvergent.
 		\item Sei $\alpha > 0$ und $\alpha \in \Q$: Betrachte: $\sum_{n=1}^{\infty} \frac{1}{n^{\alpha}}$. \\
 			Fall 1: $\alpha \in (0, 1]$.
@@ -1351,9 +1351,9 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 				$$ \forall n \in \N: ~ 0 \leq \frac{1}{n^{\alpha}} \leq \frac{1}{n^{2}} \xRightarrow[]{\ref{3.5.a:satz}} \sum_{n=1}^{\infty} \frac{1}{n^{\alpha}} \text{ konvergiert.} $$
 			Fall 3: $\alpha \in (1, 2)$: vgl. Übungsblatt, $\sum \frac{1}{n^{\alpha}}$ konvergiert. \\ \\
 			\textbf{Fazit}: Ist $\alpha > 0$ und $\alpha \in \Q$, so gilt $\sum_{n=1}^{\infty} \frac{1}{n^{\alpha}}$ konvergiert $\Leftrightarrow \alpha > 1$
-		\item $\sum_{n=1}^{\infty} (-1)^{n} \frac{n^{2} + 2}{n^{3} + 1}$; $|a_{n}| = \frac{n+2}{n^{3} + 1} \leq \frac{n+2}{n^{3}} \leq \frac{2n}{n^{3}} = \frac{2n}{n^{2}} \eqqcolon b_{n}$. Für $n \geq 2$ $\sum b_{n}$ konvergiert $\xRightarrow[]{\ref{3.5.a:satz}} \sum a_{n}$ konvergiert absolut
+		\item $\sum_{n=1}^{\infty} (-1)^{n} \frac{n^{2} + 2}{n^{3} + 1}$; $|a_{n}| = \frac{n+2}{n^{3} + 1} \leq \frac{n+2}{n^{3}} \leq \frac{2n}{n^{3}} = \frac{2n}{n^{2}} \eqqcolon b_{n}$. Für $n \geq 2$ $\sum b_{n}$ konvergiert $\xRightarrow[]{\ref{3.5.a:satz}} \sum a_{n}$ konvergiert absolut.
 		\item $\sum_{n=1}^{\infty} \frac{\sqrt{n}}{n+1}$; $a_{n} = |a_{n}| = \frac{\sqrt{n}}{n+1} \geq \frac{\sqrt{n}}{2n} = \frac{1}{2} \cdot \frac{1}{\sqrt{n}} = \underbrace{\frac{1}{2} \cdot \frac{1}{n^{\frac{1}{2}}}}_{\geq 0} \eqqcolon b_{n}$. \\
-			$\sum b_{n}$ divergiert $\xRightarrow[]{\ref{3.5.b:satz}} \sum a_{n}$ divergiert
+			$\sum b_{n}$ divergiert $\xRightarrow[]{\ref{3.5.b:satz}} \sum a_{n}$ divergiert.
 	\end{enumerate}		
 \end{beispiele}
 
@@ -1364,7 +1364,7 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 \end{bemerkung}
 
 
-\begin{hilfssatz*}
+\begin{hilfssatz*}[HS]
 	$(c_{n})$ sei beschränkt
 	\begin{enumerate}
 		\item Ist $\alpha \coloneqq \limsup c_{n}$ und $x > \alpha$, so gilt: $c_{n} < x$ ffa $n$
@@ -1377,7 +1377,8 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 \begin{proof} ~\
 	\begin{enumerate}
 		\item[b)] Sei $\epsilon > 0$. $x \coloneqq \epsilon \xRightarrow[]{a)} -\epsilon < 0 \leq c_{n} < \epsilon$ ffa $n \in \N$, also $c_{n} \in U_{\epsilon}(0)$ ffa $n$.
-		\item[a)] Annahme: $c_{n} \geq x$ für unendlich viele $n$, etwa für $n_{1}, n_{2}, n_{3}, \dotsc$ mit $n_{1} < n_{2} < n_{3} < \dotsc$, Die Teilfolge $(c_{n_{k}})$ ist beschränkt $\xRightarrow[]{\ref{2.11:satz}} (c_{n_{k}})$ enthält eine konvergente Teilfolge $(c_{n_{k_{j}}})$. $\beta \coloneqq \lim_{j\rightarrow \infty} c_{n_{k_{j}}}$. Es ist $c_{n_{k_{j}}} \geq x ~\forall j \Rightarrow \beta \geq x > \alpha$; $(c_{n_{k_{j}}})$ ist eine Teilfolge von $(c_{n}) \Rightarrow \beta \in H(a_{n}) \Rightarrow \beta \leq \alpha$, Widerspruch.
+		\item[a)] Annahme: $c_{n} \geq x$ für unendlich viele $n$, etwa für $n_{1}, n_{2}, n_{3}, \dotsc$ mit $n_{1} < n_{2} < n_{3} < \dotsc$ \\
+		 Die Teilfolge $(c_{n_{k}})$ ist beschränkt $\xRightarrow[]{\ref{2.11:satz}} (c_{n_{k}})$ enthält eine konvergente Teilfolge $(c_{n_{k_{j}}})$. $\beta \coloneqq \lim_{j\rightarrow \infty} c_{n_{k_{j}}}$. Es ist $c_{n_{k_{j}}} \geq x ~\forall j \Rightarrow \beta \geq x > \alpha$; $(c_{n_{k_{j}}})$ ist eine Teilfolge von $(c_{n}) \Rightarrow \beta \in H(a_{n}) \Rightarrow \beta \leq \alpha$, Widerspruch.
 	\end{enumerate}	
 \end{proof}
 
@@ -1389,7 +1390,7 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 		\item Sei $(c_{n}$ beschränkt und $\alpha \coloneqq \limsup_{n \rightarrow \infty} c_{n}$
 			\begin{enumerate}
 				\item Ist $\alpha < 1$, so ist $\sum a_{n}$ absolut konvergent.
-				\item Ist $\alpha > 1$, so ist $\sum a_{n}$ divergent
+				\item Ist $\alpha > 1$, so ist $\sum a_{n}$ divergent.
 			\end{enumerate}
 			Im Falle $\alpha = 1$ ist keine allgemeine Aussage möglich.
 	\end{enumerate}
@@ -1398,10 +1399,10 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 \begin{proof} ~\
 	\begin{enumerate}
 		\item $(c_{n})$ unbeschränkt $\Rightarrow c_{n} \geq 1$ für unendlich viele $n \Rightarrow |a_{n}| \geq 1$ für unendlich viele $n \Rightarrow a_{n} \rightarrow 0 \xRightarrow[]{\ref{3.1.c:satz}}$ Beh.
-		\item  % todo image (2x)
+		\item  % todo image
 			\begin{enumerate}
-				\item Sei $\alpha < 1$, sei $x \in (\alpha, 1) \xRightarrow[]{hilfssatz*} c_{n} \leq x$ ffa n $\Rightarrow |a_{n}| \leq x^{n}$ ffa $n$. $\sum x^{n}$ konvergiert $\xRightarrow[]{\ref{3.5.a:satz}} \sum a_{n}$ konvergiert absolut 
-				\item Sei $\alpha > 1$, wähle $\epsilon > 0$ so, dass $\alpha - \epsilon > 1$. Es gilt $c_{n} U_{\epsilon}(\alpha)$ für unendlich viele $n$. Dann: $c_{n} > \alpha - \epsilon > 1$ für unendlich viele $n$. Wie bei $a)$: $\sum a_{n}$ divergiert 
+				\item Sei $\alpha < 1$, sei $x \in (\alpha, 1) \xRightarrow[]{HS} c_{n} \leq x$ ffa n $\Rightarrow |a_{n}| \leq x^{n}$ ffa $n$. $\sum x^{n}$ konvergiert $\xRightarrow[]{\ref{3.5.a:satz}} \sum a_{n}$ konvergiert absolut. 
+				\item Sei $\alpha > 1$, wähle $\epsilon > 0$ so, dass $\alpha - \epsilon > 1$. Es gilt $c_{n} U_{\epsilon}(\alpha)$ für unendlich viele $n$. Dann: $c_{n} > \alpha - \epsilon > 1$ für unendlich viele $n$. Wie bei $a)$: $\sum a_{n}$ divergiert. 
 			\end{enumerate}
 	\end{enumerate}
 \end{proof}
@@ -1425,12 +1426,12 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 
 \index{Konvergenzkriterium!Reihen!Quotienten}
 \begin{namedtheorem}[Quotientenkriterium (QK)] \label{3.7:prop-Quotientenkriterium}
-	Es sei $a_{n} \neq 0 ~\forall n \in \N$ und $c_{n} \coloneqq \left| \frac{a_{n+1}}{a_{n}} \right| ~(n \in \N)$.
+	Es sei $a_{n} \neq 0 ~\forall n \in \N$ und definiere $c_{n} \coloneqq \left| \frac{a_{n+1}}{a_{n}} \right| ~(n \in \N)$.
 	\begin{enumerate}
-		\item Ist $c_{n} \geq 1$ ffa $n \in \N$, so ist $\sum a_{n}$ divergent
-		\item Sei $(c_{n})$ beschränkt, $\alpha \coloneqq \limsup c_{n}$ und $\beta \coloneqq \liminf c_{n}$
+		\item Ist $c_{n} \geq 1$ ffa $n \in \N$, so ist $\sum a_{n}$ divergent.
+		\item Sei $(c_{n})$ beschränkt, $\alpha \coloneqq \limsup c_{n}$ und $\beta \coloneqq \liminf c_{n}$.
 			\begin{enumerate}
-				\item Ist $\alpha < 1$, so ist $\sum a_{n}$ absolut konvergent
+				\item Ist $\alpha < 1$, so ist $\sum a_{n}$ absolut konvergent.
 				\item Ist $\beta > 1$, so ist $\sum a_{n}$ divergent.
 			\end{enumerate}
 	\end{enumerate}
@@ -1445,8 +1446,8 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 
 \begin{beispiele} ~\
 	\begin{enumerate}
-		\item $a_{n} = \frac{1}{n}$, $\left| \frac{a_{n+1}}{a_{n}} \right| = \frac{n}{n+1} \rightarrow 1$, $\sum a_{n}$ divergiert
-		\item $a_{n} = \frac{1}{n^{2}}$, $ \left| \frac{a_{n+1}}{a_{n}} \right| = \frac{n^{2}}{(n+1)^{2}} \rightarrow 1$, $\sum a_{n}$ konvergiert 
+		\item $a_{n} = \frac{1}{n}$, $\left| \frac{a_{n+1}}{a_{n}} \right| = \frac{n}{n+1} \rightarrow 1$, $\sum a_{n}$ divergiert.
+		\item $a_{n} = \frac{1}{n^{2}}$, $ \left| \frac{a_{n+1}}{a_{n}} \right| = \frac{n^{2}}{(n+1)^{2}} \rightarrow 1$, $\sum a_{n}$ konvergiert.
 	\end{enumerate}	
 \end{beispiele}
 
@@ -1462,12 +1463,12 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 	Damit ist auf $\R$ eine Funktion $E \colon \R \rightarrow \R$ definiert:
 		$$ E(x) \coloneqq \sum_{n=0}^{\infty} \frac{x^{n}}{n!} \quad \text{Exponentialfunktion} $$
 	Es ist $E(0) = 1$, $E(1) \overset{\S 2}{=} e$. \\
-	Später zeigen wir: $E(r) = e^{r}$ für $r \in \Q$. Des Weiteren definieren wir später $e^{x} \coloneqq E(X)$ für $x \in \R \setminus \Q$. Dann: $e^{x} = E(x) \quad (x \in \R)$
+	Später zeigen wir: $E(r) = e^{r}$ für $r \in \Q$. Des Weiteren definieren wir später $e^{x} \coloneqq E(X)$ für $x \in \R \setminus \Q$. Dann: $e^{x} = E(x) ~(x \in \R)$.
 \end{namedtheorem}
 
 \index{Umordnung}
 \begin{definition}
-	Sei $(a_{n})$ eine Folge und $\varphi \colon \N \rightarrow \N$ eine Bijektion. Setze $b_{n} \coloneqq a_{\varphi(n)}$ $(n \in \N)$. also 
+	Sei $(a_{n})$ eine Folge und $\varphi \colon \N \rightarrow \N$ eine Bijektion. Setze $b_{n} \coloneqq a_{\varphi(n)}$ $(n \in \N)$. Also 
 		$$ b_{1} = a_{\varphi(1)}, b_{2} = a_{\varphi(2)}, \dotsc $$
 	Dann hei{\ss}t $(b_{n})$ eine \textbf{Umordnung} von $(a_{n})$.
 \end{definition}
@@ -1481,7 +1482,8 @@ $(a_{2}, a_{4}, a_{1} a_{3}, a_{6}, a_{8}, a_{5}, a_{7}, \dotsc)$ ist eine Umord
 	$(b_{n})$ sei eine Umordnung von $(a_{n})$.
 	\begin{enumerate}
 		\item Ist $(a_{n})$ konvergent, so ist $(b_{n})$ konvergent und $\lim b_{n} = \lim a_{n}$.
-		\item Ist $\sum a_{n}$ absolut konvergent, so ist $\sum b_{n}$ absolut konvergent und $\sum a_{n} = \sum b_{n}$
+		\item Ist $\sum a_{n}$ absolut konvergent, so ist $\sum b_{n}$ absolut konvergent und 
+			$$ \sum a_{n} = \sum b_{n} $$
 	\end{enumerate}	
 \end{satz}
 
@@ -1520,14 +1522,13 @@ $\sum_{n=0}^{\infty} a_{n}$ und $\sum_{n=0}^{\infty} b_{n}$ seien absolut konver
 
 
 \begin{beispiel*}
-	Sei $x \in \R$ und $|x | < 1$. \\
-	Bekannt: $\sum_{n=0}^{\infty} x^{n}$ konvergiert absolut und	 $\sum_{k=0}^{\infty} x^{n} = \frac{1}{1-x}$. Also
+	Sei $x \in \R$ und $|x | < 1$. Bekannt: $\sum_{n=0}^{\infty} x^{n}$ konvergiert absolut und	 $\sum_{k=0}^{\infty} x^{n} = \frac{1}{1-x}$. Also
 	$$ \frac{1}{(1-x)^{2}} = (\sum_{n=0}^{\infty} x^{n})(\sum_{n=0}^{\infty} x^{n}) \overset{\ref{3.11:satz}}{=} \sum_{n=0}^{\infty} c_{n} $$
 	mit $c_{n} = \sum_{k=0}^{n} x^{k} x^{n-k} = (n+1)x^{n}$. Also:
 	$$ \frac{1}{(1-x)^{2}} = \sum_{n=0}^{\infty} (n+1) x^{n} \quad (|x| < 1) $$
 	z.B.: $(x = \frac{1}{2}): 4 = \sum_{n=0}^{\infty} \frac{(n+1)}{2^{n}}$. Weiter:
 	$$ \frac{x}{(1-x)^{2}} = \sum_{n=0}^{\infty} (n+1) x^{n+1} = \sum_{n=1}^{\infty} n x^{n} $$
-	z.B.: $(x = \frac{1}{2}): 2 = \sum_{n=1}^{\infty} \frac{n}{2^{n}}$, also $1 = \sum_{n=1}^{\infty} \frac{n}{2^{n+1}}$
+	z.B.: $(x = \frac{1}{2}): 2 = \sum_{n=1}^{\infty} \frac{n}{2^{n}}$, also $1 = \sum_{n=1}^{\infty} \frac{n}{2^{n+1}}$.
 \end{beispiel*}
 
 
@@ -1540,7 +1541,7 @@ $\sum_{n=0}^{\infty} a_{n}$ und $\sum_{n=0}^{\infty} b_{n}$ seien absolut konver
 		\item $E(x) > 1 ~\forall x > 0$; $E(X) > 0 ~\forall x \in \R$; $E(-x) = E(x)^{-1} ~\forall x \in \R$
 		\item $E(rx) = E(x)^{r} ~\forall x \in \R, \forall r \in \Q$
 		\item $E(r) = e^{r} ~\forall r \in \Q$
-		\item $E$ ist auf $\R$ streng monoton wachsend, d.h. aus $x < y$ folgt stets $E(x) < E(y)$
+		\item $E$ ist auf $\R$ streng monoton wachsend, d.h. aus $x < y$ folgt stets $E(x) < E(y)$.
 	\end{enumerate}	
 \end{namedtheorem}
 
@@ -1549,18 +1550,18 @@ $\sum_{n=0}^{\infty} a_{n}$ und $\sum_{n=0}^{\infty} b_{n}$ seien absolut konver
 		\item klar.
 		\item $E(x)E(y) = (\sum_{n=0}^{\infty} \frac{x^{n}}{n!})(\sum_{n=0}^{\infty} \frac{y^{n}}{n!}) \overset{\ref{3.11:satz}}{=} \sum_{n=0}^{\infty} c_{n}$, wobei
 			$$ c_{n} = \sum_{k=0}^{\infty} \frac{x^{k}}{k!} \cdot \frac{y^{n-k}}{(n-k)!} = \frac{1}{n!} \sum_{k=0}^{n} \underbrace{\frac{n!}{k! (n-k)!}}_{\binom{n}{k}} x^{k} y^{n-k} \overset{\S1}{=} \frac{1}{n!} (x+y)^{n} $$
-			Also: $E(x)E(y) = \sum_{n=0}^{\infty} \frac{(x+y)^{n}}{n!} = E(x+y)$
-		\item folgt aus b)
-		\item Für $x > 0$: $E(x) = 1 + \underbrace{x + \frac{x^{2}}{2!} + \frac{x^{3}}{3!} + \dotsc}_{> 0} > 1$ \\
-			$1 = E\left(x + (-x)\right) \overset{b)}{=} E(x) E(-x) ~\forall x \in \R$; Insb.: $E(x) > 0 ~(x < 0)$ und $E(-x) = E(x)^{-1}$.
+			Also: $E(x)E(y) = \sum_{n=0}^{\infty} \frac{(x+y)^{n}}{n!} = E(x+y)$.
+		\item folgt aus b).
+		\item Für $x > 0$: $E(x) = 1 + \underbrace{x + \frac{x^{2}}{2!} + \frac{x^{3}}{3!} + \dotsc}_{> 0} > 1$
+			$$ 1 = E\left(x + (-x)\right) \overset{b)}{=} E(x) E(-x) ~\forall x \in \R $$
+			Insb.: $E(x) > 0 ~(x < 0)$ und $E(-x) = E(x)^{-1}$.
 		\item Sei $x \in \R$. Für $n \in \N$:
 			$$ E(nx) = E(x + \dotsc + x) \overset{c)}{=} E(x)^{n} $$
-			$E(x) = (E n(\frac{x}{n}) = E(\frac{x}{n})^{n}$, also $E(\frac{1}{n} x) = E(x)^{\frac{1}{n}}$. \\
-			Für $m, n \in \N$:
-			$E(\frac{m}{n} x) = E(m \frac{x}{n}) = E(\frac{x}{n})^{m} = (E(x)^{\frac{1}{n}})^{m} = E(x)^{\frac{m}{b}}$
+			$E(x) = (E n(\frac{x}{n}) = E(\frac{x}{n})^{n}$, also $E(\frac{1}{n} x) = E(x)^{\frac{1}{n}}$. Für $m, n \in \N$:
+			$$ E(\frac{m}{n} x) = E(m \frac{x}{n}) = E(\frac{x}{n})^{m} = (E(x)^{\frac{1}{n}})^{m} = E(x)^{\frac{m}{b}}. $$
 			Also $E(rx) = E(x)^{r} ~\forall r \in \Q$ mit $r > 0$. Sei $r \in Q$ und $r < 0$. Dann: $-r > 0$, also
 			$$ \underbrace{E(-rx)}_{\overset{d)}{=} \frac{1}{E(rx)}} =e(x)^{-r} = \frac{1}{E(x)^{r}} $$
-			Also $E(rx) = E(x)^{r}$
+			Also $E(rx) = E(x)^{r}$.
 		\item folgt aus d) mit $x = 1$.
 		\item Sei $x < y \Rightarrow y - x > 0 \xRightarrow[]{d)} E(y - x) > 1$
 			$$ \Rightarrow 1 < E(y - x) \overset{b)}{=} E(y)E(-x) \overset{d)}{=} \frac{E(y)}{E(x)} \xRightarrow[]{d)} E(x) < E(y) $$
@@ -1585,7 +1586,7 @@ Frage: für welche $x \in \R$ konvergiert die Potenzreihe (absolut)? Klar: die P
 \begin{beispiele} ~\
 	\begin{enumerate}
 		\item $\sum_{n=0}^{\infty} \frac{x^{n}}{n!}$. Hier: $a_{n} = \frac{1}{n!}, x_{0} = 0$. Bekannt: die Potenzreihe konvergiert absolut in jeden $x \in \R$.
-		\item $\sum_{n=0}^{\infty} (x - x_{0})^{n}$. Hier: $a_{n} = 1$. Setze $q \coloneqq x - x_{0}$. Bekannt: $\sum_{n=0}^{\infty} q^{n}$ konvergiert absolut $\iff |q| < 1$. D.g. die Potenzreihe konvergiert absolut $\iff |x - x_{0} | < 1$
+		\item $\sum_{n=0}^{\infty} (x - x_{0})^{n}$. Hier: $a_{n} = 1$. Setze $q \coloneqq x - x_{0}$. Bekannt: $\sum_{n=0}^{\infty} q^{n}$ konvergiert absolut $\iff |q| < 1$. D.g. die Potenzreihe konvergiert absolut $\iff |x - x_{0} | < 1$.
 			% todo image
 		\item $\sum_{n=0}^{\infty} n^{n} (x - x_{0})^{n}$. Hier: $a_{n} = n^{n}$. Sei $x \neq x_{0}$ und $b_{n} \coloneqq n^{n} (x - x_{0})^{n}$; $\sqrt[n]{|b_{n}|} = n |x - x_{0}| \xRightarrow[]{x \neq x_{0}} \left( \sqrt[n]{|b_{n}|} \right)$ ist unbeschränkt $\xRightarrow[]{\ref{3.6:prop-Wurzelkriterium}} \sum n^{n} (x - x_{0})^{n}$ ist divergent. \\
 			Also: $\sum_{n=0}^{\infty} n^{n} (x - x_{0})^{n}$ konvergiert nur für $x = x_{0}$.
@@ -1633,7 +1634,7 @@ Frage: für welche $x \in \R$ konvergiert die Potenzreihe (absolut)? Klar: die P
 
 
 \begin{folgerung*}
-	$\lim_{n \rightarrow \infty} \frac{1}{\sqrt[n]{n!}} = 0$	
+	$\lim_{n \rightarrow \infty} \frac{1}{\sqrt[n]{n!}} = 0$.	
 \end{folgerung*}
 
 \begin{proof}
@@ -1799,9 +1800,8 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 		$$ a_{j} = 0, z_{1}^{(j)} z_{2}^{(j)} z_{3}^{(j)} \dotsc $$
 	die 3-adische Entwicklung von $a_{j}$, also $z_{k}^{(j)} \in \{ 0, 1, 2 \}$. Setze
 		$$ z_{k} \coloneqq \begin{cases} 1, & \text{falls } z_{k}^{(k)} = 0 \text{ oder } z_{k}^{(k)} = 2 \\ 0, & \text{falls } z_{k}^{(k)} = 1 \end{cases} $$
-	Dann: $z_{k} \neq z_{k}^{k} ~\forall k \in \N$ $(**)$ \\
-	Setze $a \coloneqq \sum_{n=1}^{\infty} \frac{z_{n}}{3^{n}}$. Dann:
-		$$ 0 \leq a \leq \sum_{n=1}^{\infty} \frac{1}{3^{n}} = \frac{1}{2}, \text{ also } a \in [0, 1) $$
+	Dann: $z_{k} \neq z_{k}^{k} ~\forall k \in \N$ $(**)$. Setze $a \coloneqq \sum_{n=1}^{\infty} \frac{z_{n}}{3^{n}}$, dann:
+		$$ 0 \leq a \leq \sum_{n=1}^{\infty} \frac{1}{3^{n}} = \frac{1}{2}, \text{ also } a \in [0, 1). $$
 	Übung: $0, z_{1} z_{2} z_{3} \dotsc$ ist die 3-adische Entwicklung von $a$.$a \in [0, 1) \Rightarrow \exists m \in \N: a = a_{m}$, also
 		$$ 0, z_{1} z_{2} z_{3} \dotsc = 0, z_{1}^{(m)} z_{2}^{(m)} \dotsc $$
 	und $z_{j} = z_{j}^{(m)} ~\forall j \in \N \xRightarrow[]{j = m} z_{m} = z_{m}^{(m)}$. Widerspruch zu $(**)$.
@@ -1835,9 +1835,13 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 \end{hilfssatz}
 
 \begin{proof} ~\\
-	$"'\Rightarrow"'"$ $\exists$ Folge $(x_{n})$ in $D \setminus \{ x_{0} \} : x_{n} \rightarrow x_{0}$. Sei $\epsilon > 0$: $\exists n_{0} \in \N: x_{n} \in U_{\epsilon}(x_{0}) \cap (D \setminus \{ x_{0} \})$ $\forall n \geq n_{0}$ \\
-	$"'\Leftarrow"'"$ $\exists x_{1} \in U_{1}(x_{0}) \cap (D \setminus \{ x_{0} \})$, also $|x_{1} - x_{0}| < 1$ $\exists x_{2} \in U_{\frac{1}{2}}(x_{0} \cap (D \setminus \{ x_{0} \})$, also $|x_{2} - x_{0}| < \frac{1}{2}$, etc. \\
-	Wir erhalten eine Folge $(x_{n})$ in $D \setminus \{ x_{0} \}$ mit $|x_{n} - x_{0}| < \frac{1}{n} ~\forall n$, also $x_{n} \rightarrow x_{0}$.
+	$"'\Rightarrow"'$ $\exists$ Folge $(x_{n})$ in $D \setminus \{ x_{0} \} : x_{n} \rightarrow x_{0}$. Sei $\epsilon > 0$: 
+	$$ \exists n_{0} \in \N: x_{n} \in U_{\epsilon}(x_{0}) \cap (D \setminus \{ x_{0} \}) ~\forall n \geq n_{0}. $$
+	$"'\Leftarrow"'$ $\exists x_{1} \in U_{1}(x_{0}) \cap (D \setminus \{ x_{0} \})$, also $|x_{1} - x_{0}| < 1$; \\
+	$\exists x_{2} \in U_{\frac{1}{2}}(x_{0} \cap (D \setminus \{ x_{0} \})$, also $|x_{2} - x_{0}| < \frac{1}{2}$; etc. \\
+	Wir erhalten eine Folge $(x_{n})$ in $D \setminus \{ x_{0} \}$ mit 
+	$$ |x_{n} - x_{0}| < \frac{1}{n} \quad \forall n \in \N, $$
+	also $x_{n} \rightarrow x_{0}$.
 \end{proof}
 
 
@@ -1877,10 +1881,12 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 		\item $D = (0, 1]$
 			$$ f(x) \coloneqq \begin{cases} x^{2}, & 0 < x < \frac{1}{2} \\ \frac{1}{2}, & x = \frac{1}{2} \\ 1, & \frac{1}{2} < x < 1 \\ 0, & x = 1 \end{cases} $$
 			Klar: $\lim_{x \rightarrow 0} f(x), \lim_{x \rightarrow 1} f(x) = 1$
-			$$ x_{n} \coloneqq \frac{1}{2} - \frac{1}{n}, z_{n} \coloneqq \frac{1}{2} + \frac{1}{n} ~(n \geq 3) $$
+			$$ x_{n} \coloneqq \frac{1}{2} - \frac{1}{n}, z_{n} \coloneqq \frac{1}{2} + \frac{1}{n} \quad (n \geq 3) $$
 			Dann: $x_{n} \rightarrow \frac{1}{2}, z_{n} \rightarrow \frac{1}{2}$, aber $f(x) = \left( \frac{1}{2} - \frac{1}{n} \right)^{2} \rightarrow \frac{1}{4} \neq 1 \leftarrow f(z_{n})$. \\
-			D.h. $\lim_{x \rightarrow \frac{1}{2}} f(x)$ existiert nicht, aber $\lim_{\underset{x \in (0, \frac{1}{2})}{x \rightarrow \frac{1}{2}}} f(x) = \frac{1}{4}$, dafür schreibt man $\lim_{x \rightarrow \frac{1}{2}-0} f(x) = \frac{1}{4}$ (linksseitiger Grenzwert) \\
-			Analog: $\lim_{\underset{x \in (\frac{1}{2}, \infty)}{x \rightarrow \frac{1}{2}}} f(x) = 1$ (rechtsseitiger Grenzwert)
+			D.h. $\lim_{x \rightarrow \frac{1}{2}} f(x)$ existiert nicht, aber $\lim_{\underset{x \in (0, \frac{1}{2})}{x \rightarrow \frac{1}{2}}} f(x) = \frac{1}{4}$, dafür schreibt man 
+			$$ \lim_{x \rightarrow \frac{1}{2}-0} f(x) = \frac{1}{4} \text{ (linksseitiger Grenzwert)} $$ \\
+			Analog: 
+			$$ \lim_{\underset{x \in (\frac{1}{2}, \infty)}{x \rightarrow \frac{1}{2}}} f(x) = 1 \text{ (rechtsseitiger Grenzwert)} $$ 
 		\item $D = \R$, $f = E$, also $f(x) = \sum_{n=0}^{\infty} \frac{x^{n}}{n!}; x_{0} = 0$. Sei $|x| \leq 1$
 			\begin{align*}
 				|E(x) - E(0)| & = |E(x) - 1| = |x + \frac{x^{2}}{2!} + \frac{x^{3}}{3!} + \dotsc | \\
@@ -1897,8 +1903,10 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 \index{Konvergenzkriterium!Cauchy}
 \begin{satz} \label{6.2:satz} ~\
 	\begin{enumerate}
-		\item $\lim_{x \rightarrow x_{0}} f(x) = a \iff \forall \epsilon > 0 ~\exists \delta > 0 (\delta = \delta(\epsilon)):$
-			$$ (*) |f(x)- a| < \epsilon ~\forall x \in D_{\delta}(x_{0}) $$ \label{6.2.a:satz}
+		\item $\lim_{x \rightarrow x_{0}} f(x) = a \iff \forall \epsilon > 0 ~\exists \delta > 0 ~ (\delta = \delta(\epsilon)):$
+			\begin{equation}
+				|f(x)- a| < \epsilon \quad \forall x \in D_{\delta}(x_{0}) \tag{$*$}
+			\end{equation} \label{6.2.a:satz}
 		\item $\lim_{x \rightarrow x_{0}} f(x)$ existiert
 			$$ \iff \text{ für jede Folge } (x_{n}) \text{ in } D \setminus \{ x_{0} \} \text{ mit } x_{n} \rightarrow x_{0} \text{ ist } (f(x_{n})) \text{ konvergent}. $$ \label{6.2.b:satz} 
 		\item \textbf{Cauchykriterium}: $\lim_{x \rightarrow x_{0}} f(x)$ existiert
@@ -1929,8 +1937,8 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 	\begin{enumerate}
 		\item Sei $(x_{n})$ eine Folge in $\R$.
 			\begin{align*}
-				x_{n} \rightarrow \infty & \iff \forall c > 0 ~\exists n_{0} = n_{0}(c) \in \N: x_{n} > c ~\forall n \geq n_{0} \\
-				x_{n} \rightarrow - \infty & \iff \forall c < 0 ~\exists n_{0} = n_{0}(c) \in \N: x_{n} < c ~\forall n \geq n_{0} 
+				x_{n} \rightarrow \infty & \iff \forall c > 0 ~\exists n_{0} = n_{0}(c) \in \N: x_{n} > c \quad \forall n \geq n_{0} \\
+				x_{n} \rightarrow - \infty & \iff \forall c < 0 ~\exists n_{0} = n_{0}(c) \in \N: x_{n} < c \quad \forall n \geq n_{0} 
 			\end{align*}
 			Übung: $x_{n} \rightarrow \infty \iff x_{n} > 0 \text{ ffa } n \in \N \text{ und } \frac{1}{x_{n}} \rightarrow 0$ und \\
 				$x_{n} \rightarrow -\infty\iff x_{n} < 0 \text{ ffa } n \in \N \text{ und } \frac{1}{x_{n}} \rightarrow 0$
@@ -1988,7 +1996,7 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 
 \begin{beispiele}
 	\begin{enumerate}
-		\item $D = [0 \infty), p \in \N, f(x) = \sqrt[p]{x}$. Bekannt: ist $(x_{n})$ eine Folge in $D$ it $x_{n} \rightarrow x_{0} \in D$, so gilt $f(x_{n}) \rightarrow f(x_{0})$. Also: $f \in C\left([0, \infty]\right)$
+		\item $D = [0 \infty), p \in \N, f(x) = \sqrt[p]{x}$. Bekannt: ist $(x_{n})$ eine Folge in $D$ mit $x_{n} \rightarrow x_{0} \in D$, so gilt $f(x_{n}) \rightarrow f(x_{0})$. Also: $f \in C\left([0, \infty]\right)$
 		\item $D = [0, 1] \cup \{ 2 \}$, $ f(x) \coloneqq \begin{cases}
 				x^{2}, & 0 \leq x < 1 \\ 0, & x = 1 \\ 1, & x = 2
 			\end{cases}$ \\
@@ -2006,7 +2014,7 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 	$D \subseteq \R, f \colon D \rightarrow \R$ eine Funktion, $x_{0} \in D$.
 	\begin{enumerate}
 		\item $f$ ist in $x_{0}$ stetig $\iff \forall \epsilon > 0 ~\exists \delta = \delta(\epsilon) > 0$:
-			$$ \forall x\in D_{\delta}(x_{0}): \quad |f(x) - f(x_{0})| < \epsilon $$
+			$$ |f(x) - f(x_{0})| < \epsilon \quad \forall x \in D_{\delta}(x_{0})$$
 		\item Ist $x_{0}$ Häufungspunkt von $D$, so gilt:
 			$$ f \text{ ist in } x_{0} \text{ stetig } \iff \lim_{x \rightarrow x_{0}} f(x) = f(x_{0}) $$
 	\end{enumerate}
@@ -2022,7 +2030,7 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 
 \begin{satz} ~\ \label{7.2:satz} 
 	\begin{enumerate}
-		\item $f, g \colon D \rightarrow \R$ seien stetig in $x_{0} \in D$ und es seien $\alpha, \beta \in \R$, Dann sind stetig in $x_{0}$;
+		\item $f, g \colon D \rightarrow \R$ seien stetig in $x_{0} \in D$ und es seien $\alpha, \beta \in \R$. Dann sind stetig in $x_{0}$:
 			$$ \alpha f + \beta g, fg \text{ und } |f| $$
 			Ist $x_{0} \in \tilde{D} \coloneqq \{ x \in D : f(x) \neq 0 \}$, so ist $\frac{1}{f} \colon \tilde{D} \rightarrow \R$ stetig in $x_{0}$.
 		\item Sind $f, g \in C(D)$ und $\alpha, \beta \in \R$, so gilt:
@@ -2081,7 +2089,7 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 
 
 \begin{folgerung*}
-	$\forall x_{0} \in \R$: $\lim_{h \rightarrow 0} \frac{E(x_{0} + h) - E(x_{0})}{h} = E(x_{0})$
+	Für alle $x_{0} \in \R$ gilt $\lim_{h \rightarrow 0} \frac{E(x_{0} + h) - E(x_{0})}{h} = E(x_{0})$.
 \end{folgerung*}
 
 \begin{proof}
@@ -2097,10 +2105,10 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; \\
 
 \begin{proof}
 	Fall 1: $f(a) = y_{0}$ oder $f(b) = y_{0}$, fertig. \\
-	Fall 2: $f(a) \neq y_{0} \neq f(b)$. o.B.d.A.: $f(a) < f(b)$, also $f(a) < y_{0} < f(b)$.
-	$$ M \coloneqq \{ x \in [a, b]: f(x) \leq y_{0} \}; a \in M \Rightarrow M \neq \emptyset; $$
-	$M \subseteq [a, b] \Rightarrow M$ ist beschränkt $\xRightarrow[]{\hyperref[v.axiom-a15]{(A15)}} \exists x_{0} \coloneqq \sup M \in [a, b]$.  \\
-	Ist $n \in \N$, so ist $x_{0} - \frac{1}{n}$ keine obere Schranke von $M$, also ex. $x_{n} \in M: x_{n} > x_{0} - \frac{1}{n}$. \\
+	Fall 2: $f(a) \neq y_{0} \neq f(b)$. o.B.d.A.: $f(a) < f(b)$, also $f(a) < y_{0} < 	f(b)$.
+	$$ M \coloneqq \{ x \in [a, b]: f(x) \leq y_{0} \} $$
+	$a \in M \Rightarrow M \neq \emptyset; M \subseteq [a, b] \Rightarrow M$ ist beschränkt $\xRightarrow[]{\hyperref[v.axiom-a15]{(A15)}} \exists x_{0} \coloneqq \sup M \in [a, b]$. Ist $n \in \N$, so ist $x_{0} - \frac{1}{n}$ keine obere Schranke von $M$, also ex. $x_{n} \in M$:
+		$$ x_{n} > x_{0} - \frac{1}{n}. $$
 	Also: $\forall n \in \N$: $x_{0} - \frac{1}{n} < x_{n} \leq x_{n}$. Somit $x_{n} \rightarrow x_{0}$, $f$ stetig in $x_{0} \Rightarrow f(x_{n}) \rightarrow f(x_{0}) \xRightarrow[]{\text{Def. von }M} \forall n \in \N: f(x_{n}) \leq y_{0} \Rightarrow f(x_{0}) \leq y_{0}$. \\
 	Es ist $x_{0} < b$ (andernfalls: $x_{0} = b \Rightarrow f(b) = f(x_{0}) \leq y_{0} < f(b)$, Wid!). \\
 	% todo image
@@ -2177,7 +2185,10 @@ Aus \ref{7.7:prop-Zwischenwertsatz} folgt mit $y_{0} = 0$:
 	\begin{enumerate}
 		\item i. d. gro{\ss}en Übung.
 		\item $"'\Leftarrow"'$ Folgt direkt aus \ref{2.12:satz-BolzanoWeierstrass}, $"'\Rightarrow"'$ Übung.
-		\item Sei$s \coloneqq \sup D$. $\forall n \in \N ~\exists x_{n} \in D: x_{n} > s - \frac{1}{n}$, also $\forall n \in \N$ $s - \frac{1}{n} < x_{n} \leq s$. Somit: $x_{n} \rightarrow s \xRightarrow[]{b)} D$ ist abgeschlossen $\Rightarrow s \in D \Rightarrow s = \max D$. Analog zeigt man: $\inf D \in D$.
+		\item Sei $s \coloneqq \sup D$. 
+			$$ \forall n \in \N ~\exists x_{n} \in D: x_{n} > s - \frac{1}{n}, \text{ also } \forall n \in \N: s - \frac{1}{n} < x_{n} \leq s. $$
+			 Somit: $x_{n} \rightarrow s \xRightarrow[]{b)} D$ ist abgeschlossen $\Rightarrow s \in D \Rightarrow s = \max D$. \\
+			 Analog zeigt man: $\inf D \in D$.
 	\end{enumerate}	
 \end{proof}
 
@@ -2212,8 +2223,8 @@ Aus \ref{7.7:prop-Zwischenwertsatz} folgt mit $y_{0} = 0$:
  \index{monoton! wachsend}   \index{monoton! streng wachsend} \index{monoton! streng fallend} \index{monoton! fallend}
 \begin{definition} ~\
 	\begin{enumerate}
-		\item $f \colon D \rightarrow \R$ hei{\ss}t \textbf{monoton wachsend} $\iff$ aus $x_{1}, x_{2} \in D$ und $x_{1} < x_{2}$ folgt stets $f(x_{1}) \leq f(x_{2})$ \\
-			$f \colon D \rightarrow \R$ hei{\ss}t \textbf{streng monoton wachsend} $\iff$ aus $x_{1}, x_{2} \in D$ und $x_{1} < x_{2}$ folgt stets $f(x_{1}) < f(x_{2})$
+		\item $f \colon D \rightarrow \R$ hei{\ss}t \textbf{monoton wachsend} $\iff$ aus $x_{1}, x_{2} \in D$ und $x_{1} < x_{2}$ folgt stets $f(x_{1}) \leq f(x_{2})$. \\
+			$f \colon D \rightarrow \R$ hei{\ss}t \textbf{streng monoton wachsend} $\iff$ aus $x_{1}, x_{2} \in D$ und $x_{1} < x_{2}$ folgt stets $f(x_{1}) < f(x_{2})$.
 		\item Entsprechend definiert man \textbf{(streng) monoton fallend}.
 		\item $f$ hei{\ss}t (streng) monoton $\iff f$ ist (streng) monoton wachsend oder (streng) monoton fallend.
 	\end{enumerate}
@@ -2224,7 +2235,10 @@ Sei $I \subseteq \R$ ein Intervall ($I = \R$ ist zugelassen) und $f \colon I \Ri
 
 Es gilt $\forall x \in I$: $f^{-1}(f(x)) = x$ und $\forall y \in F(I)$: $f(f^{-1}) =y$
 
-Bem.: $f(I)$ ist i.A. kein Intervall % todo image
+\begin{bemerkung}
+	 $f(I)$ ist i.A. kein Intervall. % todo image
+\end{bemerkung}
+
 
 
 \begin{satz} \label{7.13:satz}
@@ -2264,7 +2278,7 @@ Bem.: $f(I)$ ist i.A. kein Intervall % todo image
 
 
 \textbf{Motivation}: $\xRightarrow[]{\ref{3.12:prop-Exponentialfunktion}} E(rx) = E(x)^{r} ~\forall x \in \R ~\forall r \in \Q$. \\
-	Sei $a > 0$. Mit $x \coloneqq \log$:
+	Sei $a > 0$. Mit $x \coloneqq \log a$:
 		$$ \forall r \in \Q: \quad E(r \log a) = E(\log a)^{r} = a^{r} $$
 
 \begin{namedtheorem}[Die allgemeine Potenz] \label{7.15:prop-AllgPotenz}
@@ -2330,7 +2344,7 @@ Ohne Beweis.
 \newpage
 
 \chapter{Funktionenfolge und -reihen}
-I. d. $\S$en sei stets: $\emptyset \neq D \subseteq \R$, $(f_{n})$ eine Folge von Funktionen $f_{n} \colon D \rightarrow \R$ und $s_{n} \coloneqq f_{1} + f_{n} + \cdots + f_{n}$ $(n /in \N)$
+I. d. $\S$en sei stets: $\emptyset \neq D \subseteq \R$, $(f_{n})$ eine Folge von Funktionen $f_{n} \colon D \rightarrow \R$ und $s_{n} \coloneqq f_{1} + f_{n} + \cdots + f_{n}$ $(n \in \N)$
 
 \index{konvergent!punktweise} \index{Grenzfunktion} \index{Summenfunktion}
 \begin{definition} ~\
@@ -2348,8 +2362,8 @@ I. d. $\S$en sei stets: $\emptyset \neq D \subseteq \R$, $(f_{n})$ eine Folge vo
 		\item $D = [0,1]$, $f_{n}(x) \coloneqq x^{n}$ %todo image
 			$$ f(x) \coloneqq \lim_{n\rightarrow\infty} f_{n}(x) = \begin{cases} 0, & 0 \leq x < 1 \\  1, & x = 1 \end{cases} $$
 			$(f_{n})$ konvergiert auf $[0, 1]$ punktweise gegen $f$.
-		\item Sei $\sum_{n=0}^{\infty} a_{n} (x-x_{0})^{n}$ eine Potenzreihe mit dem Konvergenzradius $r > 0$ und $D \coloneqq (x_{0} - r, x_{0} + r)$ $(D \Coloneqq \R$, falls $r = \infty$). Hier: $f_{n}(x) = a_{n} (x - x_{0})^{n} \xRightarrow[]{\ref{4.1:satz}} \sum_{n=0}^{\infty} f_{n}$ konvergiert auf $D$ punktweise gegen $f(x) \coloneqq \sum_{n=0}^{\infty} a_{n} (x-x_{0})^{n}$.
-		\item $D = [0, \infty$, $f_{n}(x) \coloneqq \frac{nx}{1+n^{2}x^{2}} = \frac{\frac{x}{n}}{\frac{1}{n} + x^{2}} \rightarrow 0$ $(n \rightarrow \infty)$. Also konvergiert $(f_{n})$ auf $D$ punktweise gegen $f \equiv 0$. Es ist $f_{n}(\frac{1}{n}) = \frac{1}{2}$ \\
+		\item Sei $\sum_{n=0}^{\infty} a_{n} (x-x_{0})^{n}$ eine Potenzreihe mit dem Konvergenzradius $r > 0$ und $D \coloneqq (x_{0} - r, x_{0} + r)$ $(D \coloneqq \R$, falls $r = \infty$). Hier: $f_{n}(x) = a_{n} (x - x_{0})^{n} \xRightarrow[]{\ref{4.1:satz}} \sum_{n=0}^{\infty} f_{n}$ konvergiert auf $D$ punktweise gegen $f(x) \coloneqq \sum_{n=0}^{\infty} a_{n} (x-x_{0})^{n}$.
+		\item $D = [0, \infty$, $f_{n}(x) \coloneqq \frac{nx}{1+n^{2}x^{2}} = \frac{\frac{x}{n}}{\frac{1}{n} + x^{2}} \rightarrow 0$ $(n \rightarrow \infty)$. Also konvergiert $(f_{n})$ auf $D$ punktweise gegen $f \equiv 0$. Es ist $f_{n}(\frac{1}{n}) = \frac{1}{2}$. \\
 			% todo image
 			Punktweise Konvergenz von $(f_{n})$ auf $D$ gegen $f$ bedeutet: ist $\epsilon > 0$ und $x \in D$, so existiert eine $n_{0} 0 n_{0}(\epsilon, x) \in \N$:
 			$$ |f_{n}(x) - f(x)| < \epsilon \quad \forall n \geq n_{0} $$
@@ -2359,9 +2373,9 @@ I. d. $\S$en sei stets: $\emptyset \neq D \subseteq \R$, $(f_{n})$ eine Folge vo
 
 \begin{definition} ~\
 	\begin{enumerate}
-		\item $(f_{n})$ konvergiert \text{auf D gleichmä{\ss}ig}(glm) gegen $f \colon D \rightarrow \R \iff \forall \epsilon > 0 ~\exists n_{0} = n_{0}(\epsilon) \in \N$:
+		\item $(f_{n})$ konvergiert \text{auf D gleichmä{\ss}ig} (glm) gegen $f \colon D \rightarrow \R \iff \forall \epsilon > 0 ~\exists n_{0} = n_{0}(\epsilon) \in \N$:
 			$$ |f_{n}(x) - f(x)|< \epsilon \quad \forall n \geq n_{0} \text{ und } \forall x \in D. $$
-		\item $\sum_{n=1}^{\infty} f_{n}$  konvergiert \text{auf D gleichmä{\ss}ig}(glm) gegen $f \colon D \rightarrow \R \iff \forall \epsilon > 0 ~\exists n_{0} = n_{0}(\epsilon) \in \N$:
+		\item $\sum_{n=1}^{\infty} f_{n}$  konvergiert \text{auf D gleichmä{\ss}ig} (glm) gegen $f \colon D \rightarrow \R \iff \forall \epsilon > 0 ~\exists n_{0} = n_{0}(\epsilon) \in \N$:
 			$$ |s_{n}(x) - s(x)|< \epsilon \quad \forall n \geq n_{0} \text{ und } \forall x \in D. $$
 	\end{enumerate}
 \end{definition}
@@ -2413,7 +2427,7 @@ Anschaulich: $(f_{n})$ konvergiert auf $D$ gleichmä{\ss}ig gegen $f$ bedeutet: 
 
 \begin{satz} \label{8.2:satz}
 	$\sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n}$ sei eine Potenzreihe mit Konvergenzradius $r > 0$, es sei $D \coloneqq (x_{0} - r, x_{0} + r) ~(D \coloneqq \R$, falls $r = \infty$). \\
-	Ist $[a, b] \subseteq D$, so konvergiert die Potenzreihe auf $[a, b]$ gleichmä{\ss}ig
+	Ist $[a, b] \subseteq D$, so konvergiert die Potenzreihe auf $[a, b]$ gleichmä{\ss}ig.
 \end{satz}
 
 \begin{proof}
@@ -2451,7 +2465,7 @@ Anschaulich: $(f_{n})$ konvergiert auf $D$ gleichmä{\ss}ig gegen $f$ bedeutet: 
 			\begin{align*}
 				|f(x) - f(x_{0})| & = |f(x) - f_{m}(x) + f_{m}(x) - f_{m}(x_{0}) + f_{m}(x_{0}) - f(x_{0})| \\ 
 					& \leq |f(x) - f_{m}(x) | + | f_{m}(x) - f_{m}(x_{0})| + | f_{m}(x_{0}) - f(x_{0})| \\
-					< \frac{\epsilon}{3} +  \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon
+					& < \frac{\epsilon}{3} +  \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon
 			\end{align*}
 			$\xRightarrow[]{\ref{7.1:satz}}$ Beh.
 	\end{enumerate}
@@ -2529,7 +2543,7 @@ I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ e
 		\item $f g$ ist differenzierbar in $x_{0}$ und
 			$$ (f g)'(x_{0}) = f'(x_{0})g(x_{0})+ f(x_{0})g'(x_{0}) $$
 		\item Ist $g(x_{0}) \neq 0$, so existiert ein $\delta > 0$ mit $g(x) \neq 0 ~(x \in J \coloneqq I \cap U_{\delta}(x_{0}))$. Die Funktion $\frac{f}{g} \colon J \rightarrow \R$ ist differenzierbar in $x_{0}$ und 
-			$$ (\frac{f}{g})'(x_{0}) = \frac{f'(x_{0}) g(x_{0}) - f(x_{0})g'(x_{0})}{g(x_{0})^{2}}. $$
+			$$ \left( \frac{f}{g} \right)'(x_{0}) = \frac{f'(x_{0}) g(x_{0}) - f(x_{0})g'(x_{0})}{g(x_{0})^{2}}. $$
 	\end{enumerate}		
 \end{namedtheorem}
 
@@ -2586,7 +2600,7 @@ I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ e
 			Kurz: $(\log x)' = \frac{1}{x}$ auf $(0, \infty)$.
 		\item Sei $\alpha \in \R$ und $f(x) = x^{\alpha} = e^{\alpha \log x} ~(x > 0)$.
 			$$ f'(x) = e^{\alpha \log x} (\alpha \log x)' = x^{\alpha} \alpha \frac{1}{x} = \alpha x^{\alpha - 1} $$
-			Kurz: $(x^{alpha})' = \alpha x^{\alpha - 1}$ auf $(0, \infty)$.
+			Kurz: $(x^{\alpha})' = \alpha x^{\alpha - 1}$ auf $(0, \infty)$.
 		\item aus Bsp. c): $(\sqrt{x})' = \frac{1}{2 \sqrt{x}}$ auf $(0, \infty)$.
 	\end{enumerate}
 \end{beispiele}
@@ -2595,7 +2609,7 @@ I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ e
 \begin{anwendung} \label{9.5:anwendung}
 	Sei $a \in \R$ und o.B.d.A. $a \neq 0$. $f(t) \coloneqq \log(1 + t) ~(t > -1)$. Dann: $f'(t) = \frac{1}{1 + t}$
 	$$ \lim_{t \rightarrow 0} \frac{\log(1+t)}{t} \lim_{t \rightarrow 0} \frac{f(t) - f(0)}{t - 0} = f'(0) = 1 $$
-	$$ \Rightarrow 1 = \lim_{x \rightarrow \infty} \frac{\log(1 + \frac{a}{x}}{\frac{a}{x}} = \frac{1}{a} x \log(1 + \frac{a}{x}) = \frac{1}{a} \log (1 + \frac{a}{x})^{x} $$
+	$$ \Rightarrow 1 = \lim_{x \rightarrow \infty} \frac{\log(1 + \frac{a}{x})}{\frac{a}{x}} = \frac{1}{a} x \log(1 + \frac{a}{x}) = \frac{1}{a} \log (1 + \frac{a}{x})^{x} $$
 	$\Rightarrow \log (1 + \frac{a}{x})^{x} \rightarrow a ~(x \rightarrow \infty) \Rightarrow \lim_{x \rightarrow \infty} (1 + \frac{a}{x})^{x} = e^{a}$
 \end{anwendung}
 
@@ -2618,8 +2632,8 @@ I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ e
 
 \begin{proof}
 	Sei o.B.d.A. $x_{0}$ ein relatives Maximum von Funktion $f$. $\exists \delta > 0: U_{\delta}(x_{0}) \subseteq I$ und $f(x) \leq f(x_{0}) ~(x \in U_{\delta}(x_{0}))$
-	$$ D(x) \coloneqq \frac{f(x) - f(x_{0})}{x - x_{0}} \begin{cases} \leq 0, x > x_{0} \\ \geq 0, x < x_{0} \end{cases} (x \in U_{\delta}(x_{0}) \setminus \{ x_{0} \} $$
-	Also: $f'(x_{0}) = \lim_{x \rightarrow x_{0} +} D(x) \leq 0$ und $f'(x_{0}) = \lim_{x \rightarrow x_{0} -} D(x) \geq 0$.
+	$$ D(x) \coloneqq \frac{f(x) - f(x_{0})}{x - x_{0}} \begin{cases} \leq 0, x > x_{0} \\ \geq 0, x < x_{0} \end{cases} (x \in U_{\delta}(x_{0}) \setminus \{ x_{0} \}) $$
+	Also: $f'(x_{0}) = \lim_{x \rightarrow x_{0} +} D(x) \leq 0$ und $f'(x_{0}) = \lim_{x \rightarrow x_{0} -} D(x) \geq 0$. 
 \end{proof}
 
 \index{Mittelwertsatz}
@@ -2727,14 +2741,14 @@ $\sin x =\sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{(2n+1)!} \xRightarrow[]{\r
 \begin{namedtheorem}[Definition von $\pi$] ~\ \label{9.14:prop-DefPi}
 	\begin{enumerate}
 		\item Für $x \in (0, 2)$ ist
-			$$ \sin x = \underbrace{(x - \frac{x^{3}}{3!})}_{> 0} + \underbrace{(\frac{x^{5}}{5!} - \frac{x^{7}}{7!}}_{> 0} + \underbrace{(\frac{x^{9}}{9!} - \frac{x^{11}}{11!}}_{> 0} + \dotsc > x - \frac{x^{3}}{3!} > 0 $$
+			$$ \sin x = \underbrace{\left(x - \frac{x^{3}}{3!}\right)}_{> 0} + \underbrace{\left(\frac{x^{5}}{5!} - \frac{x^{7}}{7!}\right)}_{> 0} + \underbrace{\left(\frac{x^{9}}{9!} - \frac{x^{11}}{11!}\right)}_{> 0} + \dotsc > x - \frac{x^{3}}{3!} > 0 $$
 			Speziell: $\sin 1 > 1 - \frac{1}{6} = \frac{5}{6}$.
 		\item $\exists \xi_{0} \in (0, 2)$: $\cos \xi_{0} = 0$ und $\cos x > 0 ~\forall x \in [0, \xi_{0})$
 		\begin{proof}
 			$\cos 0 = 1 > 0$; 
 			\begin{align*}
-				\cos 2 & = \cos (1 + 1) \overset{\ref{4.3:prop-Sinus}}{=} \cos^{2} 1 - \sin^{2} 1 = \cos^{2} 1 + \sin^{2} - 2 \sin^{2} 1 = 1 - 2 \sin^{2} 1 \\
-					& \leq 1 - 2 \frac{25}{36} < 0
+				\cos 2 & = \cos (1 + 1) \overset{\ref{4.3:prop-Sinus}}{=} \cos^{2} 1 - \sin^{2} 1 = \cos^{2} 1 + \sin^{2} - 2 \sin^{2} 1 \\
+					& = 1 - 2 \sin^{2} 1 \leq 1 - 2 \frac{25}{36} < 0
 			\end{align*} 
 			$\xRightarrow[]{\ref{7.7:prop-Zwischenwertsatz}} \exists \xi_{0} \in (0, 2): \cos \xi_{0} = 0$. Auf $(0, 2)$:
 			$$ (\cos x)' = - \sin x \overset{a)}< 0 \Rightarrow \cos x > 0 ~\forall x \in [0, \xi_{0}) $$
@@ -2758,7 +2772,7 @@ $\sin x =\sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{(2n+1)!} \xRightarrow[]{\r
 	\caption{Sinus und Cosinus.}	
 \end{figure*}
 
-\begin{namedtheorem}[Weitere Eigenschaften von Sinus und Cosinus] \label{9.15:prop-EigSinusCosinus}
+\begin{namedtheorem}[Weitere Eigenschaften von Sinus und Cosinus] \label{9.15:prop-EigSinusCosinus} ~\
 	\begin{enumerate}
 		\item Aus \ref{4.3:prop-Sinus}:
 			\begin{align*}
@@ -2766,7 +2780,7 @@ $\sin x =\sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{(2n+1)!} \xRightarrow[]{\r
 				\intertext{Analog:}
 				\cos(x + \frac{\pi}{2}) & = - \sin x \\
 				\sin(x + \pi) & = - \sin x , \cos(x + \pi) = - \cos x \\
-				\sin(x + 2\pi) &  = \sin x, \cos(x + 2\pi) = \cos 2
+				\sin(x + 2\pi) &  = \sin x, \cos(x + 2\pi) = \cos x
 			\end{align*}
 		\item $\cos$ hat in $[0, \pi]$ genau eine Nullstelle.
 		\item I. d. gr. Übungen:
@@ -2803,8 +2817,6 @@ $\sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n}$ sei eine Potenzreihe mit Konvergenzr
 \end{namedtheorem}
 
 
-% todo punctionation stop
-
 \begin{anwendungen} ~\ \label{9.17:anwendungen}
 	\begin{enumerate}
 		\item $f(x) \coloneqq \log(1+x)$ für $x \in (-1, 1) \eqqcolon I$. Dann: \label{9.17.a:anwendungen}
@@ -2815,7 +2827,7 @@ $\sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n}$ sei eine Potenzreihe mit Konvergenzr
 			$$ f(x) = g(x) \quad \forall x \in I $$
 			$\xRightarrow[x \rightarrow 1]{\ref{9.16:prop-AbelscherGrenzwertsatz}} f(x) = g(x) ~\forall x \in (-1, 1]$. Fazit:
 			$$ \log(1+x) = \sum_{n=1}^{\infty} (-1)^{n+1} \frac{x^{n}}{n} \quad \forall x \in (-1 , 1] $$
-			Für $x 0 1$: $\log(2) = \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}$. 
+			Für $x = 1$: $\log(2) = \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}$. 
 		\item Vgl. Übungsblatt: \label{9.17.b:anwendungen}
 			$$ \arctan x = \sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n +1}}{2n + 1} \quad \forall x \in [-1, 1] $$
 			Speziell: $\arctan 1 = \sum_{n=0}^{\infty} \frac{(-1)^{n}}{2n + 1} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} +- \dotsc$
@@ -2865,10 +2877,12 @@ $\sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n}$ sei eine Potenzreihe mit Konvergenzr
 Aus \ref{9.12:satz} folgt (induktiv):
 
 \begin{satz} \label{9.19:satz}
-	Sei $\sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n}$ eine Potenzreihe mit Konvergenzradius $r > 0$, $I \coloneqq (x_{0} - r, x_{0} + r)$ ($I = \R$, falls $r = \infty$) und $f(x) \coloneqq \sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n} ~(x \in I)$. Dann: $f \in C^{\infty}(I)$ und 
+	Sei $\sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n}$ eine Potenzreihe mit Konvergenzradius $r > 0$, $I \coloneqq (x_{0} - r, x_{0} + r)$ ($I = \R$, falls $r = \infty$) und 
+	$$ f(x) \coloneqq \sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n} \quad (x \in I). $$
+	Dann: $f \in C^{\infty}(I)$ und 
 	$$ f^{(k)}(x) = \sum_{n=k}^{\infty} n(n-1) \cdots (n-k+1) \cdot a_{n} (x - x_{0})^{n-k} \quad \forall x \in I ~\forall k \in \N_{0} $$
 	Insbes.: $(x = x_{0})$: $f^{(k)}(x_{0}) = k! \cdot a_{k}$, also
-		$$ a_{k} = \frac{f^{(k)}(x_{0})}{k!} \quad \forall k \in \N_{0} $$
+		$$ a_{k} = \frac{f^{(k)}(x_{0})}{k!} \quad \forall k \in \N_{0}. $$
 \end{satz}
 
 Ohne Beweis:
@@ -2885,7 +2899,7 @@ Ohne Beweis:
 
 \begin{satz} \label{9.21:satz}
 	Sei $n \geq 2$, $f \in C^{n}(I)$, $x_{0} \in I$ sei ein innerer Pinkt von $I$ und
-	$$ f'(x_{0} = f''(x_{0} = \dotsc = f^{(n-1)}(x_{0}) = 0 \text{ und } f^{(n)}(x_{0}) \neq 0 $$
+	$$ f'(x_{0}) = f''(x_{0}) = \dotsc = f^{(n-1)}(x_{0}) = 0 \text{ und } f^{(n)}(x_{0}) \neq 0 $$
 	\begin{enumerate}
 		\item Ist $n$ gerade und $f^{(n)}(x_{0}) < 0$, so hat $f$ in $x_{0}$ ein relatives Maximum.
 		\item Ist $n$ gerade und $f^{(n)}(x_{0}) > 0$, so hat $f$ in $x_{0}$ ein relatives Minimum.
@@ -3850,7 +3864,7 @@ Ohne Beweis:
 	$$ b_{n} = \frac{2}{\pi} \int_{0}^{\pi} f(x) \sin(nx) dx \overset{\ref{10.15:satz}}{=} \frac{2}{\pi} \int_{0}^{\pi} x \sin(nx) dx \overset{Übung}{=} (-1)^{n+1} \frac{2}{n} \quad \forall n \in \N. $$
 	$\xRightarrow[]{\ref{13.3:satz}} f(x) = 2 \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n} \sin(nx) ~\forall x \in \R$.
 	$$ \Rightarrow \frac{x}{2} = \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n} \sin(nx) \quad \forall x \in (-\pi, \pi). $$
-	$x = \frac{\pi}{2}$: $\frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} +- \dotsc$ (vgl. \ref{9.17.b:anwendungen}.
+	$x = \frac{\pi}{2}$: $\frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} +- \dotsc$ (vgl. \ref{9.17.b:anwendungen}).
 \end{beispiel}
 
 
@@ -3942,7 +3956,7 @@ $$ x = x_{1} e_{1} + \dotsc + x_{n} e_{n}. $$
 \begin{definition}
 	Seien $x = (x_{1}, \dotsc, x_{n})$, $y = (y_{1}, \dotsc, y_{n}) \in \R^{n}$.
 	\begin{enumerate}
-		\item $xy \coloneqq x \dotsc y \coloneqq x_{1} y_{1} + \dotsc + x_{n} y_{n}$ \textbf{Skalarprodukt} oder \textbf{Innenprodukt} von $x$ und $y$. Beachte: $xy \in \R$.
+		\item $xy \coloneqq x \cdot y \coloneqq x_{1} y_{1} + \dotsc + x_{n} y_{n}$ \textbf{Skalarprodukt} oder \textbf{Innenprodukt} von $x$ und $y$. Beachte: $xy \in \R$.
 		\item $\| x \| \coloneqq \sqrt{x \cdot x} = (x_{1}^{2} + \dotsc + x_{n}^{2})^{\frac{1}{2}}$ \textbf{Norm} oder \text{Länge} von $x$. Beachte: $\|x\|^{2} = x \cdot x$ (Im Fall $n = 1: \|x\| = |x|$).
 		\item $\| x - y \|$ hei{\ss}t Abstand von $x$ und $y$. Beachte: $\| x - y \| = \| y - x \|$.
 			% todo image
