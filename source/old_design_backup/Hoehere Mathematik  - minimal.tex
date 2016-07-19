@@ -22,6 +22,7 @@
 \usepackage{pgfplots}
 \usepackage{tikz}
 \pgfplotsset{compat=1.7}
+\usetikzlibrary{calc}	
 \usetikzlibrary{matrix}	
 
 %% Options
@@ -729,7 +730,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 					$$ \left| \frac{1}{a_{n}} - \frac{1}{a} \right| = \frac{|a_{n} - a|}{|a_{n}||a|} \leq \frac{2|a_{n} - a|}{|a|^{2}} \eqqcolon \alpha_{n} $$
 					$\alpha_{n} \rightarrow 0 \xRightarrow[]{b)} \frac{1}{a_{n}} \rightarrow \frac{1}{a}$.
 			  \end{enumerate}
-			\item Annahme $b < a$, $\varepsilon \coloneqq \frac{a-b}{2} > 0$.  \tikz[baseline=-0.5ex]{  \draw(0,0)--(8,0); \foreach \x/\xtext in {0/$$,1.75/$$,3/$b$,4.5/$$,6.25/{\small $a$},8/$$} \draw(\x,3pt)--(\x,-3pt) node[below] {\xtext}; \foreach \x/\xtext in {4/$x$,5.5/$y$} \draw(\x,2pt)--(\x,-2pt) node[below] {\xtext}; \draw[decorate,decoration={brace},yshift=2ex]  (1.75,0) -- node[above=0.4ex] {\small $U_{\varepsilon}(b)$}  (4.25,0); \draw[decorate,decoration={brace},yshift=2ex] (5.25,0) -- node[above=0.4ex] {\small $U_{\varepsilon}(a)$} (7.25,0); }
+			\item Annahme $b < a$, $\varepsilon \coloneqq \frac{a-b}{2} > 0$.  \tikz[baseline=-0.5ex]{  \draw(0,0)--(8,0); \foreach \x/\xtext in {0/$$,1.75/$$,3/$b$,4.5/$$,6.25/{\small $a$},8/$$} \draw(\x,3pt)--(\x,-3pt) node[below] {\xtext}; \foreach \x/\xtext in {4/$x$,5.25/$y$} \draw(\x,2pt)--(\x,-2pt) node[below] {\xtext}; \draw[decorate,decoration={brace},yshift=2ex]  (1.75,0) -- node[above=0.4ex] {\small $U_{\varepsilon}(b)$}  (4.25,0); \draw[decorate,decoration={brace},yshift=2ex] (5,0) -- node[above=0.4ex] {\small $U_{\varepsilon}(a)$} (7.5,0); }
 				Dann: $x < y ~\forall x \in U_{\varepsilon}(b) ~\forall y \in U_{\varepsilon}(a)$. 
 					$$ \exists n_{0} \in \N: b_{n} \in U_{\varepsilon}(b) ~\forall n \geq n_{0} $$
 					$$ \exists m \in \N: a_{n} \leq b_{n} ~\forall n \geq m $$
@@ -2755,6 +2756,8 @@ $\sin x =\sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{(2n+1)!} \xRightarrow[]{\r
       	\draw[->] (0,-2) -- (0,2) node[above] {$y$};
       	\draw[scale=0.1,domain=-10:29,smooth,variable=\x] plot ({\x},{12.5*sin(deg(\x/6))}) node[below] {$\sin x$};
       	\draw[scale=0.1,domain=-10:29,smooth,variable=\x] plot ({\x},{12.5*cos(deg(\x/6))}) node[above] {$\cos x$};
+		\draw ($(0,1.25) + (-4pt,0)$) -- ($(0,1.25) + (4pt,0)$) node [right] {$1$};
+		\draw ($(0,-1.25) + (-4pt,0)$) -- ($(0,-1.25) + (4pt,0)$) node [right] {$-1$};
     \end{tikzpicture}
 	\caption{Sinus und Cosinus.}	
 \end{figure*}
