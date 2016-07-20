@@ -1,4 +1,4 @@
-\documentclass{report}
+\documentclass[12pt]{extreport} % Schriftgröße: 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt oder 20pt
 
 %% Packages
 \usepackage{scrextend}
@@ -12,8 +12,8 @@
 \usepackage{lmodern}
 \usepackage{makeidx}
 \usepackage{mathtools} 
-\usepackage{pgfplots}
 \usepackage{xpatch}
+\usepackage{pgfplots}
 \pgfplotsset{compat=1.7}
 \usetikzlibrary{calc}	
 \usetikzlibrary{matrix}	
@@ -24,18 +24,25 @@
 \usepackage[ngerman]{babel}
 
 % Options
-\makeatletter%
-  \changefontsizes{12pt} % Schriftgröße 9pt - 12pt
-  \def\mystretch{1.2} % Zeilenabstand für Leserlichkeit
-  \definecolor{linkcolor}{rgb}{0,0.35,0.35} % Linkfarbe, {0,0.35,0.35} für Türkis
-  \newcommand\publishers[1]{\newcommand\@publishers{#1}} % Publisher
-  \renewcommand{\labelenumi}{\alph{enumi})} % Enumerate im 1. Level: \alph für a), b),..
-  \renewcommand{\labelenumii}{(\roman{enumii})} % Enumerate im 2. Level: \roman für (i), (ii),...
-   \pgfplotsset{compat=1.12}
-  \setlength{\parindent}{0pt} % Zeileneinrückung am Anfang des Absatzes
-  \setlist[enumerate,1]{ref={\thesatz ~ \alph*)}} % Verweise auf Enumerate, z.B.: 3.2 a)
-  \xpatchcmd{\proof}{\@addpunct{.}}{\@addpunct{:}}{}{} % Beweis: anstatt Beweis.
-  \@ifundefined{thechapter}{}{\def\thefigure{\thechapter.\arabic{figure}}} % Nummerierung der Bilder: Abbildung 4.1 (im 4. Kapitel)
+\makeatletter%%  
+  % Linkfarbe, {0,0.35,0.35} für Türkis, {0,0,0} für Schwarz 
+  \definecolor{linkcolor}{rgb}{0,0.35,0.35}
+  % Zeilenabstand für bessere Leserlichkeit
+  \def\mystretch{1.2} 
+  % Publisher definieren
+  \newcommand\publishers[1]{\newcommand\@publishers{#1}} 
+  % Enumerate im 1. Level: \alph für a), b), ...
+  \renewcommand{\labelenumi}{\alph{enumi})} 
+  % Enumerate im 2. Level: \roman für (i), (ii), ...
+  \renewcommand{\labelenumii}{(\roman{enumii})}
+  % Zeileneinrückung am Anfang des Absatzes
+  \setlength{\parindent}{0pt} 
+  % Verweise auf Enumerate, z.B.: 3.2 a)
+  \setlist[enumerate,1]{ref={\thesatz ~ \alph*)}}
+  % Für das Proof-Environment: 'Beweis:' anstatt 'Beweis.'
+  \xpatchcmd{\proof}{\@addpunct{.}}{\@addpunct{:}}{}{} 
+  % Nummerierung der Bilder, z.B.: Abbildung 4.1
+  \@ifundefined{thechapter}{}{\def\thefigure{\thechapter.\arabic{figure}}} 
 \makeatother%
 
 % Meta Setup (Für Titelblatt und Metadaten im PDF)
@@ -51,19 +58,19 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
 
-%% Theorems
+%% Theorems (unnamedtheorem = Theorem ohne Namen)
 \newtheoremstyle{named}{}{}{\normalfont}{}{\bfseries}{:}{0.25em}{#2 \thmnote{#3}}
 \theoremstyle{named}
-\newtheorem{namedtheorem}{Theorem} \counterwithin{namedtheorem}{chapter}
+\newtheorem{unnamedtheorem}{Theorem} \counterwithin{unnamedtheorem}{chapter}
 \newtheoremstyle{dotless}{}{}{}{}{\bfseries}{:}{ }{}
 \renewcommand*{\qed}{\hfill\ensuremath{\square}}
 \theoremstyle{dotless}
-\newtheorem{satz}[namedtheorem]{Satz}	
-\newtheorem{beispiel}[namedtheorem]{Beispiel}
-\newtheorem{folgerung}[namedtheorem]{Folgerung}
-\newtheorem{hilfssatz}[namedtheorem]{Hilfssatz}
-\newtheorem{anwendung}[namedtheorem]{Anwendung}
-\newtheorem{anwendungen}[namedtheorem]{Anwendungen}
+\newtheorem{satz}[unnamedtheorem]{Satz}	
+\newtheorem{beispiel}[unnamedtheorem]{Beispiel}
+\newtheorem{folgerung}[unnamedtheorem]{Folgerung}
+\newtheorem{hilfssatz}[unnamedtheorem]{Hilfssatz}
+\newtheorem{anwendung}[unnamedtheorem]{Anwendung}
+\newtheorem{anwendungen}[unnamedtheorem]{Anwendungen}
 \newtheorem*{beispiel*}{Beispiel}
 \newtheorem*{beispiele}{Beispiele}
 \newtheorem*{bemerkung}{Bemerkung} 
@@ -82,19 +89,35 @@
 
 %% Template
 \makeatletter%
-\DeclareUnicodeCharacter{00A0}{ } \DeclareOption{doublespace}{} \DeclareOption{singlespace}{\typeout{Single spaced}\def\mystretch{1}} \newif\if@leftblank \@leftblankfalse \DeclareOption{leftblank}{\typeout{Intentionally Leaving Pages Blank} \@leftblanktrue} \hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor, pdftitle=\@title, pdfauthor=\@author, pdfsubject=\@title, pdfcreator=\@publishers}\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}} \ProcessOptions \def\baselinestretch{\mystretch} \setlength{\oddsidemargin}{0.125in} \setlength{\evensidemargin}{0.125in} \setlength{\topmargin}{0.5in} \setlength{\textwidth}{6.25in} \setlength{\textheight}{8in} \addtolength{\topmargin}{-\headheight} \addtolength{\topmargin}{-\headsep} \def\pulldownheader{ \addtolength{\topmargin}{\headheight} \addtolength{\topmargin}{\headsep} \addtolength{\textheight}{-\headheight} \addtolength{\textheight}{-\headsep} } \def\pullupfooter{ \addtolength{\textheight}{-\footskip} } \def\ps@headings{\let\@mkboth\markboth \def\@oddfoot{} \def\@evenfoot{} \def\@oddhead{\hbox {}\sl \rightmark \hfil \rm\thepage} \def\chaptermark##1{\markright {\uppercase{\ifnum \c@secnumdepth >\m@ne \@chapapp\ \thechapter. \ \fi ##1}}} \pulldownheader } \def\ps@myheadings{\let\@mkboth\@gobbletwo \def\@oddfoot{} \def\@evenfoot{} \def\sectionmark##1{} \def\subsectionmark##1{}  \def\@evenhead{\rm \thepage\hfil\sl\leftmark\hbox {}} \def\@oddhead{\hbox{}\sl\rightmark \hfil \rm\thepage} \pulldownheader }	\def\chapter{\cleardoublepage  \thispagestyle{plain}  \global\@topnum\z@ \@afterindentfalse \secdef\@chapter\@schapter} \def\@makeschapterhead#1{ {\parindent \z@ \raggedright \normalfont \interlinepenalty\@M \Huge \bfseries  #1\par\nobreak \vskip 40\p@ }} \newcommand{\indexsection}{chapter} \patchcmd{\@makechapterhead}{\vspace*{50\p@}}{}{}{} \def\maketitle{ \begin{titlepage} ~ \vspace{3cm} \begin{center} {\Huge \@title} \end{center} \vspace*{1cm} \begin{center} {\large \@author} \end{center} \begin{center} \@date \end{center} \vspace*{7cm} \begin{center} \@publishers \end{center} \vfill \end{titlepage} }
+\DeclareUnicodeCharacter{00A0}{ } \pgfplotsset{compat=1.7} \hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor, pdftitle=\@title, pdfauthor=\@author, pdfsubject=\@title, pdfcreator=\@publishers}\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}} \ProcessOptions \def\baselinestretch{\mystretch} \setlength{\oddsidemargin}{0.125in} \setlength{\evensidemargin}{0.125in} \setlength{\topmargin}{0.5in} \setlength{\textwidth}{6.25in} \setlength{\textheight}{8in} \addtolength{\topmargin}{-\headheight} \addtolength{\topmargin}{-\headsep} \def\pulldownheader{ \addtolength{\topmargin}{\headheight} \addtolength{\topmargin}{\headsep} \addtolength{\textheight}{-\headheight} \addtolength{\textheight}{-\headsep} } \def\pullupfooter{ \addtolength{\textheight}{-\footskip} } \def\ps@headings{\let\@mkboth\markboth \def\@oddfoot{} \def\@evenfoot{} \def\@oddhead{\hbox {}\sl \rightmark \hfil \rm\thepage} \def\chaptermark##1{\markright {\uppercase{\ifnum \c@secnumdepth >\m@ne \@chapapp\ \thechapter. \ \fi ##1}}} \pulldownheader } \def\ps@myheadings{\let\@mkboth\@gobbletwo \def\@oddfoot{} \def\@evenfoot{} \def\sectionmark##1{} \def\subsectionmark##1{}  \def\@evenhead{\rm \thepage\hfil\sl\leftmark\hbox {}} \def\@oddhead{\hbox{}\sl\rightmark \hfil \rm\thepage} \pulldownheader }	\def\chapter{\cleardoublepage  \thispagestyle{plain} \global\@topnum\z@ \@afterindentfalse \secdef\@chapter\@schapter} \def\@makeschapterhead#1{ {\parindent \z@ \raggedright \normalfont \interlinepenalty\@M \Huge \bfseries  #1\par\nobreak \vskip 40\p@ }} \newcommand{\indexsection}{chapter} \patchcmd{\@makechapterhead}{\vspace*{50\p@}}{}{}{}
+	% Titlepage
+	\def\maketitle{ \begin{titlepage} 
+			~\vspace{3cm} 
+		\begin{center} {\Huge \@title} \end{center} 
+	 		\vspace*{1cm} 
+	 	\begin{center} {\large \@author} \end{center} 
+	 	\begin{center} \@date \end{center} 
+	 		\vspace*{7cm} 
+	 	\begin{center} \@publishers \end{center} 
+	 		\vfill 
+	\end{titlepage} }
 \makeatother%
 
-\makeindex
+% Indexdatei erstellen
+\makeindex 
 
 \begin{document}
 
-\maketitle
+\pagenumbering{Alph}
+\begin{titlepage}
+	\maketitle
+	\thispagestyle{empty}
+\end{titlepage}
+\pagenumbering{arabic}
 	
 % Inhaltsverzeichnis
 \tableofcontents
- \thispagestyle{empty}
- \newpage 
+\thispagestyle{empty}
   
 % Skript - Anfang
 \chapter{Reelle Zahlen}
@@ -124,19 +147,19 @@ Grundmenge der Analysis is die Menge $\R$, die Menge der \textbf{reellen Zahlen}
 \end{schreibweisen}
 
 
-\textbf{Alle} bekannten Regeln der Grundrechnungsarten lassen sich aus \hyperref[k.axiom]{$(A1) - (A9)$} herleiten. Diese Regeln seien von nun an bekannt.
+\textbf{Alle} bekannten Regeln der Grundrechnungsarten lassen sich aus $(A1) - (A9)$ herleiten. Diese Regeln seien von nun an bekannt.
 
 
 \begin{beispiele} ~\
 	\begin{enumerate}
 		\item Beh.: $\exists_{1} 0 \in  \R$ mit $\forall a \in \R \: \ a + 0 = a$
 		  \begin{proof}
-			Sei $\tilde{0} \in \R$ mit $\forall a \in \R \: a + \tilde{0} = a$. Mit $a = 0$ folgt: $0 + \tilde{0} = 0$. Mit $a = \tilde{0}$ in \hyperref[k.axiom-a2]{$(A2)$} folgt: $\tilde{0} + 0 = \tilde{0}$. Dann $0 = 0 + \tilde{0} \overset{\hyperref[k.axiom-a4]{(A4)}}{=} \tilde{0} + 0 = \tilde{0}$
+			Sei $\tilde{0} \in \R$ mit $\forall a \in \R \: a + \tilde{0} = a$. Mit $a = 0$ folgt: $0 + \tilde{0} = 0$. Mit $a = \tilde{0}$ in $(A2)$ folgt: $\tilde{0} + 0 = \tilde{0}$. Dann $0 = 0 + \tilde{0} \overset{(A4)}{=} \tilde{0} + 0 = \tilde{0}$
 		  \end{proof}
 		 \item Beh.: $\forall a \in \R \: a \cdot 0 = 0$
 		   \begin{proof}
-		     Sei $a \in \R$ und $b \coloneqq a \cdot 0$. Dann: $b \overset{\hyperref[k.axiom-a2]{(A2)}}{=} a (0 + 0) \overset{\hyperref[k.axiom-a9]{(A9)}}{=} a \cdot 0 + a \cdot 0 = b + b$. \\
-		     $0 \overset{\hyperref[k.axiom-a2]{(A3)}}{=} b + (-b) = (b + b) + (-b) \overset{\hyperref[k.axiom-a1]{(A1)}}{=} b + (b + (-b)) = b + 0 \overset{\hyperref[k.axiom-a2]{(A2)}}{=} b$
+		     Sei $a \in \R$ und $b \coloneqq a \cdot 0$. Dann: $b \overset{(A2)}{=} a (0 + 0) \overset{(A9)}{=} a \cdot 0 + a \cdot 0 = b + b$. \\
+		     $0 \overset{(A3)}{=} b + (-b) = (b + b) + (-b) \overset{(A1)}{=} b + (b + (-b)) = b + 0 \overset{(A2)}{=} b$
 		   \end{proof}
 	\end{enumerate}
 \end{beispiele}
@@ -157,7 +180,7 @@ Dabei sollen gelten:
 $b \geq a \iff a \leq b$; $a < b \iff a \leq b$ und $a \neq b$; $b > a \iff a < b$
 \end{schreibweisen}
 
-Aus \hyperref[k.axiom]{$(A1) - (A14)$} lassen sich alle Regeln für Ungleichungen herleiten. Diese Regeln seien von nun an bekannt.
+Aus $(A1) - (A14)$ lassen sich alle Regeln für Ungleichungen herleiten. Diese Regeln seien von nun an bekannt.
 
 
 \begin{beispiele}[ohne Beweis] ~\
@@ -236,7 +259,7 @@ Für $a \in \R$ hei{\ss}t $|a| \coloneqq \begin{cases} \hspace{0.35cm} a, & \tex
 
 \textbf{Bez.}: in dem Fall: $\gamma = \sup M$ bzw. $\gamma = \inf M$.
 
-Aus \hyperref[a.axiom-a11]{$(A11)$} folgt: ist $\sup M$ bzw. $\inf M$ vorhanden, so ist $\sup M$ bzw. $\inf M$ eindeutig bestimmt.
+Aus $(A11)$ folgt: ist $\sup M$ bzw. $\inf M$ vorhanden, so ist $\sup M$ bzw. $\inf M$ eindeutig bestimmt.
 
 Ist $\sup M$ bzw. $\inf M$ vorhanden und gilt $\sup M \in M$ bzw. $\inf M \in M$, so hei{\ss}t $\sup M$ das Maximum bzw. $\inf M$ das Minimum von $M$ und wird mit $\max M$ bzw. $\min M$ bezeichnet.
 
@@ -325,9 +348,9 @@ Ist $\sup M$ bzw. $\inf M$ vorhanden und gilt $\sup M \in M$ bzw. $\inf M \in M$
 Von nun an sei $\N = \{ 1, 2, 3, \dotsc \}$ bekannt.
 
 \index{vollständige Induktion}
-\begin{namedtheorem}[Prinzip der vollständigen Induktion] \label{1.4:prop} ~\\
+\begin{unnamedtheorem}[Prinzip der vollständigen Induktion] \label{1.4:prop} ~\\
 	Ist $A \subseteq \N$ und $A$ eine Induktionsmenge, so ist $A = N$.
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \begin{proof}
 	$A \subseteq \N$ (nach Vor.) und $\N \subseteq A$ (nach Def.), also $A = \N$
@@ -737,7 +760,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 				\item $\varepsilon \coloneqq \frac{|a|}{2}$; aus (i): $|a_{n}| \rightarrow |a| \Rightarrow \exists n \in N$:
 					$$  |a_{n}| \in U_{\varepsilon}(|a|) = (|a| - \varepsilon, |a| + \varepsilon) = (\frac{|a|}{2}, \frac{3}{2} |a|) \quad \forall n \geq m $$
 					$\Rightarrow |a_{n}| > \frac{|a|}{2} > 0 ~\forall n \geq m \Rightarrow a_{n} \neq 0 ~\forall n \geq m$. Für $n \geq m$:
-					$$ \left| \frac{1}{a_{n}} - \frac{1}{a} \right| = \frac{|a_{n} - a|}{|a_{n}||a|} \leq \frac{2|a_{n} - a|}{|a|^{2}} \eqqcolon \alspha_{n} $$
+					$$ \left| \frac{1}{a_{n}} - \frac{1}{a} \right| = \frac{|a_{n} - a|}{|a_{n}||a|} \leq \frac{2|a_{n} - a|}{|a|^{2}} \eqqcolon \alpha_{n} $$
 					$\alpha_{n} \rightarrow 0 \xRightarrow[]{b)} \frac{1}{a_{n}} \rightarrow \frac{1}{a}$.
 			  \end{enumerate}
 			\item Annahme $b < a$, $\varepsilon \coloneqq \frac{a-b}{2} > 0$.  \tikz[baseline=-0.5ex]{  \draw(0,0)--(8,0); \foreach \x/\xtext in {0/$$,1.75/$$,3/$b$,4.5/$$,6.25/{\small $a$},8/$$} \draw(\x,3pt)--(\x,-3pt) node[below] {\xtext}; \foreach \x/\xtext in {4/$x$,5.25/$y$} \draw(\x,2pt)--(\x,-2pt) node[below] {\xtext}; \draw[decorate,decoration={brace},yshift=2ex]  (1.75,0) -- node[above=0.4ex] {\small $U_{\varepsilon}(b)$}  (4.25,0); \draw[decorate,decoration={brace},yshift=2ex] (5,0) -- node[above=0.4ex] {\small $U_{\varepsilon}(a)$} (7.5,0); }
@@ -759,7 +782,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 	\end{proof}	
 \end{beispiele}
 
-\index{monoton}  \index{monoton! wachsend}   \index{monoton! streng wachsend} \index{monoton! streng fallend} \index{monoton! fallend}
+\index{monoton}  \index{monoton!wachsend}   \index{monoton!streng wachsend} \index{monoton!streng fallend} \index{monoton!fallend}
 \begin{definition}\ 
 	\begin{enumerate}
 		\item $(a_{n})$ hei{\ss}t \textbf{monoton wachsend} $\iff a_{n+1} \geq a_{n} ~\forall n \in \N$.
@@ -770,7 +793,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 \end{definition}
 
 \index{Monotoniekriterium}
-\begin{namedtheorem}[Monotoniekriterium] ~\ \label{2.3:prop}
+\begin{unnamedtheorem}[Monotoniekriterium] ~\ \label{2.3:prop}
 	\begin{enumerate}
 		\item $(a_{n})$ sei monoton wachsend und nach oben beschränkt. Dann ist $(a_{n})$ konvergent und 
 			$$
@@ -781,7 +804,7 @@ $(a_{n})$ oder $(a_{n})_{n = 1}^{\infty}$ oder $(a_{1}, a_{2}, \dotsc)$ statt $a
 				\lim_{n \rightarrow \infty} a_{n} = \inf_{n = 1}^{\infty} a_{n}
 			$$
 	\end{enumerate}
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \begin{proof}
 		$a \coloneqq \sup_{n = 1}^{\infty} a_{n}$. Sei $\varepsilon > 0$. Dann ist $a - \varepsilon$ keine obere Schranke von $\{ a_{1}, a_{2}, \cdots \}$, also existiert ein $n_{0} \in \N: a_{n_{0}} > a - \varepsilon$. Für $n \geq n_{0}$:
@@ -1003,7 +1026,6 @@ $\Rightarrow |x^{p} - y^{p}| = |x-y| \sum_{k=0}^{p-1} x^{p-1-k}y^{k} \geq y^{p-1
 \begin{beispiele}\
 	\begin{enumerate}
 		\item $a_{n} = (-1)^{n}$, $a_{2k} = 1 \rightarrow 1, a_{2k+1} \rightarrow -1$, also $1, -1 \in H(a_{n})$. Sei $\alpha \in \R, \alpha \neq 1, \alpha \neq -1$ \\
-			% todo image
 			Wähle $\epsilon>0$ so, dass $1, -1 \notin U_{\epsilon}(\alpha)$. Dann $a_{n} \in U_{\epsilon}(\alpha)$ für kein $n \in \N$ $\xRightarrow[]{\ref{2.10:satz}} \alpha \notin H(a_{n})$. Fazit: $H(a_{n}) = \{ 1, -1 \}$.
 		\item $a_{n} = n$. Ist $\alpha \in \R$ und $\epsilon > 0$, so gilt: $a_{n} \in U_{\epsilon}(\alpha)$ für höchstens endlich viele $n$, also $\alpha \notin H(a_{n})$. Fazit: $H(a_{n}) = \emptyset$.
 		\item $\Q$ ist abzählbar. Sei $(a_{n})$ eine Folge mit $Q = \{ a_{1}, a_{2}, a_{3}, \dotsc \}$. Sei $\alpha \in \R$ und $\epsilon > 0$ $\xRightarrow[]{\ref{1.5:satz}} U_{\epsilon}(\alpha) = (\alpha - \epsilon, \alpha + \epsilon)$ enthält unendlich viele verschiedene rationale Zahlen $\xRightarrow[]{\ref{2.10:satz}} \alpha \in H(a_{n})$. Fazit: $H(a_{n}) = \R$.
@@ -1129,8 +1151,8 @@ $$ (\iff \forall \epsilon > 0 ~\exists n_{0} = n_{0}(\epsilon) \in \N: |a_{n} - 
 Konvergente Folgen sind also Cauchy-Folgen!
 
 \index{Cauchykriterium}
-\begin{namedtheorem}[Cauchykriterium] $(a_{n}) \text{ ist konvergent} \iff (a_{n}) \text{ ist eine Cauchyfolge}$. \label{2.15:prop} 
-\end{namedtheorem}
+\begin{unnamedtheorem}[Cauchykriterium] $(a_{n}) \text{ ist konvergent} \iff (a_{n}) \text{ ist eine Cauchyfolge}$. \label{2.15:prop} 
+\end{unnamedtheorem}
 
 \begin{proof}
 	"'$\Rightarrow$"' s.o. "'$\Leftarrow$"' ohne Beweis.
@@ -1246,11 +1268,11 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 \end{proof}
 
 \index{Konvergenzkriterium!Reihen!Leibnitz}
-\begin{namedtheorem}[Leibnitzkriterium] \label{3.3:prop-LeibnitzKriterium}
+\begin{unnamedtheorem}[Leibnitzkriterium] \label{3.3:prop-LeibnitzKriterium}
 	Sei $(b_{n})$ eine Folge mit:
 		$$ b_{n} \geq 0 ~\forall n \in \N, (b_{n}) \text{ ist monoton fallend und } b_{n} \rightarrow 0  $$
 		Dann ist $\sum_{n=1}^{\infty} (-1)^{n+1}b_{n}$ konvergent.
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \index{Reihe!alternierende harmonische Reihe}
 \begin{beispiel*}
@@ -1357,7 +1379,7 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 	$(c_{n})$ sei beschränkt
 	\begin{enumerate}
 		\item Ist $\alpha \coloneqq \limsup c_{n}$ und $x > \alpha$, so gilt: $c_{n} < x$ ffa $n$
-				% todo image
+				
 		\item Ist $\alpha \coloneqq \liminf c_{n}$ und $x < \alpha$, so gilt: $c_{n} > x$ ffa $n$
 		\item Ist $c_{n} \geq 0 ~\forall n \in \N$ und $\limsup c_{n} = 0$, so gilt $c_{n} \rightarrow 0$
 	\end{enumerate}
@@ -1367,12 +1389,14 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 	\begin{enumerate}
 		\item[b)] Sei $\epsilon > 0$. $x \coloneqq \epsilon \xRightarrow[]{a)} -\epsilon < 0 \leq c_{n} < \epsilon$ ffa $n \in \N$, also $c_{n} \in U_{\epsilon}(0)$ ffa $n$.
 		\item[a)] Annahme: $c_{n} \geq x$ für unendlich viele $n$, etwa für $n_{1}, n_{2}, n_{3}, \dotsc$ mit $n_{1} < n_{2} < n_{3} < \dotsc$ \\
-		 Die Teilfolge $(c_{n_{k}})$ ist beschränkt $\xRightarrow[]{\ref{2.11:satz}} (c_{n_{k}})$ enthält eine konvergente Teilfolge $(c_{n_{k_{j}}})$. $\beta \coloneqq \lim_{j\rightarrow \infty} c_{n_{k_{j}}}$. Es ist $c_{n_{k_{j}}} \geq x ~\forall j \Rightarrow \beta \geq x > \alpha$; $(c_{n_{k_{j}}})$ ist eine Teilfolge von $(c_{n}) \Rightarrow \beta \in H(a_{n}) \Rightarrow \beta \leq \alpha$, Widerspruch.
+		 Die Teilfolge $(c_{n_{k}})$ ist beschränkt $\xRightarrow[]{\ref{2.11:satz}} (c_{n_{k}})$ enthält eine konvergente Teilfolge $(c_{n_{k_{j}}})$. Definiere
+		 $$ \beta \coloneqq \lim_{j\rightarrow \infty} c_{n_{k_{j}}}. $$
+		 Es ist $c_{n_{k_{j}}} \geq x ~\forall j \Rightarrow \beta \geq x > \alpha$; $(c_{n_{k_{j}}})$ ist eine Teilfolge von $(c_{n}) \Rightarrow \beta \in H(a_{n}) \Rightarrow \beta \leq \alpha$, Widerspruch.
 	\end{enumerate}	
 \end{proof}
 
 \index{Konvergenzkriterium!Reihen!Wurzel}
-\begin{namedtheorem}[Wurzelkriterium (WK)] \label{3.6:prop-Wurzelkriterium}
+\begin{unnamedtheorem}[Wurzelkriterium (WK)] \label{3.6:prop-Wurzelkriterium}
 	Sei $(a_{n})$ eine Folge, $c_{n} \coloneqq \sqrt[n]{|a_{n}|}$.
 	\begin{enumerate}
 		\item Ist $(c_{n})$ unbeschränkt, so ist $\sum_{n=1}^{\infty} a_{n}$ divergent.
@@ -1383,12 +1407,12 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 			\end{enumerate}
 			Im Falle $\alpha = 1$ ist keine allgemeine Aussage möglich.
 	\end{enumerate}
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \begin{proof} ~\
 	\begin{enumerate}
 		\item $(c_{n})$ unbeschränkt $\Rightarrow c_{n} \geq 1$ für unendlich viele $n \Rightarrow |a_{n}| \geq 1$ für unendlich viele $n \Rightarrow a_{n} \rightarrow 0 \xRightarrow[]{\ref{3.1.c:satz}}$ Beh.
-		\item  % todo image
+		\item  
 			\begin{enumerate}
 				\item Sei $\alpha < 1$, sei $x \in (\alpha, 1) \xRightarrow[]{HS} c_{n} \leq x$ ffa n $\Rightarrow |a_{n}| \leq x^{n}$ ffa $n$. $\sum x^{n}$ konvergiert $\xRightarrow[]{\ref{3.5.a:satz}} \sum a_{n}$ konvergiert absolut. 
 				\item Sei $\alpha > 1$, wähle $\epsilon > 0$ so, dass $\alpha - \epsilon > 1$. Es gilt $c_{n} U_{\epsilon}(\alpha)$ für unendlich viele $n$. Dann: $c_{n} > \alpha - \epsilon > 1$ für unendlich viele $n$. Wie bei $a)$: $\sum a_{n}$ divergiert. 
@@ -1413,7 +1437,7 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 \end{beispiele}
 
 \index{Konvergenzkriterium!Reihen!Quotienten}
-\begin{namedtheorem}[Quotientenkriterium (QK)] \label{3.7:prop-Quotientenkriterium}
+\begin{unnamedtheorem}[Quotientenkriterium (QK)] \label{3.7:prop-Quotientenkriterium}
 	Es sei $a_{n} \neq 0 ~\forall n \in \N$ und definiere $c_{n} \coloneqq \left| \frac{a_{n+1}}{a_{n}} \right| ~(n \in \N)$.
 	\begin{enumerate}
 		\item Ist $c_{n} \geq 1$ ffa $n \in \N$, so ist $\sum a_{n}$ divergent.
@@ -1423,7 +1447,7 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 				\item Ist $\beta > 1$, so ist $\sum a_{n}$ divergent.
 			\end{enumerate}
 	\end{enumerate}
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \begin{folgerung} \label{3.8:folg}
 	$(a_{n})$ und $(c_{n})$ seien wie in \ref{3.7:prop-Quotientenkriterium}, $(c_{n})$ sei konvergent und $\alpha \coloneqq \lim c_{n}$.
@@ -1440,7 +1464,7 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 \end{beispiele}
 
 \index{Exponentialreihe} \index{Exponentialfunktion}
-\begin{namedtheorem}[Die Exponentialreihe] \label{3.9:prop-Exponentialreihe}
+\begin{unnamedtheorem}[Die Exponentialreihe] \label{3.9:prop-Exponentialreihe}
 	Für $x \in \R$ betrachte die Reihe 
 	$$ \sum_{n=0}^{\infty} \frac{x^{n}}{n!} = 1 + x + \frac{x^{2}}{2!} + \frac{x^{3}}{3!} + \dotsc $$
 	Frage: für welche $x \in \R$ konvergiert die Reihe (absolut). \\
@@ -1452,7 +1476,7 @@ Die folgenden Sätze und Definitionen formulieren wir nun für Reihen der Form $
 		$$ E(x) \coloneqq \sum_{n=0}^{\infty} \frac{x^{n}}{n!} \quad \text{Exponentialfunktion} $$
 	Es ist $E(0) = 1$, $E(1) \overset{\S 2}{=} e$. \\
 	Später zeigen wir: $E(r) = e^{r}$ für $r \in \Q$. Des Weiteren definieren wir später $e^{x} \coloneqq E(X)$ für $x \in \R \setminus \Q$. Dann: $e^{x} = E(x) ~(x \in \R)$.
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \index{Umordnung}
 \begin{definition}
@@ -1520,7 +1544,7 @@ $\sum_{n=0}^{\infty} a_{n}$ und $\sum_{n=0}^{\infty} b_{n}$ seien absolut konver
 \end{beispiel*}
 
 
-\begin{namedtheorem}[Exponentialfunktion] \label{3.12:prop-Exponentialfunktion}
+\begin{unnamedtheorem}[Exponentialfunktion] \label{3.12:prop-Exponentialfunktion}
 	$E(X) = \sum_{n=0}^{\infty} \frac{x^{n}}{n!}$ $(x \in \R)$
 	\begin{enumerate}
 		\item $E(0) = 1, E(1) = e$
@@ -1531,7 +1555,7 @@ $\sum_{n=0}^{\infty} a_{n}$ und $\sum_{n=0}^{\infty} b_{n}$ seien absolut konver
 		\item $E(r) = e^{r} ~\forall r \in \Q$
 		\item $E$ ist auf $\R$ streng monoton wachsend, d.h. aus $x < y$ folgt stets $E(x) < E(y)$.
 	\end{enumerate}	
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \begin{proof} ~\
 	\begin{enumerate}
@@ -1575,7 +1599,7 @@ Frage: für welche $x \in \R$ konvergiert die Potenzreihe (absolut)? Klar: die P
 	\begin{enumerate}
 		\item $\sum_{n=0}^{\infty} \frac{x^{n}}{n!}$. Hier: $a_{n} = \frac{1}{n!}, x_{0} = 0$. Bekannt: die Potenzreihe konvergiert absolut in jeden $x \in \R$.
 		\item $\sum_{n=0}^{\infty} (x - x_{0})^{n}$. Hier: $a_{n} = 1$. Setze $q \coloneqq x - x_{0}$. Bekannt: $\sum_{n=0}^{\infty} q^{n}$ konvergiert absolut $\iff |q| < 1$. D.g. die Potenzreihe konvergiert absolut $\iff |x - x_{0} | < 1$.
-			% todo image
+			
 		\item $\sum_{n=0}^{\infty} n^{n} (x - x_{0})^{n}$. Hier: $a_{n} = n^{n}$. Sei $x \neq x_{0}$ und $b_{n} \coloneqq n^{n} (x - x_{0})^{n}$; $\sqrt[n]{|b_{n}|} = n |x - x_{0}| \xRightarrow[]{x \neq x_{0}} \left( \sqrt[n]{|b_{n}|} \right)$ ist unbeschränkt $\xRightarrow[]{\ref{3.6:prop-Wurzelkriterium}} \sum n^{n} (x - x_{0})^{n}$ ist divergent. \\
 			Also: $\sum_{n=0}^{\infty} n^{n} (x - x_{0})^{n}$ konvergiert nur für $x = x_{0}$.
 	\end{enumerate}	
@@ -1604,7 +1628,7 @@ Frage: für welche $x \in \R$ konvergiert die Potenzreihe (absolut)? Klar: die P
 		\item Ist $r = 0$, so konvergiert die Potenzreihe nur für $x = x_{0}$.
 		\item Ist $r = \infty$, so konvergiert die Potenzreihe absolut für jedes $x \in \R$.
 		\item Ist $r \in (0, \infty)$, so konvergiert die Potenzreihe absolut für $x \in \R$ mit $|x - x_{0}| < r$, sie divergiert für $x \in \R$ mit $|x - x_{0}| > r$. Für $x = x_{0} \pm r$ ist keine allg. Aussage möglich.
-			% todo image
+			
 	\end{enumerate}
 \end{satz}
 
@@ -1641,22 +1665,22 @@ Frage: für welche $x \in \R$ konvergiert die Potenzreihe (absolut)? Klar: die P
 \end{beispiele}
 
 \index{Cosinus}
-\begin{namedtheorem}[Cosinus] \label{4.2:prop-Cosinus}
+\begin{unnamedtheorem}[Cosinus] \label{4.2:prop-Cosinus}
 	Betrachte die Reihe
 	$$ \sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n}}{(2n)!} = 1 - \frac{x^{2}}{2!} + \frac{x^{4}}{4!} + \dotsc $$
 	hier: $x_{0} = 0, a_{2n + 1} = 0, a_{2n} = \frac{(-1)^{n}}{(2n)!} ~(n \in \N)$. Mit $\sqrt[n]{|a_{n}|} \leq \frac{1}{\sqrt[n]{n!}}$ folgt
 	$$ \sqrt[2n]{|a_{2n}|} = \frac{1}{\sqrt[2n]{(2n)!}} \rightarrow 0 \quad \text{Folgerung nach } \ref{4.1:satz} $$ 
 	Also $H(\sqrt[n]{|a_{n}|}) = \{ 0 \}$. Also: $\limsup \sqrt[n]{|a_{n}|} = 0 \xRightarrow[]{\ref{4.1:satz}}$ obige Potenzreihe hat den Konvergenzradius $r = \infty$, konvergiert also absolut in jedem $x \in \R$
 	$$ \textbf{Cosinus: } \begin{cases} \cos \colon \R \rightarrow \R \\ \cos x \coloneqq \sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n}}{(2n)!} \end{cases} $$
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \index{Sinus}
-\begin{namedtheorem}[Sinus] \label{4.3:prop-Sinus}
+\begin{unnamedtheorem}[Sinus] \label{4.3:prop-Sinus}
 	Ähnlich wie bei \ref{4.2:prop-Cosinus} sieht man: die Potenzreihe 
 	$$ \sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{(2n+1)!} = x - \frac{x^{3}}{3!} + \frac{x^{5}}{5!} +- \dotsc $$
 	konvergiert absolut für jedes $x \in \R$.
 	$$ \textbf{Sinus: } \begin{cases} \sin \colon \R \rightarrow \R \\ \sin x \coloneqq \sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{(2n+1)!} \end{cases} $$	
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 Klar: $\sin 0 = 0, \cos 0 = 1$, $\sin (-x) = - \sin(x), \cos(-x) = \cos(x) ~\forall x \in \R$.
 
@@ -1702,7 +1726,7 @@ Für alle $x \in \R$ ist $\cos^{2} x \leq \cos^{2} x + \sin^{2} x = 1$, also $|\
 \begin{definition}
 	Sei $x \in \R$. Dann existiert genau eine Zahl $k \in \Z$: $k \leq x < k + 1$; 
 		$$ [x] \coloneqq k = \text{ grö{\ss}te ganze Zahl } \leq x $$
-	% todo image
+	
 \end{definition}
 
 
@@ -1810,9 +1834,9 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; (Gilt mit einem $m \in \
 
 \begin{beispiele}
 	\begin{enumerate}
-		\item $D = (0, 1]$ \\ % todo image
+		\item $D = (0, 1]$ \\ 
 			$x_{0}$ ist Häufungspunkt von $D \iff x_{0} \in [0 1]$
-		\item $D = \{ \frac{1}{n} : n \in \N \}$ \\ % todo image
+		\item $D = \{ \frac{1}{n} : n \in \N \}$ \\ 
 			$D$ hat genau einen Häufungspunkt: $x_{0} = 0$.
 		\item Ist $D$ endlich, so hat $D$ keine Häufungspunkte. 
 	\end{enumerate}	
@@ -1949,7 +1973,7 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; (Gilt mit einem $m \in \
 \end{beispiel}
 
 
-\begin{namedtheorem}[Exponentialfunktionen] \label{6.4:prop-Exponentialfunktionen}
+\begin{unnamedtheorem}[Exponentialfunktionen] \label{6.4:prop-Exponentialfunktionen}
 	$E(x) = \sum_{n=0}^{\infty} \frac{x^{n}}{n!} = 1 + x + \frac{x^{2}}{2!} + \frac{x^{3}}{3!} + \dotsc$ \\
 	Sei $p \in \N_{0}$: für $x > 0$:
 		$$ E(x) = 1 + x + \frac{x^{2}}{2!} + \dotsc + \frac{x^{p+1}}{(p+1)!} + \dotsc \geq \frac{x^{p+1}}{(p+1)!} $$
@@ -1957,15 +1981,7 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; (Gilt mit einem $m \in \
 	Somit:
 		$$ \frac{E(x)}{x^{p}} \rightarrow \infty ~(x \rightarrow \infty) $$
 	Insbes. ($p = 0$): $E(x) \rightarrow \infty ~(x \rightarrow \infty)$. Es ist $E(-x) = \frac{1}{E(x)} \rightarrow 0 ~(x \rightarrow \infty)$, also: $(x) \rightarrow  0 ~(x \rightarrow -\infty)$.
-	\begin{figure*}[!ht] \centering
-		\begin{tikzpicture}
-     		\draw[->] (-3,0) -- (4.2,0) node[right] {$x$};
-      		\draw[->] (0,-3) -- (0,4.2) node[above] {$y$};
-      		\draw[scale=0.5,domain=-10:2,smooth,variable=\x,blue] plot ({\x},{e^\x});
-    	\end{tikzpicture}
-		\caption{Exponentialfunktion.}	
-	\end{figure*}
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 
 \newpage
@@ -1989,7 +2005,6 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; (Gilt mit einem $m \in \
 		\item $D = [0, 1] \cup \{ 2 \}$, $ f(x) \coloneqq \begin{cases}
 				x^{2}, & 0 \leq x < 1 \\ 0, & x = 1 \\ 1, & x = 2
 			\end{cases}$ \\
-			% todo image
 			Klar: $f$ ist stetig in jedem $x \in [0, 1)$. 
 			\begin{itemize}
 				\item $x_{0} \coloneqq 1, x_{n} \coloneqq 1 - \frac{1}{n}$. Dann ist $(x_{n})$ eine Folge in $D$ mit $x_{n} \rightarrow 1$, aber $f(x_{n}) = x_{n}^{2} \rightarrow 1 \neq 0 = f(1)$. $f$ ist also in $x_{0} = 1$ nicht stetig.
@@ -2086,21 +2101,19 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; (Gilt mit einem $m \in \
 \end{proof}
 
 \index{Zwischenwertsatz}
-\begin{namedtheorem}[Zwischenwertsatz] \label{7.7:prop-Zwischenwertsatz}
+\begin{unnamedtheorem}[Zwischenwertsatz] \label{7.7:prop-Zwischenwertsatz}
 	Seien $a, b \in \R, a < b, f \in C\left([a,b]\right)$ und $y_{0}$ zwischen $f(a)$ und $f(b)$. \\
-	% todo image
 	Dann existiert ein $x_{0} \in [a, b]: f(x_{0}) = y_{0}$.
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \begin{proof}
 	Fall 1: $f(a) = y_{0}$ oder $f(b) = y_{0}$, fertig. \\
 	Fall 2: $f(a) \neq y_{0} \neq f(b)$. o.B.d.A.: $f(a) < f(b)$, also $f(a) < y_{0} < 	f(b)$.
 	$$ M \coloneqq \{ x \in [a, b]: f(x) \leq y_{0} \} $$
-	$a \in M \Rightarrow M \neq \emptyset; M \subseteq [a, b] \Rightarrow M$ ist beschränkt $\xRightarrow[]{\hyperref[v.axiom-a15]{(A15)}} \exists x_{0} \coloneqq \sup M \in [a, b]$. Ist $n \in \N$, so ist $x_{0} - \frac{1}{n}$ keine obere Schranke von $M$, also ex. $x_{n} \in M$:
+	$a \in M \Rightarrow M \neq \emptyset; M \subseteq [a, b] \Rightarrow M$ ist beschränkt $\xRightarrow[]{(A15)} \exists x_{0} \coloneqq \sup M \in [a, b]$. Ist $n \in \N$, so ist $x_{0} - \frac{1}{n}$ keine obere Schranke von $M$, also ex. $x_{n} \in M$:
 		$$ x_{n} > x_{0} - \frac{1}{n}. $$
 	Also: $\forall n \in \N$: $x_{0} - \frac{1}{n} < x_{n} \leq x_{n}$. Somit $x_{n} \rightarrow x_{0}$, $f$ stetig in $x_{0} \Rightarrow f(x_{n}) \rightarrow f(x_{0}) \xRightarrow[]{\text{Def. von }M} \forall n \in \N: f(x_{n}) \leq y_{0} \Rightarrow f(x_{0}) \leq y_{0}$. \\
-	Es ist $x_{0} < b$ (andernfalls: $x_{0} = b \Rightarrow f(b) = f(x_{0}) \leq y_{0} < f(b)$, Wid!). \\
-	% todo image
+	Es ist $x_{0} < b$ (andernfalls: $x_{0} = b \Rightarrow f(b) = f(x_{0}) \leq y_{0} < f(b)$, Widerspruch!). \\
 	$z_{n} \coloneqq x_{0} + \frac{1}{n}$. Es gilt $z_{n} \in [a, b]$ ffa $n \in \N$. $z_{n} > x_{0} \Rightarrow z_{n} \notin M \Rightarrow f(z_{n}) > y_{0}$. $z_{n} \rightarrow x_{0}$, $f$ stetig $\Rightarrow f(z_{n}) \rightarrow f(x_{0}) \Rightarrow f(x_{0}) \geq y_{0}$.
 \end{proof}
 
@@ -2122,15 +2135,15 @@ $q = 10$: Dezimalentwicklung; $q = 2$: Dualentwicklung; (Gilt mit einem $m \in \
 Aus \ref{7.7:prop-Zwischenwertsatz} folgt mit $y_{0} = 0$:
 
 \index{Nullstellensatz}
-\begin{namedtheorem}[Nullstellensatz von Bolzano] \label{7.8:prop-NullstellensatzVonBolzano}
+\begin{unnamedtheorem}[Nullstellensatz von Bolzano] \label{7.8:prop-NullstellensatzVonBolzano}
 	Ist $f \in C\left([a, b]\right)$ und $f(a)f(b) \leq 0$, so existiert ein $x_{0} \in [a, b]$: $f(x_{0}) = 0$.
-	% todo image
-\end{namedtheorem}
+	
+\end{unnamedtheorem}
 
 
-\begin{namedtheorem}[Exponentialfunktion]
+\begin{unnamedtheorem}[Exponentialfunktion]
 	$E(x) = \sum_{n=0}^{\infty} \frac{x^{n}}{n!}$. Beh.: $E(\R) = (0, \infty)$.	
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \begin{proof}
 	$\xRightarrow[]{\ref{3.12:prop-Exponentialfunktion}} \forall x \in \R E(x) > 0$, also $E(\R) \subseteq (0, \infty)$. Sei $y_{0} \in (0, \infty)$.
@@ -2225,7 +2238,7 @@ Sei $I \subseteq \R$ ein Intervall ($I = \R$ ist zugelassen) und $f \colon I \Ri
 Es gilt $\forall x \in I$: $f^{-1}(f(x)) = x$ und $\forall y \in F(I)$: $f(f^{-1}) =y$
 
 \begin{bemerkung}
-	 $f(I)$ ist i.A. kein Intervall. % todo image
+	 $f(I)$ ist i.A. kein Intervall. 
 \end{bemerkung}
 
 
@@ -2236,11 +2249,11 @@ Es gilt $\forall x \in I$: $f^{-1}(f(x)) = x$ und $\forall y \in F(I)$: $f(f^{-1
 \end{satz}
 
 \index{Logarithmus}
-\begin{namedtheorem}[Der Logarithmus] \label{7.14:prop-Logarithmus}
+\begin{unnamedtheorem}[Der Logarithmus] \label{7.14:prop-Logarithmus}
 	Bekannt: $E$ ist auf $\R$ streng monoton wachsend und $E(\R) = (0, \infty)$. Es existiert also $E^{-1} \colon (0, \infty) \rightarrow \R$.
 		$$ \log x \coloneqq \ln x \coloneqq E^{-1}(x) \quad (x \in (0, \infty)) $$
 	\textbf{Logarithmus}.
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 
 \begin{eigenschaften} ~\
@@ -2270,12 +2283,12 @@ Es gilt $\forall x \in I$: $f^{-1}(f(x)) = x$ und $\forall y \in F(I)$: $f(f^{-1
 	Sei $a > 0$. Mit $x \coloneqq \log a$:
 		$$ \forall r \in \Q: \quad E(r \log a) = E(\log a)^{r} = a^{r} $$
 
-\begin{namedtheorem}[Die allgemeine Potenz] \label{7.15:prop-AllgPotenz}
+\begin{unnamedtheorem}[Die allgemeine Potenz] \label{7.15:prop-AllgPotenz}
 	Sei $a > 0$:
 	$$ a^{x} \coloneqq E(x \log a) ~(x \in \R) $$
 	Ist speziell $a = e$: $e^{x} = E(x \log e) = E(x) ~\forall x \in \R$. Also:
 	$$ a^{x} = e^{x \log a} ~(x \in \R, a > 0). $$ 
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 
 \begin{eigenschaften}
@@ -2348,12 +2361,11 @@ I. d. $\S$en sei stets: $\emptyset \neq D \subseteq \R$, $(f_{n})$ eine Folge vo
 
 \begin{beispiele} ~\
 	\begin{enumerate}
-		\item $D = [0,1]$, $f_{n}(x) \coloneqq x^{n}$ %todo image
+		\item $D = [0,1]$, $f_{n}(x) \coloneqq x^{n}$
 			$$ f(x) \coloneqq \lim_{n\rightarrow\infty} f_{n}(x) = \begin{cases} 0, & 0 \leq x < 1 \\  1, & x = 1 \end{cases} $$
 			$(f_{n})$ konvergiert auf $[0, 1]$ punktweise gegen $f$.
 		\item Sei $\sum_{n=0}^{\infty} a_{n} (x-x_{0})^{n}$ eine Potenzreihe mit dem Konvergenzradius $r > 0$ und $D \coloneqq (x_{0} - r, x_{0} + r)$ $(D \coloneqq \R$, falls $r = \infty$). Hier: $f_{n}(x) = a_{n} (x - x_{0})^{n} \xRightarrow[]{\ref{4.1:satz}} \sum_{n=0}^{\infty} f_{n}$ konvergiert auf $D$ punktweise gegen $f(x) \coloneqq \sum_{n=0}^{\infty} a_{n} (x-x_{0})^{n}$.
 		\item $D = [0, \infty$, $f_{n}(x) \coloneqq \frac{nx}{1+n^{2}x^{2}} = \frac{\frac{x}{n}}{\frac{1}{n} + x^{2}} \rightarrow 0$ $(n \rightarrow \infty)$. Also konvergiert $(f_{n})$ auf $D$ punktweise gegen $f \equiv 0$. Es ist $f_{n}(\frac{1}{n}) = \frac{1}{2}$. \\
-			% todo image
 			Punktweise Konvergenz von $(f_{n})$ auf $D$ gegen $f$ bedeutet: ist $\epsilon > 0$ und $x \in D$, so existiert eine $n_{0} 0 n_{0}(\epsilon, x) \in \N$:
 			$$ |f_{n}(x) - f(x)| < \epsilon \quad \forall n \geq n_{0} $$
 	\end{enumerate}
@@ -2373,7 +2385,6 @@ Klar: gleichmä{\ss}ige Konvergenz $\Rightarrow$ punktweise Konvergenz ("'$\Left
 
 
 Anschaulich: $(f_{n})$ konvergiert auf $D$ gleichmä{\ss}ig gegen $f$ bedeutet: zu $\epsilon > 0$ existiert ein $n_{0} = n_{0}(\epsilon) \in \N$: für $n \geq n_{0}$ liegt der Graph von $f_{n}$ im "'$\epsilon$-Schlauch"' um $f$.
-%todo image
 
 \begin{beispiele} ~\
 	\begin{enumerate}
@@ -2421,7 +2432,7 @@ Anschaulich: $(f_{n})$ konvergiert auf $D$ gleichmä{\ss}ig gegen $f$ bedeutet: 
 \end{satz}
 
 \begin{proof}
-	Sei o. B. d. A. $x_{0} = 0$ \\	% todo image
+	Sei o. B. d. A. $x_{0} = 0$ \\	
 	Wähle $\delta > 0$ so, dass $-r < -\delta <a < b < \delta < r$. Sei $x \in [a, b]$. Dann $|x| \leq \delta$, also
 		\begin{align}
 			\left| a_{n} x^{n} \right| = |a_{n}| |x|^{n} \leq |a_{n}| \delta^{n} \coloneqq c_{n} \tag{$*$}
@@ -2462,16 +2473,16 @@ Anschaulich: $(f_{n})$ konvergiert auf $D$ gleichmä{\ss}ig gegen $f$ bedeutet: 
 \end{proof}
 
 
-\begin{proof}(von \ref{7.4:satz}) ~ $\sum_{n=0}^{\infty}a_{n}(x - x_{0})^{n}$ sei eine Potenzreihe mit Konvergenzradius $r > 0$, $D \coloneqq$ ($x_{0} - r, x_{0} + r) ~(D = \R$, falls $r = \infty$) und $f(x) \coloneqq \sum_{n=0}^{\infty} a_{n}(x-x_{0})^{n} ~(x \in D)$. \\ % todo image
+\begin{proof}(von \ref{7.4:satz}) ~ $\sum_{n=0}^{\infty}a_{n}(x - x_{0})^{n}$ sei eine Potenzreihe mit Konvergenzradius $r > 0$, $D \coloneqq$ ($x_{0} - r, x_{0} + r) ~(D = \R$, falls $r = \infty$) und $f(x) \coloneqq \sum_{n=0}^{\infty} a_{n}(x-x_{0})^{n} ~(x \in D)$. \\ 
 	Sei $z_{0} \in D$. Wähle $a, b \in \R$ so, dass $z_{0} \in (a, b) \subseteq [a, b] \subseteq D \xRightarrow[]{\ref{8.2:satz}}$ die Potenzreihe konvergiert auf $[a, b]$ gleichmä{\ss}ig $\xRightarrow[]{\ref{8.3:satz}} f \in C([a, b])$. $f$ ist also in $z_{0}$ stetig. $z_{0} \in D$ beliebig $\Rightarrow f \in C(D)$.
 \end{proof}
 
 \index{Identitätssatz für Potenzreihen}
-\begin{namedtheorem}[Identitätssatz für Potenzreihen] \label{8.4:prop-IdentitätssatzFürPotenzreihe}
+\begin{unnamedtheorem}[Identitätssatz für Potenzreihen] \label{8.4:prop-IdentitätssatzFürPotenzreihe}
 	$\sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n}$ sei eine Potenzreihe mit Konvergenzradius $r > 0$, $D \coloneqq (x_{0} - r, x_{0} + r)$ ($D \coloneqq \R$, falls $r = \infty$) und $f(x) \coloneqq \sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n} ~(x \in D)$. \\
 	Weiter sei $(x_{k})$ eine Folge in $D \setminus \{ x_{0} \}$ mit $x_{k} \rightarrow x_{0}$ und $f(x_{k}) = 0 ~\forall k \in \N$. Dann:
 	$$ a_{n} = 0 \quad \forall n \in \N_{0}. $$ 
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 
 \newpage
@@ -2480,7 +2491,7 @@ Anschaulich: $(f_{n})$ konvergiert auf $D$ gleichmä{\ss}ig gegen $f$ bedeutet: 
 \chapter{Differentialrechnung}
 
 I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ eine Funktion. 
-% todo image
+
 
 \index{differenzierbar} \index{Ableitung}
 \begin{definition}
@@ -2496,7 +2507,7 @@ I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ e
 	\begin{enumerate}
 		\item Sei $x \in \R$ und $f(x) \coloneqq c ~(x \in \R)$. Dann ist $f$ auf $\R$ differenzierbar und $f' \equiv 0$.
 		\item $I = \R$, $f(x) = |x|, x_{0} = 0$
-			$$ \frac{f(x) - f(x_{0})}{x - x_{0}} = \frac{|x|}{x} = \begin{cases} ~1, & x > 0 \\ -1, & x < 0 \end{cases} $$ % todo image
+			$$ \frac{f(x) - f(x_{0})}{x - x_{0}} = \frac{|x|}{x} = \begin{cases} ~1, & x > 0 \\ -1, & x < 0 \end{cases} $$ 
 			$f$ ist also in $x_{0} = 0$ nicht differenzierbar.
 		\item $I = \R$, $f(x) = x^{n} ~(x \in \N)$. Sei $x_{0} \in \R, x \neq x_{0}$.
 			\begin{align*}
@@ -2525,7 +2536,7 @@ I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ e
 \end{proof}
 
 
-\begin{namedtheorem}[Differentiationsregeln]
+\begin{unnamedtheorem}[Differentiationsregeln]
 	$g \colon I \rightarrow \R$ sei eine weitere Funktion. $f, g$ seien differenzierbar in $x_{0} \in I$.
 	\begin{enumerate}
 		\item Für $\alpha, \beta \in \R$ ist $\alpha f + \beta g$ differenzierbar in $x_{0}$ und
@@ -2535,7 +2546,7 @@ I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ e
 		\item Ist $g(x_{0}) \neq 0$, so existiert ein $\delta > 0$ mit $g(x) \neq 0 ~(x \in J \coloneqq I \cap U_{\delta}(x_{0}))$. Die Funktion $\frac{f}{g} \colon J \rightarrow \R$ ist differenzierbar in $x_{0}$ und 
 			$$ \left( \frac{f}{g} \right)'(x_{0}) = \frac{f'(x_{0}) g(x_{0}) - f(x_{0})g'(x_{0})}{g(x_{0})^{2}}. $$
 	\end{enumerate}		
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \begin{proof} ~\
 	\begin{enumerate}
@@ -2564,12 +2575,12 @@ I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ e
 \end{proof}
 
 \index{Kettenregel}
-\begin{namedtheorem}[Kettenregel] \label{9.4:prop-Kettenregel}
+\begin{unnamedtheorem}[Kettenregel] \label{9.4:prop-Kettenregel}
 	$J \subseteq \R$ sei ein weiteres Intervall, $g \colon J \rightarrow \R$ eine Funktion und $f(I) \subseteq J$. $f$ sei in $x_{0} \in I$ differenzierbar und $g$ sei in $y_{0} \coloneqq f(x_{0})$ differenzierbar. Dann ist
 		$$ g \circ f \colon I \rightarrow \R \text{ differenzierbar in } x_{0} $$
 		und
 		$$ (g \circ f)'(x_{0}) = g'(f(x_{0})) f'(x_{0}). $$
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \begin{proof}
 	Für $y \in J$:
@@ -2611,7 +2622,7 @@ I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ e
 		\item $g$ hat in $x_{0} \in M$ eine \textbf{relatives Maximum} $\iff \exists \delta > 0$: $g(x) \leq g(x_{0}) ~\forall x \in U_{\delta}(x_{0}) \cap M$.
 		\item $g$ hat in $x_{0} \in M$ eine \textbf{relatives Minimum} $\iff \exists \delta > 0$: $g(x) \geq g(x_{0}) ~\forall x \in U_{\delta}(x_{0}) \cap M$.
 	\end{enumerate}
-	% todo image
+	
 	relatives Extremum = relative Max. oder Min.
 \end{definition}
 
@@ -2627,12 +2638,12 @@ I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ e
 \end{proof}
 
 \index{Mittelwertsatz}
-\begin{namedtheorem}[Mittelwertsatz] \label{9.7:prop-Mittelwertsatz}
+\begin{unnamedtheorem}[Mittelwertsatz] \label{9.7:prop-Mittelwertsatz}
 	(MWS) der Differentialrechnung. \\
 	Es sei $f \in C[a, b]$ und $f$ sei auf $(a, b)$ differenzierbar. Dann existiert ein $\xi \in (a, b)$:
 	$$ \frac{f(b) - f(a)}{b - a} = f'(\xi). $$
-	% todo image	
-\end{namedtheorem}
+		
+\end{unnamedtheorem}
 
 \begin{proof}
 	$g(x) \coloneqq f(x) - f(a) - \frac{f(b) - f(a)}{b - a} (x - a) ~(x \in [a, b])$. Dann: $g \in C[a, b]$, $g$ ist differenzierbar auf $(a, b)$, $g(a) = g(b) = 0$ und 
@@ -2649,7 +2660,7 @@ I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ e
 \end{folgerung}
 
 \begin{proof}
-	"'$\Rightarrow$"' \checkmark, "'$\Leftarrow$"' Seien $x_{1}, x_{2} \in I, x_{1} < x_{2} \xRightarrow[]{\hyperref[9.7:prop-Mittelwertsatz]{MWS}} \exists \xi \in (x_{1}, x_{2})$: 
+	"'$\Rightarrow$"' \checkmark, "'$\Leftarrow$"' Seien $x_{1}, x_{2} \in I, x_{1} < x_{2} \xRightarrow[]{MWS} \exists \xi \in (x_{1}, x_{2})$: 
 		$$ f(x_{2}) - f(x_{1}) = f'(\xi) (x_{2} - x_{1}) = 0, $$ 
 	also $f(x_{1}) = f(x_{2})$.
 \end{proof}
@@ -2681,13 +2692,13 @@ I.d. $\S$en sei $I \subseteq \R$ ein Intervall und $f \colon I \rightarrow \R$ e
 \begin{proof}  ~\
 	\begin{enumerate}
 		\item $(f - g')' = 0$ auf $I \xRightarrow[]{\ref{9.8:folg}}$ Beh.
-		\item Sei $g' \geq 0$ auf $I$. Seien $x_{1}, x_{2} \in I$ und $x_{1} < x_{2} \xRightarrow[]{\hyperref[9.7:prop-Mittelwertsatz]{MWS}} \exists \xi \in (x_{1}, x_{2})$: $f(x_{2}) - f(x_{1}) = \underbrace{f'(\xi)}_{\geq 0} (x_{2} - x_{1}) \geq 0$, also $f(x_{1}) \leq f(x_{2})$.
+		\item Sei $g' \geq 0$ auf $I$. Seien $x_{1}, x_{2} \in I$ und $x_{1} < x_{2} \xRightarrow[]{MWS} \exists \xi \in (x_{1}, x_{2})$: $f(x_{2}) - f(x_{1}) = \underbrace{f'(\xi)}_{\geq 0} (x_{2} - x_{1}) \geq 0$, also $f(x_{1}) \leq f(x_{2})$.
 		\item Analog zur b).
 	\end{enumerate}
 \end{proof}
 
 Ohne Beweis:
-\begin{namedtheorem}[Die Regeln von de l'Hospital] \label{9.11:prop:lHopital}
+\begin{unnamedtheorem}[Die Regeln von de l'Hospital] \label{9.11:prop:lHopital}
 	Es sei $I = (a, b)$, wobei $a = -\infty$ oder $b = \infty$ zugelassen ist. $f, g \colon I \rightarrow \R$ seien auf $I$ differenzierbar und $g'(x) \neq 0 ~\forall x \in I$. 
 	\begin{enumerate}
 		\item Es existiere
@@ -2702,7 +2713,7 @@ Ohne Beweis:
 	$$ \lim_{x \rightarrow b} \frac{f(x)}{g(x)} = L. $$
 	\end{enumerate}
 	
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \begin{beispiele} ~\
 	\begin{enumerate}
@@ -2725,18 +2736,20 @@ Ohne Beweis:
 
 \begin{proof} ~\
 	\begin{enumerate}
-		\item $\sum[n]{n |a_{n}|} = \underbrace{\sqrt[n]{n}}_{\rightarrow 1} \sqrt[n]{|a_{n}|}$; $r > 0 \xRightarrow[]{\ref{4.1:satz}} \sqrt[n]{|a_{n}|}$ ist beschränkt $\Rightarrow \sqrt[n]{n|a_{n}|}$ ist beschränkt $\Rightarrow \limsup \sqrt[n]{n|a_{n}|} = \limsup \sqrt[n]{|a_{n}|}$, da $H(\sqrt[n]{|a_{n}|}) = H(\sqrt[n]{|n a_{n}|}) \Rightarrow$ Beh.
+		\item $\sqrt[n]{n |a_{n}|} = \underbrace{\sqrt[n]{n}}_{\rightarrow 1} \sqrt[n]{|a_{n}|}; r > 0$ 
+			$$ \xRightarrow[]{\ref{4.1:satz}} \sqrt[n]{|a_{n}|} \text{ ist beschränkt } \Rightarrow \sqrt[n]{n|a_{n}|} \text{ ist beschränkt.} $$
+			$\Rightarrow \limsup \sqrt[n]{n|a_{n}|} = \limsup \sqrt[n]{|a_{n}|}$, da $H(\sqrt[n]{|a_{n}|}) = H(\sqrt[n]{|n a_{n}|}) \Rightarrow$ Beh.
 		\item später, nach \ref{10.17:satz}.
 	\end{enumerate}
 \end{proof}
 
-\begin{namedtheorem}[Sinus/Cosinus] \label{9.13:prop-SinusCosinus}
+\begin{unnamedtheorem}[Sinus/Cosinus] \label{9.13:prop-SinusCosinus}
 $\sin x =\sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{(2n+1)!} \xRightarrow[]{\ref{9.12:satz}} \sin$ ist auf $\R$ differenzierbar und 
 	$$ (\sin x)' = \sum_{n=0}^{\infty} (-1)^{n} \frac{(2n+1) x^{2n}}{(2n + 1)!} = \sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n}}{(2n)!} = \cos x $$
 	Analog: $\cos$ ist auf $\R$ differenzierbar und $(\cos x)' = - \sin x$.
-\end{namedtheorem}
+\end{unnamedtheorem}
 	
-\begin{namedtheorem}[Definition von $\pi$] ~\ \label{9.14:prop-DefPi}
+\begin{unnamedtheorem}[Definition von $\pi$] ~\ \label{9.14:prop-DefPi}
 	\begin{enumerate}
 		\item Für $x \in (0, 2)$ ist
 			$$ \sin x = \underbrace{\left(x - \frac{x^{3}}{3!}\right)}_{> 0} + \underbrace{\left(\frac{x^{5}}{5!} - \frac{x^{7}}{7!}\right)}_{> 0} + \underbrace{\left(\frac{x^{9}}{9!} - \frac{x^{11}}{11!}\right)}_{> 0} + \dotsc > x - \frac{x^{3}}{3!} > 0 $$
@@ -2757,7 +2770,7 @@ $\sin x =\sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{(2n+1)!} \xRightarrow[]{\r
 		$$ \sin^{2} \frac{\pi}{2}= 1 - \cos^{2} \frac{\pi}{2} = 1 \Rightarrow | \sin \frac{\pi}{2} | = 1 \xRightarrow[]{a)} \sin \frac{\pi}{2} = 1 $$
 		$\cos$ hat in $[0, \frac{\pi}{2}]$ genau eine Nullstelle.
 	\end{enumerate}	 
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 
 \begin{figure*}[!ht] \centering
@@ -2772,7 +2785,7 @@ $\sin x =\sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{(2n+1)!} \xRightarrow[]{\r
 	\caption{Sinus und Cosinus.}	
 \end{figure*}
 
-\begin{namedtheorem}[Weitere Eigenschaften von Sinus und Cosinus] \label{9.15:prop-EigSinusCosinus} ~\
+\begin{unnamedtheorem}[Weitere Eigenschaften von Sinus und Cosinus] \label{9.15:prop-EigSinusCosinus} ~\
 	\begin{enumerate}
 		\item Aus \ref{4.3:prop-Sinus}:
 			\begin{align*}
@@ -2789,15 +2802,15 @@ $\sin x =\sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{(2n+1)!} \xRightarrow[]{\r
 				\sin x = 0 & \iff x \in \{ k \pi : k \in \Z \}
 			\end{align*}
 	\end{enumerate}
-	% todo image
-\end{namedtheorem}
+	
+\end{unnamedtheorem}
 
 \index{Tangens}
 \begin{definition}
 	$\tan \colon \R \setminus \{ (2k + 1) \frac{\pi}{2} \colon k \in \Z \} \rightarrow \R$; $\tan x \coloneqq \frac{\sin x}{\cos x}$ \textbf{Tangens}
 	$$ (\tan x)' = \frac{\cos^{2} x + \sin^{2} x}{\cos^{2} x} = \frac{1}{\cos^{2} x} > 0 $$
 	$\tan$ ist also auf $(-\frac{\pi}{2}, \frac{\pi}{2})$ streng wachsend.
-	% todo image
+	
 \end{definition}
 
 \index{Arkustangens}
@@ -2805,12 +2818,11 @@ $\sin x =\sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{(2n+1)!} \xRightarrow[]{\r
 	$\tan((-\frac{\pi}{2}, \frac{\pi}{2})) = \R$. Es ex. also
 	$$ \arctan \coloneqq \tan^{-1} \colon \R \rightarrow (-\frac{\pi}{2},\frac{\pi}{2}) $$
 	\textbf{Arkustangens}. \\
-	% todo image	
 	I.d. Übungen wird gezeigt: $(\arctan x)' = \frac{1}{1 + x^{2}}$ auf $\R$.
 \end{uebung}
 
 Ohne Beweis: \index{Abelscher Grenzwertsatz}
-\begin{namedtheorem}[Abelscher Grenzwertsatz] \label{9.16:prop-AbelscherGrenzwertsatz}
+\begin{unnamedtheorem}[Abelscher Grenzwertsatz] \label{9.16:prop-AbelscherGrenzwertsatz}
 $\sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n}$ sei eine Potenzreihe mit Konvergenzradius $r > 0$ und $r < \infty$.
 	\begin{enumerate}
 		\item Die Potenzreihe konvergiere auch noch in $x_{0} + r$. Es sei
@@ -2822,7 +2834,7 @@ $\sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n}$ sei eine Potenzreihe mit Konvergenzr
 	\end{enumerate}
 
 
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 
 \begin{anwendungen} ~\ \label{9.17:anwendungen}
@@ -2862,7 +2874,7 @@ $\sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n}$ sei eine Potenzreihe mit Konvergenzr
 \begin{beispiele} ~\
 	\begin{enumerate}
 		\item $(e^{x})'' = e^{x}$, $(\sin x)'' = (\cos x)' = - \sin x$
-		\item $f(x) \coloneqq x |x|$ % todo image
+		\item $f(x) \coloneqq x |x|$ 
 			\begin{description}
 				\item Für $x > 0$: $f(x) = x^{2}, f'(x) = 2x$
 				\item Für $x < 0$: $f(x) = -x^{2}, f'(x) = -2x$
@@ -2903,7 +2915,7 @@ Ohne Beweis:
 \end{satz}
 
 \begin{bemerkung}
-	Im Fall $n = 0$ vgl. \hyperref[9.7:prop-Mittelwertsatz]{MWS}.	
+	Im Fall $n = 0$ vgl. MWS.	
 \end{bemerkung}
 
 
@@ -2927,7 +2939,7 @@ Ohne Beweis:
 		\item Sei o.B.d.A. $f^{(n)}(x_{0} > 0 \xRightarrow[]{(*)} f^{(n)}(\xi) > 0$, $n$ ungerade
 			$$ \Rightarrow (x - x_{0})^{n} \begin{cases} > 0, & x > x_{0} \\ < 0, & x < x_{0} \end{cases} $$
 			$\Rightarrow R(x) \begin{cases} > 0, & x > x_{0} \\ < 0, & x < x_{0} \end{cases} \Rightarrow f(x) \begin{cases} > f(x_{0}), & x > x_{0} \\ < f(x_{0}), & x < x_{0} \end{cases}$
-			% todo image
+			
 	\end{enumerate}
 \end{proof}
 
@@ -2944,7 +2956,7 @@ I. d. $\S$en sei stets $a < b$, $f \colon [a, b] \rightarrow \R$ eine Funktion u
 
 
 $Z \coloneqq \{ x_{0}, x_{1}, \dotsc, x_{n} \}$ hei{\ss}t eine \textbf{Zerlegung} von $[a, b] \iff a = x_{0} < x_{1} < \dotsc < x_{n} = b$. $\mathcal{J} \coloneqq \{ Z: Z$ ist eine Zerlegung von $[a, b] \}$. 
-% todo image
+
 Sei $Z = \{ x_{0}, \dotsc, x_{n} \} \in \mathcal{J}$. Definiere $I_{j} \coloneqq [x_{j-1} , x_{j}], |I_{j}| \coloneqq x_{j} - x_{j-1}$ "'Länge"' von $I_{j}$ und $m_{j} \coloneqq \inf f(I_{j}), M_{j} \coloneqq \sup f(I_{j}) ~(j = 1, \dotsc, n)$
 	\begin{align*}
 		s_{f}(Z) & \coloneqq \sum_{j=1}^{n} m_{j} |I_{j}| \text{\textbf{Untersumme} von $f$ bzgl. $Z$.} \\
@@ -3014,10 +3026,10 @@ Aus $(*)$ und \ref{10.1.a:satz} mit $Z \in \mathcal{J}$:
 \end{proof}
 
 \index{Riemannsches Integrabilitätskriterium}
-\begin{namedtheorem}[Riemannsches Integrabilitätskriterium] \label{10.3:prop-RiemannschesIntegrabilitaetskriterium}
+\begin{unnamedtheorem}[Riemannsches Integrabilitätskriterium] \label{10.3:prop-RiemannschesIntegrabilitaetskriterium}
 	$f \in R[a, b]$
 	$$ \iff \forall \epsilon > 0 ~\exists Z = Z(\epsilon) \in \mathcal{J}: S_{f}(Z) - s_{f}(Z) < \epsilon. $$	
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \begin{satz} \label{10.4:satz}
 	Ist $f$ auf $[a, b]$ monoton, so ist $f \in R[a, b]$.
@@ -3026,7 +3038,7 @@ Aus $(*)$ und \ref{10.1.a:satz} mit $Z \in \mathcal{J}$:
 \begin{proof}
 	Sei $\epsilon > 0$. Wähle $n \in \N$ so, dass 
 	$$ \frac{b - a}{n} (f(b) - f(a)) < \epsilon. $$
-	Für $j = 0, \dotsc, n$ sei $x_{j} \coloneqq a + j \frac{b - a}{n}$ und $Z \coloneqq \{ x_{0}, \dotsc, x_{n} \} \in \mathcal{J}$. Seien $I_{j}, m_{j}$ und $M_{j}$ wie immer, dann $|I_{j}| = \frac{b - a}{n}, m_{j} = f(x_{j-1}), M_{j} = f(x_{j})$. Also: % todo image 
+	Für $j = 0, \dotsc, n$ sei $x_{j} \coloneqq a + j \frac{b - a}{n}$ und $Z \coloneqq \{ x_{0}, \dotsc, x_{n} \} \in \mathcal{J}$. Seien $I_{j}, m_{j}$ und $M_{j}$ wie immer, dann $|I_{j}| = \frac{b - a}{n}, m_{j} = f(x_{j-1}), M_{j} = f(x_{j})$. Also:  
 	\begin{align*}
 		S_{f}(Z) - s_{f}(Z) & = \sum_{j=1}^{n} (M_{j} - m_{j})|I_{j}| \\
 		& = \frac{b - a}{n} \sum_{j=1}^{n} ( f(x_{j}) - f(x_{j-1}) ) \\
@@ -3045,7 +3057,7 @@ Aus $(*)$ und \ref{10.1.a:satz} mit $Z \in \mathcal{J}$:
 	\begin{align}
 		|f(t) - f(s)| < \frac{\epsilon}{b - a} \quad \forall t, s \in [a, b] \text{ mit } |t - s| < \delta. \tag{$*$}
 	\end{align}
-	Sei $Z = \{ x_{0}, \dotsc, x_{n} \} \in \mathcal{J}$, $I_{j}, M_{j}, m_{j}$ wie immer und $Z$ sei so gewählt, dass $|I_{j}| < \delta ~(j = 1, \dotsc, n)$. Betrachte $I_{j}$: % todo image
+	Sei $Z = \{ x_{0}, \dotsc, x_{n} \} \in \mathcal{J}$, $I_{j}, M_{j}, m_{j}$ wie immer und $Z$ sei so gewählt, dass $|I_{j}| < \delta ~(j = 1, \dotsc, n)$. Betrachte $I_{j}$: 
 	$$ \xRightarrow[]{\ref{7.11:satz}} \exists \xi, \eta \in I_{j}: \quad f(\xi) = m_{j}, f(\eta) = M_{j} $$
 	$|I_{j}| < \delta \Rightarrow |\xi - \eta| < \delta \xRightarrow[]{(*)}$
 	$$ M_{j} - m_{j} = f(\eta) - f(\xi) = |f(\eta) - f(\xi)| < \frac{\epsilon}{b - a} $$
@@ -3061,14 +3073,14 @@ Aus $(*)$ und \ref{10.1.a:satz} mit $Z \in \mathcal{J}$:
 Beachte: Sind $G, H$ Stammfunktionen von $g$ auf $I$ $\Rightarrow G' = g = H'$ auf $I$ $\xRightarrow[]{\ref{9.10:satz}} \exists c \in \R: G = H + c$ auf $I$.
 
 \index{Hauptsätze der Diff.- und Integralrechnung!1. Hauptsatz}
-\begin{namedtheorem}[1. Hauptsatz der Differential- und Integralrechnung]\label{10.6:prop-1Hauptsatz}
+\begin{unnamedtheorem}[1. Hauptsatz der Differential- und Integralrechnung]\label{10.6:prop-1Hauptsatz}
 	Ist $f \in R[a, b]$ und besitzt $f$ auf $[a, b]$ eine Stammfunktion $F$, so ist 
 	$$ \int_{a}^{b} f(x) dx = F(b) - F(a) \eqqcolon F(x) \Big|_{a}^{b} \eqqcolon \left[ F(x) \right]_{a}^{b} $$
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \begin{proof}
 	Sei $Z = \{ x_{0}, \dotsc, x_{n} \} \in \mathcal{J}$, $I_{j}, m_{j}, M_{j}$ wie immer.
-	$$ F(x_{j}) - f(x_{j-1}) \overset{\hyperref[9.7:prop-Mittelwertsatz]{MWS}}{=} F'(\xi_{j}) (x_{j} - x_{j-1}) = f(\xi_{j}) \underbrace{(x_{j} - x_{j-1})}_{ = |I_{j}|} $$
+	$$ F(x_{j}) - f(x_{j-1}) \overset{MWS}{=} F'(\xi_{j}) (x_{j} - x_{j-1}) = f(\xi_{j}) \underbrace{(x_{j} - x_{j-1})}_{ = |I_{j}|} $$
 	mit $\xi_{j} \in (x_{j-1}, x_{j})$. $m_{j} \leq f(\xi_{j}) \leq M_{j} \Rightarrow m_{j} |I_{j}| \leq f(\xi_{j}) |I_{j}| \leq M_{j} |I_{j}| \Rightarrow$
 	\begin{align*}
 		s_{f}(Z) & \leq \sum_{j=1}^{n} f(\xi_{j}) |I_{j}| \\
@@ -3097,7 +3109,7 @@ Warnungen:
 
 \begin{beispiele} ~\
 	\begin{enumerate}
-		\item $f(x) = \begin{cases} 1, & x \in (0, 1] \\ 0, & x = 0 \end{cases}$. % todo image
+		\item $f(x) = \begin{cases} 1, & x \in (0, 1] \\ 0, & x = 0 \end{cases}$. 
 			$f$ ist monoton $\xRightarrow[]{\ref{10.4:satz}} f \in R[0, 1]$. \\
 			Annahme: $f$ besitzt auf $[0, 1]$ eine Stammfunktion $F$. Dann:
 			$$ F'(x) = f(x) ~\forall x \in [0, 1] \Rightarrow F'(x) = 1 = (x)' \text{ auf } (0, 1] $$
@@ -3113,7 +3125,7 @@ Ohne Beweis:
 \begin{satz} \label{10.7:satz}
 	Sei $c \in (a, b)$.
 	$$  f \in R[a, b] \iff f \in R[a, c] \text{ und } f \in R[c, b] $$	
-	I. d. Fall: $\int_{a}^{b} f dx = \int_{a}^{c} f dx + \int_{c}^{b} f dx$. % todo image
+	I. d. Fall: $\int_{a}^{b} f dx = \int_{a}^{c} f dx + \int_{c}^{b} f dx$. 
 \end{satz}
 
 
@@ -3189,7 +3201,7 @@ Ohne Beweis:
 \end{definition}
 
 \index{Hauptsätze der Diff.- und Integralrechnung!2. Hauptsatz}
-\begin{namedtheorem}[2. Hauptsatz der Differential- und Integralrechnung]\label{10.11:2Hauptsatz}
+\begin{unnamedtheorem}[2. Hauptsatz der Differential- und Integralrechnung]\label{10.11:2Hauptsatz}
 	Sei $f \in R[a, b]$ und
 	$$ F(x) \coloneqq \int_{a}^{x} f(t) dt \quad \left( x \in [a, b] \right). $$
 	Dann gilt:
@@ -3198,11 +3210,11 @@ Ohne Beweis:
 		\item $F \in C[a, b]$.
 		\item Ist $f \in C[a, b]$, so ist $F \in C^{1}[a, b]$ und $F' = f$ auf $[a, b]$.
 	\end{enumerate}
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \begin{proof} ~\
 	\begin{enumerate}
-		\item Seien $x, y \in [a, b]$. Fall 1: $x \leq y$ % todo image
+		\item Seien $x, y \in [a, b]$. Fall 1: $x \leq y$ 
 			\begin{align*}
 				F(y) - F(x) & ~ = \int_{a}^{y} f(t) dt - \int_{a}^{x} f(t) dt \\
 				& \overset{\ref{10.7:satz}}{=} \int_{a}^{x} f(t) dt + \int_{x}^{y} f(t) - \int_{a}^{x} f(t) dt \\
@@ -3253,13 +3265,13 @@ Aus \ref{10.10:satz} folgt (Übung):
 \end{beispiel}
 
 \index{Partielle Integration}
-\begin{namedtheorem}[Partielle Integration]
+\begin{unnamedtheorem}[Partielle Integration]
 	Sei $I \subseteq \R$ ein Intervall und $f, g \in C^{1}(I)$. Dann:
 	\begin{enumerate}
 		\item $\int f' g dx = f g - \int f g' dx$ auf $I$.
 		\item Ist $I = [a, b]$, $\int_{a}^{b} f' g dx = f g \Big|_{a}^{b} - \int_{a}^{b} f g' dx$.
 	\end{enumerate}
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \begin{proof}
 	$(f g)' = f' g + f g' \Rightarrow f' g = (fg)' - fg'$ \\
@@ -3288,7 +3300,7 @@ Aus \ref{10.10:satz} folgt (Übung):
 	$$ \langle \alpha, \beta \rangle \coloneqq \begin{cases} [\alpha, \beta], & \text{ falls } \alpha < \beta \\ [\beta, \alpha], & \text{ falls } \alpha > \beta \end{cases} $$
 
 \index{Substitutionsregeln}
-\begin{namedtheorem}[Substitutionsregeln] \label{10.14:prop-Substitutionsregeln}
+\begin{unnamedtheorem}[Substitutionsregeln] \label{10.14:prop-Substitutionsregeln}
 	$I$ und $J$ seien Intervalle in $\R$, es sei $f \in C(I)$, $g \in C^{1}(J)$ und $g(J) \subseteq I$.
 	\begin{enumerate}
 		\item $\int f(g(t)) g'(t) dt = \int f(x) dx \Big|_{x = g(t)}$ auf $J$.
@@ -3297,7 +3309,7 @@ Aus \ref{10.10:satz} folgt (Übung):
 		\item Ist $I = \langle a, b \rangle$, $J = \langle \alpha, \beta \rangle$, $g(\alpha) = a$ und $g(\beta) = b$, so gilt
 			$$ \int_{a}^{b} f(x) dx = \int_{\alpha}^{\beta} f(g(t)) g'(t) dt. $$
 	\end{enumerate}
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \begin{proof}
 	$\xRightarrow[]{\ref{10.2:satz}} f$ hat auf $I$ eine Stammfunktion $F$. $G(t) \coloneqq F(g(t)) ~ (t \in J)$. Kettenregel $\Rightarrow G \in C^{1}(J)$ und
@@ -3326,7 +3338,7 @@ Zu \ref{10.14:prop-Substitutionsregeln}: substituiere $x = g(t)$, fasse also $x$
 				1}{e}.
 			\end{align*}
 		\item Berechne $\beta \coloneqq \int_{0}^{1} \sqrt{1 - x^{2}} dx = \begin{cases} x = \sin t, t \in [0, \frac{\pi}{2}] \\ \frac{dx}{dt} = \cos t, dx = \cos t dt \end{cases}$
-			% todo image
+			
 			\begin{align*}
 				& = \int_{0}^{\frac{\pi}{2}} \sqrt{1 - \sin^{2}t} \cos t dt = \int_{0}^{\frac{\pi}{2}} \sqrt{\cos^{2} t} \cos t dt \\
 				& = \int_{0}^{\frac{\pi}{2}} |\cos t| \cos t dt = \int_{0}^{\frac{\pi}{2}} \cos^{2} t dt = \int_{0}^{\frac{\pi}{2}} (1 - \sin^{2} t) dt \\
@@ -3425,7 +3437,7 @@ Ohne Beweis:
 			$$ \int_{\alpha}^{b} f(x) dx \coloneqq \lim_{t \rightarrow \alpha + 0} \int_{t}^{b} f(x) dx. $$
 	\end{enumerate}
 	Ein nicht konvergentes uneigentliches Integral hei{\ss}t divergent.
-	% todo image
+	
 \end{definition}
 
 
@@ -3463,9 +3475,9 @@ Ohne Beweis:
 \begin{beispiele} ~\
 	\begin{enumerate}
 		\item $\int_{-\infty}^{\infty} x dx$ ist divergent, denn $\int_{0}^{\infty} x dx$ ist divergent. (Aber: $\lim_{t \rightarrow \infty} \int_{-t}^{t} x dx = 0$).
-		\item Sei $\gamma > 0$. Obige Beispiele \hyperref[11.0:bsp-obigeBspa]{a)} und \hyperref[11.0:bsp-obigeBspc]{c)} zeigen:
+		\item Sei $\gamma > 0$. Obige Beispiele $\ref{11.0:bsp-obigeBspa}$ und $\ref{11.0:bsp-obigeBspc}$ zeigen:
 			$$ \int_{0}^{\infty} \frac{1}{x^{\gamma}} dx \text{ ist divergent.} $$
-		\item Obige Beispiele \hyperref[11.0:bsp-obigeBspb]{b)} und \hyperref[11.0:bsp-obigeBspd]{d)} zeigen:
+		\item Obige Beispiele $\ref{11.0:bsp-obigeBspb}$ und $\ref{11.0:bsp-obigeBspd}$ zeigen:
 			$$ \int_{-\infty}^{\infty} \frac{1}{1 + x^{2}} dx \text{ ist konvergent und} = \pi. $$
 	\end{enumerate}
 \end{beispiele}
@@ -3479,10 +3491,10 @@ Die folgenden Definitionen und Sätze formulieren wir nur für Funktionen
 Aus \ref{6.2.c:satz} folgt:
 
 \index{Cauchykriterium}
-\begin{namedtheorem}[Cauchykriterium] \label{11.1:prop-Cauchykriterium}
+\begin{unnamedtheorem}[Cauchykriterium] \label{11.1:prop-Cauchykriterium}
 	$\int_{a}^{\beta} f(x) dx$ konvergiert
 	$$ \iff \forall \epsilon > 0 ~\exists c \in (a, \beta):  | \int_{u}^{v} f(x) dx | < \epsilon \quad \forall u, v \in (c, \beta).  $$
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 
 \begin{beispiel*}
@@ -3597,7 +3609,7 @@ Ist $z = x \in \R$: $e^{z} = e^{x}$; ist $z = it ~(t \in \R)$: $e^{it} = \cos t 
 \index{Polarkoordinaten} \index{Argument}
 \textbf{Polarkoordinaten}: Sei $z = x + iy \in \C$, $x, y \in \R$ und $z \neq 0$.
 	$$ r \coloneqq |z| = (x^{2} + y^{2})^{\frac{1}{2}} $$
-	% todo image
+	
 	Die Gerade durch $0$ und $z$ schließt mit der positiven x-Achse einen Winkel $\varphi \in (-\pi, \pi]$ ein.
 	
 	$\varphi$ hei{\ss}t das \textbf{Argument von $z$}; $\phi = \arg z$. Es ist
@@ -3616,9 +3628,9 @@ Ist $z = x \in \R$: $e^{z} = e^{x}$; ist $z = it ~(t \in \R)$: $e^{it} = \cos t 
 Ohne Beweis:
 
 \index{Fundamentalsatz der Algebra}
-\begin{namedtheorem}[Fundamentalsatz der Algebra] \label{12.3:prop-FundamentalsatzDerAlgebra}
+\begin{unnamedtheorem}[Fundamentalsatz der Algebra] \label{12.3:prop-FundamentalsatzDerAlgebra}
 	Sei $p(z) = a_{0} + a_{1} z + \dotsc + a_{n} z^{n}$ ein Polynom mit $n \geq 1$, $a_{0}, \dotsc, a_{n} \in \C$ und $a_{n} \neq 0$. Dann existieren $z_{1}, \dotsc, z_{n} \in \C$ (eind. bestimmt) mit $p(z) = a_{n} (z - z_{1}) \cdot \dotsc \cdot (z - z_{n}) ~(z \in \C)$. $z_{1}, \dotsc, z_{n}$ sind genau die Nullstellen von $p$.
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \index{Wurzel!n-te}
 \begin{definition}
@@ -3850,7 +3862,7 @@ I. d. $\S$-en sei $f \colon \R \rightarrow \R$ eine Funktion mit:
 			und
 			$$ f(t_{j}+), ~f'(t_{j}+), ~f(t_{j}-), ~f'(t_{j}-) \quad (j =1, \dotsc, n - 1) $$
 	\end{enumerate}
-	% todo image
+	
 \end{definition}
 
 
@@ -3871,7 +3883,7 @@ Ohne Beweis:
 \begin{beispiel} \label{13.4:bsp}
 	$f \colon \R \rightarrow \R$ sei $2\pi$-periodisch und auf $(-\pi, \pi]$ definiert durch
 	$$ f(x) \coloneqq \begin{cases} x, & x \in (-\pi, \pi) \\ 0, & x = \pi \end{cases} $$
-	% todo image
+	
 	$\xRightarrow[]{\ref{10.15:satz}} f \in R[-\pi, \pi]$, $f$ erfüllt also $(V)$. $f$ ist stückweise glatt und $s_{f}(x) = f(x) ~\forall x \in \R$. $f$ ist ungerade $\xRightarrow[]{\ref{13.2:satz}} a_{n} = 0 ~\forall n \in \N_{0}$ und
 	$$ b_{n} = \frac{2}{\pi} \int_{0}^{\pi} f(x) \sin(nx) dx \overset{\ref{10.15:satz}}{=} \frac{2}{\pi} \int_{0}^{\pi} x \sin(nx) dx \overset{\text{Übung}}{=} (-1)^{n+1} \frac{2}{n} \quad \forall n \in \N. $$
 	$\xRightarrow[]{\ref{13.3:satz}} f(x) = 2 \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n} \sin(nx) ~\forall x \in \R$.
@@ -3882,7 +3894,6 @@ Ohne Beweis:
 
 \begin{beispiel} \label{13.5:bsp}
 	$f \colon \R \rightarrow \R$ sei $2\pi$-periodisch und auf $[-\pi, \pi]$ definiert durch $f(x) = x^{2}$. \\
-	% todo image
 	Klar: $f$ erfüllt $(V)$, $f$ ist stückweise glatt, $f$ ist gerade und $f(x) = s_{f}(x) ~\forall x \in \R$.
 	$$ \xRightarrow[]{\ref{13.2:satz}} b_{n} = 0 ~\forall n \in \N, \quad a_{n} = \frac{2}{\pi} \int_{0}^{\pi} x^{2} \cos(nx) dx = \begin{cases} \frac{2 \pi^{2}}{3}, & n = 0 \\ 4 \frac{ (-1)^{n}}{n^{2}}, & \text{sonst} \end{cases}  $$
 	Aus der Rechnung in \ref{13.3:satz} folgt:
@@ -3946,16 +3957,15 @@ Ohne Beweis:
 \end{proof}
 
 
-\begin{namedtheorem}[Satz von Riemann-Lebesgue] \label{13.8:prop-SatzVonRiemann-Lebesgue}
+\begin{unnamedtheorem}[Satz von Riemann-Lebesgue] \label{13.8:prop-SatzVonRiemann-Lebesgue}
 	Seien $a, b \in \R$ und $a < b$ und $g \in R[a, b]$. Dann:
 		$$ \int_{a}^{b} g(x) \sin(nx) dx \rightarrow 0 \text{ und } \int_{a}^{b} g(x) \cos(nx) dx \rightarrow 0 \quad (n \rightarrow \infty) $$
 		Ohne Beweis. Für $[a, b] = [-\pi, \pi]$ vgl. $\ref{13.7.c:satz}$.
-\end{namedtheorem}
+\end{unnamedtheorem}
 
 \newpage
 
 \chapter{\texorpdfstring{Der Raum $\R^{n}$}{Der Raum Rn}}
-
 Es sei $n \in \N$. $\R^{n} \coloneqq \{ (x_{1}, \dotsc, x_{n}) : x_{1}, \dotsc, x_{n} \in \R \}$. $\R^{n}$ ist mit der bekannten Addition und Skalarmultiplikation ein Vektorraum über $\R$, $\dim \R^{n} = n$.
 
 \index{Einheitsvektoren}
@@ -3971,7 +3981,7 @@ $$ x = x_{1} e_{1} + \dotsc + x_{n} e_{n}. $$
 		\item $xy \coloneqq x \cdot y \coloneqq x_{1} y_{1} + \dotsc + x_{n} y_{n}$ \textbf{Skalarprodukt} oder \textbf{Innenprodukt} von $x$ und $y$. Beachte: $xy \in \R$.
 		\item $\| x \| \coloneqq \sqrt{x \cdot x} = (x_{1}^{2} + \dotsc + x_{n}^{2})^{\frac{1}{2}}$ \textbf{Norm} oder \text{Länge} von $x$. Beachte: $\|x\|^{2} = x \cdot x$ (Im Fall $n = 1: \|x\| = |x|$).
 		\item $\| x - y \|$ hei{\ss}t Abstand von $x$ und $y$. Beachte: $\| x - y \| = \| y - x \|$.
-			% todo image
+			
 	\end{enumerate}
 \end{definition}
 
@@ -4065,13 +4075,10 @@ Aus $(*)$ folgt: $\| A x \| \leq \| A \| \| x \|$.
 
 
 % Skript - Ende
-
 \appendix 
 
 % Inhaltsverzeichnis
-
-\cleardoublepage \phantomsection \renewcommand{\indexname}{Stichwortverzeichnis} \addcontentsline{toc}{\indexsection}{\indexname}
-
+\renewcommand{\indexname}{Stichwortverzeichnis}
 \printindex
 
 
