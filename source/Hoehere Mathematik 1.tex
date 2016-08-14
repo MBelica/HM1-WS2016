@@ -51,6 +51,8 @@
 \date{Wintersemester 2016/17}
 \publishers{Karlsruher Institut für Technologie}
 
+
+
 %% Math. Definitions
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\N}{\mathbb{N}}
@@ -60,12 +62,18 @@
 
 %% Theorems (unnamedtheorem = Theorem ohne Namen)
 \newtheoremstyle{named}{}{}{\normalfont}{}{\bfseries}{:}{0.25em}{#2 \thmnote{#3}}
+\newtheoremstyle{itshape}{}{}{\itshape}{}{\bfseries}{:}{ }{}
+\newtheoremstyle{normal}{}{}{\normalfont}{}{\bfseries}{:}{ }{}
+\renewcommand*{\qed}{\hfill\ensuremath{\square}}
+
 \theoremstyle{named}
 \newtheorem{unnamedtheorem}{Theorem} \counterwithin{unnamedtheorem}{chapter}
-\newtheoremstyle{dotless}{}{}{}{}{\bfseries}{:}{ }{}
-\renewcommand*{\qed}{\hfill\ensuremath{\square}}
-\theoremstyle{dotless}
+
+\theoremstyle{itshape}
 \newtheorem{satz}[unnamedtheorem]{Satz}	
+\newtheorem*{definition}{Definition}
+
+\theoremstyle{normal}
 \newtheorem{beispiel}[unnamedtheorem]{Beispiel}
 \newtheorem{folgerung}[unnamedtheorem]{Folgerung}
 \newtheorem{hilfssatz}[unnamedtheorem]{Hilfssatz}
@@ -76,7 +84,6 @@
 \newtheorem*{bemerkung}{Bemerkung} 
 \newtheorem*{bemerkungen}{Bemerkungen}
 \newtheorem*{bezeichnung}{Bezeichnung}
-\newtheorem*{definition}{Definition}
 \newtheorem*{eigenschaften}{Eigenschaften}
 \newtheorem*{folgerung*}{Folgerung}
 \newtheorem*{folgerungen}{Folgerungen}
