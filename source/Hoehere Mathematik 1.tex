@@ -3326,14 +3326,14 @@ Ohne Beweis.
 			$$ g'(x) = \sum_{n=1}^{\infty} (-1)^{n+1} x^{n-1} = \sum_{n=1}^{\infty} (-1)^{n-1} x^{n-1} = f'(x) \quad (x \in I). $$
 			Damit existiert ein $c \in \R$ mit $f(x) = g(x) + c$ $(x \in I)$. Mit $x = 0$ folgt $c = 0$. Also gilt:
 			$$ f(x) = g(x) \quad (x \in I). $$
-			Da $f$ und $g$ stetig auf $(0,1]$ sind (vgl. \ref{9.16:prop-AbelscherGrenzwertsatz}) gilt
+			Da $f$ und $g$ stetig auf $(0,1]$ sind (für $g$ vgl. \ref{9.16:prop-AbelscherGrenzwertsatz}) gilt
 			$$f(x) = g(x) ~ \quad (x \in (-1, 1]), $$ also 
 			$$ \log(1+x) = \sum_{n=1}^{\infty} (-1)^{n+1} \frac{x^{n}}{n} \quad (x \in (-1 , 1]). $$
-			Insbesondere gilt für $x = 1$: 
+			Insbesondere gilt mit $x = 1$: 
 			$$\log(2) = \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}.$$ 
 		\item  Ähnlich wie in a) zeigt man (\"Ubung): \label{9.17.b:anwendungen}
 			$$ \arctan x = \sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n +1}}{2n + 1} \quad (x \in [-1, 1]). $$
-			Insbesondere gilt für $x = 1$: 
+			Insbesondere gilt mit $x = 1$: 
 			$$\arctan 1 = \sum_{n=0}^{\infty} \frac{(-1)^{n}}{2n + 1} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} +- \dotsc.$$
 			Es gilt:
 		        $$ \cos \frac{\pi}{4} = \cos(-\frac{\pi}{4}) \overset{\ref{9.15:prop-EigSinusCosinus}}{=} \sin( \frac{\pi}{2} - \frac{\pi}{4}) 
@@ -3366,7 +3366,7 @@ Ohne Beweis.
 
 \begin{beispiele} ~\
 	\begin{enumerate}
-		\item $(e^{x})''' = e^{x}$, $(\sin x)'' = (\cos x)' = - \sin x$, \\
+		\item $(e^{x})''' = e^{x}$, $(\sin x)'' = (\cos x)' = - \sin x$. Es gilt: $E,\sin,\cos\in C^{\infty}(\R)$. \\
 		      $\sin,\cos \in C^{\infty}(\R)$.
 		\item Betrachte $f(x) = x |x|$ $(x \in \R)$. Es gilt:
 			\begin{description}
@@ -3375,7 +3375,8 @@ Ohne Beweis.
 				\item Für $x = 0$: $\frac{f(t) - f(0)}{t - 0} = |t| \rightarrow 0$ $(t \rightarrow 0)$, also $f'(0)=0$.
 			\end{description}
 			Somit ist $f$ auf $\R$ differenzierbar, $f'(x) = 2 |x|$ $(x \in \R)$ und $f'$ ist stetig auf $\R$. In $x_{0} = 0$ ist $f$ nicht zweimal differenzierbar.
-			Also gilt: $f \in C^1(\R)$ und $f \notin C^2(\R)$.
+			Also gilt: $f \in C^1(\R)$ und $f \notin C^2(\R)$. \\ Bemerkung: Allgemein gilt: \\
+				$$C^0(I)\subsetneqq C^1(I)\subsetneqq C^2(I)\subsetneqq C^3(I)\subsetneqq ...$$
 	\end{enumerate}	
 \end{beispiele}
 
@@ -3400,7 +3401,7 @@ Ohne Beweis.
 	$$ f(x) \coloneqq \sum_{n=0}^{\infty} a_{n} (x - x_{0})^{n} \quad (x \in I). $$
 	Dann gilt $f \in C^{\infty}(I)$ und 
 	$$\forall k \in \N_{0} ~ \forall x \in I: ~ f^{(k)}(x) = \sum_{n=k}^{\infty} n(n-1) \cdots (n-k+1) a_{n} (x - x_{0})^{n-k}. $$
-	Mit $(x = x_{0})$ gilt insbesondere: $f^{(k)}(x_{0}) = k! a_{k}$, also
+	Mit $x = x_{0}$ folgt insbesondere: $f^{(k)}(x_{0}) = k! a_{k}$, also
 		$$\forall k \in \N_{0}: ~ a_{k} = \frac{f^{(k)}(x_{0})}{k!}. $$
 \end{satz}
 
@@ -3412,7 +3413,8 @@ Folgt induktiv aus \ref{9.12:satz}.
 \begin{satz}[Satz von Taylor] \label{9.20:satz-Taylor} ~\\
 	Es sei $n \in \N_{0}$ und $f$ sei auf $I$ $(n+1)$-mal differenzierbar. Es seien $x, x_{0} \in I$ und $x \neq x_{0}$. Dann existiert ein 
 	$\xi \in (\min\{x,x_0\},\max\{x,x_0\}) $ mit
-		$$ f(x) = f(x_{0}) + \frac{f'(x_{0})}{1!} (x - x_{0}) + \dotsc + \frac{f^{(n)}(x_{0})}{n!} (x - x_{0})^{n} + \frac{f^{(n+1)}(\xi)}{(n+1)!} (x - x_{0})^{n+1}. $$
+		$$ f(x) = f(x_{0}) + \frac{f'(x_{0})}{1!} (x - x_{0}) + \dotsc + \frac{f^{(n)}(x_{0})}{n!} (x - x_{0})^{n} + \frac{f^{(n+1)}(\xi)}{(n+1)!} (x - x_{0})^{n+1},$$\\also\\ 
+			$$f(x) = \sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}.$$
 \end{satz}
 
 Ohne Beweis.
@@ -3436,17 +3438,17 @@ Ohne Beweis.
 \begin{proof}
 	Aus $f^{(n)}(x_{0}) \neq 0$ und $f^{(n)} \in C(I)$ folgt: 
 	$$ (\ast) \quad \exists \delta > 0: ~ U_{\delta}(x_{0}) \subseteq I \text{ und }  f^{(n)}(x) f^{(n)}(x_0) > 0 ~ (x \in U_{\delta}(x_{0})).$$
-	Es sei $x \in U_{\delta}(x_{0}) \setminus \{ x_{0} \}$ Nach \ref{9.20:satz-Taylor} existiert ein $\xi$ zwischen $x$ und $x_{0}$ mit:
+	Es sei $x \in U_{\delta}(x_{0}) \setminus \{ x_{0} \}.$ Nach \ref{9.20:satz-Taylor} existiert ein $\xi$ zwischen $x$ und $x_{0}$ mit:
 	$$ f(x) = \underbrace{\sum_{k=0}^{n-1} \frac{f^{(k)}(x_{0})}{k!} (x - x_{0})^{k}}_{= f(x_{0})} + \underbrace{\frac{f^{(n)}(\xi)}{n!} (x - x_{0})^{n}}_{\eqqcolon R(x)} $$
 	\begin{enumerate}
-		\item Es sei $f^{(n)}(x_{0}) < 0$. Mit $(\ast)$ folgt $f^{n}(\xi) < 0$. Da $n$ gerade ist gilt $(x - x_{0})^{n} > 0$. Also ist $R(x) < 0$. Somit gilt: 
+		\item Es gilt $f^{(n)}(x_{0}) < 0$. Mit $(\ast)$ folgt $f^{n}(\xi) < 0$. Da $n$ gerade ist gilt $(x - x_{0})^{n} > 0$. Also ist $R(x) < 0$. Somit gilt: 
 		      $$\forall x \in U_{\delta}(x_{0}) \setminus \{ x_{0} \}: ~ f(x) < f(x_{0}).$$
 		\item Analog zu a).
 		\item Es sei o.B.d.A. $f^{(n)}(x_{0}) > 0$, also $f^{(n)}(\xi) > 0$. Da $n$ ungerade ist gilt
 			$$ (x - x_{0})^{n} \begin{cases} > 0, & x > x_{0} \\ < 0, & x < x_{0} \end{cases} $$
 			und damit
-			$$ R(x) \begin{cases} > 0, & x > x_{0} \\ < 0, & x < x_{0} \end{cases} 
-			\quad \Rightarrow  \quad f(x) \begin{cases} > f(x_{0}), & x > x_{0} \\ < f(x_{0}), & x < x_{0} \end{cases}.$$
+			$$ R(x) \begin{cases} > 0, & x \in (x_0,x_0+\delta) \\ < 0, & x \in (x_0-\delta,x_0) \end{cases} 
+			\quad \Rightarrow  \quad f(x) \begin{cases} > f(x_{0}), & x \in (x_0,x_0+\delta)  \\ < f(x_{0}), & x  \in (x_0-\delta,x_0) \end{cases}.$$
 			
 	\end{enumerate}
 \end{proof}
@@ -3500,7 +3502,7 @@ Es seien $Z_{1}, Z_{2} \in \mathcal{Z}$. Dann gilt:
 		      $$s_{f}(Z_{1}) \leq s_{f}(Z_{2}), \quad S_{f}(Z_{1}) \geq S_{f}(Z_{2}). $$ \label{10.1.b:satz}
 	\end{enumerate}	      
 \end{satz}		      
-
+Ohne Beweis. \\
 Aus $(*)$ folgt: Es existieren
 	$$ s_{f}  \coloneqq \sup \{ s_{f}(Z) \colon Z \in \mathcal{Z} \} \text{ und } S_{f}  \coloneqq \inf \{ S_{f}(Z) \colon Z \in \mathcal{Z} \}.$$
 Aus $(*)$ und \ref{10.1.a:satz} folgt:
@@ -3512,13 +3514,13 @@ Aus $(*)$ und \ref{10.1.a:satz} folgt:
 	Die Funktion $f$ hei{\ss}t (Riemann-)\textbf{integrierbar} (ib) über $[a, b]$ $:\iff$ $s_{f} = S_{f}$. In diesem Fall hei{\ss}t
 		$$ \int_{a}^{b} f dx \coloneqq \int_{a}^{b} f(x) dx \coloneqq S_{f} (= s_{f}) $$
 	das (Riemann-)\textbf{Integral}	von $f$ über $[a, b]$ und wir schreiben: \\
-	$f \in R([a, b])$ oder $f \in R([a, b],\R)$.
+		$$f \in R([a, b]) oder f \in R([a, b],\R).$$
 \end{definition}
 
 
 \begin{beispiele} ~\
 	\begin{enumerate}
-		\item Es sei $c \in \R$ und $f(x) = c$ $(x \in [a, b])$. Dann gilt $(b - a) \leq s_{f} \leq S_{f} \leq c(b- a)$ also $f \in R[a, b]$ und 
+		\item Es sei $c \in \R$ und $f(x) = c$ $(x \in [a, b])$. Dann gilt $c(b - a) \leq s_{f} \leq S_{f} \leq c(b- a)$, also $f \in R[a, b]$ und 
 		$\int_{a}^{b}c dx = c(b - a)$.
 		\item Es sei $Z = \{ x_{0}, \dotsc, x_{n} \}$ eine Zerlegung von $[0, 1]$ und $f:[0,1] \to \R$ definiert durch
 			$$ f(x) \coloneqq \begin{cases} 1, & x \in [0, 1] \cap \Q \\ 0, & x \in [0, 1] \setminus \Q \end{cases}. $$  
@@ -3538,8 +3540,8 @@ Aus $(*)$ und \ref{10.1.a:satz} folgt:
 
 \begin{proof}
 	Nur a) ( b) Übung): Es sei $Z = \{ x_{0}, \dotsc x_{n} \} \in \mathcal{Z}$, $I_{j}$ und $m_{j}$ wie immer. 
-	        Es sei $\tilde{m}_{j} \coloneqq \inf g(I_{j})$ $(j = 1, \dotsc, n)$. Wegen $f \leq g$ auf $I_{j}$ gilt:
-		$$ m_{j} \leq \tilde{m}_{j} ~ (j = 1, \dotsc, n) ~ \Rightarrow ~ s_{f}(Z) \leq s_{g}(Z) \leq s_{g}. $$ 
+	        Es sei $\widetilde{m}_{j} \coloneqq \inf g(I_{j})$ $(j = 1, \dotsc, n)$. Wegen $f \leq g$ auf $I_{j}$ gilt:
+		$$ m_{j} \leq \widetilde{m}_{j} ~ (j = 1, \dotsc, n) ~ \text{und damit} ~ s_{f}(Z) \leq s_{g}(Z) \leq s_{g}. $$ 
 		Da $Z\in \mathcal{Z}$ beliebig war folgt 
 		$$ \int_{a}^{b} f dx = s_{f} \leq s_g= \int_{a}^{b} g dx. $$
 \end{proof}
@@ -3594,7 +3596,7 @@ Ohne Beweis.
 
 \index{Stammfunktion}
 \begin{definition}
-	Es sei $I \subseteq \R$ sei ein Intervall und $G, g \colon I \rightarrow \R$ Funktionen. Die Funktion $G$ hei{\ss}t eine \textbf{Stammfunktion} von $g$ auf $I$ 
+	Es sei $I \subseteq \R$ ein Intervall und $G, g \colon I \rightarrow \R$ Funktionen. Die Funktion $G$ hei{\ss}t eine \textbf{Stammfunktion} von $g$ auf $I$ 
 	$:\iff$ $G$ ist auf $I$ differenzierbar und $G' = g$ auf $I$.
 \end{definition}
 
@@ -3609,7 +3611,7 @@ $$\exists c \in \R ~ \forall x \in I: ~ G(x) = H(x) + c.$$
 \end{satz}
 
 \begin{proof}
-	Es sei $Z = \{ x_{0}, \dotsc, x_{n} \} \in \mathcal{Z}$, und $I_{j}, m_{j}, M_{j}$ seien wie immer. Für jedes $j=1,\dotsc, n$ gilt:
+	Es sei $Z = \{ x_{0}, \dotsc, x_{n} \} \in \mathcal{Z}$, und $I_{j}, m_{j}, M_{j}$ seien wie immer. Für jedes $j\in\{1,\dotsc, n\}$ gilt:
 	$$ F(x_{j}) - F(x_{j-1}) \overset{MWS}{=} F'(\xi_{j}) (x_{j} - x_{j-1}) = f(\xi_{j}) \underbrace{(x_{j} - x_{j-1})}_{ = |I_{j}|}, $$
 	mit $\xi_{j} \in (x_{j-1}, x_{j})$. Wegen $m_{j} \leq f(\xi_{j}) \leq M_{j}$ gilt $m_{j} |I_{j}| \leq f(\xi_{j}) |I_{j}| \leq M_{j} |I_{j}|$. 
 	Summation über $j$ liefert
@@ -3628,7 +3630,7 @@ $$F(x) \Big|_{a}^{b} := \left[ F(x) \right]_{a}^{b}:= F(b)-F(a). $$
 	\begin{enumerate}
 		\item Es sei $0 < a < b$, $f(x) = \frac{1}{x}$ $(x \in [a,b])$. Es gilt $f \in C([a, b]) \xRightarrow[]{\ref{10.5:satz}} f \in R([a, b])$, und
 		$F(x) \coloneqq \log x$ ist eine Stammfunktion von $f$ auf $[a, b]$. Mit \ref{10.6:prop-1Hauptsatz} folgt:
-			$$ \int_{a}^{b} \frac{1}{x} dx = \log x \Big|_{a}^{b} = \log b - \log a. $$
+			$$ \int_{a}^{b} \frac{1}{x} dx = \log x \Big|_{a}^{b} = \log b - \log a =\log \frac{b}{a}. $$
 		\item  Es gilt: $$\int_{0}^{\frac{\pi}{2}} \cos x dx = \sin x \Big|_{0}^{\frac{\pi}{2}}= \sin \frac{\pi}{2} - \sin 0 = 1.$$
 	\end{enumerate}
 \end{beispiele}
@@ -3654,7 +3656,7 @@ $$F(x) \Big|_{a}^{b} := \left[ F(x) \right]_{a}^{b}:= F(b)-F(a). $$
 		\item Betrachte 
 		        $$F(x) \coloneqq \begin{cases} x^{\frac{3}{2}} \sin \frac{1}{x}, & x \in (0, 1] \\ 0, & x = 0 \end{cases}.$$
 		        Nach \ref{9.18:bsp} ist $F$ ist auf $[0, 1]$ differenzierbar. Setze $f \coloneqq F'$. Dann ist $F$ eine Stammfunktion von $f$ auf $[0, 1]$.
-		        Nach \ref{9.18:bsp} ist $f$ ist auf $[0, 1]$ nicht beschränkt, also $f \notin R[a, b]$. 
+		        Nach \ref{9.18:bsp} ist $f$ ist auf $[0, 1]$ nicht beschränkt, also $f \notin R([a, b])$. 
 	\end{enumerate}	
 \end{beispiele}
 
@@ -3685,7 +3687,7 @@ Ohne Beweis.
 \end{figure*}
 
 Es gilt: $$f_{n} \in C([0, 1]) \xRightarrow[]{\ref{10.5:satz}} f_{n} \in R([0, 1]) \xRightarrow[\ref{10.7:satz}]{\ref{10.6:prop-1Hauptsatz}} \int_{0}^{1} f_{n} dx = 1 ~(n \geq 2).$$
-Übung: $(f_{n})$ konvergiert auf $[0, 1]$ punktweise gegen $f \equiv 0$. Also: 
+Übung: $(f_{n})$ konvergiert auf $[0, 1]$ punktweise gegen $f = 0$. Also gilt: 
 	$$ \lim_{n \rightarrow 0} \int_{0}^{1} f_{n}(x) dx = 1 \neq 0 = \int_{0}^{1} f(x) dx = \int_{0}^{1} \left( \lim_{n \rightarrow \infty} f_{n}(x) \right) dx. $$
 
 \begin{satz} \label{10.8:satz}
@@ -3725,7 +3727,7 @@ Ohne Beweis.
 
 \begin{proof} ~\
 	\begin{enumerate}
-		\item c) und d) ohne Beweis.
+		\item, c) und d) ohne Beweis.
 		\item Es sei $D \coloneqq f([a, b])$ und $h(t) \coloneqq |t|$ $(t \in D)$. Dann ist $|f| = h \circ f$. Für $t, s \in D$ gilt: 
 			$$ |h(t) - h(s)| = \left| |t| - |s| \right| \le |t - s|. $$
 			Aus a) folgt $|f| \in R([a, b])$. Weiter ist $\pm f \leq |f|$ auf $[a, b]$. Mit \ref{10.2:satz} folgt 
@@ -3736,7 +3738,7 @@ Ohne Beweis.
 
 
 \begin{definition}
-	Es sei $f \in R[a, b]$ und $\alpha, \beta \in [a, b]$. Wir setzen
+	Es sei $f \in R([a, b])$ und $\alpha, \beta \in [a, b]$. Wir setzen
 	$$\int_{\alpha}^{\alpha} f(x) dx := 0.$$ 
 	Ist $\alpha < \beta$, so ist nach \ref{10.7:satz} $f \in R([\alpha, \beta])$ und wir setzen
 	$$ \int_{\beta}^{\alpha} f(x) dx \coloneqq - \int_{\alpha}^{\beta} f(x) dx. $$
@@ -3765,7 +3767,7 @@ Ohne Beweis.
 			\end{align*}
 			Fall 2: Für $x > y$ gilt
 			$$ F(y) - F(x) = - (F(x) - F(y)) \overset{Fall 1}{=} - \int_{y}^{x} f(t) dt = \int_{x}^{y} f(t) dt. $$
-		\item Setze $L \coloneqq \sup \{ |f(t)| : t \in [a, b] \}$. Es seien $x, y \in [a, b]$ und o.B.d.A.: $x \leq y$. Dann gilt:
+		\item Setze $L \coloneqq \sup \{ |f(t)| : t \in [a, b] \}$. Es seien $x, y \in [a, b]$ und o.B.d.A. sei $x \leq y$. Dann gilt:
 			\begin{align*}
 				|F(y) - F(x)| & \overset{a)}{=} | \int_{x}^{y} f(t) dt | \overset{\ref{10.10:satz}}{\leq} \int_{x}^{y} |f(t)| dt 
 				\overset{\ref{10.2:satz}}{\leq} \int_{x}^{y} L dt \\
@@ -3924,7 +3926,7 @@ Ohne Beweis.
 			also $m A \leq B \leq M A$. Beachte: $A \ge 0$. \\
 			Fall 1: $A = 0$. Dann ist $B = 0$ und jedes $\mu \in [m, M]$ leistet das Verlangte. \\
 			Fall 2: $A > 0$. Es gilt: $m \leq \frac{B}{A} \leq M$. Nun leistet $\mu =\frac{B}{A}$ das Verlangte.
-		\item folgt aus a) mit $g \equiv 1$. 
+		\item Mit $g=1$ auf $[a,b]$ folgt die Behauptung aus a). 
 	\end{enumerate}
 	Der Zusatz folgt aus \ref{7.7:prop-Zwischenwertsatz} und \ref{7.11:satz}.
 \end{proof}
@@ -4003,7 +4005,7 @@ $$\lim_{n \rightarrow \infty} f_{n}'(x) = g(x) = f'(x) = (\lim_{n \rightarrow \i
 
 \begin{beispiele} ~\
 	\begin{enumerate}
-		\item $\int_{1}^{\infty} \frac{1}{x^{\gamma}} dx ~(\gamma >0)$ ($a = 1, \beta = \infty$). Für $t > 1$ gilt: \label{11.0:bsp-obigeBspa}
+		\item $\int_{1}^{\infty} \frac{1}{x^{\gamma}} dx, ~(\gamma >0)$ ($a = 1, \beta = \infty$). Für $t > 1$ gilt: \label{11.0:bsp-obigeBspa}
 			$$ \int_{1}^{t} \frac{1}{x^{\gamma}} dx = \begin{cases} \log t, & \text{ falls } \gamma = 1 \\ 
 			\frac{1}{1 - \gamma} (t^{1 - \gamma} - 1), & \text{ falls } \gamma \neq 1 \end{cases} $$
 			Also gilt: $\int_{1}^{\infty} \frac{1}{x^{\gamma}} dx$ konvergiert $\iff$ $\gamma > 1$. In diesem Fall ist
@@ -4011,8 +4013,10 @@ $$\lim_{n \rightarrow \infty} f_{n}'(x) = g(x) = f'(x) = (\lim_{n \rightarrow \i
 		\item $\int_{0}^{\infty} \frac{1}{1 + x^{2}} dx$ ($a = 0, \beta = \infty$). Für $t > 0$ gilt:
 			$$ \int_{0}^{t} \frac{1}{1 + x^{2}} dx = \arctan t \rightarrow \frac{\pi}{2} ~(t \rightarrow \infty). $$ \label{11.0:bsp-obigeBspb}
 			Also ist $\int_{0}^{\infty} \frac{1}{1 + x^{2}} dx$ konvergent und $= \frac{\pi}{2}$.
-		\item $\int_{0}^{1} \frac{1}{x^{\gamma}} dx ~(\gamma > 0)$ ($\alpha = 0, b = 1$). Wie in Beispiel a) sieht man: \label{11.0:bsp-obigeBspc}
-			$$ \int_{0}^{1} \frac{1}{x^{\gamma}} dx \text{ konvergiert} \iff \gamma < 1 $$
+		\item $\int_{0}^{1} \frac{1}{x^{\gamma}} dx, ~\gamma > 0$ ($\alpha = 0, b = 1$). Wie in Beispiel a) sieht man: \label{11.0:bsp-obigeBspc}
+			$$ \int_{0}^{1} \frac{1}{x^{\gamma}} dx \text{ konvergiert} \iff \gamma < 1 $$.
+			In diesem Fall ist \\
+				$$ \int_{0}^{1} \frac{1}{x^{\gamma}} dx= \frac{1}{1-\gamma}. $$
 		\item $\int_{-\infty}^{0} \frac{1}{1 + x^{2}} dx$ ($\alpha = -\infty, b = 0$). Wie in Beispiel b) sieht man: \label{11.0:bsp-obigeBspd}
 			$$ \int_{-\infty}^{0} \frac{1}{1 + x^{2}} dx  \text{ konvergiert und } = \frac{\pi}{2}. $$
 		\item $\int_{0}^{\infty} \sin x dx$  ($a = 0, \beta = \infty$). Es sei $t_{n} = n \pi$ $(n \in \N)$. Es gilt: $t_n \to \infty$ und \label{11.0:bsp-obigeBspe}
@@ -4047,9 +4051,9 @@ Die folgenden Definitionen und Sätze formulieren wir nur für uneigentliche Int
 Sie gelten sinngemä{\ss} auch für die beiden anderen Typen uneigentlicher Integrale.
 
 \begin{bemerkung}
-Für $t \in (a, \beta)$ sei $g(t) \coloneqq \int_{a}^{t} f(x) dx$. Dann gilt:
-	$$ \int_{a}^{\beta} f(x) dx \text{ konvergiert} \iff \lim_{t \rightarrow \beta-} g(t) \text{ existiert.} $$
-D.h. die Existenz eines uneigentlichen Integrals ist gleichbedeutend mit der Existenz eines Funktionenlimes.
+Für $t \in [a, \beta)$ sei $g(t) \coloneqq \int_{a}^{t} f(x) dx$. Dann gilt:
+	$$ \int_{a}^{\beta} f(x) dx \text{ konvergiert} \iff \lim_{t \rightarrow \beta-} g(t) \text{ existiert und ist in }\R. $$
+D.h. die Konvergenz eines uneigentlichen Integrals ist gleichbedeutend mit der Existenz eines Funktionenlimes.
 \end{bemerkung}
 	
 
@@ -4099,8 +4103,8 @@ Den folgenden Satz beweist man mit \ref{11.1:prop-Cauchykriterium} ähnlich wie 
 	\begin{enumerate}
 		\item Ist $\int_{a}^{\beta} f(x) dx$ absolut konvergent, so ist $\int_{a}^{\beta} f(x) dx$ konvergent und
 			$$ | \int_{a}^{\beta} f(x) dx | \leq \int_{a}^{\beta} |f(x)| dx. $$
-		\item \textbf{Majorantenkriterium}: Ist $|f| \leq h$ auf $[a, \beta)$ und $\int_{a}^{\beta} h(x) dx$ konvergiert, so ist $\int_{a}^{\beta} f(x) dx$ konvergent.
-		\item \textbf{Minorantenkriterium}: Ist $f \geq h \geq 0$ auf $[a, \beta)$ und $\int_{a}^{\beta} h(x) dx$ divergiert, so ist $\int_{a}^{\beta} f(x) dx$ divergent.
+		\item \textbf{Majorantenkriterium}: Ist $|f| \leq h$ auf $[a, \beta)$ und $\int_{a}^{\beta} h(x) dx$ konvergent, so ist $\int_{a}^{\beta} f(x) dx$ konvergent.
+		\item \textbf{Minorantenkriterium}: Ist $f \geq h \geq 0$ auf $[a, \beta)$ und $\int_{a}^{\beta} h(x) dx$ divergent, so ist $\int_{a}^{\beta} f(x) dx$ divergent.
 	\end{enumerate}	
 \end{satz}
 
@@ -4164,10 +4168,10 @@ Ist $z = x \in \R$, so ist $e^{z} = e^{x}$; ist $z = it$ $(t \in \R)$, so ist $e
 	Es gilt: 
 	\begin{enumerate}
 		\item $\forall z, w \in \C: ~ e^{z +w} = e^{z} e^{w}$; $\forall z \in \C ~ \forall n \in \Z: ~ e^{nz} = (e^{z})^n$. \label{12.1.a:satz}
-		\item $\forall t \in \R: ~ |e^{it}| = 1, e^{-it} = \overline{e^{it}}$. \label{12.1.b:satz}
+		\item $\forall t \in \R: ~ |e^{it}| = 1,\quad e^{-it} = \overline{e^{it}}$. \label{12.1.b:satz}
 		\item $e^{i \pi} + 1 = 0$. \label{12.1.c:satz}
 		\item $\forall k \in \Z ~ \forall z \in \C: ~ e^{z + 2 k \pi i} = e^{z}$. \label{12.1.d:satz}
-		\item $\forall t \in \R: ~\cos t = \frac{1}{2} \left( e^{it} + e^{-it} \right), \sin t = \frac{1}{2i} \left( e^{it} - e^{-it} \right)$. \label{12.1.e:satz}
+		\item $\forall t \in \R: ~\cos t = \frac{1}{2} \left( e^{it} + e^{-it} \right), \quad \sin t = \frac{1}{2i} \left( e^{it} - e^{-it} \right)$. \label{12.1.e:satz}
 	\end{enumerate}
 \end{satz}
 
@@ -4192,8 +4196,8 @@ Ist $z = x \in \R$, so ist $e^{z} = e^{x}$; ist $z = it$ $(t \in \R)$, so ist $e
 \begin{uebung}
 	Für alle $z, w \in \C$ gilt:
 	\begin{align*}
-		\sin (z + w) & = \sin z \cos w + \sin w \cos z \\
-		\cos (z + w) & = \cos z \cos w - \sin z \sin w
+		\sin (z + w) & = \sin z \cos w + \sin w \cos z, \\
+		\cos (z + w) & = \cos z \cos w - \sin z \sin w.
 	\end{align*}	
 \end{uebung}
 
@@ -4223,7 +4227,7 @@ Aus \ref{12.2:satz} folgt:
 
 
 \index{Polarkoordinaten} \index{Argument}
-\textbf{Polarkoordinaten}: Es sei $z = x + iy \in \C$, $(x, y \in \R)$ und $z \neq 0$. Wir setzen
+\textbf{Polarkoordinaten}: Es sei $z = x + iy \in \C$ $(x, y \in \R)$ und $z \neq 0$. Wir setzen
 	$$ r \coloneqq |z| = (x^{2} + y^{2})^{\frac{1}{2}} $$
 	
 	Die Gerade durch $0$ und $z$ schließt mit der positiven $x$-Achse einen Winkel $\varphi \in (-\pi, \pi]$ ein.
@@ -4231,7 +4235,7 @@ Aus \ref{12.2:satz} folgt:
 		$$ \cos \varphi = \frac{x}{r}, \quad \sin \varphi = \frac{y}{r}, $$
 	also
 		$$  z = x + iy = r \cos \varphi + i r \sin \varphi = r e^{i \varphi} =  |z| e^{i \arg z}. $$
-	Ist weiter $w \in \C$ und $\psi \coloneqq \arg w$, so gilt:
+	Ist weiter $w \in \C\setminus\{0\}$ und $\psi \coloneqq \arg w$, so gilt:
 		$$ z w = |z| e^{i \varphi} |w| e^{i \psi} = |z| |w| e^{i(\varphi + \psi)} $$
 	
 	
@@ -4277,15 +4281,15 @@ Ohne Beweis.
 			Somit ist
 			$$ 0 \le  l= \frac{k - j}{n}  \leq \frac{k}{n} \leq \frac{n - 1}{n} = 1 - \frac{1}{n} < 1. $$
 			Wegen $l \in \Z$ folgt damit $l = 0$, also $k = j$.
-		\item   Es sei $p(z) \coloneqq z^{n} - a$. Dann gilt: $z$ ist eine n-te Wurzel aus $a$ $\iff$ $p(a) = 0$. Weiter gilt
-			$$ z_{k}^{n} = r e^{i(\varphi +2 k \pi)} = r e^{i \varphi} e^{2 k \pi i} = r e^{i \varphi} = a \quad (k = 0, \dotsc, n - 1). $$
+		\item   Es sei $p(z) \coloneqq z^{n} - a$. Dann gilt: $z$ ist eine $n$-te Wurzel aus $a$ $\iff$ $p(a) = 0$. Weiter gilt
+			$$ z_{k}^{n} = r e^{i(\varphi +2 k \pi)} = r e^{i \varphi} e^{2 k \pi i} = r e^{i \varphi} = a \quad (k = 0, \dotsc, n - 1), $$
 			also $p(z_{k}) = 0$ $(k = 0, \dotsc, n - 1)$. Aus a) und \ref{12.3:prop-FundamentalsatzDerAlgebra} folgt die Behauptung.
 	\end{enumerate}
 \end{proof}
 
 \index{Einheitswurzeln!n-te}
 \begin{bezeichnung} ~\\
-	Ist $a = 1$, so hei{\ss}en die Zahlen $z_{0}, \dotsc, z_{n-1}$ aus \ref{12.4:satz} die \textbf{n-ten Einheitswurzeln}.	Diese sind also 
+	Ist $a = 1$, so hei{\ss}en die Zahlen $z_{0}, \dotsc, z_{n-1}$ aus \ref{12.4:satz} die \textbf{$n$-ten Einheitswurzeln}.	Diese sind also 
 	$$z_{k} = e^{\frac{2 k \pi i}{n}} \quad (k = 0, \dotsc, n-1).$$
 \end{bezeichnung}
 
@@ -4308,12 +4312,12 @@ Ohne Beweis.
 
 
 \begin{beispiel*}
-        $\sqrt{-3 + 4i}=?$. Man kann Wurzeln auf verschiedene Weisen berechnen:
+        $\sqrt{-3 + 4i}=?$ Man kann Wurzeln auf verschiedene Weisen berechnen:
 	\begin{description}
 		\item 1. Möglichkeit: $w = u + iv$ $(u,v \in \R).$ Dann gilt: 
 			$$w^{2} = u^{2} - v^{2} + 2iuv = -3 + 4i \iff u^{2} - v^{2} = -3, ~ 2uv = 4. $$
 			Löse das Gleichungssystem.
-		\item 2. Möglichkeit: $z = 3 + 4i$. Bestimme $|z|$ und $\varphi = \arg z$. Dann sind
+		\item 2. Möglichkeit: $z = -3 + 4i$. Bestimme $|z|$ und $\varphi = \arg z$. Dann sind
 			$$ \pm \sqrt{|z|} e^{i \frac{\arg z}{2}} \text{ die Wurzeln von } z. $$
 		\item 3. Möglichkeit: Ist $z \in (-\infty, 0]$, so sind $w = \pm \sqrt{-z}$ die Wurzeln von $z$. \\
 		        Behauptung: Ist $z \in \C \setminus (-\infty, 0]$, so sind
@@ -4411,7 +4415,7 @@ Für eine Funktion $f \colon \R \rightarrow \R$ betrachten wir die Eigenschaft
 \index{Orthogonalitätsrelationen}
 \begin{satz} \label{13.1:satz} Es gilt:
 	\begin{enumerate}
-		\item Die Funktion $f$ erfülle $(V)$. Dann ist jedes $a \in \R$ 
+		\item Die Funktion $f$ erfülle $(V)$. Dann gilt für jedes $a \in \R:$ 
 		      $$f \in R([a, a + 2\pi]) \text{ und } \int_{a}^{a+ 2\pi} f(x) dx = \int_{-\pi}^{\pi} f(x) dx. $$
 		\item \textbf{Orthogonalitätsrelationen}: Für alle $k, n \in \N$ gilt:
 			\begin{align*}
@@ -4441,7 +4445,7 @@ Rest: Übung.
 		\sum_{n = 1}^{\infty} a_{n} \underbrace{\int_{-\pi}^{\pi} \cos(nx)\sin(kx) dx}_{\overset{\ref{13.1:satz}}{=} 0} \\
 		& ~\qquad + \sum_{n = 1}^{\infty} b_{n} \underbrace{\int_{-\pi}^{\pi} \sin(nx) \sin(kx) dx}_{\overset{\ref{13.1:satz}}{=} 
 		\begin{cases} \pi, & \text{ falls } k = n \\ 0, & \text{ falls } k \neq n \end{cases}} \\
-		& = b_{k} \pi
+		& = b_{k} \pi.
 	\end{align*}
 	Also gilt:
 	$$ \forall k \in \N: ~ b_{k} = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin(kx) dx. $$
@@ -4492,10 +4496,10 @@ Es sei $D \subseteq \R$, $x_{0}$ ein Häufungspunkt von $D$ und $g \colon D \rig
 	von $[-\pi, \pi]$ (also $-\pi = t_{0} < t_{1} < \dotsc < t_{n-1} < t_{n} = \pi$) mit:
 	\begin{enumerate}[label=\roman*\upshape)]
 		\item $f \in C^{1} \left( (t_{j-1}, t_{j}) \right) ~(j = 1, \dotsc, n)$.
-		\item Es existieren die folgenden Grenzwerte: 
-			$$ f(\pi-), ~ f'(\pi-), ~ f(-\pi+), ~ f'(-\pi+) $$ 
-			und
-			$$ f(t_{j}+), ~ f'(t_{j}+), ~f(t_{j}-), ~f'(t_{j}-) \quad (j =1, \dotsc, n - 1). $$
+		\item Für jedes $x \in \R$ existieren die Grenzwerte:
+			$$ f(x-), ~ f'(x-), ~ f(x+), ~ f'(x+) $$ 
+			In diesem Fall setzen wir
+			$$s_f(x):= \frac{f(x+)+f(x-)}{2} \quad (x \in \R). $$
 	\end{enumerate}	
 \end{definition}
 
@@ -4504,9 +4508,6 @@ Es sei $D \subseteq \R$, $x_{0}$ ein Häufungspunkt von $D$ und $g \colon D \rig
 \begin{enumerate}
         \item In den Punkten $t_{j}$ muss $f$ nicht stetig sein.
 	\item $f$ hat die Eigenschaft $(V)$, vgl. \ref{10.15:satz} a).   
-	\item Es gilt: $f(t_{0}) = f(-\pi) = f(-\pi + 2\pi) = f(\pi) = f(t_{n})$.
-	\item Da $f$ $2\pi$-periodisch ist existieren $f(x-)$ und $f(x+)$ für jedes $x \in \R$. Wir setzen
-		$$ s_{f}(x) \coloneqq \frac{f(x+) + f(x-)}{2} \quad (x \in \R). $$
 \end{enumerate}
 
 
@@ -4523,10 +4524,10 @@ Ohne Beweis.
 	$$ f(x) = \begin{cases} x, & x \in (-\pi, \pi) \\ 0, & x = \pi \end{cases}. $$	
 	Es gilt: $f$ ist stückweise glatt und $s_{f}(x) = f(x)$ $(x \in \R)$. Weiter ist $f$ ist ungerade. Nach \ref{13.2:satz} ist also $a_{n} = 0$ $(n \in \N_{0})$ und
 	$$ b_{n} = \frac{2}{\pi} \int_{0}^{\pi} f(x) \sin(nx) dx \overset{\ref{10.15:satz}}{=} 
-	\frac{2}{\pi} \int_{0}^{\pi} x \sin(nx) dx \overset{\text{Übung}}{=} (-1)^{n+1} \frac{2}{n} \quad (n \in \N=. $$
+	\frac{2}{\pi} \int_{0}^{\pi} x \sin(nx) dx \overset{\text{Übung}}{=} (-1)^{n+1} \frac{2}{n} \quad (n \in \N). $$
 	Mit \ref{13.3:satz} folgt nun:
 	$$ f(x) = 2 \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n} \sin(nx) \quad (x \in \R).$$
-	$$ \Rightarrow \frac{x}{2} = \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n} \sin(nx) \quad (x \in (-\pi, \pi)=. $$
+	$$ \Rightarrow \frac{x}{2} = \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n} \sin(nx) \quad (x \in (-\pi, \pi)). $$
 	Mit $x = \frac{\pi}{2}$ folgt: 
 	$$\frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} +- \dotsc,$$
 	vgl. \ref{9.17.b:anwendungen}.
@@ -4549,7 +4550,6 @@ Ohne Beweis.
 	$$\frac{\pi^{2}}{8} = 1 + \frac{1}{3^{2}} + \frac{1}{5^{2}} + \dotsc = \sum_{n=0}^{\infty} \frac{1}{(2n +1)^{n}}.$$
 \end{beispiel}
 
-Ohne Beweis.
 
 \begin{satz} \label{13.6:satz}
 	Es sei $f \in C(\R)$ und $f$ sei $2\pi$-periodisch und stückweise glatt. Dann gilt:
@@ -4561,23 +4561,11 @@ Ohne Beweis.
 			
 	\end{enumerate}	
 \end{satz}
-
-
-\begin{definition}
-	Es sei $g \in R([-\pi, \pi])$. Setze
-	\begin{align*}
-		a_{n} & \coloneqq \frac{1}{\pi} \int_{-\pi}^{\pi} g(x) \cos(nx) dx \quad (n \in \N_{0})
-		\intertext{und}
-		b_{n} & \coloneqq \frac{1}{\pi} \int_{-\pi}^{\pi} g(x) \sin(nx) dx \quad (n \in \N).
-	\end{align*} 
-	Auch in diesem Fall hei{\ss}en die Zahlen $a_{n}, b_{n}$ die Fourierkoeffizienten von $g$ und die Reihe 
-	$$ \frac{a_{0}}{2} + \sum_{n=1}^{\infty} \left( a_{n} \cos(nx) + b_{n} \sin(nx) \right) $$
-	die zu $g$ gehörige Fourierreihe.
-\end{definition}
+Ohne Beweis.
 
 \index{Besselsche Ungleichung}
 \begin{satz} \label{13.7:satz}
-	Es seien $g$, $a_{n}$ und $b_{n}$ seien wie in obiger Definition. Dann gilt:
+	Die Funktion f erfülle (V), und $a_{n}$, $b_{n}$ seien ihre Fourrierkoeffizienten. Dann gilt:
 	\begin{enumerate}
 		\item $\sum_{n=1}^{\infty} (a_{n}^{2} + b_{n}^{2})$ ist konvergent. \label{13.7.a:satz}
 		\item $\frac{a_{0}^{2}}{2} + \sum_{n=1}^{\infty} (a_{n}^{2} + b_{n}^{2}) \leq  \frac{1}{\pi} \int_{-\pi}^{\pi} g(x)^{2} dx$ (Besselsche Ungleichung). \label{13.7.b:satz}
@@ -4600,14 +4588,6 @@ Ohne Beweis.
 	Aus $\alpha_{n} \leq \alpha$ $(n \in \N)$ folgt b). \\
 	Aus $(1)$ und \ref{3.1:satz} folgt $a_{n}^{2} + b_{n}^{2} \rightarrow 0$. Damit gilt $a_{n}^{2} \rightarrow 0$, $b_{n}^2 \rightarrow 0$ und hieraus folgt c).
 \end{proof}
-
-
-\begin{satz}[Satz von Riemann-Lebesgue] \label{13.8:prop-SatzVonRiemann-Lebesgue}
-	Es seien $a, b \in \R$, $a < b$ und $g \in R([a, b])$. Dann gilt:
-		$$ \int_{a}^{b} g(x) \sin(nx) dx \rightarrow 0 \text{ und } \int_{a}^{b} g(x) \cos(nx) dx \rightarrow 0 \quad (n \rightarrow \infty) $$
-		Ohne Beweis. Für $[a, b] = [-\pi, \pi]$ vgl. $\ref{13.7.c:satz}$.
-\end{satz}
-
 \newpage
 
 \chapter{\texorpdfstring{Der Raum $\R^{n}$}{Der Raum Rn}}
@@ -4618,7 +4598,7 @@ $\R^{n}$ ist mit der bekannten Addition und Skalarmultiplikation ein Vektorraum 
 \index{Einheitsvektoren}
 Die Vektoren 
 $$e_{1} \coloneqq (1, 0, \dotsc, 0), ~ e_{2} \coloneqq (0, 1, 0, \dotsc, 0), \dotsc, ~ e_{n} \coloneqq (0, \dotsc, 0, 1)$$
-hei{\ss}en \textbf{Einheitsvektoren}.
+hei{\ss}en \textbf{Einheitsvektoren};
 $\{ e_{1}, \dotsc, e_{n} \}$ ist eine Basis des $\R^{n}$. Ist $x = (x_{1}, \dotsc, x_{n}) \in \R^{n}$, so ist
 $$ x = x_{1} e_{1} + \dotsc + x_{n} e_{n}. $$
 
@@ -4650,7 +4630,7 @@ $$ x = x_{1} e_{1} + \dotsc + x_{n} e_{n}. $$
 		\item $(\alpha x) \cdot y = \alpha (x \cdot y) = x \cdot (\alpha y)$.
 		\item $\| x \| \geq 0$; $\| x \| = 0 \iff x = 0 = (0, \dotsc, 0)$.
 		\item $\| \alpha x \| = |\alpha| \| x \|$.
-		\item $\| x \cdot y \| \leq \| x \| \| y \|$ (\textbf{Cauchy-Schwarzsche Ungleichung} (CSU)).
+		\item $| x \cdot y | \leq \| x \| \| y \|$ (\textbf{Cauchy-Schwarzsche Ungleichung} (CSU)).
 		\item $\| x + y\| \leq \| x \| + \| y \|$ (\textbf{Dreiecksungleichung}).
 		\item $\left| \|x\| - \| y \| \right| \leq \| x - y \|$.
 		\item $\forall j \in \{ 1, \dotsc, n \}: ~ |x_{j}| \leq \| x \| \leq \sum_{k=1}^{n} |x_{k}|.$
@@ -4688,7 +4668,7 @@ $$ x = x_{1} e_{1} + \dotsc + x_{n} e_{n}. $$
 	\begin{align*}
 	(\ast) \quad \quad	\|AB\| \leq \|A\| \|B\|.	
 	\end{align*}
-	Sei $x = (x_{1}, \dotsc, x_{n}) \in \R^{n}$.
+	Es sei $x = (x_{1}, \dotsc, x_{n}) \in \R^{n}$.
 	$$ A x \coloneqq A \cdot x^{T} = A \begin{pmatrix} x_{1} \\ \vdots \\ x_{n} \end{pmatrix} \quad (\textbf{Matrix-Vektorprodukt}) $$
 \end{definition}
 
